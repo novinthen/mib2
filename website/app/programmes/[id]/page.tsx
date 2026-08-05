@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   }
 
   return {
-    title: `${programme.programme_name} — MIB 2.0`,
+    title: programme.programme_name,
     description: programme.problem_addressed,
   };
 }
@@ -40,234 +40,188 @@ export default async function ProgrammePage({ params }: { params: Promise<{ id: 
 
   const totalCost = costLines.reduce((sum, c) => sum + c.six_year_total, 0);
   const newFunding = costLines.reduce((sum, c) => sum + c.new_funding, 0);
+  const reallocated = costLines.reduce((sum, c) => sum + c.reallocated_funding, 0);
+  const existing = totalCost - newFunding - reallocated;
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-neutral-50 min-h-screen">
       {/* Header */}
-      <div className="bg-navy-950 text-white py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-4">
-            <Link href="/programmes" className="text-sm text-gray-400 hover:text-white">
-              ← Back to programmes
+      <div className="relative overflow-hidden bg-gradient-to-br from-primary-700 via-primary-600 to-primary-800 text-white py-14 px-4 sm:px-6 lg:px-8">
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-white/10" />
+        <div className="relative max-w-5xl mx-auto">
+          <div className="mb-6">
+            <Link href="/programmes" className="inline-flex items-center gap-1.5 text-sm text-white/70 hover:text-white transition-colors">
+              <span aria-hidden>←</span> Back to programmes
             </Link>
           </div>
-          <div className="flex items-center gap-3 mb-4">
-            <span className="text-sm font-mono text-gray-400">{programme.programme_id}</span>
-            <span className="text-sm font-semibold px-3 py-1 rounded-full bg-gold-600 text-navy-950">
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            <span className="text-xs font-mono text-white/70 bg-white/10 px-3 py-1 rounded-full border border-white/15">
+              {programme.programme_id}
+            </span>
+            <span className="text-xs font-semibold px-3 py-1 rounded-full bg-accent-400 text-neutral-900">
               {programme.pillar}
             </span>
-            <span className="text-sm font-semibold px-3 py-1 rounded-full bg-navy-800 border border-navy-700">
+            <span className="text-xs font-semibold px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white">
               Phase {programme.phase}
             </span>
           </div>
-          <h1 className="text-4xl font-bold mb-4">{programme.programme_name}</h1>
-          <p className="text-xl text-gray-300">{programme.problem_addressed}</p>
+          <h1 className="text-3xl sm:text-4xl font-bold mb-4">{programme.programme_name}</h1>
+          <p className="text-lg text-white/80 max-w-3xl">{programme.problem_addressed}</p>
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
         {/* Problem → Cause → Intervention */}
-        <section className="bg-white rounded-lg border border-gray-200 p-8 mb-8">
-          <h2 className="text-2xl font-bold text-navy-950 mb-6">Programme Logic</h2>
-
+        <Section title="Programme Logic">
           <div className="space-y-6">
             <div>
-              <h3 className="text-sm font-semibold text-gray-700 uppercase mb-2">Problem</h3>
-              <p className="text-gray-900">{programme.problem_addressed}</p>
+              <FieldLabel>Problem</FieldLabel>
+              <p className="text-neutral-800">{programme.problem_addressed}</p>
             </div>
 
-            <div className="pl-8 border-l-4 border-teal-500">
-              <h3 className="text-sm font-semibold text-gray-700 uppercase mb-2">Structural Cause</h3>
-              <p className="text-gray-900">{programme.structural_cause}</p>
+            <div className="pl-6 border-l-4 border-info-500">
+              <FieldLabel>Structural Cause</FieldLabel>
+              <p className="text-neutral-800">{programme.structural_cause}</p>
             </div>
 
-            <div className="pl-16 border-l-4 border-gold-500">
-              <h3 className="text-sm font-semibold text-gray-700 uppercase mb-2">Intervention</h3>
-              <p className="text-gray-900">{programme.delivery_mechanism}</p>
+            <div className="pl-12 border-l-4 border-accent-500">
+              <FieldLabel>Intervention</FieldLabel>
+              <p className="text-neutral-800">{programme.delivery_mechanism}</p>
             </div>
           </div>
-        </section>
+        </Section>
 
         {/* Target Group & Eligibility */}
-        <section className="bg-white rounded-lg border border-gray-200 p-8 mb-8">
-          <h2 className="text-2xl font-bold text-navy-950 mb-6">Who & How</h2>
-
+        <Section title="Who & How">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h3 className="text-sm font-semibold text-gray-700 uppercase mb-2">Target Group</h3>
-              <p className="text-gray-900">{programme.target_group}</p>
+              <FieldLabel>Target Group</FieldLabel>
+              <p className="text-neutral-800">{programme.target_group}</p>
             </div>
-
             <div>
-              <h3 className="text-sm font-semibold text-gray-700 uppercase mb-2">Eligibility</h3>
-              <p className="text-gray-900">{programme.eligibility}</p>
+              <FieldLabel>Eligibility</FieldLabel>
+              <p className="text-neutral-800">{programme.eligibility}</p>
             </div>
           </div>
-        </section>
+        </Section>
 
         {/* Outputs & Outcomes */}
-        <section className="bg-white rounded-lg border border-gray-200 p-8 mb-8">
-          <h2 className="text-2xl font-bold text-navy-950 mb-6">Deliverables</h2>
-
+        <Section title="Deliverables">
           <div className="space-y-6">
             <div>
-              <h3 className="text-sm font-semibold text-gray-700 uppercase mb-2">Outputs</h3>
-              <p className="text-gray-900">{programme.output}</p>
+              <FieldLabel>Outputs</FieldLabel>
+              <p className="text-neutral-800">{programme.output}</p>
             </div>
-
             <div>
-              <h3 className="text-sm font-semibold text-gray-700 uppercase mb-2">Outcomes</h3>
-              <p className="text-gray-900">{programme.outcome}</p>
+              <FieldLabel>Outcomes</FieldLabel>
+              <p className="text-neutral-800">{programme.outcome}</p>
             </div>
           </div>
-        </section>
+        </Section>
 
         {/* KPIs */}
         {kpis.length > 0 && (
-          <section className="bg-white rounded-lg border border-gray-200 p-8 mb-8">
-            <h2 className="text-2xl font-bold text-navy-950 mb-6">Key Performance Indicators</h2>
-
-            {kpis.map((kpi) => (
-              <div key={kpi.kpi_id} className="mb-6 last:mb-0">
-                <div className="flex items-start justify-between mb-3">
-                  <div>
-                    <span className="text-sm font-mono text-gray-500">{kpi.kpi_id}</span>
-                    <h3 className="text-lg font-semibold text-navy-950">{kpi.kpi_name}</h3>
-                  </div>
-                  <span className={`text-xs font-semibold px-3 py-1 rounded-full ${
-                    kpi.baseline_status === 'source-verified'
-                      ? 'bg-green-100 text-green-800'
-                      : 'bg-yellow-100 text-yellow-800'
-                  }`}>
-                    {kpi.baseline_status}
-                  </span>
-                </div>
-
-                <p className="text-sm text-gray-600 mb-4">{kpi.definition}</p>
-
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
-                  <div>
-                    <div className="text-gray-500 font-medium">Baseline</div>
-                    <div className="text-gray-900">{kpi.baseline_value || 'Not established'}</div>
-                  </div>
-                  <div>
-                    <div className="text-gray-500 font-medium">Year 2</div>
-                    <div className="text-gray-900">{kpi.year_2_target || '—'}</div>
-                  </div>
-                  <div>
-                    <div className="text-gray-500 font-medium">Year 4</div>
-                    <div className="text-gray-900">{kpi.year_4_target || '—'}</div>
-                  </div>
-                  <div>
-                    <div className="text-gray-500 font-medium">Year 6</div>
-                    <div className="text-gray-900">{kpi.year_6_target || '—'}</div>
-                  </div>
-                </div>
-
-                <div className="mt-4 pt-4 border-t border-gray-200">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <Section title="Key Performance Indicators">
+            <div className="divide-y divide-neutral-100">
+              {kpis.map((kpi) => (
+                <div key={kpi.kpi_id} className="py-6 first:pt-0 last:pb-0">
+                  <div className="flex items-start justify-between gap-4 mb-3">
                     <div>
-                      <span className="text-gray-500 font-medium">Owner: </span>
-                      <span className="text-gray-900">{kpi.data_owner}</span>
+                      <span className="text-xs font-mono text-neutral-500">{kpi.kpi_id}</span>
+                      <h3 className="text-lg font-semibold text-neutral-900">{kpi.kpi_name}</h3>
+                    </div>
+                    <span className={`shrink-0 text-xs font-semibold px-3 py-1 rounded-full ${
+                      kpi.baseline_status === 'source-verified'
+                        ? 'bg-green-100 text-green-800'
+                        : 'bg-yellow-100 text-yellow-800'
+                    }`}>
+                      {kpi.baseline_status}
+                    </span>
+                  </div>
+
+                  <p className="text-sm text-neutral-600 mb-4">{kpi.definition}</p>
+
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                    <TargetCell label="Baseline" value={kpi.baseline_value || 'Not established'} />
+                    <TargetCell label="Year 2" value={kpi.year_2_target || '—'} />
+                    <TargetCell label="Year 4" value={kpi.year_4_target || '—'} />
+                    <TargetCell label="Year 6" value={kpi.year_6_target || '—'} />
+                  </div>
+
+                  <div className="mt-4 pt-4 border-t border-neutral-100 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <span className="text-neutral-500 font-medium">Owner: </span>
+                      <span className="text-neutral-900">{kpi.data_owner}</span>
                     </div>
                     <div>
-                      <span className="text-gray-500 font-medium">Verification: </span>
-                      <span className="text-gray-900">{kpi.verification_source}</span>
+                      <span className="text-neutral-500 font-medium">Verification: </span>
+                      <span className="text-neutral-900">{kpi.verification_source}</span>
                     </div>
                   </div>
-                </div>
 
-                {kpi.notes && (
-                  <div className="mt-3 p-3 bg-gray-50 rounded text-sm text-gray-600">
-                    <strong>Note:</strong> {kpi.notes}
-                  </div>
-                )}
-              </div>
-            ))}
-          </section>
+                  {kpi.notes && (
+                    <div className="mt-3 p-3 bg-neutral-50 rounded-lg text-sm text-neutral-600">
+                      <strong className="font-semibold text-neutral-700">Note:</strong> {kpi.notes}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </Section>
         )}
 
         {/* Costing */}
-        <section className="bg-white rounded-lg border border-gray-200 p-8 mb-8">
-          <h2 className="text-2xl font-bold text-navy-950 mb-6">Costing (Central Scenario)</h2>
-
+        <Section title="Costing (Central Scenario)">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-gray-50 p-4 rounded">
-              <div className="text-sm text-gray-500 mb-1">Six-Year Total</div>
-              <div className="text-2xl font-bold text-navy-950">
-                RM {totalCost.toFixed(1)}m
-              </div>
-            </div>
-            <div className="bg-gray-50 p-4 rounded">
-              <div className="text-sm text-gray-500 mb-1">New Funding</div>
-              <div className="text-2xl font-bold text-teal-600">
-                RM {newFunding.toFixed(1)}m
-              </div>
-            </div>
-            <div className="bg-gray-50 p-4 rounded">
-              <div className="text-sm text-gray-500 mb-1">Existing</div>
-              <div className="text-2xl font-bold text-gray-700">
-                RM {(totalCost - newFunding - costLines.reduce((sum, c) => sum + c.reallocated_funding, 0)).toFixed(1)}m
-              </div>
-            </div>
-            <div className="bg-gray-50 p-4 rounded">
-              <div className="text-sm text-gray-500 mb-1">Reallocated</div>
-              <div className="text-2xl font-bold text-gray-700">
-                RM {costLines.reduce((sum, c) => sum + c.reallocated_funding, 0).toFixed(1)}m
-              </div>
-            </div>
+            <CostCell label="Six-Year Total" value={`RM ${totalCost.toFixed(1)}m`} tone="neutral" />
+            <CostCell label="New Funding" value={`RM ${newFunding.toFixed(1)}m`} tone="info" />
+            <CostCell label="Existing" value={`RM ${existing.toFixed(1)}m`} tone="muted" />
+            <CostCell label="Reallocated" value={`RM ${reallocated.toFixed(1)}m`} tone="muted" />
           </div>
 
-          <Link href="/costing" className="text-sm font-semibold text-teal-600 hover:text-teal-700">
+          <Link href="/costing" className="text-sm font-semibold text-primary-600 hover:text-primary-700">
             View full costing scenarios →
           </Link>
-        </section>
+        </Section>
 
         {/* Delivery */}
         {responsibility && (
-          <section className="bg-white rounded-lg border border-gray-200 p-8 mb-8">
-            <h2 className="text-2xl font-bold text-navy-950 mb-6">Delivery & Accountability</h2>
-
+          <Section title="Delivery & Accountability">
             <div className="space-y-4">
               <div>
-                <h3 className="text-sm font-semibold text-gray-700 uppercase mb-2">Lead Ministry</h3>
-                <p className="text-gray-900">{responsibility.lead_ministry_or_agency}</p>
+                <FieldLabel>Lead Ministry</FieldLabel>
+                <p className="text-neutral-800">{responsibility.lead_ministry_or_agency}</p>
               </div>
-
               <div>
-                <h3 className="text-sm font-semibold text-gray-700 uppercase mb-2">Accounting Officer</h3>
-                <p className="text-gray-900">{responsibility.accounting_officer}</p>
+                <FieldLabel>Accounting Officer</FieldLabel>
+                <p className="text-neutral-800">{responsibility.accounting_officer}</p>
               </div>
-
               <div>
-                <h3 className="text-sm font-semibold text-gray-700 uppercase mb-2">Supporting Agencies</h3>
-                <p className="text-gray-900">{programme.supporting_agencies}</p>
+                <FieldLabel>Supporting Agencies</FieldLabel>
+                <p className="text-neutral-800">{programme.supporting_agencies}</p>
               </div>
-
               {responsibility.mandate_basis && (
                 <div>
-                  <h3 className="text-sm font-semibold text-gray-700 uppercase mb-2">Mandate Basis</h3>
-                  <p className="text-gray-900">{responsibility.mandate_basis}</p>
+                  <FieldLabel>Mandate Basis</FieldLabel>
+                  <p className="text-neutral-800">{responsibility.mandate_basis}</p>
                 </div>
               )}
             </div>
-          </section>
+          </Section>
         )}
 
         {/* Risks */}
         {risks.length > 0 && (
-          <section className="bg-white rounded-lg border border-gray-200 p-8">
-            <h2 className="text-2xl font-bold text-navy-950 mb-6">Risks & Safeguards</h2>
-
-            <div className="space-y-6">
+          <Section title="Risks & Safeguards">
+            <div className="divide-y divide-neutral-100">
               {risks.map((risk) => (
-                <div key={risk.risk_id} className="pb-6 last:pb-0 border-b last:border-b-0 border-gray-200">
-                  <div className="flex items-start justify-between mb-3">
+                <div key={risk.risk_id} className="py-6 first:pt-0 last:pb-0">
+                  <div className="flex items-start justify-between gap-4 mb-3">
                     <div>
-                      <span className="text-sm font-mono text-gray-500">{risk.risk_id}</span>
-                      <h3 className="text-lg font-semibold text-navy-950">{risk.risk_category}</h3>
+                      <span className="text-xs font-mono text-neutral-500">{risk.risk_id}</span>
+                      <h3 className="text-lg font-semibold text-neutral-900">{risk.risk_category}</h3>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap gap-2 justify-end">
                       <span className={`text-xs font-semibold px-3 py-1 rounded-full ${
                         risk.inherent_rating === 'Critical'
                           ? 'bg-red-100 text-red-800'
@@ -277,24 +231,59 @@ export default async function ProgrammePage({ params }: { params: Promise<{ id: 
                       }`}>
                         {risk.inherent_rating}
                       </span>
-                      <span className="text-xs font-semibold px-3 py-1 rounded-full bg-gray-100 text-gray-700">
+                      <span className="text-xs font-semibold px-3 py-1 rounded-full bg-neutral-100 text-neutral-700">
                         → {risk.residual_rating}
                       </span>
                     </div>
                   </div>
 
-                  <p className="text-gray-900 mb-3">{risk.risk_description}</p>
+                  <p className="text-neutral-800 mb-3">{risk.risk_description}</p>
 
-                  <div className="p-3 bg-teal-50 rounded">
-                    <h4 className="text-sm font-semibold text-teal-900 mb-1">Safeguard</h4>
-                    <p className="text-sm text-teal-800">{risk.safeguard}</p>
+                  <div className="p-3 bg-info-50 rounded-lg">
+                    <h4 className="text-sm font-semibold text-info-900 mb-1">Safeguard</h4>
+                    <p className="text-sm text-info-800">{risk.safeguard}</p>
                   </div>
                 </div>
               ))}
             </div>
-          </section>
+          </Section>
         )}
       </div>
+    </div>
+  );
+}
+
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <section className="bg-white rounded-2xl shadow-soft p-6 sm:p-8">
+      <h2 className="text-2xl font-bold text-neutral-900 mb-6">{title}</h2>
+      {children}
+    </section>
+  );
+}
+
+function FieldLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <h3 className="text-xs font-semibold tracking-wide text-neutral-500 uppercase mb-2">{children}</h3>
+  );
+}
+
+function TargetCell({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <div className="text-neutral-500 font-medium">{label}</div>
+      <div className="text-neutral-900">{value}</div>
+    </div>
+  );
+}
+
+function CostCell({ label, value, tone }: { label: string; value: string; tone: 'neutral' | 'info' | 'muted' }) {
+  const toneClass =
+    tone === 'info' ? 'text-info-600' : tone === 'muted' ? 'text-neutral-700' : 'text-neutral-900';
+  return (
+    <div className="bg-neutral-50 p-4 rounded-xl">
+      <div className="text-sm text-neutral-500 mb-1">{label}</div>
+      <div className={`text-2xl font-bold ${toneClass}`}>{value}</div>
     </div>
   );
 }
