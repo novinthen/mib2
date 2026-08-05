@@ -1,0 +1,47 @@
+{
+  "file": "Malaysian_Indian_6Year_Action_Plan.docx",
+  "size_bytes": 41308,
+  "zip_parts": 16,
+  "stats": {
+    "paragraphs": 359,
+    "headings": 74,
+    "tables": 4,
+    "textboxes": 0,
+    "images": 0,
+    "vml_images": 0,
+    "embedded_objects": 0,
+    "drawings": 0,
+    "footnotes": 0,
+    "endnotes": 0,
+    "hyperlinks": 0
+  },
+  "media_files": [],
+  "charts": [],
+  "embeddings": [],
+  "app_properties": {
+    "Words": "83",
+    "SharedDoc": "false",
+    "HyperlinksChanged": "false",
+    "Lines": "12",
+    "AppVersion": "12.0000",
+    "LinksUpToDate": "false",
+    "Application": "Microsoft Word 12.0.0",
+    "CharactersWithSpaces": "583",
+    "Template": "Normal.dotm",
+    "DocSecurity": "0",
+    "TotalTime": "6",
+    "ScaleCrop": "false",
+    "Characters": "475",
+    "Paragraphs": "8",
+    "Pages": "1"
+  },
+  "core_properties": {
+    "title": null,
+    "creator": null,
+    "keywords": null,
+    "created": "2026-08-01T18:07:17Z",
+    "modified": "2026-08-01T18:07:17Z"
+  },
+  "extracted_chars": 67475,
+  "extracted_words": 10000
+}
