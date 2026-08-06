@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import AuthButton from './AuthButton';
 
 const NAV_ITEMS = [
   { href: '/why', label: 'Why' },
@@ -11,6 +12,8 @@ const NAV_ITEMS = [
   { href: '/kpis', label: 'KPIs' },
   { href: '/risks', label: 'Risks' },
   { href: '/evidence', label: 'Evidence' },
+  { href: '/ideas', label: 'Ideas' },
+  { href: '/participate', label: 'Participate' },
 ];
 
 export default function Header() {
@@ -48,13 +51,16 @@ export default function Header() {
             </div>
           </Link>
 
-          <nav className="hidden lg:flex items-center space-x-1" aria-label="Main navigation">
-            {NAV_ITEMS.map((item) => (
-              <NavLink key={item.href} href={item.href}>
-                {item.label}
-              </NavLink>
-            ))}
-          </nav>
+          <div className="hidden lg:flex items-center gap-2">
+            <nav className="flex items-center space-x-1" aria-label="Main navigation">
+              {NAV_ITEMS.map((item) => (
+                <NavLink key={item.href} href={item.href}>
+                  {item.label}
+                </NavLink>
+              ))}
+            </nav>
+            <AuthButton />
+          </div>
 
           <button
             className="lg:hidden p-2 rounded-lg hover:bg-neutral-100 transition-colors"
@@ -99,6 +105,9 @@ export default function Header() {
                 </Link>
               );
             })}
+            <div className="px-4 pt-3 mt-2 border-t border-neutral-200/70">
+              <AuthButton />
+            </div>
           </div>
         </nav>
       )}

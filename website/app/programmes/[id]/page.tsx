@@ -67,6 +67,14 @@ export default async function ProgrammePage({ params }: { params: Promise<{ id: 
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold mb-4">{programme.programme_name}</h1>
           <p className="text-lg text-white/80 max-w-3xl">{programme.problem_addressed}</p>
+          <div className="mt-6">
+            <Link
+              href={`/participate?programme=${programme.programme_id}`}
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-primary-700 font-semibold rounded-xl shadow-soft hover:shadow-soft-lg hover:-translate-y-0.5 transition-all"
+            >
+              💡 Suggest an improvement
+            </Link>
+          </div>
         </div>
       </div>
 
