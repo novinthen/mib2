@@ -12,6 +12,7 @@ import {
   Source,
   Responsibility,
   CostingSummary,
+  CostingAssumption,
   Scenario,
   Pillar,
   ConfidenceClass,
@@ -222,6 +223,28 @@ export function loadSources(): Source[] {
     limitations: r.limitations || '',
     supports_directly_or_inference: r.supports_directly_or_inference || '',
   }));
+}
+
+export function loadCostingAssumptions(): CostingAssumption[] {
+  const filePath = path.join(DATA_DIR, 'COSTING_ASSUMPTIONS.csv');
+  const raw = parseCSV<any>(filePath);
+
+  return raw
+    .filter((r) => r.assumption_id)
+    .map((r) => ({
+      assumption_id: r.assumption_id,
+      programme_id: r.programme_id || '',
+      cost_method: r.cost_method || '',
+      eligible_population: r.eligible_population || '',
+      participation_basis: r.participation_basis || '',
+      unit_cost_rm: r.unit_cost_rm || '',
+      frequency_or_duration: r.frequency_or_duration || '',
+      basis_and_benchmark: r.basis_and_benchmark || '',
+      validation_item: r.validation_item || '',
+      recurring_or_one_off: r.recurring_or_one_off || '',
+      confidence: r.confidence as ConfidenceClass,
+      cost_source_id: r.cost_source_id || '',
+    }));
 }
 
 export function loadResponsibilities(): Responsibility[] {

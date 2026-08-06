@@ -145,6 +145,23 @@ export interface Source {
   supports_directly_or_inference: string;
 }
 
+// A single authored costing assumption (from COSTING_ASSUMPTIONS.csv) — the
+// origin of every figure in the costing model. Referenced by CostLine.assumption_ids.
+export interface CostingAssumption {
+  assumption_id: string;
+  programme_id: string;
+  cost_method: string;
+  eligible_population: string;
+  participation_basis: string;
+  unit_cost_rm: string;
+  frequency_or_duration: string;
+  basis_and_benchmark: string;
+  validation_item: string;
+  recurring_or_one_off: string;
+  confidence: ConfidenceClass;
+  cost_source_id: string;
+}
+
 export interface Responsibility {
   responsibility_id: string;
   programme_id: string;

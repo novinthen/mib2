@@ -1,4 +1,10 @@
-import { calculateCostingSummary, loadCostLines, loadProgrammes } from '@/lib/data-loader';
+import {
+  calculateCostingSummary,
+  loadCostLines,
+  loadProgrammes,
+  loadSources,
+  loadCostingAssumptions,
+} from '@/lib/data-loader';
 import { Scenario } from '@/types';
 import CostingClient from '@/components/CostingClient';
 
@@ -26,6 +32,8 @@ export default function CostingPage() {
   };
 
   const programmes = loadProgrammes();
+  const sources = Object.fromEntries(loadSources().map((s) => [s.source_id, s]));
+  const assumptions = Object.fromEntries(loadCostingAssumptions().map((a) => [a.assumption_id, a]));
 
   return (
     <div className="min-h-screen bg-neutral-50">
@@ -47,7 +55,12 @@ export default function CostingPage() {
 
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <CostingClient allData={allData} programmes={programmes} />
+        <CostingClient
+          allData={allData}
+          programmes={programmes}
+          sources={sources}
+          assumptions={assumptions}
+        />
       </div>
     </div>
   );

@@ -1,6 +1,25 @@
-import { loadProgrammes, loadKPIs, loadCostLines, loadRisks, loadResponsibilities } from '@/lib/data-loader';
+import {
+  loadProgrammes,
+  loadKPIs,
+  loadCostLines,
+  loadRisks,
+  loadResponsibilities,
+  loadSources,
+  loadCostingAssumptions,
+} from '@/lib/data-loader';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import CostProvenance from '@/components/CostProvenance';
+import ConfidenceBadge from '@/components/ConfidenceBadge';
+import type { ConfidenceClass } from '@/types';
+
+/** Most-conservative confidence across a programme's cost lines. */
+function summariseConfidence(confidences: ConfidenceClass[]): ConfidenceClass | null {
+  if (confidences.length === 0) return null;
+  if (confidences.includes('Provisional')) return 'Provisional';
+  if (confidences.includes('Benchmarked')) return 'Benchmarked';
+  return 'Confirmed';
+}
 
 export async function generateStaticParams() {
   const programmes = loadProgrammes();
@@ -42,6 +61,11 @@ export default async function ProgrammePage({ params }: { params: Promise<{ id: 
   const newFunding = costLines.reduce((sum, c) => sum + c.new_funding, 0);
   const reallocated = costLines.reduce((sum, c) => sum + c.reallocated_funding, 0);
   const existing = totalCost - newFunding - reallocated;
+
+  // Provenance lookups: resolve source + assumption ids referenced by the cost lines.
+  const sources = Object.fromEntries(loadSources().map((s) => [s.source_id, s]));
+  const assumptions = Object.fromEntries(loadCostingAssumptions().map((a) => [a.assumption_id, a]));
+  const overallConfidence = summariseConfidence(costLines.map((c) => c.confidence));
 
   return (
     <div className="bg-neutral-50 min-h-screen">
@@ -180,12 +204,28 @@ export default async function ProgrammePage({ params }: { params: Promise<{ id: 
 
         {/* Costing */}
         <Section title="Costing (Central Scenario)">
+          {overallConfidence && (
+            <div className="flex items-center gap-2 mb-6 -mt-2">
+              <ConfidenceBadge confidence={overallConfidence} />
+              <span className="text-sm text-neutral-500">confidence for this programme&rsquo;s costing</span>
+            </div>
+          )}
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
             <CostCell label="Six-Year Total" value={`RM ${totalCost.toFixed(1)}m`} tone="neutral" />
             <CostCell label="New Funding" value={`RM ${newFunding.toFixed(1)}m`} tone="info" />
             <CostCell label="Existing" value={`RM ${existing.toFixed(1)}m`} tone="muted" />
             <CostCell label="Reallocated" value={`RM ${reallocated.toFixed(1)}m`} tone="muted" />
           </div>
+
+          {costLines.length > 0 && (
+            <div className="mb-6">
+              <h3 className="text-xs font-semibold tracking-wide text-neutral-500 uppercase mb-3">
+                Where these figures come from
+              </h3>
+              <CostProvenance costLines={costLines} sources={sources} assumptions={assumptions} />
+            </div>
+          )}
 
           <Link href="/costing" className="text-sm font-semibold text-primary-600 hover:text-primary-700">
             View full costing scenarios →

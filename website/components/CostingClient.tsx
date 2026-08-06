@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { Programme, CostingSummary, CostLine, Scenario } from '@/types';
+import { useState, Fragment } from 'react';
+import { Programme, CostingSummary, CostLine, Scenario, Source, CostingAssumption } from '@/types';
+import CostProvenance from '@/components/CostProvenance';
 
 interface CostingClientProps {
   allData: {
@@ -10,10 +11,13 @@ interface CostingClientProps {
     expanded: { summary: CostingSummary; costLines: CostLine[] };
   };
   programmes: Programme[];
+  sources: Record<string, Source>;
+  assumptions: Record<string, CostingAssumption>;
 }
 
-export default function CostingClient({ allData, programmes }: CostingClientProps) {
+export default function CostingClient({ allData, programmes, sources, assumptions }: CostingClientProps) {
   const [selectedScenario, setSelectedScenario] = useState<Scenario>('central');
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   const summary = allData[selectedScenario].summary;
   const costLines = allData[selectedScenario].costLines;
@@ -173,7 +177,10 @@ export default function CostingClient({ allData, programmes }: CostingClientProp
 
       {/* Programme Table */}
       <div className="bg-white rounded-2xl shadow-soft p-8 overflow-hidden">
-        <h2 className="text-2xl font-bold text-neutral-900 mb-6">Programme Details</h2>
+        <h2 className="text-2xl font-bold text-neutral-900 mb-2">Programme Details</h2>
+        <p className="text-sm text-neutral-500 mb-6">
+          Select a programme to see where its figures come from — method, assumptions, and sources.
+        </p>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -201,22 +208,65 @@ export default function CostingClient({ allData, programmes }: CostingClientProp
                   Provisional: 'bg-amber-100 text-amber-800 border-amber-200',
                 };
 
+                const isExpanded = expandedId === programme.programme_id;
+                const hasProvenance = progCosts.length > 0;
+
                 return (
-                  <tr key={programme.programme_id} className="border-b border-neutral-100 hover:bg-neutral-50 transition-colors">
-                    <td className="py-4 px-3">
-                      <div className="font-medium text-neutral-900">{programme.programme_name}</div>
-                      <div className="text-xs text-neutral-500 font-mono mt-0.5">{programme.programme_id}</div>
-                    </td>
-                    <td className="text-right py-4 px-3 font-semibold text-neutral-900">RM {total.toFixed(1)}m</td>
-                    <td className="text-right py-4 px-3 text-neutral-600">RM {existing.toFixed(1)}m</td>
-                    <td className="text-right py-4 px-3 text-neutral-600">RM {reallocated.toFixed(1)}m</td>
-                    <td className="text-right py-4 px-3 font-semibold text-info-600">RM {newFund.toFixed(1)}m</td>
-                    <td className="text-center py-4 px-3">
-                      <span className={`text-xs font-semibold px-3 py-1 rounded-lg border ${confidenceColors[confidence]}`}>
-                        {confidence}
-                      </span>
-                    </td>
-                  </tr>
+                  <Fragment key={programme.programme_id}>
+                    <tr
+                      className={`border-b border-neutral-100 transition-colors ${
+                        hasProvenance ? 'cursor-pointer hover:bg-neutral-50' : ''
+                      } ${isExpanded ? 'bg-neutral-50' : ''}`}
+                      onClick={() =>
+                        hasProvenance &&
+                        setExpandedId(isExpanded ? null : programme.programme_id)
+                      }
+                      aria-expanded={hasProvenance ? isExpanded : undefined}
+                    >
+                      <td className="py-4 px-3">
+                        <div className="flex items-center gap-2">
+                          {hasProvenance && (
+                            <svg
+                              className={`w-4 h-4 shrink-0 text-neutral-400 transition-transform ${
+                                isExpanded ? 'rotate-90' : ''
+                              }`}
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              aria-hidden
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          )}
+                          <div>
+                            <div className="font-medium text-neutral-900">{programme.programme_name}</div>
+                            <div className="text-xs text-neutral-500 font-mono mt-0.5">{programme.programme_id}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="text-right py-4 px-3 font-semibold text-neutral-900">RM {total.toFixed(1)}m</td>
+                      <td className="text-right py-4 px-3 text-neutral-600">RM {existing.toFixed(1)}m</td>
+                      <td className="text-right py-4 px-3 text-neutral-600">RM {reallocated.toFixed(1)}m</td>
+                      <td className="text-right py-4 px-3 font-semibold text-info-600">RM {newFund.toFixed(1)}m</td>
+                      <td className="text-center py-4 px-3">
+                        <span className={`text-xs font-semibold px-3 py-1 rounded-lg border ${confidenceColors[confidence]}`}>
+                          {confidence}
+                        </span>
+                      </td>
+                    </tr>
+                    {isExpanded && hasProvenance && (
+                      <tr className="bg-neutral-50">
+                        <td colSpan={6} className="px-3 pb-5 pt-0">
+                          <CostProvenance
+                            costLines={progCosts}
+                            sources={sources}
+                            assumptions={assumptions}
+                            defaultOpen
+                          />
+                        </td>
+                      </tr>
+                    )}
+                  </Fragment>
                 );
               })}
             </tbody>
