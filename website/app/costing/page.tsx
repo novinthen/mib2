@@ -5,8 +5,8 @@ import {
   loadSources,
   loadCostingAssumptions,
 } from '@/lib/data-loader';
-import { Scenario } from '@/types';
 import CostingClient from '@/components/CostingClient';
+import ConfidenceBadge from '@/components/ConfidenceBadge';
 
 export const metadata = {
   title: 'Costing — MIB 2.0',
@@ -14,8 +14,6 @@ export const metadata = {
 };
 
 export default function CostingPage() {
-  const scenarios: Scenario[] = ['conservative', 'central', 'expanded'];
-
   const allData = {
     conservative: {
       summary: calculateCostingSummary('conservative'),
@@ -54,7 +52,56 @@ export default function CostingPage() {
       </div>
 
       {/* Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-6">
+        {/* How to read this */}
+        <div className="bg-white rounded-2xl shadow-soft p-6 sm:p-8">
+          <h2 className="text-lg font-bold text-neutral-900 mb-4">How to read costing</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="text-xs font-semibold tracking-wide text-neutral-500 uppercase mb-3">
+                Confidence of each figure
+              </h3>
+              <ul className="space-y-2.5">
+                <li className="flex items-start gap-3">
+                  <ConfidenceBadge confidence="Confirmed" />
+                  <span className="text-sm text-neutral-600">Published outturn or gazetted figure.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ConfidenceBadge confidence="Benchmarked" />
+                  <span className="text-sm text-neutral-600">Benchmarked to a comparable programme or source.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <ConfidenceBadge confidence="Provisional" />
+                  <span className="text-sm text-neutral-600">Planning assumption pending validation.</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xs font-semibold tracking-wide text-neutral-500 uppercase mb-3">
+                What the funding split means
+              </h3>
+              <ul className="space-y-2.5 text-sm text-neutral-600">
+                <li>
+                  <span className="font-semibold text-neutral-800">Existing</span> — already funded within a
+                  ministry&rsquo;s current budget.
+                </li>
+                <li>
+                  <span className="font-semibold text-neutral-800">Reallocated</span> — redirected from other
+                  existing budget lines.
+                </li>
+                <li>
+                  <span className="font-semibold text-info-700">New</span> — the incremental funding this plan
+                  asks for.
+                </li>
+              </ul>
+            </div>
+          </div>
+          <p className="mt-5 pt-4 border-t border-neutral-100 text-sm text-neutral-500">
+            All figures are in 2026 nominal ringgit. Select a programme in the table below to expand its{' '}
+            <span className="font-medium text-neutral-700">method, assumptions and sources</span>.
+          </p>
+        </div>
+
         <CostingClient
           allData={allData}
           programmes={programmes}
