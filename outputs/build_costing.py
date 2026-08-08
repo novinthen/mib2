@@ -43,7 +43,7 @@ PROGRAMME_META = {
     "PRG-01": ("P1 Foundations", "Ministry of Home Affairs (JPN)", "National Documentation Resolution Programme", "1-2-3"),
     "PRG-02": ("P1 Foundations", "Ministry of Education", "Early Childhood Access Programme", "1-2-3"),
     "PRG-03": ("P1 Foundations", "Ministry of Education", "SJKT Safety and Learning Environment Programme", "1-2-3"),
-    "PRG-04": ("P1 Foundations", "Ministry of National Unity", "Community Institution Safety and Compliance Programme", "1-2-3"),
+    "PRG-04": ("P1 Foundations", "Ministry of National Unity", "Multi-Faith Community Institution Safety and Compliance Programme", "1-2-3"),
     "PRG-05": ("P2 Progression", "Ministry of Education", "School-to-Pathway Guidance and Placement Support", "1-2-3"),
     "PRG-06": ("P2 Progression", "Ministry of Human Resources", "TVET and STEM Progression Pipeline", "1-2-3"),
     "PRG-07": ("P2 Progression", "Ministry of Education", "Tertiary Access Navigation and Transparency", "1-2-3"),

@@ -1,6 +1,22 @@
 # AUDIT LOG
 
-Chronological record of what was checked, what failed, what changed, and the result. Session date: 2026-08-05.
+Chronological record of what was checked, what failed, what changed, and the result. Original session date: 2026-08-05; latest amendment: 2026-08-08.
+
+---
+
+## Post-release amendment — PRG-04 multi-faith redesign (2026-08-08)
+
+| # | Check | Result |
+|---|---|---|
+| A.1 | Inclusive scope | PRG-04 expressly includes Hindu temples, mosques and surau serving Indian Muslim communities, churches, Sikh gurdwaras, Baha'i facilities and other eligible institutions through an open-ended definition |
+| A.2 | Common eligibility | Needs-based criteria, documented public-interest community service, and state, institutional and any applicable religious-authority consent replace fixed allocations by religion |
+| A.3 | Differentiated structural response | Temple and estate-legacy tenure, relocation and registration cases retain a separate documentation-and-state-referral pathway; no federal adjudicative power is asserted |
+| A.4 | Public-funding boundary | Support is limited to life safety, accessibility, compliance and eligible community-service spaces; worship, proselytisation, ceremonies, devotional fixtures and doctrinal activity are excluded |
+| A.5 | Cost discipline | RM44.400m remains a provisional planning cap, not an expanded coverage commitment; the 1,200-institution assumption, faith-type distribution, partner capacity and fiscal envelope require recalibration after the multi-faith facility map |
+| A.6 | Cross-register consistency | Programme, responsibility, KPI, risk, conflict, claim, costing and executive-proposal records updated; `COSTING_MODEL.csv` regenerated from `COSTING_ASSUMPTIONS.csv` |
+| A.7 | Regression verification | `verify_outputs.py`: **PASS — 76 checks, 0 hard failures, 1 standing disclosure warning**; Next.js production build: **PASS — 29 static pages generated** |
+
+**Amendment result: PASS.** No numerical target or additional appropriation was invented. The broadened eligibility is explicitly gated by VAL-13 baseline, jurisdictional and fiscal validation.
 
 ---
 

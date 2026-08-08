@@ -66,10 +66,10 @@ Each decision records what was chosen, what else was defensible, and why the cho
 **Rejected:** Universal coverage language ("each participating family", 90% enrolment, 10,000 housing placements).
 **Why:** Every capped figure is staffed and costed. Uncapped language is not deliverable and would create the same credibility gap the plan exists to close.
 
-### DEC-11 — Temple and community asset programme is narrowed
-**Chosen:** A safety, accessibility and compliance audit of community-service facilities, by state consent, with federal funding confined to safety and community-service functions; tenure findings referred to states.
-**Rejected:** Source 2's national audit including land tenure and heritage adjudication.
-**Why:** Land, local government and non-Islamic religious institutions are substantially state matters. See CNF-028.
+### DEC-11 — Community institution programme is narrowed and made multi-faith
+**Chosen:** One religion-neutral safety, accessibility and compliance programme for faith-based and community institutions serving Malaysian Indian communities. The open-ended definition expressly includes Hindu temples, mosques and surau serving Indian Muslim communities, churches, Sikh gurdwaras, Baha'i facilities and other eligible institutions. Common, needs-based criteria apply across faiths; there is no equal allocation or fixed quota by religion. A separate temple and estate-legacy track documents tenure, relocation and registration cases for referral to the competent state authority, while institution-specific coordination follows the relevant legal and religious-administration regime.
+**Rejected:** Source 2's Hindu-only national audit; a closed list of four faith categories; federal financing of religious practice; and federal adjudication of land tenure or heritage status.
+**Why:** A Malaysian Indian blueprint should not equate Indian identity with Hindu identity, but formal equality cannot erase the distinctive estate-displacement and land-tenure problems affecting temples. The two-track design combines inclusive access with differentiated remedies. Participation requires state, institutional and—where applicable—religious-authority consent. Federal funding is confined to life safety, accessibility, compliance and documented public-interest community-service spaces; it excludes worship, proselytisation, ceremonies, devotional fixtures and doctrinal activity. See CNF-028.
 
 ### DEC-12 — No inflation escalation is applied
 **Chosen:** State all figures in 2026 prices with no escalation, and disclose that this understates the nominal cash requirement in Years 3–6 by roughly 10–13% at 2.5% annual inflation.
