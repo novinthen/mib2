@@ -1,7 +1,7 @@
 # FINAL QA REPORT — MIB 2.0
 
 **Date:** 2026-08-05 · **Submission-readiness updates:** 2026-08-10 · **Price basis:** 2026 nominal ringgit, base year 2026
-**Machine verification:** `python outputs/verify_outputs.py` → **exit 0, 91 checks passed, 0 hard failures, 1 standing disclosure warning**
+**Machine verification:** `python outputs/verify_outputs.py` → **exit 0, 98 checks passed, 0 hard failures, 1 standing disclosure warning**
 
 > This report gives concrete evidence of tests performed and their results. Where a test could not be performed, or a result is weaker than the package would ideally show, that is stated rather than smoothed over.
 
@@ -140,13 +140,14 @@ were fixed.
 
 | Criterion | Status | Evidence |
 |---|---|---|
-| All machine checks pass | **MET** | exit 0; 85 passed; 0 hard failures |
+| All machine checks pass | **MET** | exit 0; 98 passed; 0 hard failures |
 | All material citations verified or appropriately qualified | **MET** | 62/62 dispositioned; 10 explicitly qualified as uninspected |
 | Zero known arithmetic or reconciliation errors | **MET** | 18 reconciliations; 54 lines; 378 numeric cells |
 | Zero unresolved critical findings | **MET** | 17 found, **17 resolved, 0 open**; each closed by a structural fix with a machine check preventing recurrence |
 | Major and moderate findings resolved or conservatively disclosed | **MET** | 49 of 50 resolved; 1 moderate (MOD-04) open and disclosed |
 | Proposal and annexes internally consistent | **MET** | Financial and phase tables generated from canonical registers; checks [12], [12b] and [12c] |
 | Every remaining uncertainty requiring official validation is explicit | **MET** | 30 validation items in the canonical register; five classifications; six strict gates; four decision-dependent critical items; every row has ownership, evidence, deadline, escalation, consequence, decision link and status |
+| Every material legal issue has a controlled clearance route | **MET** | 18 legal issues; 10 pre-submission and 8 programme-launch clearances; all 16 programmes covered; all remain open; no clearance can be recorded without written evidence and acceptance date |
 | All applicable rubric dimensions meet threshold | **MET** | All ≥ 4.0; average 4.44 |
 
 ---
@@ -155,6 +156,7 @@ were fixed.
 
 - **Not that the costs are reliable to three decimal places.** They reconcile to three decimals because they are computed, not because they are accurate. **0.0% of the portfolio is Confirmed.**
 - **Not that the plan is ready to fund.** Applicable pre-submission and programme-launch gates must clear first. PNB participation (VAL-19) remains a commercial decision Cabinet cannot direct, while VAL-03, VAL-24, VAL-27 and VAL-28 become submission blockers only when the requested decision relies on them.
+- **Not that the proposal has legal clearance.** All 18 legal issues remain open. The matrix is a structured instruction to AGC and other competent authorities, not an opinion; receipt of advice is not recorded as clearance without a written disposition and acceptance date.
 - **Not that low uncertainty has been achieved.** 0% of the portfolio is Confirmed and 68.1% is Provisional. The classification is now honest and machine-enforced; it is not favourable.
 - **Not that the community's needs are settled fact.** The core household baseline is 2014 data. DOSM re-estimation (VAL-02) could change programme scale materially.
 - **Not that the plan will work.** Its central mechanism — sustained quarterly Prime Ministerial chairmanship for six years — carries a **High residual risk after safeguards** (RSK-01), and is the same mechanism whose absence defeated the 2017 Blueprint.
@@ -164,7 +166,7 @@ were fixed.
 ## 7. Package manifest
 
 **Control and audit:** `STATUS.md` · `ASSUMPTIONS_AND_DECISIONS.md` · `AUDIT_LOG.md` · `CRITIC_FINDINGS.md` · `FINAL_QA_REPORT.md`
-**Evidence, decisions and analysis:** `SOURCE_REGISTER.csv` (18) · `CLAIMS_AND_FIGURES_REGISTER.csv` (62) · `PROGRAMME_REGISTER.csv` (21) · `NARRATIVE_REGISTER.csv` (18) · `CONFLICT_AND_DUPLICATION_REGISTER.csv` (34) · `RESPONSIBILITY_MATRIX.csv` (16) · `KPI_REGISTER.csv` (16) · `RISK_AND_SAFEGUARD_REGISTER.csv` (21) · `DECISION_REGISTER.csv` (16) · `VALIDATION_REGISTER.csv` (30)
+**Evidence, decisions and analysis:** `SOURCE_REGISTER.csv` (28) · `CLAIMS_AND_FIGURES_REGISTER.csv` (62) · `PROGRAMME_REGISTER.csv` (21) · `NARRATIVE_REGISTER.csv` (18) · `CONFLICT_AND_DUPLICATION_REGISTER.csv` (34) · `RESPONSIBILITY_MATRIX.csv` (16) · `KPI_REGISTER.csv` (16) · `RISK_AND_SAFEGUARD_REGISTER.csv` (21) · `DECISION_REGISTER.csv` (16) · `VALIDATION_REGISTER.csv` (30) · `LEGAL_ISSUES_REGISTER.csv` (18)
 **Costing and machine checks:** `COSTING_MODEL.csv` (54) · `COSTING_ASSUMPTIONS.csv` (25) · `BENEFICIARY_RECONCILIATION.csv` (4) · `build_costing.py` · `sync_document_integrity.py` · `verify_outputs.py` · `VERIFICATION_RESULTS.md`
 **Stage and final deliverables:** `STAGE_1_DIAGNOSTIC.md` · `STAGE_2_RECONCILIATION.md` · `MIB_2.0_EXECUTIVE_PROPOSAL.md` · `TECHNICAL_ANNEXES.md`
 **Extraction record:** `extract_sources.py` · `extracted/*.txt` · `extracted/*_manifest.json`

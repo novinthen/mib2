@@ -264,6 +264,7 @@ Create `outputs/` if it does not exist. Maintain these canonical files:
 - `outputs/RISK_AND_SAFEGUARD_REGISTER.csv`
 - `outputs/DECISION_REGISTER.csv`
 - `outputs/VALIDATION_REGISTER.csv`
+- `outputs/LEGAL_ISSUES_REGISTER.csv`
 
 ### Costing and machine checks
 
@@ -690,6 +691,21 @@ The completed package must contain:
 14. technical annexes; and
 15. final QA report and machine-verification results.
 
+The proposal must also maintain a legal issues matrix rather than asserting that the package was
+"legally reviewed". `outputs/LEGAL_ISSUES_REGISTER.csv` must identify, for every material issue:
+the controlling authority and source IDs; precise question for clearance; provisional design
+boundary; required written clearance; competent owner and consulted bodies; affected programmes
+and decisions; related validation IDs; consequence if unresolved; clearance stage; controlled
+status; and, only after disposition, the evidence reference and acceptance date. No issue may be
+marked cleared without both written evidence from the competent authority and an acceptance date.
+
+The matrix must separately cover Articles 8, 12(1), 136 and 153; citizenship and documentation
+discretion; implementing-body mandates; public finance; the current procurement regime including
+the Government Procurement Act 2026 [Act 882] and its commencement/transitional instruments;
+government and private-party data processing; federal-state jurisdiction; and six PRG-04 pathways:
+public-purpose eligibility, state/institutional consent, Islamic administration, temple and
+estate-legacy referral, excluded worship/doctrinal expenditure, and religion-data handling.
+
 The proposal must use the canonical `outputs/DECISION_REGISTER.csv` and seek a three-tier decision:
 
 1. **Approve now:** policy direction and strategic objectives; a 90-calendar-day validation exercise; interim coordination and agency focal points within existing resources; preparation of the formal implementation submission; and the rule that any additional design/validation budget must return separately as an itemised Treasury-cleared ceiling.
@@ -712,7 +728,9 @@ Completion requires all of the following:
 6. The final independent critic reports zero unresolved critical findings.
 7. Every accepted major and moderate finding is corrected or conservatively disclosed.
 8. Every remaining official-validation item is listed explicitly.
-9. The final response reports concrete audit evidence rather than unsupported assurances.
+9. Every legal issue remains explicitly unresolved unless the competent authority's written
+   disposition, evidence reference and acceptance date are recorded.
+10. The final response reports concrete audit evidence rather than unsupported assurances.
 
 The final response must state:
 

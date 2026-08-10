@@ -78,6 +78,98 @@ def validation_data() -> list[dict[str, str]]:
     return load_csv("VALIDATION_REGISTER.csv")
 
 
+def legal_data() -> list[dict[str, str]]:
+    return load_csv("LEGAL_ISSUES_REGISTER.csv")
+
+
+def render_legal_summary() -> str:
+    rows = legal_data()
+    status_counts = {
+        status: sum(row["status"] == status for row in rows)
+        for status in sorted({row["status"] for row in rows})
+    }
+    pre_submission = sum(row["clearance_stage"] == "pre_submission_clearance" for row in rows)
+    programme_launch = sum(row["clearance_stage"] == "programme_launch_clearance" for row in rows)
+    prg04 = [row["legal_issue_id"] for row in rows if row["legal_issue_id"].startswith("LGL-1") and row["legal_issue_id"] >= "LGL-13"]
+    lines = [
+        START.format(name="LEGAL_CLEARANCE_SUMMARY"),
+        "## 2.5 Legal and jurisdictional clearance architecture",
+        "",
+        f"`LEGAL_ISSUES_REGISTER.csv` controls **{len(rows)} legal issues**: "
+        f"**{pre_submission} pre-submission clearances** and **{programme_launch} programme-launch clearances**. "
+        "This is an issues and instructions matrix, not legal advice. **No issue is recorded as cleared, "
+        "and no written AGC or other competent-authority clearance has been obtained by this drafting exercise.**",
+        "",
+        "| Clearance block | Issues | Required result |",
+        "|---|---|---|",
+        "| Constitutional targeting and discretion | LGL-01 to LGL-04 | AGC defines the lawful boundary for equality, education aid, public-service impartiality and citizenship/documentation administration |",
+        "| Institutional, financial and procurement authority | LGL-05 to LGL-08 | Every function, payment and procurement has a competent body, lawful instrument, accounting officer and operative approval route |",
+        "| Data governance and sharing | LGL-09 to LGL-11 | Government and private-party processing, linkage, disclosure, retention, correction and breach controls are identified dataset by dataset |",
+        "| Federal-state jurisdiction | LGL-12 | Each participating state confirms the applicable land, local-government, housing and approval route, including Sabah and Sarawak differences |",
+        f"| PRG-04 pathway-specific clearance | {prg04[0]} to {prg04[-1]} | Public purpose, consent, Islamic-administration, temple/estate referral, excluded expenditure and religion-data rules are separately cleared |",
+        "",
+        "Current status: " + ", ".join(
+            f"**{count} {status.replace('_', ' ')}**" for status, count in status_counts.items()
+        ) + ". `Received` evidence does not equal clearance. A status may change to `cleared` or "
+        "`cleared_with_conditions` only when the register contains "
+        "the competent authority's written evidence reference and acceptance date. A conditional clearance must "
+        "state every condition in the evidence itself; the drafting secretariat cannot infer or waive it.",
+        "",
+        "**Current-law control.** AGC's legislation portal now lists the Government Procurement Act 2026 "
+        "[Act 882]. LGL-08 therefore requires MOF and AGC to identify its commencement, subsidiary and "
+        "transitional instruments and the regime applicable to each transaction. The proposal does not assume "
+        "that either the new Act or the prior administrative framework applies without that confirmation.",
+        "",
+        "**Legal no-cascade rule.** An unresolved issue blocks only the programmes and decisions identified "
+        "against it. PRG-04 state or religious-authority clearance is facility- and jurisdiction-specific unless "
+        "the competent authority concludes that the defect affects the national instrument itself.",
+        END.format(name="LEGAL_CLEARANCE_SUMMARY"),
+    ]
+    return "\n".join(lines)
+
+
+def render_legal_register() -> str:
+    rows = legal_data()
+    labels = {
+        "pre_submission_clearance": "Pre-submission legal clearances",
+        "programme_launch_clearance": "Programme-launch legal clearances",
+    }
+    lines = [
+        START.format(name="LEGAL_ISSUES_REGISTER"),
+        "**Legal status rule.** This matrix identifies questions for competent authorities. It does not "
+        "express a legal opinion or certify compliance. Every issue starts as `open`. "
+        "`Requested` and `received` record workflow, not legal sufficiency. `Cleared`, "
+        "`cleared_with_conditions` or `not_cleared` requires a written evidence reference and acceptance date.",
+        "",
+    ]
+    for stage, label in labels.items():
+        selected = [row for row in rows if row["clearance_stage"] == stage]
+        lines += [f"### {label} ({len(selected)})", ""]
+        for row in selected:
+            lines += [
+                f"#### {row['legal_issue_id']} — {row['domain'].replace('_', ' ').title()}",
+                "",
+                f"- **Authority:** {row['legal_authority']} ({row['authority_source_ids']})",
+                f"- **Question for clearance:** {row['legal_question']}",
+                f"- **Provisional design position:** {row['provisional_design_position']}",
+                f"- **Required written clearance:** {row['required_written_clearance']}",
+                f"- **Clearance owner:** {row['clearance_owner']}",
+                f"- **Bodies to consult:** {row['consulted_bodies']}",
+                f"- **Affected programmes / decisions:** {row['affected_programmes']} / {row['affected_decisions']}",
+                f"- **Related validation controls:** {row['related_validation_ids']}",
+                f"- **Consequence if unresolved:** {row['consequence_if_unresolved']}",
+                f"- **Status:** `{row['status']}`",
+                "",
+            ]
+    lines += [
+        "**Recording rule.** The secretariat may record and index advice but may not mark its own legal "
+        "position as cleared. Conflicting advice is escalated to the named clearance owner and remains "
+        "`received` or `not_cleared` until the competent authority resolves it in writing.",
+        END.format(name="LEGAL_ISSUES_REGISTER"),
+    ]
+    return "\n".join(lines)
+
+
 def render_validation_summary() -> str:
     rows = validation_data()
     labels = {
@@ -389,6 +481,8 @@ def expected_sections() -> dict[str, str]:
         "DECISION_ARCHITECTURE": render_decision_architecture(),
         "VALIDATION_SUMMARY": render_validation_summary(),
         "VALIDATION_REGISTER": render_validation_register(),
+        "LEGAL_CLEARANCE_SUMMARY": render_legal_summary(),
+        "LEGAL_ISSUES_REGISTER": render_legal_register(),
         "PHASE_TABLE": render_phase_table(),
         "PROPOSAL_FINANCE": render_proposal_finance(),
         "FINAL_DECISION_RESOLUTION": render_final_decision_resolution(),
@@ -402,6 +496,7 @@ def main() -> None:
     proposal_eol = "\r\n" if "\r\n" in proposal else "\n"
     proposal = replace_generated(proposal, "DECISION_ARCHITECTURE", render_decision_architecture().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "VALIDATION_SUMMARY", render_validation_summary().replace("\n", proposal_eol))
+    proposal = replace_generated(proposal, "LEGAL_CLEARANCE_SUMMARY", render_legal_summary().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "PHASE_TABLE", render_phase_table().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "PROPOSAL_FINANCE", render_proposal_finance().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "FINAL_DECISION_RESOLUTION", render_final_decision_resolution().replace("\n", proposal_eol))
@@ -422,6 +517,9 @@ def main() -> None:
     assumptions_eol = "\r\n" if "\r\n" in assumptions else "\n"
     assumptions = replace_generated(
         assumptions, "VALIDATION_REGISTER", render_validation_register().replace("\n", assumptions_eol)
+    )
+    assumptions = replace_generated(
+        assumptions, "LEGAL_ISSUES_REGISTER", render_legal_register().replace("\n", assumptions_eol)
     )
     with open(ASSUMPTIONS, "w", encoding="utf-8", newline="") as fh:
         fh.write(assumptions)

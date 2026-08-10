@@ -507,3 +507,251 @@ are now on the record:
   Sarawak **and the legitimate interests of other communities**. Malaysian Indians fall within the
   latter limb. This is the correct constitutional framing, and it does not support reserving
   quotas — which is why no quota is proposed.
+
+---
+
+## Part G — Legal and jurisdictional issues matrix
+
+<!-- GENERATED:LEGAL_ISSUES_REGISTER:START -->
+**Legal status rule.** This matrix identifies questions for competent authorities. It does not express a legal opinion or certify compliance. Every issue starts as `open`. `Requested` and `received` record workflow, not legal sufficiency. `Cleared`, `cleared_with_conditions` or `not_cleared` requires a written evidence reference and acceptance date.
+
+### Pre-submission legal clearances (10)
+
+#### LGL-01 — Equality And Targeting
+
+- **Authority:** Federal Constitution Articles 8 and 153 (SRC-019)
+- **Question for clearance:** Whether needs-based eligibility combined with community-targeted outreach and disaggregated reporting is constitutionally permissible across the portfolio, and whether any instrument would amount to an impermissible ethnic entitlement or quota
+- **Provisional design position:** Eligibility is based on need, barrier or institution-level public purpose; ethnicity informs outreach and measurement only; no Article 153 quota, ethnic procurement set-aside or guaranteed outcome is proposed
+- **Required written clearance:** AGC opinion identifying the permissible eligibility, outreach, disaggregation and instrument-design boundaries and any provisions requiring redesign
+- **Clearance owner:** Attorney-General's Chambers
+- **Bodies to consult:** Prime Minister's Department; Ministry of Finance; all lead ministries
+- **Affected programmes / decisions:** PRG-01;PRG-02;PRG-03;PRG-04;PRG-05;PRG-06;PRG-07;PRG-08;PRG-09;PRG-10;PRG-11;PRG-12;PRG-13;PRG-14;PRG-15;PRG-16 / AN-04;CE-01;CE-03;CE-04;NA-07
+- **Related validation controls:** VAL-01;VAL-30
+- **Consequence if unresolved:** No affected instrument may be submitted for implementation; any element not cleared must be removed or redesigned
+- **Status:** `open`
+
+#### LGL-02 — Education Non Discrimination
+
+- **Authority:** Federal Constitution Article 12(1); Education Act 1996 [Act 550] and applicable education regulations (SRC-019)
+- **Question for clearance:** Whether PRG-02, PRG-06 and PRG-07 assistance paid from public funds is designed and administered without prohibited racial discrimination, and within the powers of the responsible education bodies
+- **Provisional design position:** Financial aid eligibility is needs- and programme-based, with no race-exclusive entitlement, seat reservation or altered academic standard; targeted outreach does not determine awards
+- **Required written clearance:** AGC opinion and written MOE/MOHE confirmation of the lawful eligibility, selection, payment and appeal rules for each educational assistance instrument
+- **Clearance owner:** Attorney-General's Chambers
+- **Bodies to consult:** Ministry of Education; Ministry of Higher Education; Ministry of Finance
+- **Affected programmes / decisions:** PRG-02;PRG-06;PRG-07 / AN-04;CE-03;CE-04;NA-06;NA-07
+- **Related validation controls:** VAL-05;VAL-30
+- **Consequence if unresolved:** The affected assistance instrument cannot launch or be included in an implementation decision until redesigned or cleared
+- **Status:** `open`
+
+#### LGL-03 — Public Service Impartiality
+
+- **Authority:** Federal Constitution Articles 136, 139 and 144 (SRC-019;SRC-027)
+- **Question for clearance:** Whether public-service outreach, preparation, disaggregated reporting and advancement support preserve impartial treatment and the constitutional functions and independence of the relevant Service Commissions
+- **Provisional design position:** PRG-13 and PRG-14 do not change entry, assessment, appointment, confirmation or promotion standards; they provide outreach, preparation, process transparency and general capability support
+- **Required written clearance:** AGC opinion plus written confirmation from SPA and JPA defining the permissible programme boundary, data publication rules and non-interference safeguards
+- **Clearance owner:** Attorney-General's Chambers
+- **Bodies to consult:** Public Service Commission; Public Service Department; participating service commissions
+- **Affected programmes / decisions:** PRG-13;PRG-14 / AN-04;CE-03;CE-04;NA-06;NA-07
+- **Related validation controls:** VAL-30
+- **Consequence if unresolved:** No representation target or instrument affecting appointment or promotion may proceed; affected components must remain general outreach or be removed
+- **Status:** `open`
+
+#### LGL-04 — Citizenship And Documentation
+
+- **Authority:** Federal Constitution Part III including Articles 14, 15, 15A, 16 and 19; National Registration Act 1959 [Act 78]; Births and Deaths Registration Act 1957 [Act 299] and applicable regulations (SRC-019;SRC-020)
+- **Question for clearance:** Whether PRG-01 case management, service standards, referral, status visibility and written reasons can operate without fettering statutory or constitutional discretion, creating an entitlement, or disclosing protected records
+- **Provisional design position:** The programme may improve access, case administration and processing transparency but cannot direct, guarantee or deem a citizenship, registration or identity-document outcome
+- **Required written clearance:** AGC and KDN/JPN legal matrix identifying which service commitments are permissible for each case type, who may decide, what reasons may be disclosed, and the review or complaint route
+- **Clearance owner:** Attorney-General's Chambers
+- **Bodies to consult:** Ministry of Home Affairs; National Registration Department; legal-aid bodies
+- **Affected programmes / decisions:** PRG-01 / AN-04;CE-03;CE-04;NA-06;NA-07
+- **Related validation controls:** VAL-01;VAL-12
+- **Consequence if unresolved:** PRG-01 may not promise outcome clearance or adopt a service standard that fetters discretion; unclear case types must be excluded from launch
+- **Status:** `open`
+
+#### LGL-05 — Implementing Body Authority
+
+- **Authority:** Federal Constitution Article 80 and Ninth Schedule; establishing statutes, administrative instruments and delegated-authority instruments of each implementing body (SRC-019)
+- **Question for clearance:** Whether each lead and supporting body has legal and administrative authority to perform the assigned delivery, data, grant, referral and monitoring functions, and whether delegation or a new instrument is required
+- **Provisional design position:** Each programme remains with its existing ministry and accounting officer; the Task Force coordinates and escalates but does not assume statutory functions, votes or delegated powers
+- **Required written clearance:** Programme-by-programme written mandate certification by the responsible ministry legal adviser, accepted by AGC where authority is disputed or a new instrument is required
+- **Clearance owner:** Attorney-General's Chambers
+- **Bodies to consult:** All lead ministries; Chief Secretary to the Government; relevant statutory bodies and accounting officers
+- **Affected programmes / decisions:** PRG-01;PRG-02;PRG-03;PRG-04;PRG-05;PRG-06;PRG-07;PRG-08;PRG-09;PRG-10;PRG-11;PRG-12;PRG-13;PRG-14;PRG-15;PRG-16 / AN-03;AN-04;CE-01;CE-03;CE-04;NA-07
+- **Related validation controls:** VAL-01;VAL-08;VAL-19;VAL-23
+- **Consequence if unresolved:** Any function without a certified legal route must be reassigned, narrowed, separately authorised or removed from the implementation package
+- **Status:** `open`
+
+#### LGL-06 — Task Force And Delegation
+
+- **Authority:** Federal Constitution and applicable machinery-of-government, financial-delegation and public-service instruments (SRC-019;SRC-022)
+- **Question for clearance:** Whether Cabinet may constitute the proposed coordination bodies and reporting duties in the stated form, and which functions require separate statutory, establishment, financial or administrative authority
+- **Provisional design position:** The interim arrangement uses existing functions and resources; a later Task Force is coordinating and accountable only, holds no programme funds and cannot direct independent, statutory or state authorities
+- **Required written clearance:** AGC and KSN-approved terms of reference plus a delegation schedule that identifies powers retained by Cabinet, ministers, accounting officers, statutory bodies, Service Commissions and states
+- **Clearance owner:** Attorney-General's Chambers
+- **Bodies to consult:** Chief Secretary to the Government; Prime Minister's Department; Ministry of Finance; Public Service Department
+- **Affected programmes / decisions:** PRG-15;PRG-16 / AN-03;AN-04;CE-01;CE-04;NA-07
+- **Related validation controls:** VAL-08;VAL-23;VAL-27
+- **Consequence if unresolved:** Only the interim coordination arrangement may operate; the permanent model and any unsupported reporting direction must be withheld or redesigned
+- **Status:** `open`
+
+#### LGL-07 — Public Finance And Grants
+
+- **Authority:** Federal Constitution Articles 97 to 104; Financial Procedure Act 1957 [Act 61]; applicable supply, development-expenditure and Treasury instruments (SRC-019;SRC-022;SRC-024)
+- **Question for clearance:** Whether each proposed expenditure, grant, reallocation and matched-funding mechanism has a lawful appropriation, vote purpose, controlling officer, payment authority and accounting treatment
+- **Provisional design position:** The indicative cost model creates no spending authority; every later component must identify an approved ceiling, funding source, vote, controlling officer and applicable grant or payment instrument
+- **Required written clearance:** Treasury legal and financial memorandum, with AGC advice where a novel grant or matched-funding instrument is used, certifying the authority and controls for each Phase 1 component
+- **Clearance owner:** Ministry of Finance
+- **Bodies to consult:** Attorney-General's Chambers; Ministry of Economy; Accountant General's Department; affected accounting officers
+- **Affected programmes / decisions:** PRG-02;PRG-03;PRG-04;PRG-06;PRG-07;PRG-09;PRG-11;PRG-12;PRG-15;PRG-16 / AN-04;CE-02;CE-04;NA-01;NA-02;NA-03;NA-07
+- **Related validation controls:** VAL-03;VAL-11;VAL-19;VAL-23;VAL-28
+- **Consequence if unresolved:** No expenditure, grant, reallocation or matched-funding commitment may be included without a certified financial route
+- **Status:** `open`
+
+#### LGL-08 — Public Procurement
+
+- **Authority:** Government Procurement Act 2026 [Act 882], its commencement and transitional instruments; Financial Procedure Act 1957 [Act 61]; current Treasury Instructions and Treasury Circulars; Government Contracts Act 1949 [Act 120] where applicable (SRC-022;SRC-023;SRC-024)
+- **Question for clearance:** Which procurement regime is in force for each contemplated purchase, works package, grant-procurement boundary and contract; whether Act 882 has commenced for the relevant body and transaction; and what transitional rules apply
+- **Provisional design position:** No exemption, ethnic set-aside or preferred-vendor quota is proposed; all procurements use the applicable open, authorised and conflict-controlled process, with awards and deviations reported as law permits
+- **Required written clearance:** MOF procurement-law memorandum confirmed by AGC, identifying Act 882 commencement, subsidiary and transitional instruments, thresholds, approval authorities, permitted methods, review routes and contract-signing authority
+- **Clearance owner:** Ministry of Finance
+- **Bodies to consult:** Attorney-General's Chambers; affected accounting officers; Works Department; implementing procurement units
+- **Affected programmes / decisions:** PRG-03;PRG-04;PRG-09;PRG-10;PRG-12;PRG-15;PRG-16 / AN-04;CE-03;CE-04;NA-07
+- **Related validation controls:** VAL-01;VAL-28
+- **Consequence if unresolved:** No tender, quotation, direct negotiation, grant-funded works package or contract may begin until the applicable regime and authority are confirmed
+- **Status:** `open`
+
+#### LGL-09 — Government Data Governance
+
+- **Authority:** Personal Data Protection Act 2010 [Act 709] section 3(1); applicable public-sector security, records, secrecy, archival and data-governance instruments (SRC-021;SRC-028)
+- **Question for clearance:** Given that Act 709 does not apply to Federal and State Governments, what positive legal and administrative controls govern collection, linkage, access, retention, correction, disclosure, breach response and deletion for government-held MIB 2.0 data
+- **Provisional design position:** Government exclusion from Act 709 is not treated as permission for unrestricted processing; purpose limitation, minimum necessary data, role-based access, separation of documentation and household systems, retention limits, correction and breach controls are design conditions
+- **Required written clearance:** JDN-led public-sector data-governance opinion and AGC confirmation of the applicable instruments, lawful purposes, data-controller roles, data-subject safeguards, retention schedule and breach route
+- **Clearance owner:** National Digital Department
+- **Bodies to consult:** Attorney-General's Chambers; National Archives; Chief Government Security Office; data-owning ministries; DOSM
+- **Affected programmes / decisions:** PRG-01;PRG-09;PRG-13;PRG-14;PRG-16 / AN-04;CE-01;CE-03;CE-04;NA-07
+- **Related validation controls:** VAL-24;VAL-25
+- **Consequence if unresolved:** No identifiable cross-agency dataset, dashboard or linked household record may operate; only non-identifiable design work may proceed
+- **Status:** `open`
+
+#### LGL-11 — Data Sharing And Statistics
+
+- **Authority:** Statistics Act 1965 [Act 415] where DOSM data are involved; agency secrecy and disclosure provisions; applicable public-sector data-sharing instruments (SRC-019;SRC-028)
+- **Question for clearance:** Whether source agencies may disclose, match and publish the proposed fields; what consent or other legal basis applies; and how statistical secrecy, re-identification and small-cell disclosure risks are controlled
+- **Provisional design position:** Only approved fields are shared for specified purposes; operational and statistical datasets remain logically separated; public reporting is aggregated and disclosure-controlled; consent is not assumed to cure an otherwise unlawful disclosure
+- **Required written clearance:** Dataset-by-dataset sharing schedule signed by every data owner and cleared by agency legal advisers, DOSM for statistical data, JDN for architecture and AGC for unresolved disclosure powers
+- **Clearance owner:** National Digital Department
+- **Bodies to consult:** Attorney-General's Chambers; DOSM; National Archives; all data-owning ministries and agencies
+- **Affected programmes / decisions:** PRG-01;PRG-09;PRG-13;PRG-14;PRG-16 / AN-04;CE-01;CE-03;CE-04;NA-06;NA-07
+- **Related validation controls:** VAL-12;VAL-17;VAL-21;VAL-22;VAL-24;VAL-25
+- **Consequence if unresolved:** Any dataset lacking a lawful disclosure and publication route must be removed; dependent indicators and linkage functions remain inactive
+- **Status:** `open`
+
+### Programme-launch legal clearances (8)
+
+#### LGL-10 — Private Processors And Partners
+
+- **Authority:** Personal Data Protection Act 2010 [Act 709] as amended by the Personal Data Protection (Amendment) Act 2024 and applicable subsidiary instruments (SRC-021;SRC-028)
+- **Question for clearance:** When private contractors, financial institutions, evaluators, civil-society partners or technology providers process programme data, which parties are data controllers or processors and which Act 709 duties apply
+- **Provisional design position:** No data transfer to a non-government party occurs without an identified lawful role, purpose, minimum dataset, written processing terms, security obligations, breach duties, retention limits and audit rights
+- **Required written clearance:** Written opinion from the responsible ministry legal adviser and Data Protection Officer, with JPDP or AGC confirmation where role allocation or statutory application is uncertain
+- **Clearance owner:** Responsible ministry legal adviser
+- **Bodies to consult:** Attorney-General's Chambers; Personal Data Protection Commissioner; National Digital Department; procurement units; proposed partners
+- **Affected programmes / decisions:** PRG-01;PRG-08;PRG-09;PRG-10;PRG-11;PRG-12;PRG-16 / AN-04;CE-03;CE-04;NA-04;NA-05;NA-07
+- **Related validation controls:** VAL-16;VAL-19;VAL-24;VAL-25
+- **Consequence if unresolved:** The private-party processing or partnership component must be withheld, replaced with a lawful government route or redesigned using non-identifiable data
+- **Status:** `open`
+
+#### LGL-12 — Federal State Jurisdiction
+
+- **Authority:** Federal Constitution Articles 74 and 80 and Ninth Schedule; National Land Code 1965 [Act 56] in Peninsular Malaysia; Sabah and Sarawak land laws; Local Government Act 1976 [Act 171] where adopted and applicable state and local instruments (SRC-019;SRC-025;SRC-026)
+- **Question for clearance:** Which PRG-04 and PRG-12 activities fall within state, land, local-government, planning, building-control, housing or religious-administration jurisdiction in each participating state, including the distinct Sabah and Sarawak regimes
+- **Provisional design position:** Federal bodies may fund or coordinate only through a documented lawful route; states and competent local bodies retain decisions on land, tenure, planning, building control and state matters; non-consenting or unresolved jurisdictions are excluded
+- **Required written clearance:** State-by-state jurisdiction schedule signed by the State Legal Adviser or competent authority and reviewed by AGC, identifying applicable laws, approvals, decision-makers and federal funding route
+- **Clearance owner:** Relevant State Legal Adviser
+- **Bodies to consult:** Attorney-General's Chambers; State Secretary; land authority; local authorities; KPKT; JKPTG; Sabah and Sarawak authorities
+- **Affected programmes / decisions:** PRG-04;PRG-12 / AN-04;CE-03;CE-04;NA-05;NA-07
+- **Related validation controls:** VAL-13;VAL-20
+- **Consequence if unresolved:** No commitment, works, tenure promise or case-resolution undertaking may be made in an unresolved jurisdiction
+- **Status:** `open`
+
+#### LGL-13 — Prg04 Public Purpose And Equal Access
+
+- **Authority:** Federal Constitution Articles 8, 11 and 12; public-finance and applicable grant-law instruments (SRC-019;SRC-022)
+- **Question for clearance:** Whether an open multi-faith safety and compliance grant serves a permissible public purpose, uses constitutionally lawful and objectively reviewable eligibility, and avoids direct funding of religious practice
+- **Provisional design position:** A single needs-ranked safety, accessibility, compliance and documented community-service framework is open to eligible institutions without fixed allocation by religion; institution type may be recorded only for delivery and equity audit
+- **Required written clearance:** AGC opinion and MOF-approved grant instrument defining public purpose, eligible recipients and works, ranking criteria, conflicts rules, publication, audit, recovery and review rights
+- **Clearance owner:** Attorney-General's Chambers
+- **Bodies to consult:** Ministry of Finance; Ministry of National Unity; relevant state legal advisers
+- **Affected programmes / decisions:** PRG-04 / AN-04;CE-03;CE-04;NA-05;NA-07
+- **Related validation controls:** VAL-01;VAL-13;VAL-30
+- **Consequence if unresolved:** PRG-04 cannot launch; any category not demonstrably tied to a lawful public purpose must be removed
+- **Status:** `open`
+
+#### LGL-14 — Prg04 State And Institutional Consent
+
+- **Authority:** Federal Constitution Articles 74 and 80 and Ninth Schedule; applicable state land, local-government, planning, building and trustee laws (SRC-019;SRC-025;SRC-026)
+- **Question for clearance:** What consent, licence, planning, building, landowner, trustee and institutional approvals are required before audit, works, payment or publication for each facility
+- **Provisional design position:** Participation is voluntary and facility-specific; neither a federal announcement nor a grant offer substitutes for state, local-authority, landowner, trustee or institutional approval
+- **Required written clearance:** Executed state participation instrument and facility-level consent and authority checklist, certified by the relevant State Legal Adviser or competent authority
+- **Clearance owner:** Relevant state government
+- **Bodies to consult:** Attorney-General's Chambers; local authorities; land offices; trustees; institution governing bodies; Ministry of National Unity
+- **Affected programmes / decisions:** PRG-04 / CE-03;CE-04;NA-05;NA-07
+- **Related validation controls:** VAL-13
+- **Consequence if unresolved:** The facility and, if necessary, the entire non-consenting jurisdiction must be excluded from audit, works and payment
+- **Status:** `open`
+
+#### LGL-15 — Prg04 Islamic Administration
+
+- **Authority:** Federal Constitution Articles 3 and 11 and Ninth Schedule State List on Islamic law and Muslim places of worship; applicable state Islamic-administration enactments (SRC-019)
+- **Question for clearance:** For mosques, surau or other institutions within state Islamic administration, which State Islamic Religious Council, department, trustee, ruler or other authority must approve participation, works, funding and publication
+- **Provisional design position:** No federal body determines Islamic religious eligibility, governance or use; the common public-purpose track applies only after approval by every competent state Islamic authority and excludes worship or doctrine
+- **Required written clearance:** State-specific written opinion and approval from the competent Islamic religious authority, endorsed by the State Legal Adviser and reviewed by AGC for the federal funding interface
+- **Clearance owner:** Relevant State Islamic Religious Council or authority
+- **Bodies to consult:** State Legal Adviser; Attorney-General's Chambers; JAKIM where coordinating advice is requested; Ministry of National Unity; Ministry of Finance
+- **Affected programmes / decisions:** PRG-04 / CE-03;CE-04;NA-05;NA-07
+- **Related validation controls:** VAL-13
+- **Consequence if unresolved:** Islamic institutions in the affected state are excluded until every required authority and funding condition is documented; this does not block cleared non-Islamic facilities
+- **Status:** `open`
+
+#### LGL-16 — Prg04 Temple And Estate Legacy Referrals
+
+- **Authority:** Federal Constitution Articles 74 and 80 and Ninth Schedule; applicable state land, planning, trust, society and religious-institution laws (SRC-019;SRC-025)
+- **Question for clearance:** Whether and how temple or estate-legacy tenure, relocation and registration cases may be documented and referred without the federal programme adjudicating title, legal status, relocation rights or religious-institution governance
+- **Provisional design position:** The programme records facts, provides navigation and refers cases to the competent state or legal authority; it creates no title, registration, immunity, relocation entitlement or binding legal finding
+- **Required written clearance:** State-by-state referral protocol approved by the State Legal Adviser and AGC, identifying competent recipients, record-sharing authority, legal-aid boundary, status reporting and communications language
+- **Clearance owner:** Relevant State Legal Adviser
+- **Bodies to consult:** Attorney-General's Chambers; land authority; local authorities; trustees; legal-aid bodies; Ministry of National Unity
+- **Affected programmes / decisions:** PRG-04 / AN-04;CE-03;CE-04;NA-05;NA-07
+- **Related validation controls:** VAL-13
+- **Consequence if unresolved:** The legacy referral track must remain inactive or be removed in any state without a lawful protocol
+- **Status:** `open`
+
+#### LGL-17 — Prg04 Excluded Religious Expenditure
+
+- **Authority:** Federal Constitution Articles 3, 8, 11 and 12; Financial Procedure Act 1957 [Act 61]; applicable state religious and grant instruments (SRC-019;SRC-022)
+- **Question for clearance:** How the grant instrument will distinguish eligible life-safety, accessibility, compliance and public community-service works from worship, proselytisation, ceremony, devotional fixtures, doctrinal teaching or other excluded religious expenditure
+- **Provisional design position:** Worship and doctrinal expenditure are expressly excluded; mixed-use works require itemisation, physical or functional separation where necessary, certification, inspection and recovery rights
+- **Required written clearance:** AGC-cleared and MOF-approved schedule of eligible and ineligible expenditure, mixed-use allocation method, certification, audit, recovery and appeal provisions
+- **Clearance owner:** Ministry of Finance
+- **Bodies to consult:** Attorney-General's Chambers; Ministry of National Unity; state authorities; applicable religious authorities; Auditor General's Department
+- **Affected programmes / decisions:** PRG-04 / AN-04;CE-03;CE-04;NA-05;NA-07
+- **Related validation controls:** VAL-13;VAL-28
+- **Consequence if unresolved:** No PRG-04 payment may be approved until the expenditure schedule and controls are operative; ambiguous items are ineligible
+- **Status:** `open`
+
+#### LGL-18 — Prg04 Religion Data And Publication
+
+- **Authority:** Federal Constitution Articles 8 and 11; Personal Data Protection Act 2010 [Act 709] where a non-government controller or processor is involved; applicable government data-governance instruments (SRC-019;SRC-021;SRC-028)
+- **Question for clearance:** What institution-level faith classification may be collected and published for equity auditing without collecting unnecessary personal religious-belief data, exposing vulnerable institutions or enabling discriminatory allocation
+- **Provisional design position:** The programme records only the minimum institution-level governing regime needed for authority routing and aggregate equity review; it does not collect beneficiary or worshipper religious affiliation and does not use faith category as a fixed allocation rule
+- **Required written clearance:** Approved data schedule and publication standard from the responsible ministry legal adviser and data-governance authority, with AGC or JPDP advice where applicable
+- **Clearance owner:** Ministry of National Unity
+- **Bodies to consult:** Attorney-General's Chambers; National Digital Department; Personal Data Protection Commissioner where applicable; states and participating institutions
+- **Affected programmes / decisions:** PRG-04 / AN-04;CE-03;CE-04;NA-05;NA-07
+- **Related validation controls:** VAL-13;VAL-24
+- **Consequence if unresolved:** Personal religious data must not be collected; institution-level fields or public breakdowns without an approved necessity and disclosure rule must be removed
+- **Status:** `open`
+
+**Recording rule.** The secretariat may record and index advice but may not mark its own legal position as cleared. Conflicting advice is escalated to the named clearance owner and remains `received` or `not_cleared` until the competent authority resolves it in writing.
+<!-- GENERATED:LEGAL_ISSUES_REGISTER:END -->

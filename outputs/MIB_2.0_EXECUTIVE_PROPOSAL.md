@@ -94,6 +94,26 @@ Every item has one accountable owner, supporting agencies, required evidence, a 
 **No-cascade rule.** An unresolved item blocks only the decision IDs listed against it in `VALIDATION_REGISTER.csv`. It does not suspend unrelated validation work or programmes.
 <!-- GENERATED:VALIDATION_SUMMARY:END -->
 
+<!-- GENERATED:LEGAL_CLEARANCE_SUMMARY:START -->
+## 2.5 Legal and jurisdictional clearance architecture
+
+`LEGAL_ISSUES_REGISTER.csv` controls **18 legal issues**: **10 pre-submission clearances** and **8 programme-launch clearances**. This is an issues and instructions matrix, not legal advice. **No issue is recorded as cleared, and no written AGC or other competent-authority clearance has been obtained by this drafting exercise.**
+
+| Clearance block | Issues | Required result |
+|---|---|---|
+| Constitutional targeting and discretion | LGL-01 to LGL-04 | AGC defines the lawful boundary for equality, education aid, public-service impartiality and citizenship/documentation administration |
+| Institutional, financial and procurement authority | LGL-05 to LGL-08 | Every function, payment and procurement has a competent body, lawful instrument, accounting officer and operative approval route |
+| Data governance and sharing | LGL-09 to LGL-11 | Government and private-party processing, linkage, disclosure, retention, correction and breach controls are identified dataset by dataset |
+| Federal-state jurisdiction | LGL-12 | Each participating state confirms the applicable land, local-government, housing and approval route, including Sabah and Sarawak differences |
+| PRG-04 pathway-specific clearance | LGL-13 to LGL-18 | Public purpose, consent, Islamic-administration, temple/estate referral, excluded expenditure and religion-data rules are separately cleared |
+
+Current status: **18 open**. `Received` evidence does not equal clearance. A status may change to `cleared` or `cleared_with_conditions` only when the register contains the competent authority's written evidence reference and acceptance date. A conditional clearance must state every condition in the evidence itself; the drafting secretariat cannot infer or waive it.
+
+**Current-law control.** AGC's legislation portal now lists the Government Procurement Act 2026 [Act 882]. LGL-08 therefore requires MOF and AGC to identify its commencement, subsidiary and transitional instruments and the regime applicable to each transaction. The proposal does not assume that either the new Act or the prior administrative framework applies without that confirmation.
+
+**Legal no-cascade rule.** An unresolved issue blocks only the programmes and decisions identified against it. PRG-04 state or religious-authority clearance is facility- and jurisdiction-specific unless the competent authority concludes that the defect affects the national instrument itself.
+<!-- GENERATED:LEGAL_CLEARANCE_SUMMARY:END -->
+
 ---
 
 # 3. The reality, stated accurately

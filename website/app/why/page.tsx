@@ -145,6 +145,12 @@ export default function WhyPage() {
               required evidence, a deadline, escalation route, financial consequence, and mapped decision. An unresolved
               item blocks only the affected decision or programme—not unrelated work.
             </p>
+            <p>
+              Legal clearance is not claimed. Eighteen legal issues remain open: 10 must be resolved before the affected
+              implementation submission and 8 before the affected programme launches. Each issue identifies the competent
+              authority, written evidence required, affected decision, and consequence if unresolved. PRG-04 has six
+              separate state, religious-administration, public-purpose, referral, expenditure, and data clearances.
+            </p>
           </div>
         </section>
       </div>

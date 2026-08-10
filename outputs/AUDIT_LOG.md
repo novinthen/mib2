@@ -4,6 +4,23 @@ Chronological record of what was checked, what failed, what changed, and the res
 
 ---
 
+## Stage 4 submission-readiness legal clearance control (2026-08-10)
+
+| # | Check | Result |
+|---|---|---|
+| L.1 | Complete canonical matrix | 18 unique legal IDs in `LEGAL_ISSUES_REGISTER.csv`; every row has authority, source IDs, question, provisional boundary, required written clearance, competent owner, consulted bodies, programme/decision/validation mapping, consequence, stage and status |
+| L.2 | Clearance staging | 10 pre-submission clearances; 8 programme-launch clearances; unresolved issues block only mapped decisions or programmes |
+| L.3 | Constitutional and institutional coverage | Articles 8, 12(1), 136 and 153; citizenship/documentation discretion; all 16 implementing routes; public finance; procurement; data; federal-state jurisdiction |
+| L.4 | Current-law control | AGC portal lists Government Procurement Act 2026 [Act 882]; LGL-08 requires MOF/AGC confirmation of commencement, subsidiary and transitional instruments before selecting a regime |
+| L.5 | PRG-04 pathway coverage | Six distinct issues: public purpose/equal access; state and institutional consent; Islamic administration; temple and estate-legacy referral; worship/doctrinal expenditure exclusion; religion-data handling |
+| L.6 | Status integrity | All 18 issues remain open; no legal clearance is implied; cleared or conditional disposition requires a competent-authority evidence reference and acceptance date |
+| L.7 | Deterministic drafting | Proposal legal summary and detailed Part G matrix generated from the canonical CSV; verifier fails on manual drift |
+| L.8 | Regression verification | `verify_outputs.py`: **PASS — 98 checks, 0 hard failures, 1 standing disclosure warning**; deterministic double regeneration: **PASS**; Next.js production build: **PASS — 29 pages generated**; targeted website lint: **PASS** |
+
+**Legal-control result: PASS for matrix and submission design. Official legal clearance remains open and external.**
+
+---
+
 ## Stage 3 submission-readiness validation control (2026-08-10)
 
 | # | Check | Result |
