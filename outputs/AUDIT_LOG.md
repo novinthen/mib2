@@ -1,6 +1,20 @@
 # AUDIT LOG
 
-Chronological record of what was checked, what failed, what changed, and the result. Original session date: 2026-08-05; latest amendment: 2026-08-08.
+Chronological record of what was checked, what failed, what changed, and the result. Original session date: 2026-08-05; latest amendment: 2026-08-10.
+
+---
+
+## Stage 1 document-integrity repair (2026-08-10)
+
+| # | Check | Result |
+|---|---|---|
+| I.1 | Canonical financial reconciliation | Proposal and technical-annex phase, funding, programme, pillar, ministry, cost-category, scenario and confidence figures regenerated from `COSTING_MODEL.csv` |
+| I.2 | Narrative counts | 16 retained substantive programmes distinguished from 5 non-retained source proposals; 21 risks, 30 validation items and 6 strict gates reconciled |
+| I.3 | Phase gates | End-Year 2 administrative readiness review gates Phase 2; end-Year 3 independent mid-term evaluation gates Phase 3; Year 5 appropriation remains separate |
+| I.4 | Reference integrity | All CLM/KPI/PRG/RSK/RSP/VAL references across canonical CSV and Markdown files resolve |
+| I.5 | Regression verification | `verify_outputs.py`: **PASS — 80 checks, 0 hard failures, 1 standing disclosure warning** |
+
+**Integrity-repair result: PASS.** The warning is an explicit disclosure that PRG-01 and PRG-14 use authored judgement because no complete published costing formula exists.
 
 ---
 

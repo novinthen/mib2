@@ -79,7 +79,7 @@ The standard formula — *eligible population × participation rate × unit cost
 | **Central** | **355.3** | **520.8** | **608.2** | **1,484.273** | **847.677** |
 | Expanded | 441.5 | 658.7 | 775.0 | **1,875.220** | 1,070.229 |
 
-**Confidence mix (central): Confirmed RM0.000m (0.0%); Benchmarked RM1109.873m (31.9%); Provisional RM1010.873m (68.1%).** No line is Confirmed, and the proposal says so.
+**Confidence mix (central): Confirmed RM0.000m (0.0%); Benchmarked RM473.400m (31.9%); Provisional RM1,010.873m (68.1%).** No line is Confirmed, and the proposal says so.
 
 ### C.3 Required distinctions, all carried in the model
 

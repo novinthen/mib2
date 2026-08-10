@@ -22,12 +22,12 @@ Malaysia's inclusive development framework is needs-based, and it should remain 
 
 MIB 2.0 proposes:
 
-- **Four pillars** addressing the four structural exclusions, delivered through **sixteen programmes**, each with a named accountable ministry, an accounting officer, a phase, an outcome, a key performance indicator and a cost treatment.
+- **Four pillars** addressing the four structural exclusions, delivered through **sixteen retained substantive programmes**, each with a named accountable ministry, an accounting officer, a phase, an outcome, a key performance indicator and a cost treatment. The programme register also records five non-retained source proposals for auditability; they are not part of the implementation portfolio.
 - **Three two-year phases**, gated on evidence rather than on the calendar.
 - A **Prime Minister-chaired Task Force** with a delivery secretariat in the Prime Minister's Department, meeting quarterly against a published dashboard — a coordinating and accountability body, not a new authority over ministries.
 - A **six-year central cost of RM1,484.273 million**, of which the **incremental new funding requirement is RM847.677 million**, the remaining RM636.596 million being existing allocations and proposed reallocation (CLM-054).
 
-**What is different about this proposal is what it declines to promise.** The MIB's 7% civil service target is not carried forward, because reaching it would require roughly 43,000 net additional Indian officers within six years and is not achievable (CLM-051). No ethnic procurement set-aside is proposed. No citizenship clearance percentage is guaranteed. Eleven of the sixteen indicators have no baseline today, and establishing those baselines — not hitting targets — is the principal deliverable of Phase 1. A plan that promises less and delivers it is the only remaining way to close a credibility gap that a decade of larger promises has widened.
+**What is different about this proposal is what it declines to promise.** The MIB's 7% civil service target is not carried forward, because reaching it would require roughly 43,000 net additional Indian officers within six years and is not achievable (CLM-051). No ethnic procurement set-aside is proposed. No citizenship clearance percentage is guaranteed. Twelve of the sixteen indicators have a baseline status of `to-be-established`, and establishing those baselines — not hitting invented targets — is the principal deliverable of Phase 1. A plan that promises less and delivers it is the only remaining way to close a credibility gap that a decade of larger promises has widened.
 
 ---
 
@@ -60,7 +60,7 @@ That last sentence is stated first, and plainly, because the case for this propo
 
 1. **The trend is adverse.** Indian poverty incidence rose between 2019 and 2022 while the community's aggregate income position remained comparatively strong. That divergence is the signature of a widening internal distribution, not of general decline.
 2. **Specific exclusions are structural, not incidental.** Unresolved legal identity, in particular, is a barrier that no amount of income growth resolves and that affects no other community at comparable scale.
-3. **The measurement gap is itself the problem.** Eleven of the sixteen indicators in this plan have no published baseline. Neither government nor the community can currently establish what has changed.
+3. **The measurement gap is itself the problem.** Twelve of the sixteen indicators have a baseline status of `to-be-established`. Neither government nor the community can currently establish what has changed.
 
 ## 3.2 The community is not homogeneous, and the plan does not treat it as one
 
@@ -135,7 +135,7 @@ Four barriers, removed in sequence, with a single consented household record so 
 4. **Bounded promises.** Volumes are capped at what is staffed and costed.
 5. **Published by default.** Every indicator is published, disaggregated, whether or not it flatters.
 
-## 5.3 The pillars and the sixteen programmes
+## 5.3 The pillars and the sixteen retained substantive programmes
 
 ### Pillar 1 — Foundations: identity, early childhood, safe schools
 
@@ -231,12 +231,14 @@ Access to existing INTAN and JPA development programmes, with participation and 
 
 ## 5.5 Three phases
 
+<!-- GENERATED:PHASE_TABLE:START -->
 | | **Phase 1 (Years 1–2)** | **Phase 2 (Years 3–4)** | **Phase 3 (Years 5–6)** |
 |---|---|---|---|
 | **Purpose** | Establish what does not exist | Build the pathways | Consolidate and graduate |
 | **Central cost** | RM355.3m | RM520.8m | RM608.2m |
 | **Defining deliverables** | Verified caseload baseline; 528 SJKT audits; baseline survey; DPIA; dashboard live; secretariat operational; 12 of 16 KPIs baselined | TVET pipeline at scale; enterprise advisory; housing legacy review tabled; first disaggregated intake series published for three consecutive years | Savings scheme at scale; graduation measurement; final independent evaluation |
-| **Gate to the next phase** | Independent mid-term evaluation at end-Year 3 must verify Phase 1 completion before Phase 3 funds flow | | |
+| **Gate** | **End-Year 2 administrative readiness review:** Cabinet or its authorised committee decides whether Phase 2 may proceed, be corrected or be re-scoped | **End-Year 3 independent mid-term evaluation:** determines whether Phase 3 may proceed and whether ongoing Phase 2 delivery must be corrected or re-scoped | **Year 6 final evaluation:** informs successor arrangements; creates no automatic continuation |
+<!-- GENERATED:PHASE_TABLE:END -->
 
 Sequencing is justified administratively: measures requiring only administrative action, and the establishment of baselines without which nothing else can be measured, come first. **No electoral consideration enters the sequencing**, and the electoral framing of the source material has been removed in full.
 
@@ -278,27 +280,29 @@ Adopted from the second source document and given operational definition:
 
 # 7. Funding framework
 
+<!-- GENERATED:PROPOSAL_FINANCE:START -->
 ## 7.1 The envelope
 
 | Scenario | Six-year total | Phase 1 | Phase 2 | Phase 3 | New funding |
 |---|---:|---:|---:|---:|---:|
-| **Conservative** | RM1,158.487m | RM283.4m | RM406.0m | RM469.2m | RM662.215m |
+| Conservative | RM1,158.487m | RM283.4m | RM406.0m | RM469.2m | RM662.217m |
 | **Central** | **RM1,484.273m** | **RM355.3m** | **RM520.8m** | **RM608.2m** | **RM847.677m** |
-| **Expanded** | RM1,875.220m | RM441.5m | RM658.7m | RM775.0m | RM1,070.229m |
+| Expanded | RM1,875.220m | RM441.5m | RM658.7m | RM775.0m | RM1,070.229m |
 
 Scenarios are **sensitivity cases on identical programme definitions**, not alternative blueprints. Conservative applies 0.75× and expanded 1.30× to the variable component of each programme; fixed components (systems, audits, secretariat, evaluations) do not scale. The conservative case approximates the position if participation across the portfolio runs 25% below plan.
 
-**Gross programme cost is RM1,484.273 million. The incremental new fiscal requirement is RM847.677 million** — approximately RM141 million per year averaged over six years, against MITRA's verified 2026 allocation of RM150 million (CLM-019). The remaining RM636.596 million comprises existing allocations already committed to national programmes on which MIB 2.0 runs, and proposed reallocation of existing community programme funds from episodic grants to programme lines.
+**Gross portfolio cost is RM1,484.273 million. The incremental new fiscal requirement is RM847.677 million** — approximately RM141 million per year averaged over six years, against MITRA's verified 2026 allocation of RM150 million (CLM-019). The remaining RM636.596 million comprises RM338.637 million of existing allocations and RM297.959 million of proposed reallocations. Both classifications remain subject to Treasury and ministry validation.
 
 ## 7.2 Confidence
 
 | Class | Central amount | Share |
 |---|---:|---:|
 | **Confirmed** — supported by authoritative programme, financial or procurement data | RM0.000m | **0.0%** |
-| **Benchmarked** — based on comparable official programmes or credible unit-cost evidence | RM1109.873m | 31.9% |
-| **Provisional** — transparent but unverified assumptions | RM1010.873m | 68.1% |
+| **Benchmarked** — based on comparable official programmes or credible unit-cost evidence | RM473.400m | **31.9%** |
+| **Provisional** — transparent but unverified assumptions | RM1,010.873m | **68.1%** |
 
-**No cost line in this portfolio is Confirmed.** That is stated plainly because it determines what Cabinet is being asked to approve: a framework in principle, not a costed programme. No programme in this proposal is described as fully costed while material assumptions remain provisional.
+**No cost line in this portfolio is Confirmed.** That is stated plainly because it determines what Cabinet is being asked to approve: a framework in principle, not a fully costed implementation programme. No programme in this proposal is described as fully costed while material assumptions remain provisional.
+<!-- GENERATED:PROPOSAL_FINANCE:END -->
 
 ## 7.3 Cost structure
 
@@ -306,7 +310,7 @@ Costs distinguish **one-off** (audits, systems, evaluations, capital works) from
 
 ## 7.4 Cash-flow and displacement
 
-Phase costs rise across the six years (RM355.3m → RM520.8m → RM608.2m), which is deliberate: Phase 1 is dominated by baseline-setting rather than by scaled delivery. **Phase gating prevents unfunded commitments** — Phase 2 scope is authorised only after the Phase 1 evaluation, and no Phase 3 commitment is entered before Year 5 appropriation. Each phase is separately costed, so a phase can be scaled down without stranding earlier investment.
+Phase costs rise across the six years (RM355.3m → RM520.8m → RM608.2m), which is deliberate: Phase 1 is dominated by baseline-setting rather than by scaled delivery. **Phase gating prevents unfunded commitments.** An end-Year 2 administrative readiness review determines whether Phase 2 may start, be corrected or be re-scoped. The independent end-Year 3 mid-term evaluation determines whether Phase 3 may proceed, while the normal Year 5 appropriation remains a separate fiscal condition. Each phase is separately costed, so a phase can be scaled down without stranding earlier investment.
 
 The principal displacement risk is not fiscal but administrative: delivery capacity in lead ministries is already committed (RSK-09). This is why every programme runs on an existing agency and why volumes are capped below both source drafts.
 
@@ -322,17 +326,17 @@ The principal displacement risk is not fiscal but administrative: delivery capac
 
 # 8. Measurement
 
-Sixteen indicators, one per programme, each with a definition, a data owner, a verification source and a disaggregation rule (`KPI_REGISTER.csv`).
+Sixteen indicators, one per retained substantive programme, each with a definition, a data owner, a verification source and a disaggregation rule (`KPI_REGISTER.csv`).
 
-**Eleven of the sixteen have no baseline today.** For those, the Year 2 target *is* the baseline. This is the most important disclosure in the document: a plan that set numeric outcome targets on unmeasured quantities would be repeating precisely the failure it exists to correct.
+**Twelve of the sixteen have a baseline status of `to-be-established`.** For those, the Year 2 target is principally a baseline or system-establishment deliverable. This is the most important disclosure in the document: a plan that set numeric outcome targets on unmeasured quantities would be repeating precisely the failure it exists to correct.
 
-The five indicators with a verified or partially verified baseline are civil service participation (3.7%, 2024), SJKT count and condition scope (528 schools), the historic MIB savings target, the disputed matriculation series, and measurement integrity itself (0 of 16 baselined).
+The remaining four indicators comprise two source-verified baselines — civil service participation (3.7%, 2024) and measurement integrity (0 of 16 baselined) — plus one disputed matriculation series and one unmeasured historic savings target. The verified count of 528 SJKT defines PRG-03's audit scope, but it is not a baseline for the KPI measuring the proportion meeting the future safety and learning-environment standard.
 
 ---
 
 # 9. Risks
 
-Eighteen risks are registered with safeguards and residual ratings (`RISK_AND_SAFEGUARD_REGISTER.csv`). Six carry a **critical inherent rating**:
+Twenty-one risks are registered with safeguards and residual ratings (`RISK_AND_SAFEGUARD_REGISTER.csv`). Fourteen carry a **critical inherent rating**. The table below highlights six of the most cross-cutting critical risks; the full register remains controlling:
 
 | Risk | Residual after safeguard |
 |---|---|
@@ -351,7 +355,7 @@ Eighteen risks are registered with safeguards and residual ratings (`RISK_AND_SA
 Because the barriers are structural and specific, not general. Eligibility here is needs-based — income, documentation status, tenure insecurity. What is targeted is *outreach*, not entitlement. And the largest single barrier, unresolved legal identity, affects no other community at comparable scale. Note also what this proposal does **not** argue: Indian absolute poverty (5.4%, 2022) is below the Bumiputera rate (7.9%). The case is structural exclusion and an adverse trend, not relative deprivation.
 
 **2. How does this avoid duplicating existing institutions and programmes?**
-Every programme runs on an existing delivery agency; only the secretariat and navigator cadre are new establishment. Each programme carries an explicit duplication assessment in `PROGRAMME_REGISTER.csv`. Four proposed measures were removed as duplicative or unlawful. MITRA continues as an executing agency and is not superseded.
+Every retained substantive programme runs on an existing delivery agency; only the secretariat and navigator cadre are new establishment. Each carries an explicit duplication assessment in `PROGRAMME_REGISTER.csv`. Five source proposals were not carried forward because they were duplicative, unlawful, unsupported or outside scope. MITRA continues as an executing agency and is not superseded.
 
 **3. Why should the Prime Minister chair?**
 Because the levers sit in at least six ministries, the states, and a constitutionally independent service commission. No ministerial-level body can convene that table. This is also the plan's largest risk (RSK-01), and Cabinet should treat the chairmanship commitment as the substantive question, not a formality.
@@ -366,13 +370,13 @@ Not at the volumes the source material proposed. Volumes have been cut to what i
 Published eligibility criteria; payment to institutions and verified accounts; published recipient lists; Auditor-General audit tabled in Parliament; the secretariat holds no funds. Overlap is modelled explicitly with a stated factor and reach is never summed across programmes.
 
 **7. What measurable outcomes justify the expenditure?**
-Sixteen indicators with defined verification sources. Honestly: eleven have no baseline, so for those the first measurable outcome is a published baseline. Cabinet is entitled to regard that as a modest return for Phase 1, and it is the accurate position.
+Sixteen indicators with defined verification sources. Twelve have a baseline status of `to-be-established`, so for those the first measurable outcome is principally a published baseline or an operational measurement system. Cabinet is entitled to regard that as a modest return for Phase 1, and it is the accurate position.
 
 **8. What if data or performance are weaker than assumed?**
 Phase gating. The independent mid-term evaluation at end-Year 3 publishes a pass/correct/re-scope verdict on every indicator before Phase 3 funds flow. The conservative scenario (RM1,158.487m) is the fallback operating envelope. Individual programmes — notably PRG-11 at RM200m — can be discontinued at a defined decision point without stranding the rest.
 
 **9. What requires endorsement now, and what remains subject to validation?**
-Endorsement now: direction, architecture, governance and the fiscal framework in principle. Subject to validation: twenty-eight items in `ASSUMPTIONS_AND_DECISIONS.md` Part C, four of them gating. No appropriation is sought. Phase 2 and Phase 3 envelopes are expressly not sought.
+Endorsement now: direction, architecture, governance and the fiscal framework in principle. Subject to validation: thirty items in `ASSUMPTIONS_AND_DECISIONS.md` Part C, six of them strict gates — VAL-01, VAL-09, VAL-11, VAL-19, VAL-23 and VAL-30. No appropriation is sought. Phase 2 and Phase 3 envelopes are expressly not sought.
 
 **10. How will progress be independently measured and publicly reported?**
 Quarterly published dashboards; annual public report; annual Auditor-General audit tabled in Parliament; independent mid-term and final evaluations published in full. Publication is committed in advance so that selective disclosure is not available later.

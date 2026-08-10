@@ -1,7 +1,7 @@
 # FINAL QA REPORT — MIB 2.0
 
-**Date:** 2026-08-05 · **Price basis:** 2026 nominal ringgit, base year 2026
-**Machine verification:** `python outputs/verify_outputs.py` → **exit 0, 76 checks passed, 0 hard failures, 1 standing disclosure warning**
+**Date:** 2026-08-05 · **Stage 1 integrity update:** 2026-08-10 · **Price basis:** 2026 nominal ringgit, base year 2026
+**Machine verification:** `python outputs/verify_outputs.py` → **exit 0, 80 checks passed, 0 hard failures, 1 standing disclosure warning**
 
 > This report gives concrete evidence of tests performed and their results. Where a test could not be performed, or a result is weaker than the package would ideally show, that is stated rather than smoothed over.
 
@@ -140,12 +140,12 @@ were fixed.
 
 | Criterion | Status | Evidence |
 |---|---|---|
-| All machine checks pass | **MET** | exit 0; 64 passed; 0 hard failures |
+| All machine checks pass | **MET** | exit 0; 80 passed; 0 hard failures |
 | All material citations verified or appropriately qualified | **MET** | 62/62 dispositioned; 10 explicitly qualified as uninspected |
 | Zero known arithmetic or reconciliation errors | **MET** | 18 reconciliations; 54 lines; 378 numeric cells |
 | Zero unresolved critical findings | **MET** | 17 found, **17 resolved, 0 open**; each closed by a structural fix with a machine check preventing recurrence |
 | Major and moderate findings resolved or conservatively disclosed | **MET** | 49 of 50 resolved; 1 moderate (MOD-04) open and disclosed |
-| Proposal and annexes internally consistent | **MET** | Same generated source; checks [10], [2], [1b] |
+| Proposal and annexes internally consistent | **MET** | Financial and phase tables generated from canonical registers; checks [12], [12b] and [12c] |
 | Every remaining uncertainty requiring official validation is explicit | **MET** | 30 validation items; 6 gating, named in the decisions table |
 | All applicable rubric dimensions meet threshold | **MET** | All ≥ 4.0; average 4.42 |
 
