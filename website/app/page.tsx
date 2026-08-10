@@ -34,22 +34,45 @@ export default function HomePage() {
             
             <div className="flex flex-wrap justify-center gap-4 pt-4">
               <Link
-                href="/programmes"
-                className="group px-8 py-4 bg-white text-primary-600 font-semibold rounded-xl hover:bg-white/95 transition-all shadow-soft-lg hover:shadow-soft-xl hover:-translate-y-0.5"
+                href="/participate"
+                className="group px-8 py-4 bg-accent-400 text-neutral-950 font-semibold rounded-xl hover:bg-accent-300 transition-all shadow-soft-lg hover:shadow-soft-xl hover:-translate-y-0.5"
               >
                 <span className="flex items-center gap-2">
-                  Explore Programmes
+                  Share Your Idea
                   <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </span>
               </Link>
               <Link
-                href="/why"
+                href="/programmes"
                 className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-xl hover:bg-white/20 transition-all border border-white/20"
               >
-                Why MIB 2.0
+                Explore Programmes
               </Link>
+            </div>
+
+            <div className="max-w-3xl mx-auto pt-2">
+              <div className="flex items-start gap-3 rounded-2xl border border-white/20 bg-white/10 px-5 py-4 text-left backdrop-blur-sm sm:items-center">
+                <svg
+                  className="mt-0.5 h-5 w-5 shrink-0 text-accent-300 sm:mt-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+                <p className="text-sm leading-6 text-white/90 sm:text-base">
+                  Contributions will be reviewed, categorised and consolidated into a community
+                  input report for presentation to the Prime Minister.
+                </p>
+              </div>
             </div>
           </div>
         </div>
