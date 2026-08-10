@@ -512,6 +512,144 @@ absent = [f for f in CANON if not os.path.exists(os.path.join(HERE, f))
 check(not absent, f"[extra] all {len(CANON)} canonical files exist and are non-empty",
       f"[extra] MISSING OR EMPTY CANONICAL FILES: {absent}", hard=False)
 
+# ---- CHECK 12: generated document sections match canonical registers -----
+# Financial tables in the proposal and annex must never be maintained by
+# hand.  Compare the committed text with a fresh render from the CSV model.
+from sync_document_integrity import expected_sections, START, END
+
+
+def generated_block(document, name):
+    start = START.format(name=name)
+    end = END.format(name=name)
+    if start not in document or end not in document:
+        return None
+    return start + document.split(start, 1)[1].split(end, 1)[0] + end
+
+
+proposal_text = open(prop, encoding="utf-8").read() if os.path.exists(prop) else ""
+annex_path = os.path.join(HERE, "TECHNICAL_ANNEXES.md")
+annex_text = open(annex_path, encoding="utf-8").read() if os.path.exists(annex_path) else ""
+expected = expected_sections()
+stale = []
+for section_name, rendered in expected.items():
+    document = annex_text if section_name == "TECHNICAL_ANNEX_A" else proposal_text
+    if generated_block(document, section_name) != rendered:
+        stale.append(section_name)
+check(not stale,
+      f"[12] all {len(expected)} generated proposal/annex sections exactly match the canonical CSV registers",
+      f"[12] STALE OR MANUALLY EDITED GENERATED SECTIONS: {stale}; run sync_document_integrity.py")
+
+# ---- CHECK 12b: narrative counts match the canonical registers -----------
+programme_rows = data.get("PROGRAMME_REGISTER.csv", [])
+retained_count = sum(r["retain_decision"].upper().startswith("RETAIN") for r in programme_rows)
+non_retained_count = len(programme_rows) - retained_count
+risk_rows = data.get("RISK_AND_SAFEGUARD_REGISTER.csv", [])
+critical_count = sum(r["inherent_rating"] == "Critical" for r in risk_rows)
+high_residual_count = sum(r["residual_rating"] == "High" for r in risk_rows)
+kpi_rows = data.get("KPI_REGISTER.csv", [])
+baseline_pending_count = sum(r.get("baseline_status") == "to-be-established" for r in kpi_rows)
+responsibility_rows = data.get("RESPONSIBILITY_MATRIX.csv", [])
+mandate_counts = Counter(r["mandate_verification_status"] for r in responsibility_rows)
+
+count_drift = []
+required_proposal_phrases = [
+    f"sixteen retained substantive programmes" if retained_count == 16 else f"{retained_count} retained substantive programmes",
+    f"Five source proposals were not carried forward" if non_retained_count == 5 else f"{non_retained_count} source proposals were not carried forward",
+    f"Twenty-one risks are registered" if len(risk_rows) == 21 else f"{len(risk_rows)} risks are registered",
+    f"Fourteen carry a **critical inherent rating**" if critical_count == 14 else f"{critical_count} carry a **critical inherent rating**",
+    f"Twelve of the sixteen have a baseline status" if baseline_pending_count == 12 and len(kpi_rows) == 16 else f"{baseline_pending_count} of the {len(kpi_rows)} have a baseline status",
+    "thirty items in `ASSUMPTIONS_AND_DECISIONS.md` Part C",
+]
+for phrase in required_proposal_phrases:
+    if phrase not in proposal_text:
+        count_drift.append(f"proposal missing canonical count statement: {phrase}")
+
+required_annex_phrases = [
+    f"`RISK_AND_SAFEGUARD_REGISTER.csv` ({len(risk_rows)} rows)",
+    f"{critical_count} carry critical inherent ratings",
+    f"{high_residual_count} retain a High residual rating",
+    f"`SOURCE_REGISTER.csv` ({len(data.get('SOURCE_REGISTER.csv', []))} sources)",
+    f"`CLAIMS_AND_FIGURES_REGISTER.csv` ({len(data.get('CLAIMS_AND_FIGURES_REGISTER.csv', []))} claims)",
+    f"Mandate verification status: {mandate_counts.get('mandate-consistent-requires-confirmation', 0)} consistent-requires-confirmation, {mandate_counts.get('mandate-requires-establishment', 0)} requires-establishment",
+]
+for phrase in required_annex_phrases:
+    if phrase not in annex_text:
+        count_drift.append(f"annex missing canonical count statement: {phrase}")
+
+ad_text = open(adpath, encoding="utf-8").read() if os.path.exists(adpath) else ""
+validation_ids = re.findall(r"^\|\s*(VAL-\d{2})\s*\|", ad_text, flags=re.MULTILINE)
+strict_match = re.search(r"\*\*Six of these are gating in the strict sense — ([^*]+)\*\*", ad_text)
+strict_ids = set(re.findall(r"VAL-\d{2}", strict_match.group(1))) if strict_match else set()
+expected_strict_ids = {"VAL-01", "VAL-09", "VAL-11", "VAL-19", "VAL-23", "VAL-30"}
+if len(validation_ids) != 30 or len(set(validation_ids)) != 30:
+    count_drift.append(f"validation register has {len(validation_ids)} rows / {len(set(validation_ids))} unique IDs, expected 30")
+if strict_ids != expected_strict_ids:
+    count_drift.append(f"strict validation gates are {sorted(strict_ids)}, expected {sorted(expected_strict_ids)}")
+check(not count_drift,
+      "[12b] programme, KPI, risk, mandate, source, claim and validation counts in narrative match their canonical registers",
+      f"[12b] NARRATIVE COUNT DRIFT: {count_drift[:12]}")
+
+# ---- CHECK 12c: every typed cross-reference resolves everywhere ----------
+known_refs = {
+    "CLM": {r["claim_id"] for r in data.get("CLAIMS_AND_FIGURES_REGISTER.csv", [])},
+    "KPI": {r["kpi_id"] for r in kpi_rows},
+    "PRG": {r["programme_id"] for r in programme_rows},
+    "RSK": {r["risk_id"] for r in risk_rows},
+    "RSP": {r["responsibility_id"] for r in responsibility_rows},
+    "VAL": set(validation_ids),
+}
+unresolved_refs = []
+for path in _glob.glob(os.path.join(HERE, "*.csv")) + _glob.glob(os.path.join(HERE, "*.md")):
+    content = open(path, encoding="utf-8").read()
+    for prefix, known_ids in known_refs.items():
+        width = 3 if prefix == "CLM" else 2
+        for reference in set(re.findall(rf"\b{prefix}-\d{{{width}}}\b", content)):
+            if reference not in known_ids:
+                unresolved_refs.append(f"{os.path.basename(path)}:{reference}")
+check(not unresolved_refs,
+      "[12c] every CLM/KPI/PRG/RSK/RSP/VAL reference across canonical CSV and Markdown files resolves",
+      f"[12c] UNRESOLVED TYPED REFERENCES: {sorted(unresolved_refs)[:20]}")
+
+# ---- CHECK 12d: manual proposal cost statements match the model ----------
+# Tables are generated under [12].  Remaining programme-level prose is
+# intentionally authored, so independently compare every stated central cost.
+central_costs = {r["programme_id"]: D(r["six_year_total"])
+                 for r in cm if r["scenario"] == "central"
+                 and not r["programme_id"].startswith("PRG-XX")}
+narrative_cost_drift = []
+programme_headers = list(re.finditer(r"\*\*(PRG-\d{2})\s+", proposal_text))
+checked_programme_costs = 0
+for index, match in enumerate(programme_headers):
+    end_at = programme_headers[index + 1].start() if index + 1 < len(programme_headers) else len(proposal_text)
+    section = proposal_text[match.start():end_at]
+    stated = re.search(r"\*\*Six-year central cost:\s*RM([\d,.]+)\s+million", section)
+    if not stated:
+        continue
+    checked_programme_costs += 1
+    programme_id = match.group(1)
+    amount = D(stated.group(1).replace(",", ""))
+    if programme_id not in central_costs or abs(amount - central_costs[programme_id]) > TOL:
+        narrative_cost_drift.append(
+            f"{programme_id}: proposal RM{amount}m != model RM{central_costs.get(programme_id)}m"
+        )
+
+summary_patterns = [
+    (r"six-year central cost of RM([\d,.]+) million", grand.get("central"), "executive central total"),
+    (r"incremental new funding requirement is RM([\d,.]+) million", sum(D(r["new_funding"]) for r in central_rows), "incremental new funding"),
+    (r"remaining RM([\d,.]+) million being existing allocations and proposed reallocation", sum(D(r["existing_funding"]) + D(r["reallocated_funding"]) for r in central_rows), "non-new funding"),
+]
+for pattern, expected_amount, label in summary_patterns:
+    found = re.search(pattern, proposal_text, flags=re.IGNORECASE)
+    if not found:
+        narrative_cost_drift.append(f"missing proposal statement: {label}")
+        continue
+    stated_amount = D(found.group(1).replace(",", ""))
+    if abs(stated_amount - expected_amount) > TOL:
+        narrative_cost_drift.append(f"{label}: proposal RM{stated_amount}m != model RM{expected_amount}m")
+check(not narrative_cost_drift and checked_programme_costs >= 8,
+      f"[12d] {checked_programme_costs} authored programme-cost statements and all executive funding headlines match COSTING_MODEL.csv",
+      f"[12d] NARRATIVE FINANCIAL DRIFT: {narrative_cost_drift}; only {checked_programme_costs} programme costs inspected")
+
 # ---- report --------------------------------------------------------------
 print(f"\nPASSED ({len(PASSED)}):")
 for p in PASSED:

@@ -115,7 +115,7 @@
 
 **Timestamp:** 2026-08-05
 **Deliverable:** `FINAL_QA_REPORT.md`.
-**Machine verification:** exit 0 — **76 checks passed, 0 hard failures**, 1 standing disclosure warning.
+**Machine verification:** exit 0 — **80 checks passed, 0 hard failures**, 1 standing disclosure warning.
 **Findings:** **76 across two adversarial passes** (17 critical, 30 major, 20 moderate, 9 minor) → **75 resolved, 1 open** (MOD-04, moderate). The independent critic returned and its findings drove a second correction cycle; three criticals it raised were closed structurally, each with a new machine check.
 **Rubric average across all 10 applicable dimensions: 4.42**, every dimension ≥ 4.0.
 **Material caveat:** 0% of the portfolio is Confirmed and 68.1% is Provisional. That classification is now evidence-based and machine-enforced (check `[3b]`), having been corrected downward from a previously claimed 74.8% Benchmarked.

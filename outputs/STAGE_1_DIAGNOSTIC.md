@@ -117,7 +117,7 @@ Source 1 has numbers without a narrative that survives scrutiny; source 2 has a 
 | 10 | Governance | The delivery instrument | Task Force, secretariat, five delivery principles, ministry accountability | CNF-026; RSP register |
 | 11 | Funding framework | Fiscal credibility | Central/conservative/expanded; existing/reallocated/new; confidence classes | Costing model |
 | 12 | Measurement and accountability | How this is verified | 16 KPIs, dashboards, independent evaluation, audit | KPI register |
-| 13 | Risks and safeguards | Honest failure modes | 18 risks with safeguards and residual ratings | Risk register |
+| 13 | Risks and safeguards | Honest failure modes | 18 risks were recorded at this diagnostic stage; the current canonical register contains 21 | Risk register |
 | 14 | Roadmap | What happens when | Phase-by-phase deliverables and decision gates | — |
 | 15 | Cabinet objections | Pre-empt the ten hardest questions | Direct answers with evidence | §14 of master prompt |
 | 16 | Approvals requested | The formal ask | Six numbered approvals, each bounded | — |

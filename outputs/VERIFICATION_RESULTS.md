@@ -6,17 +6,16 @@ Machine-verification record for the MIB 2.0 output package.
 
 ```bash
 python outputs/extract_sources.py     # Stage 0 - source extraction + manifests
-python outputs/build_costing.py       # rebuilds COSTING_MODEL.csv from COSTING_ASSUMPTIONS.csv
-python outputs/verify_outputs.py      # 12 required check families; exits non-zero on hard failure
+python outputs/build_costing.py              # rebuilds COSTING_MODEL.csv from COSTING_ASSUMPTIONS.csv
+python outputs/sync_document_integrity.py    # regenerates duplicated financial and phase sections
+python outputs/verify_outputs.py             # required and expanded checks; exits non-zero on hard failure
 ```
 
-**Timestamp:** 2026-08-05 (session date)
+**Timestamp:** 2026-08-10 (latest integrity run)
 **Final exit status of `verify_outputs.py`:** **0 (PASS)**
-**Result:** **76 checks passed, 0 hard failures, 1 standing disclosure warning.**
+**Result:** **80 checks passed, 0 hard failures, 1 standing disclosure warning.**
 
-The single remaining warning at the time of the final run concerned canonical files
-(`CRITIC_FINDINGS.md`, `FINAL_QA_REPORT.md`, `VERIFICATION_RESULTS.md`) not yet written
-at that moment. All three exist now; re-running the command reports 0 warnings.
+The standing warning is deliberate: PRG-01 and PRG-14 have no complete published costing formula, so their amounts remain explicitly identified as authored judgements rather than derivations.
 
 ---
 
@@ -29,6 +28,7 @@ at that moment. All three exist now; re-running the command reports 0 warnings.
 | 3 | PASS at that stage | 0 | Superseded - the independent critic then showed the model was reconciling only to itself |
 | 4 | **FAIL - 2 hard failures** | After the independent critic returned: [2b] dangling VAL-29 reference; [7] blank cost_source_id on 15 model rows | VAL-29 defined in the validation table. The [7] failure was a **false positive in the check, not a defect in the data**: a blank cost_source_id legitimately means "no external unit-cost source exists", which check [3b] then forces to Provisional. The blank scan now exempts that one column, and the exemption is documented in the code |
 | 5 | **PASS** | 0 | 76 checks, 0 hard failures - final state |
+| 6 | **PASS** | 0 | Stage 1 integrity repair: 80 checks, 0 hard failures; generated-section, narrative-count, typed-reference and narrative-financial checks added |
 
 ### Checks added in response to the independent critique
 
@@ -54,7 +54,7 @@ at that moment. All three exist now; re-running the command reports 0 warnings.
 MIB 2.0 MACHINE VERIFICATION
 ==============================================================================
 
-PASSED (76):
+PASSED (80):
   PASS [1] SOURCE_REGISTER.csv: all 8 required columns present (18 rows)
   PASS [1] CLAIMS_AND_FIGURES_REGISTER.csv: all 12 required columns present (62 rows)
   PASS [1] PROGRAMME_REGISTER.csv: all 16 required columns present (21 rows)
@@ -131,10 +131,14 @@ PASSED (76):
   PASS [11] central portfolio confidence mix: Confirmed RM 0.000m (0.0%), Provisional RM 1,010.873m (68.1%), Benchmarked RM 473.400m (31.9%)
   PASS [extra] all 34 registered conflicts marked resolved
   PASS [extra] all 22 canonical files exist and are non-empty
+  PASS [12] all 3 generated proposal/annex sections exactly match the canonical CSV registers
+  PASS [12b] programme, KPI, risk, mandate, source, claim and validation counts in narrative match their canonical registers
+  PASS [12c] every CLM/KPI/PRG/RSK/RSP/VAL reference across canonical CSV and Markdown files resolves
+  PASS [12d] 14 authored programme-cost statements and all executive funding headlines match COSTING_MODEL.csv
 
 WARNINGS (1):
   WARN [4b] DISCLOSED: ['PRG-01', 'PRG-14'] have no complete published formula; their amounts are authored judgements, not derivations
 
 ==============================================================================
-RESULT: PASS - 76 checks passed, 1 warning(s), 0 hard failures
+RESULT: PASS - 80 checks passed, 1 warning(s), 0 hard failures
 ```
