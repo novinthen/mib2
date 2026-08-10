@@ -139,7 +139,7 @@ Three constitutional and institutional limits constrain what may be promised:
 Full detail in `KPI_REGISTER.csv` (16 rows, one per retained substantive programme). **Twelve of sixteen have a baseline status of `to-be-established`**; for those the Year 2 target is principally a baseline or system-establishment deliverable. Disaggregation is specified per indicator (state, gender, income band, grade band, provider type, disability status as applicable). Verification sources are named per indicator, including EPF/SOCSO contribution matching for TVET employment outcomes.
 
 ## Annex E — Risk and safeguard register
-Full detail in `RISK_AND_SAFEGUARD_REGISTER.csv` (21 rows). 14 carry critical inherent ratings. **6 retain a High residual rating after safeguards: RSK-01, RSK-04, RSK-05, RSK-09, RSK-19 and RSK-20.** These are not fully mitigable by design and are matters for Cabinet's judgement.
+Full detail in `RISK_AND_SAFEGUARD_REGISTER.csv` (21 rows). 14 carry critical inherent ratings. **5 retain a High residual rating after safeguards: RSK-04, RSK-05, RSK-09, RSK-19 and RSK-20.** RSK-01 falls to Moderate only if the eight continuity controls are adopted and maintained; the five High risks are not fully mitigable by design and remain matters for Cabinet's judgement.
 
 ## Annex F — Evidence and citation register
 `SOURCE_REGISTER.csv` (31 sources) and `CLAIMS_AND_FIGURES_REGISTER.csv` (62 claims). Each source records title, institution, date, location, URL, access date, geographic and population scope, definition, tier in the hierarchy, limitations, and whether it supports the claim directly or only by inference.

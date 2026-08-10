@@ -130,6 +130,14 @@ REQUIRED = {
                                          "performance_measure", "reporting_frequency",
                                          "escalation_and_remedy", "excluded_outcomes",
                                          "adoption_status", "evidence_reference", "acceptance_date"],
+    "GOVERNANCE_CONTINUITY_REGISTER.csv": ["continuity_id", "component",
+                                             "controlled_rule", "primary_owner",
+                                             "delegated_owner", "activation_trigger",
+                                             "operating_cadence", "required_instrument",
+                                             "authority_boundary", "evidence_requirement",
+                                             "affected_programmes", "related_decisions",
+                                             "related_controls", "status",
+                                             "evidence_reference", "acceptance_date"],
 }
 
 data = {}
@@ -183,6 +191,7 @@ ID_COL = {"SOURCE_REGISTER.csv": "source_id",
           "FISCAL_VALIDATION_REGISTER.csv": "fiscal_control_id"}
 ID_COL["PROGRAMME_DESIGN_REGISTER.csv"] = "programme_id"
 ID_COL["SERVICE_COMMITMENT_REGISTER.csv"] = "commitment_id"
+ID_COL["GOVERNANCE_CONTINUITY_REGISTER.csv"] = "continuity_id"
 for fname, col in ID_COL.items():
     rows = data.get(fname, [])
     if not rows:
@@ -425,7 +434,7 @@ for fname, cols in REQUIRED.items():
             # These two fields are intentionally blank while a legal issue is
             # open/requested. Check [14] requires both once a competent
             # authority records a disposition.
-            if fname in {"LEGAL_ISSUES_REGISTER.csv", "FISCAL_VALIDATION_REGISTER.csv", "PROGRAMME_DESIGN_REGISTER.csv", "SERVICE_COMMITMENT_REGISTER.csv"} and c in {"evidence_reference", "acceptance_date"}:
+            if fname in {"LEGAL_ISSUES_REGISTER.csv", "FISCAL_VALIDATION_REGISTER.csv", "PROGRAMME_DESIGN_REGISTER.csv", "SERVICE_COMMITMENT_REGISTER.csv", "GOVERNANCE_CONTINUITY_REGISTER.csv"} and c in {"evidence_reference", "acceptance_date"}:
                 continue
             if not str(r.get(c, "")).strip():
                 blanks.append(f"{fname}:{rid}.{c}")
@@ -549,7 +558,7 @@ CANON = ["BENEFICIARY_RECONCILIATION.csv", "STATUS.md", "ASSUMPTIONS_AND_DECISIO
          "PROGRAMME_REGISTER.csv", "NARRATIVE_REGISTER.csv",
          "CONFLICT_AND_DUPLICATION_REGISTER.csv", "RESPONSIBILITY_MATRIX.csv",
          "KPI_REGISTER.csv", "RISK_AND_SAFEGUARD_REGISTER.csv", "COSTING_MODEL.csv",
-         "COSTING_ASSUMPTIONS.csv", "DECISION_REGISTER.csv", "VALIDATION_REGISTER.csv", "LEGAL_ISSUES_REGISTER.csv", "FISCAL_VALIDATION_REGISTER.csv", "PROGRAMME_DESIGN_REGISTER.csv", "PROGRAMME_DESIGN_SHEETS.md", "SERVICE_COMMITMENT_REGISTER.csv", "SERVICE_COMMITMENTS.md", "verify_outputs.py", "VERIFICATION_RESULTS.md",
+         "COSTING_ASSUMPTIONS.csv", "DECISION_REGISTER.csv", "VALIDATION_REGISTER.csv", "LEGAL_ISSUES_REGISTER.csv", "FISCAL_VALIDATION_REGISTER.csv", "PROGRAMME_DESIGN_REGISTER.csv", "PROGRAMME_DESIGN_SHEETS.md", "SERVICE_COMMITMENT_REGISTER.csv", "SERVICE_COMMITMENTS.md", "GOVERNANCE_CONTINUITY_REGISTER.csv", "GOVERNANCE_CONTINUITY.md", "verify_outputs.py", "VERIFICATION_RESULTS.md",
          "STAGE_1_DIAGNOSTIC.md", "STAGE_2_RECONCILIATION.md",
          "MIB_2.0_EXECUTIVE_PROPOSAL.md", "TECHNICAL_ANNEXES.md"]
 absent = [f for f in CANON if not os.path.exists(os.path.join(HERE, f))
@@ -560,7 +569,7 @@ check(not absent, f"[extra] all {len(CANON)} canonical files exist and are non-e
 # ---- CHECK 12: generated document sections match canonical registers -----
 # Financial tables in the proposal and annex must never be maintained by
 # hand.  Compare the committed text with a fresh render from the CSV model.
-from sync_document_integrity import expected_sections, render_programme_design_sheets, render_service_commitments, START, END
+from sync_document_integrity import expected_sections, render_programme_design_sheets, render_service_commitments, render_governance_continuity, START, END
 
 
 def generated_block(document, name):
@@ -1200,6 +1209,76 @@ check(sheet_service_mapping_ok,
       "[17g] every programme design sheet contains its exact applicable service-commitment mapping",
       "[17g] ONE OR MORE PROGRAMME SHEETS HAS A STALE SERVICE-COMMITMENT MAPPING")
 
+# ---- CHECK 18: Stage 8 governance continuity below the PM ---------------
+continuity_rows = data.get("GOVERNANCE_CONTINUITY_REGISTER.csv", [])
+continuity_ids = {row["continuity_id"] for row in continuity_rows}
+expected_continuity_ids = {f"GC-{number:02d}" for number in range(1, 9)}
+required_components = {
+    "Prime Ministerial sponsorship and strategic review",
+    "Designated minister between reviews",
+    "Senior-officials delivery committee",
+    "Ministry delivery officers and planning commitments",
+    "Secretariat reporting authority with statutory boundary",
+    "Automatic milestone escalation",
+    "Meeting-independent public reporting",
+    "Political and administrative succession",
+}
+continuity_defects = []
+continuity_coverage = set()
+required_boundary_terms = {"statutory", "accounting", "procurement", "vote"}
+for row in continuity_rows:
+    gid = row["continuity_id"]
+    affected = {item.strip() for item in row["affected_programmes"].split(";") if item.strip()}
+    continuity_coverage |= affected
+    if not affected or not affected <= retained:
+        continuity_defects.append(f"{gid}: missing or unknown affected programmes {sorted(affected - retained)}")
+    if row["status"] != "draft_pending_cabinet_confirmation":
+        continuity_defects.append(f"{gid}: unsupported status {row['status']!r}")
+    if row["evidence_reference"].strip() or row["acceptance_date"].strip():
+        continuity_defects.append(f"{gid}: draft control improperly carries adoption evidence/date")
+    if not row["required_instrument"].strip() or not row["evidence_requirement"].strip():
+        continuity_defects.append(f"{gid}: missing instrument or evidence requirement")
+    boundary_tokens = set(re.findall(r"[a-z]+", row["authority_boundary"].lower()))
+    if gid == "GC-05" and not required_boundary_terms <= boundary_tokens:
+        continuity_defects.append("GC-05: secretariat boundary does not expressly preserve statutory, accounting, procurement and vote authority")
+
+check(not continuity_defects and len(continuity_rows) == 8 and continuity_ids == expected_continuity_ids,
+      "[18] eight canonical continuity controls contain owners, triggers, cadence, instruments, evidence and authority boundaries",
+      f"[18] GOVERNANCE CONTINUITY DEFECTS: {continuity_defects[:24]}; rows={len(continuity_rows)}")
+check({row["component"] for row in continuity_rows} == required_components,
+      "[18a] continuity design covers sponsorship, minister, officials, delivery officers, secretariat, escalation, reporting and succession",
+      "[18a] REQUIRED GOVERNANCE-CONTINUITY COMPONENTS ARE INCOMPLETE")
+check(continuity_coverage == retained,
+      "[18b] governance continuity covers all 16 retained programmes",
+      f"[18b] GOVERNANCE-CONTINUITY COVERAGE DRIFT: missing={sorted(retained - continuity_coverage)}")
+check(all(row["status"] == "draft_pending_cabinet_confirmation"
+          and not row["evidence_reference"].strip()
+          and not row["acceptance_date"].strip() for row in continuity_rows),
+      "[18c] no continuity mechanism is represented as adopted without Cabinet evidence and an acceptance date",
+      "[18c] A GOVERNANCE-CONTINUITY CONTROL IMPROPERLY IMPLIES ADOPTION")
+continuity_doc_path = os.path.join(HERE, "GOVERNANCE_CONTINUITY.md")
+continuity_doc_text = open(continuity_doc_path, encoding="utf-8").read() if os.path.exists(continuity_doc_path) else ""
+check(continuity_doc_text == render_governance_continuity(),
+      "[18d] the detailed governance-continuity standard matches the canonical register exactly",
+      "[18d] GOVERNANCE CONTINUITY DOCUMENT IS STALE OR MANUALLY EDITED")
+pm_dependency_removed = (
+    "daily operating system" in continuity_doc_text
+    and "meeting-independent" in " ".join(row["component"].lower() for row in continuity_rows)
+    and "Prime Ministerial chairmanship is not sustained" not in next(row["risk_description"] for row in risk_rows if row["risk_id"] == "RSK-01")
+    and "meeting held" not in next(row["definition"].lower() for row in kpi_rows if row["kpi_id"] == "KPI-15")
+)
+check(pm_dependency_removed,
+      "[18e] portfolio continuity and KPI-15 no longer depend on a Prime Minister personally convening every quarterly meeting",
+      "[18e] PRIME-MINISTER SINGLE-POINT DEPENDENCY REMAINS IN THE CONTROL MODEL")
+responsibility_escalation_ok = all(
+    "automatic escalation under GC-06" in row["escalation_route"]
+    and "Task Force quarterly" not in row["escalation_route"]
+    for row in responsibility_rows
+)
+check(responsibility_escalation_ok,
+      "[18f] every programme responsibility row uses the delegated delivery-officer and automatic-escalation chain",
+      "[18f] ONE OR MORE PROGRAMMES STILL DEPENDS ON TASK-FORCE-ONLY ESCALATION")
+
 # ---- CHECK 12c: every typed cross-reference resolves everywhere ----------
 known_refs = {
     "CLM": {r["claim_id"] for r in data.get("CLAIMS_AND_FIGURES_REGISTER.csv", [])},
@@ -1211,6 +1290,7 @@ known_refs = {
     "LGL": legal_ids,
     "FIS": fiscal_ids,
     "SC": service_ids,
+    "GC": continuity_ids,
 }
 unresolved_refs = []
 for path in _glob.glob(os.path.join(HERE, "*.csv")) + _glob.glob(os.path.join(HERE, "*.md")):

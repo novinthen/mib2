@@ -22,6 +22,7 @@ ANNEXES = os.path.join(HERE, "TECHNICAL_ANNEXES.md")
 ASSUMPTIONS = os.path.join(HERE, "ASSUMPTIONS_AND_DECISIONS.md")
 PROGRAMME_DESIGN_SHEETS = os.path.join(HERE, "PROGRAMME_DESIGN_SHEETS.md")
 SERVICE_COMMITMENTS = os.path.join(HERE, "SERVICE_COMMITMENTS.md")
+GOVERNANCE_CONTINUITY = os.path.join(HERE, "GOVERNANCE_CONTINUITY.md")
 START = "<!-- GENERATED:{name}:START -->"
 END = "<!-- GENERATED:{name}:END -->"
 
@@ -96,6 +97,10 @@ def service_commitment_data() -> list[dict[str, str]]:
     return load_csv("SERVICE_COMMITMENT_REGISTER.csv")
 
 
+def governance_continuity_data() -> list[dict[str, str]]:
+    return load_csv("GOVERNANCE_CONTINUITY_REGISTER.csv")
+
+
 def refs_for_programme(rows: list[dict[str, str]], programme_id: str, id_field: str) -> list[str]:
     return [
         row[id_field]
@@ -106,6 +111,68 @@ def refs_for_programme(rows: list[dict[str, str]], programme_id: str, id_field: 
 
 def service_refs_for_programme(programme_id: str) -> list[str]:
     return refs_for_programme(service_commitment_data(), programme_id, "commitment_id")
+
+
+def governance_refs_for_programme(programme_id: str) -> list[str]:
+    return refs_for_programme(governance_continuity_data(), programme_id, "continuity_id")
+
+
+def render_governance_continuity_summary() -> str:
+    rows = governance_continuity_data()
+    adopted = sum(row["status"] == "adopted" for row in rows)
+    return "\n".join([
+        START.format(name="GOVERNANCE_CONTINUITY_SUMMARY"),
+        "## 2.9 Governance continuity below the Prime Minister",
+        "",
+        f"`GOVERNANCE_CONTINUITY_REGISTER.csv` controls **{len(rows)} continuity mechanisms** designed to keep delivery operating when a Prime Ministerial review is delayed or political office-holders change.",
+        "",
+        "| Control | Continuity rule |",
+        "|---|---|",
+        *[f"| {row['continuity_id']} — {row['component']} | {row['controlled_rule']} |" for row in rows],
+        "",
+        "**Operating model.** The Prime Minister sponsors the policy direction and conducts strategic review. A designated minister is responsible between reviews; a Chief Secretary-chaired or Cabinet-authorised equivalent senior-officials committee manages cross-ministry delivery; named ministry delivery officers own milestones; and the secretariat maintains the reporting and escalation clock.",
+        "",
+        "**Authority boundary.** Delegation does not transfer statutory powers, votes, procurement authority, accounting-officer responsibility or the functions of independent, state or third-party bodies. The secretariat may require reports only to the extent authorised by Cabinet and the approved terms of reference.",
+        "",
+        f"**Adoption status:** **{adopted} of {len(rows)} adopted**. All controls remain draft pending a recorded Cabinet decision, approved terms of reference and the written nominations or instruments specified in the register.",
+        END.format(name="GOVERNANCE_CONTINUITY_SUMMARY"),
+    ])
+
+
+def render_governance_continuity() -> str:
+    rows = governance_continuity_data()
+    lines = [
+        "# MIB 2.0 Governance Continuity Standard",
+        "",
+        "**Control status:** Internal governance design pending Cabinet and agency confirmation. It does not establish a body, delegate a statutory power, create a post or authorise expenditure.",
+        "",
+        "The Prime Minister is the programme sponsor and strategic reviewer, not its daily operating system. Each control below is generated from `GOVERNANCE_CONTINUITY_REGISTER.csv`.",
+        "",
+    ]
+    for row in rows:
+        lines += [
+            f"## {row['continuity_id']} — {row['component']}",
+            "",
+            f"**Status:** `{row['status']}`",
+            "",
+            "| Control field | Controlled position |",
+            "|---|---|",
+            f"| Continuity rule | {row['controlled_rule']} |",
+            f"| Primary owner | {row['primary_owner']} |",
+            f"| Delegated operating owner | {row['delegated_owner']} |",
+            f"| Activation trigger | {row['activation_trigger']} |",
+            f"| Operating cadence | {row['operating_cadence']} |",
+            f"| Required instrument | {row['required_instrument']} |",
+            f"| Authority boundary | {row['authority_boundary']} |",
+            f"| Evidence required | {row['evidence_requirement']} |",
+            f"| Programmes | {row['affected_programmes']} |",
+            f"| Decisions | {row['related_decisions']} |",
+            f"| Related controls | {row['related_controls']} |",
+            f"| Adoption evidence | {row['evidence_reference'] or 'not received'} |",
+            f"| Acceptance date | {row['acceptance_date'] or 'not recorded'} |",
+            "",
+        ]
+    return "\n".join(lines).rstrip() + "\n"
 
 
 def render_service_commitment_summary() -> str:
@@ -813,6 +880,7 @@ def expected_sections() -> dict[str, str]:
         "FISCAL_VALIDATION_SUMMARY": render_fiscal_summary(),
         "PROGRAMME_DESIGN_SUMMARY": render_programme_design_summary(),
         "SERVICE_COMMITMENT_SUMMARY": render_service_commitment_summary(),
+        "GOVERNANCE_CONTINUITY_SUMMARY": render_governance_continuity_summary(),
         "FISCAL_VALIDATION_REGISTER": render_fiscal_register(),
         "PHASE_TABLE": render_phase_table(),
         "PROPOSAL_FINANCE": render_proposal_finance(),
@@ -832,6 +900,7 @@ def main() -> None:
     proposal = replace_generated(proposal, "FISCAL_VALIDATION_SUMMARY", render_fiscal_summary().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "PROGRAMME_DESIGN_SUMMARY", render_programme_design_summary().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "SERVICE_COMMITMENT_SUMMARY", render_service_commitment_summary().replace("\n", proposal_eol))
+    proposal = replace_generated(proposal, "GOVERNANCE_CONTINUITY_SUMMARY", render_governance_continuity_summary().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "PHASE_TABLE", render_phase_table().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "PROPOSAL_FINANCE", render_proposal_finance().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "FINAL_DECISION_RESOLUTION", render_final_decision_resolution().replace("\n", proposal_eol))
@@ -868,7 +937,9 @@ def main() -> None:
         fh.write(render_programme_design_sheets())
     with open(SERVICE_COMMITMENTS, "w", encoding="utf-8", newline="") as fh:
         fh.write(render_service_commitments())
-    print("Synchronised generated integrity sections, programme design sheets and service commitments")
+    with open(GOVERNANCE_CONTINUITY, "w", encoding="utf-8", newline="") as fh:
+        fh.write(render_governance_continuity())
+    print("Synchronised generated integrity sections, programme design sheets, service commitments and governance continuity")
 
 
 if __name__ == "__main__":

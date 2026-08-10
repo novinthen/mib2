@@ -207,6 +207,22 @@ Verifier checks `[17]`–`[17g]` enforce the exact seven-commitment set, complet
 
 ---
 
+## Submission-readiness Stage 8 — Governance continuity below the Prime Minister — **PASS (design complete; Cabinet adoption open)**
+
+**Timestamp:** 2026-08-10
+
+`GOVERNANCE_CONTINUITY_REGISTER.csv` now controls eight mechanisms: Prime Ministerial sponsorship and strategic review; a designated responsible minister between reviews; a Chief Secretary-chaired or Cabinet-authorised equivalent senior-officials committee; named ministry delivery officers and alternates with commitments in ministry planning; bounded secretariat reporting authority; automatic milestone escalation; meeting-independent quarterly publication; and office-based succession and handover.
+
+The Prime Minister is no longer the daily operating dependency. KPI-15 tests whether delegated reviews, returns, exception handling, reporting and handover continue. Every programme's responsibility record now uses the GC-06 escalation chain. RSK-01 falls from High to Moderate residual risk only if the controls are adopted and maintained; RSK-19 remains High because a successor Cabinet may lawfully change or discontinue policy.
+
+All eight controls remain `draft_pending_cabinet_confirmation`; **0 of 8 is adopted**. They do not create a permanent body, delegate statutory authority, transfer votes or procurement power, displace accounting officers, bind states or independent bodies, or authorise expenditure.
+
+Verifier checks `[18]`–`[18f]` enforce the exact control set, required fields, full portfolio coverage, adoption evidence, deterministic generation, removal of the personal-chair dependency and programme-level escalation. Final regression: **140 checks passed, 0 hard failures**; deterministic double regeneration, targeted website lint and the 29-page production build pass.
+
+**Gate: PASS for internal continuity design. Cabinet terms, delegations, nominations, reporting authority and succession instruments remain external and open.**
+
+---
+
 ## Headline result
 
 | | Central | Conservative | Expanded |
@@ -215,4 +231,4 @@ Verifier checks `[17]`–`[17g]` enforce the exact seven-commitment set, complet
 | Incremental new funding | **RM847.677m** | RM662.217m | RM1,070.229m |
 
 Confidence mix (central): **Confirmed 0.0%** · Benchmarked 31.9% · Provisional 68.1%.
-**30 validation items, 18 legal issues and 10 fiscal controls remain open. All 16 programme design sheets await agency acceptance, and all seven service commitments await agency adoption. Six validation items are strict gates: VAL-01, VAL-09, VAL-11, VAL-19, VAL-23 and VAL-30. Four are decision-dependent critical: VAL-03, VAL-24, VAL-27 and VAL-28. An unresolved item blocks only its mapped decision, programme or fiscal component.**
+**30 validation items, 18 legal issues and 10 fiscal controls remain open. All 16 programme design sheets await agency acceptance, all seven service commitments await agency adoption, and all eight governance continuity controls await Cabinet confirmation. Six validation items are strict gates: VAL-01, VAL-09, VAL-11, VAL-19, VAL-23 and VAL-30. Four are decision-dependent critical: VAL-03, VAL-24, VAL-27 and VAL-28. An unresolved item blocks only its mapped decision, programme or fiscal component.**
