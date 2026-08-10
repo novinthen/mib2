@@ -106,7 +106,7 @@ Recorded because concealing them would defeat the purpose of this file. Each is 
 |---|---|---|---|
 | R-01 | **The completed adversarial review was not agent-independent** | The commissioned independent critic had not returned at the time of writing | This file; `FINAL_QA_REPORT.md` |
 | R-02 | **No cost line is classed Confirmed (0.0% of RM1,484.273m)** | No procurement or programme financial data was obtainable at source | Proposal Part 7.2; Stage 2 §C.2 |
-| R-03 | **Twelve claims remain `cited-source-not-yet-inspected`** | Named sources could not be reached | Claims register; Stage 2 §A.2 |
+| R-03 | **Ten claims remain `cited-source-not-yet-inspected`** | Named sources could not be reached | Claims register; Stage 2 §A.2 |
 | R-04 | **M&E at 2.10% of portfolio, below the 3–5% commonly recommended** | A deliberate conservatism to hold the envelope down; arguably wrong | Stage 2 §D; Annex A.2 |
 | R-05 | **Indian *median* household income for 2022 not obtained; only the mean** | DOSM published mean by ethnicity in the source reached; median by ethnicity not obtained | SRC-002 limitations; ASM-004 |
 | R-06 | **Indian Malaysians in Sabah and Sarawak are not separately analysed** | No disaggregated evidence base was available | Proposal Part 3.2; Assumptions Part D |
@@ -128,7 +128,7 @@ Recorded because concealing them would defeat the purpose of this file. Each is 
 | 6. No fabricated statistic, citation, mandate, unit cost or beneficiary count | **MET** | C-01, C-02, C-03 removed the fabrications found in the sources |
 | 7. Required costing distinctions carried | **MET WITH DISCLOSURE** | All carried; R-02, R-07 and R-09 disclose the limits |
 
-**Findings before correction:** 10 critical, 16 major, 8 moderate. **Unresolved after correction: 0 critical, 0 major, 0 moderate.** Nine residual limitations (R-01 to R-09) are disclosed rather than resolved.
+**Findings before correction:** 10 critical, 16 major, 8 moderate. **Unresolved after correction: 0 critical, 0 major, 0 moderate.** R-01 is closed because the independent critic returned; eight residual limitations (R-02 to R-09) remain open and disclosed.
 
 
 ---
@@ -186,17 +186,11 @@ each with a **machine check that prevents recurrence**.
 
 ## Remaining OPEN
 
-| Ref | Open finding | Why it remains open |
-|---|---|---|
-| **MOD-04** | CLM-013's negative-search method is documented as an exact-string search, which is unreliable on a text layer that renders `227 ,600` with an interior space | The independent critic re-ran the searches whitespace-insensitively and **confirmed the conclusion holds**, and the page citation has been corrected. The *method statement* has not been rewritten, so a reviewer reproducing it exactly could reach a different result |
-
-**Nine residual limitations (R-01 to R-09) remain disclosed rather than resolved**, because they
-cannot be closed with the evidence available. R-01 (assurance not agent-independent) is now
-**closed** — the independent critic returned and its findings are dispositioned above.
+No critic finding remains open. Eight residual evidence and implementation limitations (R-02 to R-09) remain disclosed separately; they are not critic defects that can be closed by rewriting the package.
 
 ## Modified on acceptance
 
-**MOD-04.** The critic is right that CLM-013's negative-search method is unreliable on a text layer rendering `227 ,600` with an interior space. It re-ran the searches whitespace-insensitively and **confirmed CLM-013's conclusion holds**. The conclusion stands; the method as documented does not support it and has not yet been restated — **open**.
+**MOD-04.** Accepted and closed in Stage 9. CLM-013 now specifies a reproducible search method: Unicode NFKC normalisation, collapse all whitespace runs to a single ASCII space, then perform case-insensitive searches. This handles interior whitespace such as `227 ,600` without changing the confirmed substantive conclusion.
 
 ## Findings the critic explicitly could not substantiate
 
@@ -208,11 +202,11 @@ The critic stated it could not verify offline: the current name and structure of
 |---|---:|---:|---:|---:|---:|
 | Critical | 10 | 7 | 17 | **17** | **0** |
 | Major | 16 | 14 | 30 | **30** | **0** |
-| Moderate | 8 | 12 | 20 | **19** | **1** (MOD-04) |
+| Moderate | 8 | 12 | 20 | **20** | **0** |
 | Minor | 6 | 3 | 9 | **9** | **0** |
-| **Total** | **40** | **36** | **76** | **75** | **1** |
+| **Total** | **40** | **36** | **76** | **76** | **0** |
 
-**All 17 critical and all 30 major findings are resolved.** One moderate finding (MOD-04, a method-documentation defect whose *conclusion* the critic independently confirmed) remains open and is disclosed rather than closed by assertion.
+**All 76 critic findings are resolved.** MOD-04 was closed by a reproducible whitespace-normalised method statement, while eight separate residual evidence and implementation limitations remain open and disclosed.
 
 Each of the three criticals was closed by a **structural** fix with a machine check that prevents
 recurrence, not by re-wording. The most consequential outcome is that resolving C-03 **reduced**

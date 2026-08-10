@@ -13,9 +13,9 @@ python outputs/verify_outputs.py             # required and expanded checks; exi
 
 **Timestamp:** 2026-08-10 (latest integrity run)
 **Final exit status of `verify_outputs.py`:** **0 (PASS)**
-**Result:** **140 checks passed, 0 hard failures, 1 standing disclosure warning.**
+**Result:** **161 checks passed, 0 warnings, 0 hard failures.**
 
-The standing warning is deliberate: PRG-01 and PRG-14 have no complete published costing formula, so their amounts remain explicitly identified as authored judgements rather than derivations.
+PRG-01 and PRG-14 still lack complete published costing formulas. Stage 9 converts that former standing warning into a hard-controlled boundary: both amounts reconcile to the model but are excluded from any validated ceiling until complete formulas and competent-authority evidence are recorded.
 
 ---
 
@@ -40,6 +40,7 @@ The standing warning is deliberate: PRG-01 and PRG-14 have no complete published
 | 15 | **FAIL — 1 hard failure** | GC-05 boundary test still treated `votes` as different from `vote` | Canonical boundary wording changed to `vote authority`; the substantive control was not weakened |
 | 16 | **FAIL — 1 hard failure** | RSP-16 remained outside the common GC-06 automatic-escalation chain | RSP-16 corrected at source; all 16 responsibility rows then passed the same escalation test |
 | 17 | **PASS** | 0 | Stage 8 governance continuity: 140 checks, 0 hard failures; eight canonical controls, full portfolio coverage, adoption discipline, deterministic generation, removal of personal-chair dependency and all-programme escalation checks `[18]`–`[18f]`; deterministic double regeneration, targeted lint and 29-page production build passed |
+| 18 | **PASS** | 0 | Stage 9 cross-stage assurance: 161 checks, 0 warnings and 0 hard failures; 32-row Stage 1–8 traceability, exact PR/commit mappings, corrected assurance history, partial-formula ceiling controls, classified external approvals, CI gates, and hash-bound 37-page DOCX/PDF checks `[19]`–`[19k]`; deterministic double regeneration, full lint, 29-page build, accessibility audit and visual QA passed |
 
 ### Checks added in response to the independent critique
 
@@ -60,7 +61,7 @@ The standing warning is deliberate: PRG-01 and PRG-14 have no complete published
 
 ## Archived full output of Run 6
 
-The transcript below records the 80-check Stage 1 run. Run 17 supersedes it; the current 140-check result is recorded above and in `AUDIT_LOG.md`. Later checks cover decision, validation, legal, fiscal, programme-design, service-commitment and governance-continuity schemas; row widths and unique IDs; canonical-file presence; generated decision, validation, legal, Phase 1 fiscal, programme-design, service-standard and continuity sections; decision-scope, clearance, sign-off and adoption integrity; validation-control completeness; funding-split non-fabrication; service-volume reconciliation; unvalidated service deadlines; prohibited outcome guarantees; meeting-independent reporting; automatic escalation; non-generated funding headlines; and the model-derived contents of CLM-054.
+The transcript below records the 80-check Stage 1 run. Run 18 supersedes it; the current 161-check result is recorded above and in `AUDIT_LOG.md`. Later checks cover decision, validation, legal, fiscal, programme-design, service-commitment, governance-continuity and Stage 9 assurance schemas; row widths and unique IDs; canonical-file presence; generated sections; authority and adoption integrity; Stage 1–8 traceability; partial-formula ceiling controls; CI gates; and rendered-pack hash, signature, page-count and visual-QA integrity.
 
 ```text
 ==============================================================================

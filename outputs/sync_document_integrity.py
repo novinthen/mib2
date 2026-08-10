@@ -349,6 +349,10 @@ def render_programme_design_sheets() -> str:
 
 def render_fiscal_summary() -> str:
     rows = fiscal_data()
+    partial_formula_programmes = [
+        row["programme_id"] for row in load_csv("COST_FORMULA_CONTROL_REGISTER.csv")
+        if row["ceiling_treatment"] == "excluded_from_validated_ceiling_until_formula_complete"
+    ]
     scenarios = scenario_summary(cost_data()[0])
     central_phase_1 = scenarios["central"]["phase_1"]
     stage_counts = {
@@ -382,6 +386,11 @@ def render_fiscal_summary() -> str:
             f"**{count} {status.replace('_', ' ')}**" for status, count in status_counts.items()
         ) + ". No modelled existing or reallocated amount is recognised as available funding, and no "
         "fiscal control may be marked `validated` without a Treasury evidence reference and acceptance date.",
+        "",
+        "**Partial-formula boundary.** " + ", ".join(partial_formula_programmes) +
+        " remain visible in the gross planning scenario but are excluded from any claimed validated ceiling "
+        "until their complete formulas, unit inputs and competent-authority evidence are recorded. Treasury "
+        "must also recalculate any associated administration and contingency effect for the selected package.",
         "",
         "**Submission boundary.** The later Cabinet paper must seek one Treasury-reviewed Phase 1 ceiling "
         "for an identified component package. It must show gross cost, confirmed existing allocations, "
@@ -469,7 +478,10 @@ def render_phase_1_fiscal_schedule() -> str:
         "Before submission for implementation, MOF must replace this gross schedule with an accepted "
         "annual schedule of components and outputs showing confirmed existing funding, approved reallocation "
         "and incremental funding by vote, programme/activity, object, accounting officer and transaction route. "
-        "The validated total may be lower or higher than the current central case; it is not mechanically "
+        "PRG-01 and PRG-14 remain visible as gross planning items but are excluded from any claimed validated "
+        "ceiling until their complete formulas and evidence are accepted; associated administration and "
+        "contingency must be recalculated for the selected package. The validated total may be lower or higher "
+        "than the current central case; it is not mechanically "
         "selected from these three sensitivities.",
         END.format(name="PHASE_1_FISCAL_SCHEDULE"),
     ]
@@ -712,13 +724,13 @@ def render_final_decision_resolution() -> str:
         START.format(name="FINAL_DECISION_RESOLUTION"),
         "Cabinet is respectfully invited to:",
         "",
-        "### Approve now",
+        "## Approve now",
         "",
     ]
     lines += [f"{i}. **{row['decision_id']}:** {row['decision_text']}" for i, row in enumerate(approve, 1)]
-    lines += ["", "### Endorse conditionally", ""]
+    lines += ["", "## Endorse conditionally", ""]
     lines += [f"{i}. **{row['decision_id']}:** {row['decision_text']}" for i, row in enumerate(conditional, 1)]
-    lines += ["", "### Record as not approved at this stage", ""]
+    lines += ["", "## Record as not approved at this stage", ""]
     lines += [f"{i}. **{row['decision_id']}:** {row['decision_text']}" for i, row in enumerate(excluded, 1)]
     lines += [
         "",

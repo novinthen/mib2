@@ -95,7 +95,7 @@
 
 **Rubric:** Factual accuracy 4.5 · Evidence quality 4.2 · Numerical integrity 4.7 · Internal consistency 4.6 · Policy logic 4.4 · Delivery feasibility 4.3 · Fiscal credibility 4.3 · Completeness 4.6 — **average 4.45** (Narrative–evidence alignment and Cabinet readiness scored at Stage 3/4).
 
-**Defects:** 10 critical, 16 major, 8 moderate found; **0 unresolved**. Nine residual limitations disclosed (R-01 to R-09).
+**Defects:** 10 critical, 16 major, 8 moderate found; **0 unresolved**. R-01 later closed when the independent critic returned; eight residual limitations (R-02 to R-09) remain disclosed.
 
 **Gate: PASS.** Costs reconcile on all six required dimensions across all three scenarios; machine verification passes with no hard failures.
 
@@ -116,10 +116,20 @@
 **Timestamp:** 2026-08-05
 **Deliverable:** `FINAL_QA_REPORT.md`.
 **Machine verification:** exit 0 — **91 checks passed, 0 hard failures**, 1 standing disclosure warning.
-**Findings:** **76 across two adversarial passes** (17 critical, 30 major, 20 moderate, 9 minor) → **75 resolved, 1 open** (MOD-04, moderate). The independent critic returned and its findings drove a second correction cycle; three criticals it raised were closed structurally, each with a new machine check.
+**Findings:** **76 across two adversarial passes** (17 critical, 30 major, 20 moderate, 9 minor) → **76 resolved, 0 open**. The independent critic returned and its findings drove a second correction cycle; Stage 9 closed MOD-04 by documenting the reproducible whitespace-normalised search method for CLM-013.
 **Rubric average across all 10 applicable dimensions: 4.44**, every dimension ≥ 4.0.
 **Material caveat:** 0% of the portfolio is Confirmed and 68.1% is Provisional. That classification is now evidence-based and machine-enforced (check `[3b]`), having been corrected downward from a previously claimed 74.8% Benchmarked.
 **Gate: PASS.**
+
+---
+
+## Submission-readiness Stage 1 — Repair document integrity — **PASS**
+
+**Timestamp:** 2026-08-10
+
+Proposal and annex figures now derive from the canonical registers; repeated financial and phase sections regenerate deterministically; portfolio counts and the Year 2 and Year 3 gates are reconciled; and the verifier detects narrative, reference and financial drift. The implementation was merged through PR #2 at merge commit `9a87816ff3eda217d05b9f1cd66eac6e8042ee82`.
+
+**Gate: PASS for internal document integrity.** This stage does not supply external legal, fiscal, agency or Cabinet approval.
 
 ---
 
@@ -220,6 +230,18 @@ All eight controls remain `draft_pending_cabinet_confirmation`; **0 of 8 is adop
 Verifier checks `[18]`–`[18f]` enforce the exact control set, required fields, full portfolio coverage, adoption evidence, deterministic generation, removal of the personal-chair dependency and programme-level escalation. Final regression: **140 checks passed, 0 hard failures**; deterministic double regeneration, targeted website lint and the 29-page production build pass.
 
 **Gate: PASS for internal continuity design. Cabinet terms, delegations, nominations, reporting authority and succession instruments remain external and open.**
+
+---
+
+## Submission-readiness Stage 9 — Cross-stage assurance repair — **PASS (internal release assurance; external approvals open)**
+
+**Timestamp:** 2026-08-10
+
+Stage 9 adds reconstructed, explicitly non-verbatim Stage 1-8 requirements; requirement-to-file-to-test-to-commit traceability; assurance-history corrections; partial-formula ceiling exclusions; GitHub Actions for policy, deterministic, lint and build checks; a classified cross-stage assurance report; and rendered Cabinet-facing DOCX/PDF outputs tied to the canonical Markdown by hash.
+
+The workflow can be made available as a required status check, but repository branch-protection configuration remains a separate administrator setting. Stage 9 does not claim that the workflow file alone enforces merge protection.
+
+Final validation: **161 machine checks passed, 0 warnings, 0 hard failures**; deterministic double regeneration passed; website lint and 29-page production build passed; DOCX accessibility audit returned 0 findings; the 37-page PDF passed structure, text, page-count and visual inspection. **Gate: PASS for internal repository release. Legal, Treasury, agency and Cabinet approvals remain external and open.**
 
 ---
 

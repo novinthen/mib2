@@ -1,5 +1,4 @@
 import { loadClaims, loadSources } from '@/lib/data-loader';
-import Link from 'next/link';
 
 export const metadata = {
   title: 'Evidence Room — MIB 2.0',
