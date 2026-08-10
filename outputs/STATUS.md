@@ -191,12 +191,28 @@ Verifier checks `[16]`–`[16f]` enforce design completeness, full programme joi
 
 ---
 
+## Submission-readiness Stage 7 — Concrete service commitments — **PASS (design complete; agency adoption open)**
+
+**Timestamp:** 2026-08-10
+
+`SERVICE_COMMITMENT_REGISTER.csv` now controls seven household-visible minimum service commitments: named case ownership; acknowledgement and status visibility; written reasons or referral records; no-wrong-door referral; published eligibility and waiting-list rules; quarterly service-performance reporting; and a defined escalation and complaint route.
+
+The commitments use observable process events rather than invented day counts. Numeric acknowledgement, processing, referral, waiting-list and complaint-resolution standards remain unset until the responsible agencies validate workflow, caseload, systems and staffing. Quarterly reporting is retained as a portfolio governance cadence, with exact cut-off, assurance and publication dates still subject to PRG-15 and PRG-16 capacity confirmation.
+
+All seven remain `draft_pending_agency_confirmation`; **0 of 7 has written agency adoption evidence**. They control administrative service and remedy only. They do not guarantee citizenship, admission, certification, employment, procurement awards, finance, investment returns, housing or other statutory or third-party outcomes.
+
+Verifier checks `[17]`–`[17g]` enforce the exact seven-commitment set, complete fields, full portfolio coverage, adoption evidence, prohibition on invented numeric deadlines, exclusion of outcome guarantees, deterministic generation and exact programme-sheet mappings. Check `[12f]` also prevents recurrence of the conservative-funding narrative drift found during final review. Current regression: **130 checks passed, 0 hard failures**.
+
+**Gate: PASS for internal service-standard design. Responsible-agency adoption and precise elapsed-time standards remain external and open.**
+
+---
+
 ## Headline result
 
 | | Central | Conservative | Expanded |
 |---|---:|---:|---:|
 | Six-year gross cost (2026 prices) | **RM1,484.273m** | RM1,158.487m | RM1,875.220m |
-| Incremental new funding | **RM847.677m** | RM662.215m | RM1,070.229m |
+| Incremental new funding | **RM847.677m** | RM662.217m | RM1,070.229m |
 
 Confidence mix (central): **Confirmed 0.0%** · Benchmarked 31.9% · Provisional 68.1%.
-**30 validation items, 18 legal issues and 10 fiscal controls remain open. All 16 programme design sheets await agency acceptance. Six validation items are strict gates: VAL-01, VAL-09, VAL-11, VAL-19, VAL-23 and VAL-30. Four are decision-dependent critical: VAL-03, VAL-24, VAL-27 and VAL-28. An unresolved item blocks only its mapped decision, programme or fiscal component.**
+**30 validation items, 18 legal issues and 10 fiscal controls remain open. All 16 programme design sheets await agency acceptance, and all seven service commitments await agency adoption. Six validation items are strict gates: VAL-01, VAL-09, VAL-11, VAL-19, VAL-23 and VAL-30. Four are decision-dependent critical: VAL-03, VAL-24, VAL-27 and VAL-28. An unresolved item blocks only its mapped decision, programme or fiscal component.**

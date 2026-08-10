@@ -30,6 +30,7 @@ Each sheet is generated from canonical registers. `PROGRAMME_DESIGN_REGISTER.csv
 |---|---|
 | KPI and verification | **KPI-01 — Documentation case resolution:** Number of documentation and citizenship cases involving Malaysian-born persons of Indian origin resolved to a final decision; the median case cycle time in months; AND the approval/refusal split with refusal reasons published by category **Frequency:** Monthly. **Owner/source:** Ministry of Home Affairs (JPN); JPN case-management system; published monthly series. |
 | Complaints and appeals | JPN complaint channel plus a documented case-status review and escalation route; review concerns process and reasons, not substitution for the competent decision-maker |
+| Minimum service commitments | SC-01; SC-02; SC-03; SC-04; SC-05; SC-06; SC-07 |
 | Data collected | Applicant identity and contact data; application category; submitted evidence; procedural status; decision category and reasons; service timestamps |
 | Retention and access | Dataset-specific schedule under LGL-09 to LGL-11; minimum necessary access; documentation data kept separate from PRG-09; retention period, correction, disclosure and deletion rules require written approval |
 | Key dependencies | VAL-06; VAL-12; legal-aid capacity; JPN staffing and system access; LGL-04; LGL-09 to LGL-11; FIS-04; FIS-05 |
@@ -66,6 +67,7 @@ Each sheet is generated from canonical registers. `PROGRAMME_DESIGN_REGISTER.csv
 |---|---|
 | KPI and verification | **KPI-02 — Preschool participation among low-income Indian children:** Proportion of children aged 4-5 in low-income Indian households enrolled in a registered preschool **Frequency:** Annual. **Owner/source:** Ministry of Education; MOE enrolment records; annual programme audit. |
 | Complaints and appeals | Lead-provider complaint channel plus MOE review for eligibility, duplicate-assistance or payment errors; written reason and onward referral where another provider is responsible |
+| Minimum service commitments | SC-01; SC-02; SC-03; SC-04; SC-05; SC-06; SC-07 |
 | Data collected | Child and guardian identifiers; age; household-income evidence or approved alternative assessment; provider; attendance; assistance received; readiness assessment |
 | Retention and access | Minimum necessary child record; role-based provider access; no sharing beyond approved enrolment, payment and evaluation purposes; retention and correction schedule requires MOE and data-governance approval |
 | Key dependencies | VAL-09; district provider capacity; inter-agency subsidy protocol; LGL-02; LGL-07; FIS-05; FIS-08 |
@@ -102,6 +104,7 @@ Each sheet is generated from canonical registers. `PROGRAMME_DESIGN_REGISTER.csv
 |---|---|
 | KPI and verification | **KPI-03 — SJKT condition standard:** Proportion of the 528 SJKT meeting the defined safety and learning-environment standard **Frequency:** Quarterly for works; annual for standard. **Owner/source:** Ministry of Education; MOE and PWD works records; published remediation schedule. |
 | Complaints and appeals | MOE school-works complaint channel with recorded technical review, prioritisation reason and procurement-integrity escalation; safety emergencies follow existing statutory channels |
+| Minimum service commitments | SC-05; SC-06; SC-07 |
 | Data collected | School identity; site and tenure status; condition and risk rating; works scope; procurement, contractor and payment record; completion certification; digital-facility status |
 | Retention and access | Institutional works records only; role-based access; public reporting aggregated except for published works schedules; retention follows approved MOE/PWD works and procurement schedules |
 | Key dependencies | VAL-11; completed condition audit; land/site authority; PWD capacity; LGL-08; FIS-05; FIS-08; FIS-09 |
@@ -138,6 +141,7 @@ Each sheet is generated from canonical registers. `PROGRAMME_DESIGN_REGISTER.csv
 |---|---|
 | KPI and verification | **KPI-04 — Multi-faith institution safety and compliance:** Number and proportion of participating faith-based and community institutions meeting defined safety and accessibility standards; number of temple and estate-legacy cases documented and referred to competent state authorities **Frequency:** Annual. **Owner/source:** Ministry of National Unity; Audit records; state or local-authority certification; grant register; referral log. |
 | Complaints and appeals | Published eligibility and works-review channel through the Ministry of National Unity; facility may seek reasoned reconsideration; jurisdictional or religious questions referred to the competent state body |
+| Minimum service commitments | SC-05; SC-06; SC-07 |
 | Data collected | Institution profile and public-service function; governing regime needed for routing; consent; safety and accessibility findings; works, grant and referral status; no beneficiary religious-affiliation data |
 | Retention and access | Institution-level minimum data only; no worshipper or beneficiary faith data; disclosure, retention and publication rules require LGL-18 clearance; state-specific sharing protocol applies |
 | Key dependencies | VAL-13; LGL-12 to LGL-18; facility and state consent; verified facility map; contractor and partner capacity; FIS-08; FIS-09 |
@@ -174,6 +178,7 @@ Each sheet is generated from canonical registers. `PROGRAMME_DESIGN_REGISTER.csv
 |---|---|
 | KPI and verification | **KPI-05 — Post-school destination:** Proportion of Indian SPM leavers in a confirmed education, training or employment destination twelve months after leaving school **Frequency:** Annual. **Owner/source:** Ministry of Education; Destination tracking survey; MOE and MOHE admissions data. |
 | Complaints and appeals | MOE school-guidance complaint channel plus application-error review and no-wrong-door referral to the institution controlling the relevant application |
+| Minimum service commitments | SC-01; SC-02; SC-03; SC-04; SC-05; SC-06; SC-07 |
 | Data collected | Student contact and school data; pathway preferences; application milestones; offers, acceptance and confirmed destination; limited household-income band for prioritisation |
 | Retention and access | Minimum necessary education-transition record; approved MOE/MOHE/TVET sharing agreement; defined correction and retention schedule before longitudinal tracking |
 | Key dependencies | VAL-14; MOE/MOHE/TVET data-sharing; school counsellor capacity; LGL-05; FIS-05 |
@@ -210,6 +215,7 @@ Each sheet is generated from canonical registers. `PROGRAMME_DESIGN_REGISTER.csv
 |---|---|
 | KPI and verification | **KPI-06 — TVET certified completion and employment:** Number of enrolees certified, and the proportion in employment at or above the indexed wage threshold twelve months after certification **Frequency:** Quarterly for enrolment; annual for employment. **Owner/source:** Ministry of Human Resources; Training provider records; EPF and SOCSO contribution matching for employment verification. |
 | Complaints and appeals | Provider complaint and assessment-appeal channel plus ministry escalation for stipend, placement or tracking errors; employment disputes remain with competent labour channels |
+| Minimum service commitments | SC-01; SC-02; SC-03; SC-04; SC-05; SC-06; SC-07 |
 | Data collected | Participant eligibility and contact data; training, attendance, stipend, assessment and certification record; apprenticeship; consented employment verification and wage band |
 | Retention and access | Provider-to-ministry data schedule; minimum necessary employment matching; defined access, correction, retention and deletion rules before EPF or SOCSO matching |
 | Key dependencies | VAL-15; accredited seat supply; employer commitments; LGL-02; LGL-07; FIS-05; FIS-08; FIS-09 |
@@ -246,6 +252,7 @@ Each sheet is generated from canonical registers. `PROGRAMME_DESIGN_REGISTER.csv
 |---|---|
 | KPI and verification | **KPI-07 — Pre-university pathway transparency and conversion:** Publication of an annual disaggregated intake and offer series; and the proportion of qualified Indian applicants receiving a confirmed place **Frequency:** Annual. **Owner/source:** Ministry of Education; MOE matriculation intake records. |
 | Complaints and appeals | MOE applicant-support channel for procedural errors and status questions; written referral to the institution controlling the decision; no merits appeal outside existing admission rules |
+| Minimum service commitments | SC-01; SC-02; SC-03; SC-04; SC-05; SC-06; SC-07 |
 | Data collected | Applicant qualification and contact data; pathway and application status; offer, acceptance and enrolment outcome; support interaction |
 | Retention and access | Minimum necessary admissions-navigation record; approved cross-institution sharing and publication rules; retention and correction schedule before launch |
 | Key dependencies | VAL-05; official data definitions; MOE/MOHE cooperation; LGL-02; LGL-07; FIS-05; FIS-08 |
@@ -282,6 +289,7 @@ Each sheet is generated from canonical registers. `PROGRAMME_DESIGN_REGISTER.csv
 |---|---|
 | KPI and verification | **KPI-08 — Professional employment conversion:** Proportion of mentored graduates in professional employment within eighteen months **Frequency:** Annual. **Owner/source:** Ministry of Higher Education; Graduate tracer study; professional association records. |
 | Complaints and appeals | Programme complaint and rematching channel; safeguarding escalation; licensing and employment decisions remain with the competent professional body or employer |
+| Minimum service commitments | SC-01; SC-02; SC-03; SC-04; SC-05; SC-06; SC-07 |
 | Data collected | Graduate profile and consent; field and qualification; mentor eligibility and matching; interactions; placement and tracer outcome |
 | Retention and access | Minimum necessary mentoring record; safeguarding access controls; partner data agreement; retention, correction and deletion schedule approved before matching |
 | Key dependencies | VAL-16; signed partner commitments; mentor eligibility and safeguarding protocol; LGL-10; FIS-05 |
@@ -318,6 +326,7 @@ Each sheet is generated from canonical registers. `PROGRAMME_DESIGN_REGISTER.csv
 |---|---|
 | KPI and verification | **KPI-09 — Household progression:** Proportion of enrolled households demonstrating measurable movement in at least two of: income stability, employment, savings, housing security, within 24 months of enrolment **Frequency:** Semi-annual. **Owner/source:** Prime Minister's Department (delivery secretariat); Household progression record (consent-based); independent evaluation. |
 | Complaints and appeals | Named case owner; status visibility; written referral or closure reason; lead-secretariat complaint and escalation route; benefit decisions reviewed only by the responsible statutory agency |
+| Minimum service commitments | SC-01; SC-02; SC-03; SC-04; SC-05; SC-06; SC-07 |
 | Data collected | Household identity and contact; consent; barrier and referral taxonomy; service interactions; agency status; limited outcome measures across income, employment, savings and housing |
 | Retention and access | Separate consent-based household record; no documentation-case linkage; purpose-specific role access; retention, correction, withdrawal and deletion rules require DPIA and approval under LGL-09 to LGL-11 |
 | Key dependencies | VAL-17; VAL-23; VAL-25; navigator establishment and training; agency referral agreements; LGL-09 to LGL-11; FIS-04; FIS-09 |
@@ -354,6 +363,7 @@ Each sheet is generated from canonical registers. `PROGRAMME_DESIGN_REGISTER.csv
 |---|---|
 | KPI and verification | **KPI-10 — Enterprise growth and procurement participation:** Revenue and employment growth among participating enterprises; and the measured share and value of federal procurement awarded to certified Indian-owned vendors **Frequency:** Annual. **Owner/source:** Ministry of Entrepreneur and Cooperatives Development; SME Corp records; MOF procurement data; SSM and tax filings with consent. |
 | Complaints and appeals | Provider complaint channel plus ministry review for eligibility, service quality or certification error; procurement challenges remain within the applicable procurement review mechanism |
+| Minimum service commitments | SC-01; SC-02; SC-03; SC-04; SC-05; SC-06; SC-07 |
 | Data collected | Enterprise identity, ownership and registration; capability assessment; service and certification record; consented revenue, employment and procurement-outcome data |
 | Retention and access | Commercially sensitive data minimised and role-restricted; consented linkage only; partner retention and disclosure schedule approved before collection |
 | Key dependencies | VAL-18; SME Corp delivery capacity; procurement-data access; LGL-08; LGL-10; FIS-05; FIS-08 |
@@ -390,6 +400,7 @@ Each sheet is generated from canonical registers. `PROGRAMME_DESIGN_REGISTER.csv
 |---|---|
 | KPI and verification | **KPI-11 — Household savings buffer:** Proportion of participating households holding a defined minimum financial buffer **Frequency:** Annual. **Owner/source:** Ministry of Finance; Product administrator records; participation and balance reporting. |
 | Complaints and appeals | Product administrator complaint and transaction-correction route plus MOF escalation; investment or product disputes follow the applicable regulated mechanism |
+| Minimum service commitments | SC-01; SC-02; SC-03; SC-04; SC-05; SC-06; SC-07 |
 | Data collected | Participant identity, eligibility and consent; income band; contribution and match transactions; balance threshold and lock-in status |
 | Retention and access | Financial data held by the approved administrator under applicable rules; government receives minimum necessary reporting; access, retention and disclosure schedule cleared before launch |
 | Key dependencies | VAL-19; MOF instrument design; willing product administrator; LGL-07; LGL-10; FIS-08; FIS-09 |
@@ -426,6 +437,7 @@ Each sheet is generated from canonical registers. `PROGRAMME_DESIGN_REGISTER.csv
 |---|---|
 | KPI and verification | **KPI-12 — Secure tenure:** Number of assisted households in secure tenure through affordable housing or rent-to-own arrangements **Frequency:** Semi-annual. **Owner/source:** Ministry of Housing and Local Government; State housing agency records; SJKP data. |
 | Complaints and appeals | Written eligibility or referral reason; KPKT programme complaint channel; housing or land appeal proceeds through the competent state or scheme mechanism |
+| Minimum service commitments | SC-01; SC-02; SC-03; SC-04; SC-05; SC-06; SC-07 |
 | Data collected | Household eligibility and contact; displacement or tenure evidence; referral and application status; assistance paid; housing or tenure outcome; site-level infrastructure record |
 | Retention and access | Household data minimised and shared only under federal-state protocol; land records remain with competent authority; retention, correction and access schedule approved before referrals |
 | Key dependencies | VAL-20; state participation and housing supply; site and land status; LGL-12; FIS-08; FIS-09 |
@@ -462,6 +474,7 @@ Each sheet is generated from canonical registers. `PROGRAMME_DESIGN_REGISTER.csv
 |---|---|
 | KPI and verification | **KPI-13 — Public service participation:** Indian share of the federal civil service excluding RMP and MAF, reported alongside the absolute Indian officer headcount and the annual application volume **Frequency:** Annual. **Owner/source:** Public Service Department (JPA); JPA HRMIS; SPA application records. |
 | Complaints and appeals | Programme complaint channel for access or preparation quality; application-status or recruitment complaints follow SPA/JPA procedures; no merits substitution |
+| Minimum service commitments | SC-01; SC-02; SC-03; SC-04; SC-05; SC-06; SC-07 |
 | Data collected | Candidate contact and eligibility; support participation; application stage and outcome; limited demographic data for lawful aggregate monitoring |
 | Retention and access | HR and applicant data remain in authorised JPA/SPA systems; programme receives minimum necessary extracts; retention, access and publication schedule requires LGL-09 and LGL-11 clearance |
 | Key dependencies | VAL-21; SPA/JPA data cooperation; LGL-03; LGL-09; LGL-11; FIS-04; FIS-05 |
@@ -498,6 +511,7 @@ Each sheet is generated from canonical registers. `PROGRAMME_DESIGN_REGISTER.csv
 |---|---|
 | KPI and verification | **KPI-14 — Grade distribution:** Distribution of Indian officers across grade bands **Frequency:** Annual. **Owner/source:** Public Service Department (JPA); JPA HRMIS. |
 | Complaints and appeals | JPA development-programme complaint channel; selection reason and referral to the responsible service authority; promotion appeals remain under existing service rules |
+| Minimum service commitments | SC-01; SC-02; SC-03; SC-04; SC-05; SC-06; SC-07 |
 | Data collected | Officer grade and scheme; eligibility; programme application and participation; mentoring; aggregate career progression outcome |
 | Retention and access | Authoritative HR data remains in HRMIS; programme uses minimum necessary role-controlled extracts; retention and publication schedule requires LGL-09 and LGL-11 clearance |
 | Key dependencies | VAL-22; JPA/INTAN capacity; LGL-03; LGL-09; LGL-11; FIS-04; FIS-05 |
@@ -534,6 +548,7 @@ Each sheet is generated from canonical registers. `PROGRAMME_DESIGN_REGISTER.csv
 |---|---|
 | KPI and verification | **KPI-15 — Delivery discipline:** Proportion of quarterly Task Force meetings held as scheduled and chaired as constituted; and dashboards published within 14 days of each meeting **Frequency:** Quarterly. **Owner/source:** Prime Minister's Department; Task Force minutes; published dashboards. |
 | Complaints and appeals | Internal escalation register for missed agency milestones and an external channel for reporting or dashboard complaints; substantive service complaints routed to the accountable programme owner |
+| Minimum service commitments | SC-06; SC-07 |
 | Data collected | Meeting, decision, action, milestone, risk and programme-performance records; no unnecessary beneficiary case data |
 | Retention and access | Secretariat holds aggregate or authorised programme extracts only; access, archival, disclosure and retention follow approved Cabinet, records and data-governance instruments |
 | Key dependencies | VAL-08; VAL-23; VAL-27; Cabinet terms of reference; LGL-05 to LGL-08; FIS-04; FIS-08; FIS-09 |
@@ -570,6 +585,7 @@ Each sheet is generated from canonical registers. `PROGRAMME_DESIGN_REGISTER.csv
 |---|---|
 | KPI and verification | **KPI-16 — Measurement integrity:** Proportion of the sixteen KPIs with a published verified baseline and a current published outturn **Frequency:** Annual. **Owner/source:** Prime Minister's Department; Published dashboard; National Audit Department; independent evaluators. |
 | Complaints and appeals | Data-correction and publication-query channel; protected disclosure and audit escalation; programme-specific complaints remain with the relevant owner |
+| Minimum service commitments | SC-06; SC-07 |
 | Data collected | Approved indicator extracts; survey responses; programme outturns; audit and evaluation evidence; disclosure-risk metadata |
 | Retention and access | Dataset register and DPIA define lawful purpose, minimum fields, access, linkage, retention, correction, deletion, breach and publication rules before collection |
 | Key dependencies | VAL-24; evaluator and DOSM arrangements; dashboard specification; LGL-09 to LGL-11; FIS-05; FIS-08; FIS-09 |

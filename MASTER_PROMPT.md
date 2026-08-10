@@ -721,6 +721,20 @@ recorded as accepted, conditionally accepted, rejected or superseded without the
 accounting officer's written evidence reference and an acceptance date. Internal design completeness
 must never be described as agency-confirmed authority, capacity or partner commitment.
 
+The proposal must also maintain `outputs/SERVICE_COMMITMENT_REGISTER.csv` and generate
+`outputs/SERVICE_COMMITMENTS.md`. The register must control exactly seven minimum administrative
+service commitments: named case ownership; acknowledgement and status visibility; written reasons
+or referral records; no-wrong-door referral; published eligibility, capacity and queue rules;
+quarterly service-performance reporting; and a defined escalation and complaint route. Each
+commitment must identify its applicability, affected programmes, implementation event, timeline
+status, capacity evidence, owner, performance measure, reporting cadence, remedy, excluded outcomes,
+adoption status and—only after agency adoption—written evidence and an acceptance date. Do not invent
+numeric acknowledgement, processing, referral, waiting-list or complaint-resolution deadlines before
+the responsible agencies validate workflow, caseload and operational capacity. These administrative
+commitments must never be represented as guarantees of citizenship, admission, certification,
+employment, procurement awards, finance, investment returns, housing or other statutory or
+third-party outcomes.
+
 The matrix must separately cover Articles 8, 12(1), 136 and 153; citizenship and documentation
 discretion; implementing-body mandates; public finance; the current procurement regime including
 the Government Procurement Act 2026 [Act 882] and its commencement/transitional instruments;
@@ -754,7 +768,10 @@ Completion requires all of the following:
    disposition, evidence reference and acceptance date are recorded.
 10. Every retained programme has a complete generated design sheet, and no sheet is represented as
     agency-accepted without written evidence and an acceptance date.
-11. The final response reports concrete audit evidence rather than unsupported assurances.
+11. All seven service commitments have complete programme mappings, remain pending agency adoption
+    unless supported by written evidence and an acceptance date, and contain no unvalidated numeric
+    service deadline or prohibited outcome guarantee.
+12. The final response reports concrete audit evidence rather than unsupported assurances.
 
 The final response must state:
 

@@ -1,7 +1,7 @@
 # FINAL QA REPORT — MIB 2.0
 
 **Date:** 2026-08-05 · **Submission-readiness updates:** 2026-08-10 · **Price basis:** 2026 nominal ringgit, base year 2026
-**Machine verification:** `python outputs/verify_outputs.py` → **exit 0, 118 checks passed, 0 hard failures, 1 standing disclosure warning**
+**Machine verification:** `python outputs/verify_outputs.py` → **exit 0, 130 checks passed, 0 hard failures, 1 standing disclosure warning**
 
 > This report gives concrete evidence of tests performed and their results. Where a test could not be performed, or a result is weaker than the package would ideally show, that is stated rather than smoothed over.
 
@@ -140,7 +140,7 @@ were fixed.
 
 | Criterion | Status | Evidence |
 |---|---|---|
-| All machine checks pass | **MET** | exit 0; 118 passed; 0 hard failures |
+| All machine checks pass | **MET** | exit 0; 130 passed; 0 hard failures |
 | All material citations verified or appropriately qualified | **MET** | 62/62 dispositioned; 10 explicitly qualified as uninspected |
 | Zero known arithmetic or reconciliation errors | **MET** | 18 reconciliations; 54 lines; 378 numeric cells |
 | Zero unresolved critical findings | **MET** | 17 found, **17 resolved, 0 open**; each closed by a structural fix with a machine check preventing recurrence |
@@ -150,6 +150,7 @@ were fixed.
 | Every material legal issue has a controlled clearance route | **MET** | 18 legal issues; 10 pre-submission and 8 programme-launch clearances; all 16 programmes covered; all remain open; no clearance can be recorded without written evidence and acceptance date |
 | Every material fiscal validation question has a controlled Treasury route | **MET** | 10 fiscal controls; 5 Phase 1 ceiling, 4 programme-cost and 1 later-phase gate; all 16 programmes covered; all remain open; no validation can be recorded without MOF evidence and acceptance date |
 | Every retained programme has a complete controlled implementation design | **MET** | 16 generated two-part sheets; complete authority, capacity, route, volume, cost, KPI, remedy, data, dependency and stop/redesign/expansion fields; all remain pending accounting-officer acceptance |
+| Household-visible service commitments are concrete but legally controlled | **MET** | Seven canonical commitments; full programme mapping; no numeric case deadline before capacity confirmation; no citizenship, admission, employment, procurement, housing or other outcome guarantee; all remain pending agency adoption |
 | All applicable rubric dimensions meet threshold | **MET** | All ≥ 4.0; average 4.44 |
 
 ---
@@ -160,6 +161,7 @@ were fixed.
 - **Not that the plan is ready to fund.** All 10 fiscal controls remain open. RM355.255m is a gross central Phase 1 planning cost, not a net or Treasury-validated ceiling. Applicable pre-submission and programme-launch gates must also clear first.
 - **Not that the proposal has legal clearance.** All 18 legal issues remain open. The matrix is a structured instruction to AGC and other competent authorities, not an opinion; receipt of advice is not recorded as clearance without a written disposition and acceptance date.
 - **Not that delivery feasibility has been confirmed.** All 16 programme sheets are internal design drafts; none has written accounting-officer acceptance, and capacity, partner, state, legal and fiscal dependencies remain open.
+- **Not that service timelines have been agreed.** All seven service commitments remain internal drafts. Observable service events and quarterly reporting are defined, but numeric acknowledgement, processing, referral, queue and complaint-resolution standards require agency workflow and capacity evidence.
 - **Not that low uncertainty has been achieved.** 0% of the portfolio is Confirmed and 68.1% is Provisional. The classification is now honest and machine-enforced; it is not favourable.
 - **Not that the community's needs are settled fact.** The core household baseline is 2014 data. DOSM re-estimation (VAL-02) could change programme scale materially.
 - **Not that the plan will work.** Its central mechanism — sustained quarterly Prime Ministerial chairmanship for six years — carries a **High residual risk after safeguards** (RSK-01), and is the same mechanism whose absence defeated the 2017 Blueprint.
@@ -169,7 +171,7 @@ were fixed.
 ## 7. Package manifest
 
 **Control and audit:** `STATUS.md` · `ASSUMPTIONS_AND_DECISIONS.md` · `AUDIT_LOG.md` · `CRITIC_FINDINGS.md` · `FINAL_QA_REPORT.md`
-**Evidence, decisions and analysis:** `SOURCE_REGISTER.csv` (31) · `CLAIMS_AND_FIGURES_REGISTER.csv` (62) · `PROGRAMME_REGISTER.csv` (21) · `PROGRAMME_DESIGN_REGISTER.csv` (16) · `PROGRAMME_DESIGN_SHEETS.md` (16 sheets) · `NARRATIVE_REGISTER.csv` (18) · `CONFLICT_AND_DUPLICATION_REGISTER.csv` (34) · `RESPONSIBILITY_MATRIX.csv` (16) · `KPI_REGISTER.csv` (16) · `RISK_AND_SAFEGUARD_REGISTER.csv` (21) · `DECISION_REGISTER.csv` (16) · `VALIDATION_REGISTER.csv` (30) · `LEGAL_ISSUES_REGISTER.csv` (18) · `FISCAL_VALIDATION_REGISTER.csv` (10)
+**Evidence, decisions and analysis:** `SOURCE_REGISTER.csv` (31) · `CLAIMS_AND_FIGURES_REGISTER.csv` (62) · `PROGRAMME_REGISTER.csv` (21) · `PROGRAMME_DESIGN_REGISTER.csv` (16) · `PROGRAMME_DESIGN_SHEETS.md` (16 sheets) · `SERVICE_COMMITMENT_REGISTER.csv` (7) · `SERVICE_COMMITMENTS.md` (7 commitments) · `NARRATIVE_REGISTER.csv` (18) · `CONFLICT_AND_DUPLICATION_REGISTER.csv` (34) · `RESPONSIBILITY_MATRIX.csv` (16) · `KPI_REGISTER.csv` (16) · `RISK_AND_SAFEGUARD_REGISTER.csv` (21) · `DECISION_REGISTER.csv` (16) · `VALIDATION_REGISTER.csv` (30) · `LEGAL_ISSUES_REGISTER.csv` (18) · `FISCAL_VALIDATION_REGISTER.csv` (10)
 **Costing and machine checks:** `COSTING_MODEL.csv` (54) · `COSTING_ASSUMPTIONS.csv` (25) · `BENEFICIARY_RECONCILIATION.csv` (4) · `build_costing.py` · `sync_document_integrity.py` · `verify_outputs.py` · `VERIFICATION_RESULTS.md`
 **Stage and final deliverables:** `STAGE_1_DIAGNOSTIC.md` · `STAGE_2_RECONCILIATION.md` · `MIB_2.0_EXECUTIVE_PROPOSAL.md` · `TECHNICAL_ANNEXES.md`
 **Extraction record:** `extract_sources.py` · `extracted/*.txt` · `extracted/*_manifest.json`

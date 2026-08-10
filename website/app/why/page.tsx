@@ -157,6 +157,13 @@ export default function WhyPage() {
               and stop, redesign, and expansion tests. All 16 remain internal drafts; none is represented as accepted by
               its accounting officer or ready to launch.
             </p>
+            <p>
+              Seven minimum service commitments now make the administrative design visible to households: named case
+              ownership, acknowledgement and status visibility, written reasons or referrals, no-wrong-door referral,
+              published eligibility and queue rules, quarterly performance reporting, and a defined escalation route.
+              All remain pending agency adoption. Numeric service deadlines will be set only after workflow, caseload,
+              system, and staffing capacity are confirmed.
+            </p>
           </div>
         </section>
       </div>
