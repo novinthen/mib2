@@ -159,6 +159,22 @@ Verifier checks `[14]`–`[14c]` enforce schema completeness, source/programme/d
 
 ---
 
+## Submission-readiness Stage 5 — Phase 1 fiscal validation architecture — **PASS (design complete; Treasury validation open)**
+
+**Timestamp:** 2026-08-10
+
+`FISCAL_VALIDATION_REGISTER.csv` now controls **10 fiscal questions**: **5 Phase 1 ceiling gates, 4 programme-cost gates and 1 later-phase gate**. Together they cover confirmed existing allocations, lawful reallocations, the true incremental Phase 1 requirement, establishment and fully loaded staffing cost, unit-cost evidence, inflation and annual cash flow, official expenditure and vote classification, procurement and disbursement routes, contingent and matched exposure, and output-defined affordability options.
+
+The generated Phase 1 schedule exposes all 18 central cost lines and reconciles to **RM355.255m gross**. Conservative RM283.359m and expanded RM441.532m figures remain cost sensitivities; none is an output package, fallback envelope or appropriation request. The six-year funding shares are not mechanically apportioned to Phase 1 because no ministry or Treasury has confirmed that split.
+
+All 10 controls remain `open`. A control cannot be recorded as validated without both a Ministry of Finance evidence reference and acceptance date. A verified Phase 1 ceiling exists only after the core funding and classification controls clear and every included component clears its applicable programme-cost gates.
+
+Verifier checks `[15]`–`[15f]` enforce completeness, staging, programme coverage, status discipline, model-derived Phase 1 figures and the prohibition on fabricated funding splits. Current regression: **108 checks passed, 0 hard failures**.
+
+**Gate: PASS for Treasury-review design. Official fiscal confirmation remains external; no Phase 1 ceiling or appropriation is represented as complete.**
+
+---
+
 ## Headline result
 
 | | Central | Conservative | Expanded |
@@ -167,4 +183,4 @@ Verifier checks `[14]`–`[14c]` enforce schema completeness, source/programme/d
 | Incremental new funding | **RM847.677m** | RM662.215m | RM1,070.229m |
 
 Confidence mix (central): **Confirmed 0.0%** · Benchmarked 31.9% · Provisional 68.1%.
-**30 validation items and 18 legal issues remain open. Six validation items are strict gates: VAL-01, VAL-09, VAL-11, VAL-19, VAL-23 and VAL-30. Four are decision-dependent critical: VAL-03, VAL-24, VAL-27 and VAL-28. An unresolved validation or legal item blocks only its mapped decision or programme.**
+**30 validation items, 18 legal issues and 10 fiscal controls remain open. Six validation items are strict gates: VAL-01, VAL-09, VAL-11, VAL-19, VAL-23 and VAL-30. Four are decision-dependent critical: VAL-03, VAL-24, VAL-27 and VAL-28. An unresolved item blocks only its mapped decision, programme or fiscal component.**

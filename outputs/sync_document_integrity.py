@@ -82,6 +82,139 @@ def legal_data() -> list[dict[str, str]]:
     return load_csv("LEGAL_ISSUES_REGISTER.csv")
 
 
+def fiscal_data() -> list[dict[str, str]]:
+    return load_csv("FISCAL_VALIDATION_REGISTER.csv")
+
+
+def render_fiscal_summary() -> str:
+    rows = fiscal_data()
+    scenarios = scenario_summary(cost_data()[0])
+    central_phase_1 = scenarios["central"]["phase_1"]
+    stage_counts = {
+        stage: sum(row["validation_stage"] == stage for row in rows)
+        for stage in ("phase_1_ceiling_gate", "programme_cost_gate", "later_phase_gate")
+    }
+    status_counts = {
+        status: sum(row["status"] == status for row in rows)
+        for status in sorted({row["status"] for row in rows})
+    }
+    return "\n".join([
+        START.format(name="FISCAL_VALIDATION_SUMMARY"),
+        "## 2.6 Phase 1 fiscal validation architecture",
+        "",
+        f"`FISCAL_VALIDATION_REGISTER.csv` controls **{len(rows)} Treasury questions**: "
+        f"**{stage_counts['phase_1_ceiling_gate']} Phase 1 ceiling gates**, "
+        f"**{stage_counts['programme_cost_gate']} programme-cost gates** and "
+        f"**{stage_counts['later_phase_gate']} later-phase gate**. The current central Phase 1 figure of "
+        f"**RM{money(central_phase_1, 1)} million is a gross planning cost, not a requested, net or "
+        "Treasury-validated ceiling.**",
+        "",
+        "| Treasury block | Required result before a later implementation request |",
+        "|---|---|",
+        "| Existing allocations and reallocations | Vote-level confirmation of available, lawful and uncommitted funding; no displacement hidden as an existing contribution |",
+        "| Incremental ceiling and staffing | Exact Phase 1 components, annual cash flow, net new requirement, accounting officer, establishment authority and fully loaded employment cost |",
+        "| Unit costs and classifications | Evidence-backed quantities and rates, operating/development/object classification, chargeable vote and recurrent consequence |",
+        "| Procurement, grants and exposure | Authorised transaction route, payment and recovery controls, capped federal exposure and treatment of matched or contingent obligations |",
+        "| Scenarios and later years | Output-defined conservative/central/expanded options; Treasury price basis; Years 3–6 remain indicative and return through later appropriations |",
+        "",
+        "Current status: " + ", ".join(
+            f"**{count} {status.replace('_', ' ')}**" for status, count in status_counts.items()
+        ) + ". No modelled existing or reallocated amount is recognised as available funding, and no "
+        "fiscal control may be marked `validated` without a Treasury evidence reference and acceptance date.",
+        "",
+        "**Submission boundary.** The later Cabinet paper must seek one Treasury-reviewed Phase 1 ceiling "
+        "for an identified component package. It must show gross cost, confirmed existing allocations, "
+        "approved reallocations and true incremental funding separately. Years 3–6 remain non-binding "
+        "planning scenarios subject to evaluation, refreshed costing and separate appropriations.",
+        END.format(name="FISCAL_VALIDATION_SUMMARY"),
+    ])
+
+
+def render_fiscal_register() -> str:
+    rows = fiscal_data()
+    labels = {
+        "phase_1_ceiling_gate": "Phase 1 ceiling gates",
+        "programme_cost_gate": "Programme-cost gates",
+        "later_phase_gate": "Later-phase gate",
+    }
+    lines = [
+        START.format(name="FISCAL_VALIDATION_REGISTER"),
+        "**Fiscal status rule.** This register instructs Treasury and lead-ministry validation; it is not "
+        "a Treasury memorandum and records no appropriation. `Requested` and `received` are workflow "
+        "states only. `Validated`, `validated_with_conditions` or `rejected` requires a Ministry of "
+        "Finance evidence reference and acceptance date.",
+        "",
+    ]
+    for stage, label in labels.items():
+        selected = [row for row in rows if row["validation_stage"] == stage]
+        lines += [f"### {label} ({len(selected)})", ""]
+        for row in selected:
+            lines += [
+                f"#### {row['fiscal_control_id']} — {row['domain'].replace('_', ' ').title()}",
+                "",
+                f"- **Validation question:** {row['validation_question']}",
+                f"- **Current model position:** {row['provisional_model_position']}",
+                f"- **Required evidence:** {row['required_evidence']}",
+                f"- **Validation owner:** {row['validation_owner']}",
+                f"- **Supporting bodies:** {row['supporting_bodies']}",
+                f"- **Affected programmes / decisions:** {row['affected_programmes']} / {row['affected_decisions']}",
+                f"- **Related validation controls:** {row['related_validation_ids']}",
+                f"- **Consequence if unresolved:** {row['consequence_if_unresolved']}",
+                f"- **Status:** `{row['status']}`",
+                "",
+            ]
+    lines += [
+        "**Ceiling rule.** A validated Phase 1 ceiling exists only when FIS-01, FIS-02, FIS-03 and "
+        "FIS-07 are validated and every included component has cleared its applicable programme-cost "
+        "gates. A component that remains open is excluded or shown separately as a non-approved sensitivity; "
+        "it cannot be absorbed into contingency.",
+        END.format(name="FISCAL_VALIDATION_REGISTER"),
+    ]
+    return "\n".join(lines)
+
+
+def render_phase_1_fiscal_schedule() -> str:
+    rows, central_rows = cost_data()
+    scenarios = scenario_summary(rows)
+    selected = sorted(central_rows, key=lambda row: row["cost_line_id"])
+    lines = [
+        START.format(name="PHASE_1_FISCAL_SCHEDULE"),
+        "## Annex L — Phase 1 fiscal validation schedule",
+        "",
+        "The schedule below is generated from the central rows of `COSTING_MODEL.csv`. It states gross "
+        "Years 1–2 cost only. The model's existing/reallocated/new columns cover six years and are not "
+        "apportioned here because no ministry or Treasury has confirmed a Phase 1 funding split.",
+        "",
+        "| Cost line | Programme / portfolio line | Lead ministry | Planning category | Phase 1 gross cost | Confidence |",
+        "|---|---|---|---|---:|---|",
+    ]
+    for row in selected:
+        lines.append(
+            f"| {row['cost_line_id']} | {row['programme_id']} — {row['programme_name']} | "
+            f"{row['lead_ministry']} | {row['cost_category'].replace('_', ' ')} | "
+            f"RM{money(d(row['years_1_2']))}m | {row['confidence']} |"
+        )
+    lines += [
+        f"| **Total** | **Central planning case** |  |  | **RM{money(scenarios['central']['phase_1'])}m** | **Unvalidated** |",
+        "",
+        "### L.1 Scenario boundary",
+        "",
+        "| Scenario | Phase 1 gross planning cost | Status |",
+        "|---|---:|---|",
+        f"| Conservative | RM{money(scenarios['conservative']['phase_1'])}m | Cost sensitivity only; output package not yet specified |",
+        f"| Central | RM{money(scenarios['central']['phase_1'])}m | Gross design case; not a ceiling or request |",
+        f"| Expanded | RM{money(scenarios['expanded']['phase_1'])}m | Cost sensitivity only; output package not yet specified |",
+        "",
+        "Before submission for implementation, MOF must replace this gross schedule with an accepted "
+        "annual schedule of components and outputs showing confirmed existing funding, approved reallocation "
+        "and incremental funding by vote, programme/activity, object, accounting officer and transaction route. "
+        "The validated total may be lower or higher than the current central case; it is not mechanically "
+        "selected from these three sensitivities.",
+        END.format(name="PHASE_1_FISCAL_SCHEDULE"),
+    ]
+    return "\n".join(lines)
+
+
 def render_legal_summary() -> str:
     rows = legal_data()
     status_counts = {
@@ -483,10 +616,13 @@ def expected_sections() -> dict[str, str]:
         "VALIDATION_REGISTER": render_validation_register(),
         "LEGAL_CLEARANCE_SUMMARY": render_legal_summary(),
         "LEGAL_ISSUES_REGISTER": render_legal_register(),
+        "FISCAL_VALIDATION_SUMMARY": render_fiscal_summary(),
+        "FISCAL_VALIDATION_REGISTER": render_fiscal_register(),
         "PHASE_TABLE": render_phase_table(),
         "PROPOSAL_FINANCE": render_proposal_finance(),
         "FINAL_DECISION_RESOLUTION": render_final_decision_resolution(),
         "TECHNICAL_ANNEX_A": render_technical_annex_a(),
+        "PHASE_1_FISCAL_SCHEDULE": render_phase_1_fiscal_schedule(),
     }
 
 
@@ -497,6 +633,7 @@ def main() -> None:
     proposal = replace_generated(proposal, "DECISION_ARCHITECTURE", render_decision_architecture().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "VALIDATION_SUMMARY", render_validation_summary().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "LEGAL_CLEARANCE_SUMMARY", render_legal_summary().replace("\n", proposal_eol))
+    proposal = replace_generated(proposal, "FISCAL_VALIDATION_SUMMARY", render_fiscal_summary().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "PHASE_TABLE", render_phase_table().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "PROPOSAL_FINANCE", render_proposal_finance().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "FINAL_DECISION_RESOLUTION", render_final_decision_resolution().replace("\n", proposal_eol))
@@ -509,6 +646,9 @@ def main() -> None:
     annexes = replace_generated(
         annexes, "TECHNICAL_ANNEX_A", render_technical_annex_a().replace("\n", annex_eol)
     )
+    annexes = replace_generated(
+        annexes, "PHASE_1_FISCAL_SCHEDULE", render_phase_1_fiscal_schedule().replace("\n", annex_eol)
+    )
     with open(ANNEXES, "w", encoding="utf-8", newline="") as fh:
         fh.write(annexes)
 
@@ -520,6 +660,9 @@ def main() -> None:
     )
     assumptions = replace_generated(
         assumptions, "LEGAL_ISSUES_REGISTER", render_legal_register().replace("\n", assumptions_eol)
+    )
+    assumptions = replace_generated(
+        assumptions, "FISCAL_VALIDATION_REGISTER", render_fiscal_register().replace("\n", assumptions_eol)
     )
     with open(ASSUMPTIONS, "w", encoding="utf-8", newline="") as fh:
         fh.write(assumptions)

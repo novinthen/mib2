@@ -1,7 +1,7 @@
 # FINAL QA REPORT — MIB 2.0
 
 **Date:** 2026-08-05 · **Submission-readiness updates:** 2026-08-10 · **Price basis:** 2026 nominal ringgit, base year 2026
-**Machine verification:** `python outputs/verify_outputs.py` → **exit 0, 98 checks passed, 0 hard failures, 1 standing disclosure warning**
+**Machine verification:** `python outputs/verify_outputs.py` → **exit 0, 108 checks passed, 0 hard failures, 1 standing disclosure warning**
 
 > This report gives concrete evidence of tests performed and their results. Where a test could not be performed, or a result is weaker than the package would ideally show, that is stated rather than smoothed over.
 
@@ -49,7 +49,7 @@ Every audit below covered the **full population**, not a sample.
 |---|---|---|
 | Every material claim classified and given an adopted treatment | 62/62 claims | PASS |
 | Every claim attributed to the MIB tested against the primary 172-page text | 14 MIB-attributed claims | **5 rejected as unsupported or corrected** (CLM-012, CLM-013, CLM-014, CLM-023, CLM-059) |
-| Source metadata complete (title, institution, date, location, URL, access date, scope, definition, tier, limitations, direct-vs-inference) | 16/16 sources | PASS |
+| Source metadata complete (title, institution, date, location, URL, access date, scope, definition, tier, limitations, direct-vs-inference) | 31/31 sources | PASS |
 | Material claims carry a source or assumption reference | 62/62 | PASS (machine check [3]) |
 | Quotation accuracy and context | All direct quotations from MIB 2017 re-checked against the extracted text | PASS |
 | Definition/date/population compatibility | Every baseline statistic | **3 definitional defects found and corrected**: 2014 data used as 2026 baseline; mean substituted for median; civil service figure quoted without its RMP/MAF exclusion |
@@ -86,8 +86,8 @@ Every audit below covered the **full population**, not a sample.
 | Proposal claim IDs resolve to the register | 36 distinct IDs, all resolve (check [10]) |
 | Rejected claims appear only in corrective context | 9 rejected/unsupported IDs, all corrective (check [10]) — **one genuine misuse found and corrected** |
 | Cross-register foreign keys | All resolve across 5 register pairs (check [2]) |
-| Duplicate IDs | None across 12 ID-bearing registers (check [2]) |
-| Field-count integrity | All rows in all 10 CSVs (check [1b]) — **4 corrupted rows found and fixed** |
+| Duplicate IDs | None across 15 ID-bearing registers (check [2]) |
+| Field-count integrity | All rows in all 15 canonical CSVs (check [1b]) — **4 corrupted rows found and fixed** |
 | Terminology, programme names, phase labels | Consistent: PRG-01…PRG-16, Phases 1–3, four pillars plus cross-cutting |
 | Every requested decision maps to a described deliverable | `DECISION_REGISTER.csv` maps 5 approve-now decisions, 4 conditional endorsements and 7 express deferrals to authority boundaries, dependencies, owners and completion evidence |
 | Unresolved assumptions controlled at the decision point | `VALIDATION_REGISTER.csv` classifies all 30 items; six strict gates and four decision-dependent critical items appear in the generated proposal summary; every item maps to affected decision IDs |
@@ -120,7 +120,7 @@ evidence available; R-01 is now closed because the independent critic returned.
 | Fiscal credibility | 4.3 | Gross vs incremental separated; existing/reallocated/new per line; 3 scenarios on identical definitions; **0.0% Confirmed disclosed prominently** |
 | Narrative–evidence alignment | 4.4 | 18 narratives registered with exaggeration risk; 2 rejected outright; the relative-poverty position disclosed against interest |
 | Cabinet readiness | 4.6 | Three-tier decision architecture; fiscal and implementation non-commitment enforced in generated Parts 2 and 12 and verifier check `[12a]`; 10 objections answered |
-| Completeness | 4.6 | All 24 canonical files present and non-empty; machine-verified |
+| Completeness | 4.6 | All 26 canonical files present and non-empty; machine-verified |
 | **Average** | **4.44** | Threshold 4.3 — **pass**; every dimension ≥ 4.0 |
 
 **Score integrity note.** Evidence quality, delivery feasibility and fiscal credibility are scored at 4.2–4.3 rather than higher precisely because of R-02 (no Confirmed cost line), R-03 (10 uninspected citations) and the contested mandates. No finding was reclassified and no score inflated to force passage.
@@ -148,6 +148,7 @@ were fixed.
 | Proposal and annexes internally consistent | **MET** | Financial and phase tables generated from canonical registers; checks [12], [12b] and [12c] |
 | Every remaining uncertainty requiring official validation is explicit | **MET** | 30 validation items in the canonical register; five classifications; six strict gates; four decision-dependent critical items; every row has ownership, evidence, deadline, escalation, consequence, decision link and status |
 | Every material legal issue has a controlled clearance route | **MET** | 18 legal issues; 10 pre-submission and 8 programme-launch clearances; all 16 programmes covered; all remain open; no clearance can be recorded without written evidence and acceptance date |
+| Every material fiscal validation question has a controlled Treasury route | **MET** | 10 fiscal controls; 5 Phase 1 ceiling, 4 programme-cost and 1 later-phase gate; all 16 programmes covered; all remain open; no validation can be recorded without MOF evidence and acceptance date |
 | All applicable rubric dimensions meet threshold | **MET** | All ≥ 4.0; average 4.44 |
 
 ---
@@ -155,7 +156,7 @@ were fixed.
 ## 6. What a reader should not conclude from this package
 
 - **Not that the costs are reliable to three decimal places.** They reconcile to three decimals because they are computed, not because they are accurate. **0.0% of the portfolio is Confirmed.**
-- **Not that the plan is ready to fund.** Applicable pre-submission and programme-launch gates must clear first. PNB participation (VAL-19) remains a commercial decision Cabinet cannot direct, while VAL-03, VAL-24, VAL-27 and VAL-28 become submission blockers only when the requested decision relies on them.
+- **Not that the plan is ready to fund.** All 10 fiscal controls remain open. RM355.255m is a gross central Phase 1 planning cost, not a net or Treasury-validated ceiling. Applicable pre-submission and programme-launch gates must also clear first.
 - **Not that the proposal has legal clearance.** All 18 legal issues remain open. The matrix is a structured instruction to AGC and other competent authorities, not an opinion; receipt of advice is not recorded as clearance without a written disposition and acceptance date.
 - **Not that low uncertainty has been achieved.** 0% of the portfolio is Confirmed and 68.1% is Provisional. The classification is now honest and machine-enforced; it is not favourable.
 - **Not that the community's needs are settled fact.** The core household baseline is 2014 data. DOSM re-estimation (VAL-02) could change programme scale materially.
@@ -166,7 +167,7 @@ were fixed.
 ## 7. Package manifest
 
 **Control and audit:** `STATUS.md` · `ASSUMPTIONS_AND_DECISIONS.md` · `AUDIT_LOG.md` · `CRITIC_FINDINGS.md` · `FINAL_QA_REPORT.md`
-**Evidence, decisions and analysis:** `SOURCE_REGISTER.csv` (28) · `CLAIMS_AND_FIGURES_REGISTER.csv` (62) · `PROGRAMME_REGISTER.csv` (21) · `NARRATIVE_REGISTER.csv` (18) · `CONFLICT_AND_DUPLICATION_REGISTER.csv` (34) · `RESPONSIBILITY_MATRIX.csv` (16) · `KPI_REGISTER.csv` (16) · `RISK_AND_SAFEGUARD_REGISTER.csv` (21) · `DECISION_REGISTER.csv` (16) · `VALIDATION_REGISTER.csv` (30) · `LEGAL_ISSUES_REGISTER.csv` (18)
+**Evidence, decisions and analysis:** `SOURCE_REGISTER.csv` (31) · `CLAIMS_AND_FIGURES_REGISTER.csv` (62) · `PROGRAMME_REGISTER.csv` (21) · `NARRATIVE_REGISTER.csv` (18) · `CONFLICT_AND_DUPLICATION_REGISTER.csv` (34) · `RESPONSIBILITY_MATRIX.csv` (16) · `KPI_REGISTER.csv` (16) · `RISK_AND_SAFEGUARD_REGISTER.csv` (21) · `DECISION_REGISTER.csv` (16) · `VALIDATION_REGISTER.csv` (30) · `LEGAL_ISSUES_REGISTER.csv` (18) · `FISCAL_VALIDATION_REGISTER.csv` (10)
 **Costing and machine checks:** `COSTING_MODEL.csv` (54) · `COSTING_ASSUMPTIONS.csv` (25) · `BENEFICIARY_RECONCILIATION.csv` (4) · `build_costing.py` · `sync_document_integrity.py` · `verify_outputs.py` · `VERIFICATION_RESULTS.md`
 **Stage and final deliverables:** `STAGE_1_DIAGNOSTIC.md` · `STAGE_2_RECONCILIATION.md` · `MIB_2.0_EXECUTIVE_PROPOSAL.md` · `TECHNICAL_ANNEXES.md`
 **Extraction record:** `extract_sources.py` · `extracted/*.txt` · `extracted/*_manifest.json`

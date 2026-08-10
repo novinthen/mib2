@@ -114,6 +114,24 @@ Current status: **18 open**. `Received` evidence does not equal clearance. A sta
 **Legal no-cascade rule.** An unresolved issue blocks only the programmes and decisions identified against it. PRG-04 state or religious-authority clearance is facility- and jurisdiction-specific unless the competent authority concludes that the defect affects the national instrument itself.
 <!-- GENERATED:LEGAL_CLEARANCE_SUMMARY:END -->
 
+<!-- GENERATED:FISCAL_VALIDATION_SUMMARY:START -->
+## 2.6 Phase 1 fiscal validation architecture
+
+`FISCAL_VALIDATION_REGISTER.csv` controls **10 Treasury questions**: **5 Phase 1 ceiling gates**, **4 programme-cost gates** and **1 later-phase gate**. The current central Phase 1 figure of **RM355.3 million is a gross planning cost, not a requested, net or Treasury-validated ceiling.**
+
+| Treasury block | Required result before a later implementation request |
+|---|---|
+| Existing allocations and reallocations | Vote-level confirmation of available, lawful and uncommitted funding; no displacement hidden as an existing contribution |
+| Incremental ceiling and staffing | Exact Phase 1 components, annual cash flow, net new requirement, accounting officer, establishment authority and fully loaded employment cost |
+| Unit costs and classifications | Evidence-backed quantities and rates, operating/development/object classification, chargeable vote and recurrent consequence |
+| Procurement, grants and exposure | Authorised transaction route, payment and recovery controls, capped federal exposure and treatment of matched or contingent obligations |
+| Scenarios and later years | Output-defined conservative/central/expanded options; Treasury price basis; Years 3–6 remain indicative and return through later appropriations |
+
+Current status: **10 open**. No modelled existing or reallocated amount is recognised as available funding, and no fiscal control may be marked `validated` without a Treasury evidence reference and acceptance date.
+
+**Submission boundary.** The later Cabinet paper must seek one Treasury-reviewed Phase 1 ceiling for an identified component package. It must show gross cost, confirmed existing allocations, approved reallocations and true incremental funding separately. Years 3–6 remain non-binding planning scenarios subject to evaluation, refreshed costing and separate appropriations.
+<!-- GENERATED:FISCAL_VALIDATION_SUMMARY:END -->
+
 ---
 
 # 3. The reality, stated accurately

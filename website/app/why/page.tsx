@@ -62,8 +62,8 @@ export default function WhyPage() {
             <DifferenceCard
               title="Transparent Costing"
               description="Three scenarios (conservative/central/expanded) with confidence classes. 68.1% of the central scenario
-              is Provisional — assumptions are flagged, not hidden. Funding types (existing/reallocated/new) are
-              distinguished."
+              is Provisional — assumptions are flagged, not hidden. The RM355.3 million central Phase 1 figure is a gross
+              planning cost, not a Treasury-validated ceiling; ten fiscal controls define the evidence required before funding."
             />
           </div>
         </section>

@@ -755,3 +755,139 @@ are now on the record:
 
 **Recording rule.** The secretariat may record and index advice but may not mark its own legal position as cleared. Conflicting advice is escalated to the named clearance owner and remains `received` or `not_cleared` until the competent authority resolves it in writing.
 <!-- GENERATED:LEGAL_ISSUES_REGISTER:END -->
+
+---
+
+## Part H — Fiscal validation and Phase 1 ceiling controls
+
+<!-- GENERATED:FISCAL_VALIDATION_REGISTER:START -->
+**Fiscal status rule.** This register instructs Treasury and lead-ministry validation; it is not a Treasury memorandum and records no appropriation. `Requested` and `received` are workflow states only. `Validated`, `validated_with_conditions` or `rejected` requires a Ministry of Finance evidence reference and acceptance date.
+
+### Phase 1 ceiling gates (5)
+
+#### FIS-01 — Existing Allocations
+
+- **Validation question:** Which 2026 ministry and agency allocations are already approved, available for the same purpose and not committed to other beneficiaries or outputs?
+- **Current model position:** Existing-funding shares in COSTING_MODEL.csv are modelling assumptions only; they are not recognised as available Phase 1 funding.
+- **Required evidence:** Vote-, programme-, activity- and object-level schedule from each controlling officer reconciling approved allocation, commitments, expenditure to date, lawful purpose, uncommitted balance and the specific Phase 1 component it could fund; MOF acceptance of the consolidated schedule
+- **Validation owner:** Ministry of Finance
+- **Supporting bodies:** All lead ministries; Accountant General's Department; MITRA; responsible controlling officers
+- **Affected programmes / decisions:** PRG-01;PRG-02;PRG-03;PRG-04;PRG-05;PRG-06;PRG-07;PRG-08;PRG-09;PRG-10;PRG-11;PRG-12;PRG-13;PRG-14;PRG-15;PRG-16 / CE-02;CE-04;NA-01;NA-02;NA-03
+- **Related validation controls:** VAL-03;VAL-11;VAL-28
+- **Consequence if unresolved:** No existing allocation may reduce the Phase 1 incremental requirement; the affected amount must be treated as new funding or the component removed or re-scoped.
+- **Status:** `open`
+
+#### FIS-02 — Reallocation Authority
+
+- **Validation question:** Which proposed reallocations are legally and administratively transferable to the proposed purpose, in what amount, and without displacing an existing obligation?
+- **Current model position:** All reallocated-funding shares remain unverified and create no authority to vire, transfer or repurpose funds.
+- **Required evidence:** For every proposed reallocation: originating and receiving vote/programme/activity/object, current commitment and beneficiary impact, controlling-officer certification, applicable virement or transfer authority, Treasury approval and revised cash-flow schedule
+- **Validation owner:** Ministry of Finance
+- **Supporting bodies:** All affected controlling officers; Attorney-General's Chambers where purpose or instrument is disputed; Accountant General's Department; MITRA
+- **Affected programmes / decisions:** PRG-01;PRG-02;PRG-03;PRG-04;PRG-05;PRG-06;PRG-07;PRG-08;PRG-09;PRG-10;PRG-11;PRG-12;PRG-13;PRG-14;PRG-15;PRG-16 / CE-02;CE-04;NA-01;NA-02;NA-03;NA-07
+- **Related validation controls:** VAL-03;VAL-28
+- **Consequence if unresolved:** No proposed reallocation may be counted as funding; the related component must be funded as incremental expenditure, narrowed or excluded.
+- **Status:** `open`
+
+#### FIS-03 — Incremental Phase 1 Ceiling
+
+- **Validation question:** What is the true incremental cash requirement for the approved Phase 1 components after confirmed existing allocations, lawful reallocations, implementation timing and duplication are deducted?
+- **Current model position:** RM355.3 million is the central gross Phase 1 planning cost, not a requested or Treasury-validated ceiling; no net Phase 1 amount is yet stated.
+- **Required evidence:** Treasury-reviewed Phase 1 fiscal memorandum reconciling programme components, gross cost, confirmed existing funding, approved reallocations, incremental funding, annual cash flow, vote and object, accounting officer, confidence and exclusion of unapproved components
+- **Validation owner:** Ministry of Finance
+- **Supporting bodies:** Sponsoring ministry; all lead ministries; Ministry of Economy; Accountant General's Department; Public Service Department
+- **Affected programmes / decisions:** PRG-01;PRG-02;PRG-03;PRG-04;PRG-05;PRG-06;PRG-07;PRG-08;PRG-09;PRG-10;PRG-11;PRG-12;PRG-13;PRG-14;PRG-15;PRG-16 / AN-04;CE-02;CE-04;NA-01;NA-02;NA-03
+- **Related validation controls:** VAL-03;VAL-23;VAL-28;VAL-29
+- **Consequence if unresolved:** No Phase 1 implementation or appropriation request may be submitted; Cabinet may consider only the bounded validation/design decision.
+- **Status:** `open`
+
+#### FIS-07 — Economic And Vote Classification
+
+- **Validation question:** Which expenditure is operating, development, transfer, grant, asset, administration or contingency, and under which vote, programme, activity and object should it be recorded?
+- **Current model position:** Current categories are planning labels and do not establish official economic classification, development-project eligibility or a chargeable vote.
+- **Required evidence:** Treasury and Ministry of Economy classification schedule for every Phase 1 component identifying operating/development treatment, object code, asset ownership, recurrent consequence, development-project identifier where required, vote, programme/activity and controlling officer
+- **Validation owner:** Ministry of Finance
+- **Supporting bodies:** Ministry of Economy; Accountant General's Department; all affected controlling officers
+- **Affected programmes / decisions:** PRG-01;PRG-02;PRG-03;PRG-04;PRG-05;PRG-06;PRG-07;PRG-08;PRG-09;PRG-10;PRG-11;PRG-12;PRG-13;PRG-14;PRG-15;PRG-16 / AN-04;CE-02;CE-04;NA-03;NA-07
+- **Related validation controls:** VAL-03;VAL-11;VAL-23;VAL-28
+- **Consequence if unresolved:** Any component without an accepted classification and chargeable vote is excluded from the Phase 1 ceiling and implementation request.
+- **Status:** `open`
+
+#### FIS-10 — Scenario Outputs And Affordability
+
+- **Validation question:** What programme outputs and service levels correspond to the conservative, central and expanded fiscal cases, and which Phase 1 package is affordable within confirmed capacity and funding?
+- **Current model position:** Current scenarios vary the variable cost component but retain common programme definitions; they are cost sensitivities, not complete output alternatives or approved fallbacks.
+- **Required evidence:** Three programme-level Phase 1 option schedules showing components, annual volumes, unit costs, service standards, gross and incremental cost, workforce and procurement capacity, exclusions, outcome hypothesis and affordability assessment; Treasury identifies one recommended ceiling or requires re-scope
+- **Validation owner:** Ministry of Finance
+- **Supporting bodies:** All lead ministries; Ministry of Economy; sponsoring ministry; delivery partners
+- **Affected programmes / decisions:** PRG-01;PRG-02;PRG-03;PRG-04;PRG-05;PRG-06;PRG-07;PRG-08;PRG-09;PRG-10;PRG-11;PRG-12;PRG-13;PRG-14;PRG-15;PRG-16 / AN-04;CE-02;CE-03;CE-04;NA-01;NA-03;NA-06
+- **Related validation controls:** VAL-02;VAL-09;VAL-11;VAL-13;VAL-14;VAL-15;VAL-16;VAL-17;VAL-18;VAL-19;VAL-20;VAL-21;VAL-22;VAL-25;VAL-26
+- **Consequence if unresolved:** No scenario may be described as a deliverable package or fallback envelope; the later submission must identify the exact affordable components and outputs within the validated ceiling.
+- **Status:** `open`
+
+### Programme-cost gates (4)
+
+#### FIS-04 — Staff Establishment And Emoluments
+
+- **Validation question:** What establishment authority, grade mix and fully loaded employment cost apply to every proposed public-service or contracted delivery post?
+- **Current model position:** Salary and staffing costs use provisional loaded-cost assumptions; the proposed 35-post permanent secretariat is not established or approved.
+- **Required evidence:** JPA establishment decision and agency workforce schedule identifying post type, grade, headcount, salary point, allowances, employer contributions, pension or contract treatment, overheads, recruitment timing, vacancy factor and approved funding route
+- **Validation owner:** Public Service Department
+- **Supporting bodies:** Ministry of Finance; affected ministries; sponsoring ministry; Accountant General's Department
+- **Affected programmes / decisions:** PRG-01;PRG-09;PRG-13;PRG-14;PRG-15;PRG-16 / CE-02;CE-04;NA-03;NA-07
+- **Related validation controls:** VAL-23;VAL-29
+- **Consequence if unresolved:** No unapproved post or unsupported loading factor may enter the Phase 1 ceiling; use existing personnel, a validated lawful service route or remove the costed function.
+- **Status:** `open`
+
+#### FIS-05 — Unit Cost Validation
+
+- **Validation question:** Are the quantity, specification, market rate and delivery assumptions for each material unit cost supported by comparable official outturns, quotations or market testing?
+- **Current model position:** All cost lines are Benchmarked or Provisional; none is Confirmed. PRG-01 and PRG-14 retain incomplete published formula support.
+- **Required evidence:** Programme-level cost workbook with quantity and specification, at least one authoritative comparator or documented market test, source date, geographic basis, taxes and fees, procurement timing, sensitivity range and ministry/MOF acceptance
+- **Validation owner:** Ministry of Finance
+- **Supporting bodies:** All lead ministries; Works Department for works; procurement units; programme technical owners
+- **Affected programmes / decisions:** PRG-01;PRG-02;PRG-03;PRG-04;PRG-05;PRG-06;PRG-07;PRG-08;PRG-09;PRG-10;PRG-11;PRG-12;PRG-13;PRG-14;PRG-15;PRG-16 / AN-04;CE-02;CE-03;CE-04;NA-03
+- **Related validation controls:** VAL-09;VAL-11;VAL-13;VAL-15;VAL-18;VAL-19;VAL-20;VAL-23;VAL-29
+- **Consequence if unresolved:** The unsupported unit or programme cannot enter the verified Phase 1 ceiling; retain it only as an excluded sensitivity item or re-scope it to an evidence-backed unit.
+- **Status:** `open`
+
+#### FIS-08 — Procurement And Disbursement Route
+
+- **Validation question:** What authorised procurement, grant, subsidy, incentive, matched-payment or direct-service route applies to each Phase 1 transaction?
+- **Current model position:** No procurement or grant route is approved; model categories do not themselves authorise tendering, contracting, payment or beneficiary transfer.
+- **Required evidence:** Transaction-level route schedule identifying applicable law and Treasury instrument, procurement/grant boundary, method and threshold, approving authority, contract or grant instrument, payment milestones, verification, audit, recovery, conflict controls and responsible accounting officer
+- **Validation owner:** Ministry of Finance
+- **Supporting bodies:** Attorney-General's Chambers; all lead ministries; procurement units; Works Department; Accountant General's Department
+- **Affected programmes / decisions:** PRG-02;PRG-03;PRG-04;PRG-06;PRG-07;PRG-09;PRG-10;PRG-11;PRG-12;PRG-15;PRG-16 / AN-04;CE-03;CE-04;NA-03;NA-04;NA-05;NA-07
+- **Related validation controls:** VAL-11;VAL-13;VAL-19;VAL-20;VAL-28
+- **Consequence if unresolved:** The affected transaction cannot be included as launch-ready or committed; use a cleared route, redesign the instrument or exclude it.
+- **Status:** `open`
+
+#### FIS-09 — Contingent And Matched Exposure
+
+- **Validation question:** What direct, contingent, recurrent and third-party exposure arises from matched funding, guarantees, co-payments, cost overruns, maintenance, partner withdrawal or beneficiary commitments?
+- **Current model position:** The model includes a portfolio contingency but does not validate contingent liabilities, partner exposure or post-Phase 1 recurrent obligations; no guarantee is proposed.
+- **Required evidence:** Exposure register quantifying maximum federal obligation, trigger, probability range, co-funder and beneficiary shares, maintenance and recurrent tail, cost-overrun rule, partner-withdrawal treatment, termination rights and whether any contingent-liability approval or disclosure is required
+- **Validation owner:** Ministry of Finance
+- **Supporting bodies:** Attorney-General's Chambers; all affected ministries; PNB if PRG-11 proceeds; states and institutional partners
+- **Affected programmes / decisions:** PRG-03;PRG-04;PRG-06;PRG-09;PRG-11;PRG-12;PRG-15;PRG-16 / CE-02;CE-03;CE-04;NA-01;NA-03;NA-04;NA-05;NA-07
+- **Related validation controls:** VAL-13;VAL-19;VAL-20;VAL-23
+- **Consequence if unresolved:** No matched, co-funded or recurrent-tail component may enter the verified ceiling beyond the expressly capped federal exposure; unresolved partner exposure is excluded.
+- **Status:** `open`
+
+### Later-phase gate (1)
+
+#### FIS-06 — Inflation And Cashflow
+
+- **Validation question:** What price basis, index, escalation rule and annual commitment/cash profile should apply to Phase 1 and the indicative Years 3–6 figures?
+- **Current model position:** The model is in 2026 nominal ringgit with no escalation; the disclosed 10–13% Years 3–6 effect is illustrative and not a Treasury forecast.
+- **Required evidence:** MOF-approved price basis and escalation memorandum identifying applicable indices, rebasing date, annual cash and commitment profile, treatment of existing contracts, sensitivity bounds and the rule for refreshing Years 3–6 before each appropriation
+- **Validation owner:** Ministry of Finance
+- **Supporting bodies:** Ministry of Economy; DOSM; all lead ministries; Works Department for construction inputs
+- **Affected programmes / decisions:** PRG-01;PRG-02;PRG-03;PRG-04;PRG-05;PRG-06;PRG-07;PRG-08;PRG-09;PRG-10;PRG-11;PRG-12;PRG-13;PRG-14;PRG-15;PRG-16 / CE-02;CE-04;NA-01;NA-03
+- **Related validation controls:** VAL-26
+- **Consequence if unresolved:** Phase 1 must retain an explicit price-basis limitation; Years 3–6 remain indicative and cannot be used for appropriation or affordability decisions.
+- **Status:** `open`
+
+**Ceiling rule.** A validated Phase 1 ceiling exists only when FIS-01, FIS-02, FIS-03 and FIS-07 are validated and every included component has cleared its applicable programme-cost gates. A component that remains open is excluded or shown separately as a non-approved sensitivity; it cannot be absorbed into contingency.
+<!-- GENERATED:FISCAL_VALIDATION_REGISTER:END -->

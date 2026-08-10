@@ -4,6 +4,23 @@ Chronological record of what was checked, what failed, what changed, and the res
 
 ---
 
+## Stage 5 submission-readiness fiscal validation control (2026-08-10)
+
+| # | Check | Result |
+|---|---|---|
+| F.1 | Complete canonical register | 10 unique fiscal control IDs in `FISCAL_VALIDATION_REGISTER.csv`; every row has a question, current model position, required evidence, owner, supporting bodies, programme/decision/validation mapping, unresolved consequence, stage and status |
+| F.2 | Validation staging | 5 Phase 1 ceiling gates; 4 programme-cost gates; 1 later-phase gate |
+| F.3 | Required fiscal coverage | Existing allocations; reallocation authority; true incremental requirement; establishment and emoluments; unit costs; inflation and cash flow; operating/development, vote and object classification; procurement and disbursement; contingent and matched exposure; output-defined scenarios and affordability |
+| F.4 | Phase 1 schedule | All 18 central cost lines generated from `COSTING_MODEL.csv`; central gross Phase 1 cost RM355.255m; conservative RM283.359m and expanded RM441.532m retained only as cost sensitivities |
+| F.5 | Funding-source integrity | No six-year existing/reallocated/new assumption is presented as a confirmed Phase 1 split; no net or incremental Phase 1 ceiling is stated before Treasury evidence |
+| F.6 | Status integrity | All 10 controls remain open; validated or conditional disposition requires a Ministry of Finance evidence reference and acceptance date |
+| F.7 | Official framework sources | 2026 Federal Expenditure Estimates, Treasury Instructions and RMK13 development-planning guidelines added as authoritative process sources; none is treated as programme funding confirmation |
+| F.8 | Regression verification | `verify_outputs.py`: **PASS — 108 checks, 0 hard failures, 1 standing disclosure warning**; deterministic double regeneration: **PASS**; Next.js production build: **PASS — 29 pages generated**; targeted website lint: **PASS** |
+
+**Fiscal-control result: PASS for Treasury-review design. Fiscal validation is not complete; no Phase 1 ceiling, appropriation or funding split is represented as approved.**
+
+---
+
 ## Stage 4 submission-readiness legal clearance control (2026-08-10)
 
 | # | Check | Result |

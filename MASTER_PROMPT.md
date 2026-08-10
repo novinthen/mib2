@@ -265,6 +265,7 @@ Create `outputs/` if it does not exist. Maintain these canonical files:
 - `outputs/DECISION_REGISTER.csv`
 - `outputs/VALIDATION_REGISTER.csv`
 - `outputs/LEGAL_ISSUES_REGISTER.csv`
+- `outputs/FISCAL_VALIDATION_REGISTER.csv`
 
 ### Costing and machine checks
 
@@ -698,6 +699,16 @@ boundary; required written clearance; competent owner and consulted bodies; affe
 and decisions; related validation IDs; consequence if unresolved; clearance stage; controlled
 status; and, only after disposition, the evidence reference and acceptance date. No issue may be
 marked cleared without both written evidence from the competent authority and an acceptance date.
+
+The proposal must also maintain `outputs/FISCAL_VALIDATION_REGISTER.csv` as the canonical Treasury
+control matrix. It must separately control: confirmed existing allocations; lawful and
+non-displacing reallocations; the true incremental Phase 1 ceiling; establishment and fully loaded
+staff cost; unit-cost validation; price basis, inflation and annual cash flow; operating/development,
+vote and object classification; procurement and disbursement routes; contingent and matched-funding
+exposure; and output-defined conservative, central and expanded options. The six-year funding shares
+must not be mechanically treated as a Phase 1 funding split. No Phase 1 ceiling may be described as
+validated without a Ministry of Finance evidence reference and acceptance date. Years 3–6 remain
+indicative and subject to evaluation, refreshed costing and separate appropriations.
 
 The matrix must separately cover Articles 8, 12(1), 136 and 153; citizenship and documentation
 discretion; implementing-body mandates; public finance; the current procurement regime including
