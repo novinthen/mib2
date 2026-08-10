@@ -1,0 +1,50 @@
+name: Stage 9 assurance
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: assurance-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  policy:
+    name: Policy and deterministic integrity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Rebuild canonical costing and generated sections twice
+        run: |
+          python outputs/build_costing.py
+          python outputs/sync_document_integrity.py
+          python outputs/build_costing.py
+          python outputs/sync_document_integrity.py
+      - name: Reject generated drift
+        run: git diff --exit-code -- outputs
+      - name: Run policy verifier
+        run: python outputs/verify_outputs.py
+
+  website:
+    name: Website lint and production build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: website
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build

@@ -1,7 +1,7 @@
 # FINAL QA REPORT — MIB 2.0
 
 **Date:** 2026-08-05 · **Submission-readiness updates:** 2026-08-10 · **Price basis:** 2026 nominal ringgit, base year 2026
-**Machine verification:** `python outputs/verify_outputs.py` → **exit 0, 140 checks passed, 0 hard failures, 1 standing disclosure warning**
+**Machine verification:** `python outputs/verify_outputs.py` → **exit 0, 161 checks passed, 0 warnings, 0 hard failures**
 
 > This report gives concrete evidence of tests performed and their results. Where a test could not be performed, or a result is weaker than the package would ideally show, that is stated rather than smoothed over.
 
@@ -23,8 +23,8 @@ their stated arithmetic.
 six cases the primary agent's own figure was the wrong one. The findings were then dispositioned in a
 second correction cycle.
 
-**Outcome: 76 findings, 75 resolved, 1 open** (MOD-04, a method-documentation defect whose conclusion
-the critic independently confirmed). **Zero unresolved critical or major findings.**
+**Outcome: 76 findings, 76 resolved, 0 open.** Stage 9 closed MOD-04 by replacing the unreliable
+exact-string method statement with a reproducible Unicode- and whitespace-normalised search method.
 
 Each critical was closed structurally, with a machine check that prevents recurrence:
 
@@ -100,12 +100,12 @@ Every audit below covered the **full population**, not a sample.
 |---|---:|---:|---:|---:|---:|
 | **Critical** | 10 | 7 | 17 | **17** | **0** |
 | **Major** | 16 | 14 | 30 | **30** | **0** |
-| **Moderate** | 8 | 12 | 20 | **19** | **1** |
+| **Moderate** | 8 | 12 | 20 | **20** | **0** |
 | Minor | 6 | 3 | 9 | **9** | **0** |
-| **Total** | **40** | **36** | **76** | **75** | **1** |
+| **Total** | **40** | **36** | **76** | **76** | **0** |
 
-Nine residual limitations (R-01 to R-09) are additionally disclosed as not resolvable with the
-evidence available; R-01 is now closed because the independent critic returned.
+R-01 is closed because the independent critic returned. Eight residual evidence and implementation
+limitations (R-02 to R-09) remain disclosed and are separate from the now-closed critic findings.
 
 ## 4. Rubric — Stage 4, with audit evidence
 
@@ -144,7 +144,7 @@ were fixed.
 | All material citations verified or appropriately qualified | **MET** | 62/62 dispositioned; 10 explicitly qualified as uninspected |
 | Zero known arithmetic or reconciliation errors | **MET** | 18 reconciliations; 54 lines; 378 numeric cells |
 | Zero unresolved critical findings | **MET** | 17 found, **17 resolved, 0 open**; each closed by a structural fix with a machine check preventing recurrence |
-| Major and moderate findings resolved or conservatively disclosed | **MET** | 49 of 50 resolved; 1 moderate (MOD-04) open and disclosed |
+| Major and moderate findings resolved or conservatively disclosed | **MET** | All 50 resolved; MOD-04 closed by a reproducible normalised-search method statement |
 | Proposal and annexes internally consistent | **MET** | Financial and phase tables generated from canonical registers; checks [12], [12b] and [12c] |
 | Every remaining uncertainty requiring official validation is explicit | **MET** | 30 validation items in the canonical register; five classifications; six strict gates; four decision-dependent critical items; every row has ownership, evidence, deadline, escalation, consequence, decision link and status |
 | Every material legal issue has a controlled clearance route | **MET** | 18 legal issues; 10 pre-submission and 8 programme-launch clearances; all 16 programmes covered; all remain open; no clearance can be recorded without written evidence and acceptance date |
@@ -173,8 +173,8 @@ were fixed.
 
 **Control and audit:** `STATUS.md` · `ASSUMPTIONS_AND_DECISIONS.md` · `AUDIT_LOG.md` · `CRITIC_FINDINGS.md` · `FINAL_QA_REPORT.md`
 **Evidence, decisions and analysis:** `SOURCE_REGISTER.csv` (31) · `CLAIMS_AND_FIGURES_REGISTER.csv` (62) · `PROGRAMME_REGISTER.csv` (21) · `PROGRAMME_DESIGN_REGISTER.csv` (16) · `PROGRAMME_DESIGN_SHEETS.md` (16 sheets) · `SERVICE_COMMITMENT_REGISTER.csv` (7) · `SERVICE_COMMITMENTS.md` (7 commitments) · `GOVERNANCE_CONTINUITY_REGISTER.csv` (8) · `GOVERNANCE_CONTINUITY.md` (8 controls) · `NARRATIVE_REGISTER.csv` (18) · `CONFLICT_AND_DUPLICATION_REGISTER.csv` (34) · `RESPONSIBILITY_MATRIX.csv` (16) · `KPI_REGISTER.csv` (16) · `RISK_AND_SAFEGUARD_REGISTER.csv` (21) · `DECISION_REGISTER.csv` (16) · `VALIDATION_REGISTER.csv` (30) · `LEGAL_ISSUES_REGISTER.csv` (18) · `FISCAL_VALIDATION_REGISTER.csv` (10)
-**Costing and machine checks:** `COSTING_MODEL.csv` (54) · `COSTING_ASSUMPTIONS.csv` (25) · `BENEFICIARY_RECONCILIATION.csv` (4) · `build_costing.py` · `sync_document_integrity.py` · `verify_outputs.py` · `VERIFICATION_RESULTS.md`
-**Stage and final deliverables:** `STAGE_1_DIAGNOSTIC.md` · `STAGE_2_RECONCILIATION.md` · `MIB_2.0_EXECUTIVE_PROPOSAL.md` · `TECHNICAL_ANNEXES.md`
+**Costing and machine checks:** `COSTING_MODEL.csv` (54) · `COSTING_ASSUMPTIONS.csv` (25) · `COST_FORMULA_CONTROL_REGISTER.csv` (2) · `BENEFICIARY_RECONCILIATION.csv` (4) · `build_costing.py` · `sync_document_integrity.py` · `verify_outputs.py` · `VERIFICATION_RESULTS.md`
+**Stage and final deliverables:** `STAGE_1_DIAGNOSTIC.md` · `STAGE_2_RECONCILIATION.md` · `STAGE_1_8_REQUIREMENTS.md` · `STAGE_TRACEABILITY_REGISTER.csv` (32) · `CROSS_STAGE_ASSURANCE_REPORT.md` · `MIB_2.0_EXECUTIVE_PROPOSAL.md` · `TECHNICAL_ANNEXES.md` · `MIB_2.0_CABINET_SUBMISSION.docx` · `MIB_2.0_CABINET_SUBMISSION.pdf` · `RENDERED_SUBMISSION_MANIFEST.csv`
 **Extraction record:** `extract_sources.py` · `extracted/*.txt` · `extracted/*_manifest.json`
 
-**Not produced:** rendered `.docx` and PDF versions. No document-generation toolchain was invoked in this session; the Markdown proposal is canonical and the master instruction treats rendered formats as optional and non-blocking.
+The Markdown proposal and annex remain canonical. The DOCX/PDF are controlled renderings whose source and artifact hashes, page count and visual-QA disposition are recorded in `RENDERED_SUBMISSION_MANIFEST.csv`.

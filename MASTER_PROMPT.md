@@ -269,6 +269,8 @@ Create `outputs/` if it does not exist. Maintain these canonical files:
 - `outputs/PROGRAMME_DESIGN_REGISTER.csv`
 - `outputs/SERVICE_COMMITMENT_REGISTER.csv`
 - `outputs/GOVERNANCE_CONTINUITY_REGISTER.csv`
+- `outputs/COST_FORMULA_CONTROL_REGISTER.csv`
+- `outputs/STAGE_TRACEABILITY_REGISTER.csv`
 
 ### Costing and machine checks
 
@@ -287,6 +289,8 @@ Create `outputs/` if it does not exist. Maintain these canonical files:
 - `outputs/PROGRAMME_DESIGN_SHEETS.md`
 - `outputs/SERVICE_COMMITMENTS.md`
 - `outputs/GOVERNANCE_CONTINUITY.md`
+- `outputs/STAGE_1_8_REQUIREMENTS.md`
+- `outputs/CROSS_STAGE_ASSURANCE_REPORT.md`
 
 The Markdown proposal is the canonical text. If document-generation tools are available, also produce a Cabinet-ready `.docx` and a visually verified PDF without changing the canonical content. Failure to generate optional rendered formats is not a blocker unless explicitly required later.
 
@@ -788,13 +792,17 @@ Completion requires all of the following:
    disposition, evidence reference and acceptance date are recorded.
 10. Every retained programme has a complete generated design sheet, and no sheet is represented as
     agency-accepted without written evidence and an acceptance date.
-11. All eight governance continuity controls are present, cover all retained programmes, preserve
-    statutory and accounting boundaries, and remain unadopted unless supported by the required
-    written instrument, evidence reference and acceptance date.
 11. All seven service commitments have complete programme mappings, remain pending agency adoption
     unless supported by written evidence and an acceptance date, and contain no unvalidated numeric
     service deadline or prohibited outcome guarantee.
-12. The final response reports concrete audit evidence rather than unsupported assurances.
+12. All eight governance continuity controls are present, cover all retained programmes, preserve
+    statutory and accounting boundaries, and remain unadopted unless supported by the required
+    written instrument, evidence reference and acceptance date.
+13. The submission-readiness Stage 1-8 requirements map to file evidence, verifier checks, PRs,
+    head commits and merge commits; reconstructed prompt language is never represented as verbatim.
+14. Every partial costing formula is excluded from any claimed validated ceiling until the complete
+    formula and competent-authority evidence are recorded.
+15. The final response reports concrete audit evidence rather than unsupported assurances.
 
 The final response must state:
 

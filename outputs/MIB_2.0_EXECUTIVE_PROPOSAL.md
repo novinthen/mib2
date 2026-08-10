@@ -129,6 +129,8 @@ Current status: **18 open**. `Received` evidence does not equal clearance. A sta
 
 Current status: **10 open**. No modelled existing or reallocated amount is recognised as available funding, and no fiscal control may be marked `validated` without a Treasury evidence reference and acceptance date.
 
+**Partial-formula boundary.** PRG-01, PRG-14 remain visible in the gross planning scenario but are excluded from any claimed validated ceiling until their complete formulas, unit inputs and competent-authority evidence are recorded. Treasury must also recalculate any associated administration and contingency effect for the selected package.
+
 **Submission boundary.** The later Cabinet paper must seek one Treasury-reviewed Phase 1 ceiling for an identified component package. It must show gross cost, confirmed existing allocations, approved reallocations and true incremental funding separately. Years 3–6 remain non-binding planning scenarios subject to evaluation, refreshed costing and separate appropriations.
 <!-- GENERATED:FISCAL_VALIDATION_SUMMARY:END -->
 
@@ -552,7 +554,7 @@ This is an **indicative implementation roadmap**, not an operative consequence o
 <!-- GENERATED:FINAL_DECISION_RESOLUTION:START -->
 Cabinet is respectfully invited to:
 
-### Approve now
+## Approve now
 
 1. **AN-01:** Approve the policy direction and strategic objectives of MIB 2.0 as the basis for further government design and validation
 2. **AN-02:** Authorise a 90-calendar-day cross-agency validation exercise beginning on the date of Cabinet notification
@@ -560,14 +562,14 @@ Cabinet is respectfully invited to:
 4. **AN-04:** Authorise preparation of a formal implementation submission after validation
 5. **AN-05:** Require validation and design work to use existing approved resources unless a separate capped request is justified
 
-### Endorse conditionally
+## Endorse conditionally
 
 1. **CE-01:** Conditionally endorse the six-year architecture as the basis for validation and detailed design
 2. **CE-02:** Conditionally endorse the central fiscal scenario as an indicative planning case only
 3. **CE-03:** Conditionally endorse the sixteen retained substantive programme directions for detailed design
 4. **CE-04:** Conditionally endorse Phase 1 as a candidate implementation package for a later decision
 
-### Record as not approved at this stage
+## Record as not approved at this stage
 
 1. **NA-01:** Do not approve the final six-year fiscal envelope
 2. **NA-02:** Do not approve or recognise unverified ministry reallocations as available funding

@@ -16,14 +16,17 @@ import {
   Scenario,
   Pillar,
   ConfidenceClass,
+  BaselineStatus,
+  CostCategory,
 } from '@/types';
 import { parseCSV, parseNumber, validateRequired, validateForeignKey, ValidationError } from './csv-parser';
 
 const DATA_DIR = path.join(process.cwd(), '..', 'outputs');
+type CSVRow = Record<string, string>;
 
 export function loadProgrammes(): Programme[] {
   const filePath = path.join(DATA_DIR, 'PROGRAMME_REGISTER.csv');
-  const raw = parseCSV<any>(filePath);
+  const raw = parseCSV<CSVRow>(filePath);
 
   return raw
     .filter((r) => r.retain_decision?.includes('RETAIN'))
@@ -60,7 +63,7 @@ export function loadProgrammes(): Programme[] {
 
 export function loadKPIs(): KPI[] {
   const filePath = path.join(DATA_DIR, 'KPI_REGISTER.csv');
-  const raw = parseCSV<any>(filePath);
+  const raw = parseCSV<CSVRow>(filePath);
   const programmes = loadProgrammes();
 
   return raw.map((r, idx) => {
@@ -77,7 +80,7 @@ export function loadKPIs(): KPI[] {
       definition: r.definition || '',
       baseline_value: r.baseline_value || '',
       baseline_year: r.baseline_year || '',
-      baseline_status: r.baseline_status || 'to-be-established',
+      baseline_status: (r.baseline_status || 'to-be-established') as BaselineStatus,
       year_2_target: r.year_2_target || '',
       year_4_target: r.year_4_target || '',
       year_6_target: r.year_6_target || '',
@@ -92,7 +95,7 @@ export function loadKPIs(): KPI[] {
 
 export function loadCostLines(): CostLine[] {
   const filePath = path.join(DATA_DIR, 'COSTING_MODEL.csv');
-  const raw = parseCSV<any>(filePath);
+  const raw = parseCSV<CSVRow>(filePath);
   const programmes = loadProgrammes();
 
   return raw.map((r, idx) => {
@@ -139,7 +142,7 @@ export function loadCostLines(): CostLine[] {
       programme_name: r.programme_name || '',
       pillar: r.pillar as Pillar,
       lead_ministry: r.lead_ministry || '',
-      cost_category: r.cost_category || 'operating_expenditure',
+      cost_category: (r.cost_category || 'operating_expenditure') as CostCategory,
       price_base_year: r.price_base_year || '2026',
       scenario: r.scenario as Scenario,
       years_1_2,
@@ -165,7 +168,7 @@ export function loadCostLines(): CostLine[] {
 
 export function loadRisks(): Risk[] {
   const filePath = path.join(DATA_DIR, 'RISK_AND_SAFEGUARD_REGISTER.csv');
-  const raw = parseCSV<any>(filePath);
+  const raw = parseCSV<CSVRow>(filePath);
 
   return raw.map((r) => ({
     risk_id: r.risk_id,
@@ -184,7 +187,7 @@ export function loadRisks(): Risk[] {
 
 export function loadClaims(): ClaimFigure[] {
   const filePath = path.join(DATA_DIR, 'CLAIMS_AND_FIGURES_REGISTER.csv');
-  const raw = parseCSV<any>(filePath);
+  const raw = parseCSV<CSVRow>(filePath);
 
   return raw.map((r) => ({
     claim_id: r.claim_id,
@@ -206,7 +209,7 @@ export function loadClaims(): ClaimFigure[] {
 
 export function loadSources(): Source[] {
   const filePath = path.join(DATA_DIR, 'SOURCE_REGISTER.csv');
-  const raw = parseCSV<any>(filePath);
+  const raw = parseCSV<CSVRow>(filePath);
 
   return raw.map((r) => ({
     source_id: r.source_id,
@@ -227,7 +230,7 @@ export function loadSources(): Source[] {
 
 export function loadCostingAssumptions(): CostingAssumption[] {
   const filePath = path.join(DATA_DIR, 'COSTING_ASSUMPTIONS.csv');
-  const raw = parseCSV<any>(filePath);
+  const raw = parseCSV<CSVRow>(filePath);
 
   return raw
     .filter((r) => r.assumption_id)
@@ -249,7 +252,7 @@ export function loadCostingAssumptions(): CostingAssumption[] {
 
 export function loadResponsibilities(): Responsibility[] {
   const filePath = path.join(DATA_DIR, 'RESPONSIBILITY_MATRIX.csv');
-  const raw = parseCSV<any>(filePath);
+  const raw = parseCSV<CSVRow>(filePath);
 
   return raw.map((r) => ({
     responsibility_id: r.responsibility_id,

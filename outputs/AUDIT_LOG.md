@@ -4,6 +4,23 @@ Chronological record of what was checked, what failed, what changed, and the res
 
 ---
 
+## Stage 9 cross-stage assurance repair (2026-08-10)
+
+| # | Check | Result |
+|---|---|---|
+| A9.1 | Stage traceability | 32 controlled requirements: four for each Stage 1–8; every row maps to preserved evidence, live verifier checks, PR, head commit and merge commit; reconstructed prompt wording is explicitly non-verbatim |
+| A9.2 | Assurance-history repair | Stage ordering, completion numbering, critic totals, residual limitations, claim counts and MOD-04 disposition reconciled |
+| A9.3 | Partial-formula boundary | PRG-01 and PRG-14 amounts reconcile to the live model and remain excluded from any claimed validated ceiling pending complete formulas and competent-authority evidence |
+| A9.4 | Classified assurance | Internal verification is separated from legal, Treasury, agency and Cabinet approval; the report expressly disclaims an external audit opinion |
+| A9.5 | Rendered submission | Hash-bound DOCX/PDF generated from the canonical proposal and annex; DOCX accessibility audit: 0 findings; PDF: 37 pages, required text markers present, full visual inspection passed |
+| A9.6 | Determinism and policy verifier | Double regeneration produced identical hashes; `verify_outputs.py`: **PASS — 161 checks, 0 warnings, 0 hard failures** |
+| A9.7 | Website release gates | Full ESLint: **PASS**; TypeScript/Next.js production build: **PASS — 29 static pages** |
+| A9.8 | CI boundary | Pull requests and main pushes run policy verification, double-regeneration drift detection, lint and production build; repository branch protection remains an administrator configuration |
+
+**Cross-stage result: PASS for internal repository release. This is not legal clearance, Treasury validation, agency acceptance, Cabinet adoption or an external audit opinion.**
+
+---
+
 ## Stage 8 governance continuity below the Prime Minister (2026-08-10)
 
 | # | Check | Result |
@@ -126,7 +143,7 @@ Chronological record of what was checked, what failed, what changed, and the res
 | I.2 | Narrative counts | 16 retained substantive programmes distinguished from 5 non-retained source proposals; 21 risks, 30 validation items and 6 strict gates reconciled |
 | I.3 | Phase gates | End-Year 2 administrative readiness review gates Phase 2; end-Year 3 independent mid-term evaluation gates Phase 3; Year 5 appropriation remains separate |
 | I.4 | Reference integrity | All CLM/KPI/PRG/RSK/RSP/VAL references across canonical CSV and Markdown files resolve |
-| I.5 | Regression verification | `verify_outputs.py`: **PASS — 80 checks, 0 hard failures, 1 standing disclosure warning** (superseded by the 84-check Stage 2 run above) |
+| I.5 | Regression verification | `verify_outputs.py`: **PASS — 80 checks, 0 hard failures, 1 standing disclosure warning** (superseded by the 85-check Stage 2 run above) |
 
 **Integrity-repair result: PASS.** The warning is an explicit disclosure that PRG-01 and PRG-14 use authored judgement because no complete published costing formula exists.
 

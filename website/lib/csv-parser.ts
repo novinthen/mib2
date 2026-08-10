@@ -2,7 +2,6 @@
 // Fails on duplicate IDs, broken references, missing critical columns, or malformed numbers
 
 import fs from 'fs';
-import path from 'path';
 
 export class ValidationError extends Error {
   constructor(message: string) {
@@ -33,7 +32,7 @@ export function parseCSV<T>(filePath: string): T[] {
       );
     }
 
-    const row: any = {};
+    const row: Record<string, string> = {};
     headers.forEach((header, idx) => {
       row[header] = values[idx];
     });
@@ -104,15 +103,15 @@ export function validateRequired(value: string | undefined, field: string, conte
   }
 }
 
-export function validateForeignKey<T extends Record<string, any>>(
+export function validateForeignKey<T, K extends keyof T>(
   value: string,
   registry: T[],
-  keyField: keyof T,
+  keyField: K,
   context: string
 ): void {
   if (!value || value === '') return; // Allow empty for optional references
 
-  const found = registry.some((item) => item[keyField] === value);
+  const found = registry.some((item) => String(item[keyField]) === value);
   if (!found) {
     throw new ValidationError(
       `${context}: Foreign key "${value}" not found in ${String(keyField)} registry`

@@ -8,9 +8,11 @@ Usage: python outputs/verify_outputs.py
 """
 
 import csv
+import hashlib
 import os
 import re
 import sys
+import zipfile
 from collections import Counter, defaultdict
 from decimal import Decimal
 
@@ -138,6 +140,21 @@ REQUIRED = {
                                              "affected_programmes", "related_decisions",
                                              "related_controls", "status",
                                              "evidence_reference", "acceptance_date"],
+    "COST_FORMULA_CONTROL_REGISTER.csv": ["formula_control_id", "programme_id",
+                                             "assumption_id", "formula_status",
+                                             "central_phase_1_direct_rm_m",
+                                             "central_six_year_direct_rm_m",
+                                             "ceiling_treatment", "required_evidence",
+                                             "status", "evidence_reference", "acceptance_date"],
+    "STAGE_TRACEABILITY_REGISTER.csv": ["requirement_id", "stage_id", "stage_name",
+                                           "controlled_requirement", "prompt_provenance",
+                                           "prompt_fidelity", "evidence_files",
+                                           "verifier_checks", "pr_number", "head_commit",
+                                           "merge_commit", "internal_status", "external_status"],
+    "RENDERED_SUBMISSION_MANIFEST.csv": ["artifact_id", "canonical_sources",
+                                             "canonical_source_bundle_sha256", "docx_file",
+                                             "docx_sha256", "pdf_file", "pdf_sha256",
+                                             "pdf_page_count", "render_status", "visual_qa_status"],
 }
 
 data = {}
@@ -192,6 +209,9 @@ ID_COL = {"SOURCE_REGISTER.csv": "source_id",
 ID_COL["PROGRAMME_DESIGN_REGISTER.csv"] = "programme_id"
 ID_COL["SERVICE_COMMITMENT_REGISTER.csv"] = "commitment_id"
 ID_COL["GOVERNANCE_CONTINUITY_REGISTER.csv"] = "continuity_id"
+ID_COL["COST_FORMULA_CONTROL_REGISTER.csv"] = "formula_control_id"
+ID_COL["STAGE_TRACEABILITY_REGISTER.csv"] = "requirement_id"
+ID_COL["RENDERED_SUBMISSION_MANIFEST.csv"] = "artifact_id"
 for fname, col in ID_COL.items():
     rows = data.get(fname, [])
     if not rows:
@@ -290,10 +310,7 @@ check(not mismatch,
       f"[4b] MODEL DOES NOT EQUAL ITS OWN STATED FORMULA: {mismatch[:10]}")
 check(len(partial) <= 2,
       f"[4b] only {len(partial)} programme(s) carry an incomplete formula and are declared 'partial': {partial}",
-      f"[4b] too many un-derived cost rows: {partial}", hard=False)
-if partial:
-    SOFT_WARNINGS.append(f"[4b] DISCLOSED: {partial} have no complete published formula; "
-                         f"their amounts are authored judgements, not derivations")
+      f"[4b] too many un-derived cost rows: {partial}")
 
 # ---- CHECK 4c: funding shares in the assumptions must sum to exactly 1 ---
 badshare = [a["assumption_id"] for a in asm.values()
@@ -434,7 +451,7 @@ for fname, cols in REQUIRED.items():
             # These two fields are intentionally blank while a legal issue is
             # open/requested. Check [14] requires both once a competent
             # authority records a disposition.
-            if fname in {"LEGAL_ISSUES_REGISTER.csv", "FISCAL_VALIDATION_REGISTER.csv", "PROGRAMME_DESIGN_REGISTER.csv", "SERVICE_COMMITMENT_REGISTER.csv", "GOVERNANCE_CONTINUITY_REGISTER.csv"} and c in {"evidence_reference", "acceptance_date"}:
+            if fname in {"LEGAL_ISSUES_REGISTER.csv", "FISCAL_VALIDATION_REGISTER.csv", "PROGRAMME_DESIGN_REGISTER.csv", "SERVICE_COMMITMENT_REGISTER.csv", "GOVERNANCE_CONTINUITY_REGISTER.csv", "COST_FORMULA_CONTROL_REGISTER.csv"} and c in {"evidence_reference", "acceptance_date"}:
                 continue
             if not str(r.get(c, "")).strip():
                 blanks.append(f"{fname}:{rid}.{c}")
@@ -558,9 +575,12 @@ CANON = ["BENEFICIARY_RECONCILIATION.csv", "STATUS.md", "ASSUMPTIONS_AND_DECISIO
          "PROGRAMME_REGISTER.csv", "NARRATIVE_REGISTER.csv",
          "CONFLICT_AND_DUPLICATION_REGISTER.csv", "RESPONSIBILITY_MATRIX.csv",
          "KPI_REGISTER.csv", "RISK_AND_SAFEGUARD_REGISTER.csv", "COSTING_MODEL.csv",
-         "COSTING_ASSUMPTIONS.csv", "DECISION_REGISTER.csv", "VALIDATION_REGISTER.csv", "LEGAL_ISSUES_REGISTER.csv", "FISCAL_VALIDATION_REGISTER.csv", "PROGRAMME_DESIGN_REGISTER.csv", "PROGRAMME_DESIGN_SHEETS.md", "SERVICE_COMMITMENT_REGISTER.csv", "SERVICE_COMMITMENTS.md", "GOVERNANCE_CONTINUITY_REGISTER.csv", "GOVERNANCE_CONTINUITY.md", "verify_outputs.py", "VERIFICATION_RESULTS.md",
+         "COSTING_ASSUMPTIONS.csv", "DECISION_REGISTER.csv", "VALIDATION_REGISTER.csv", "LEGAL_ISSUES_REGISTER.csv", "FISCAL_VALIDATION_REGISTER.csv", "PROGRAMME_DESIGN_REGISTER.csv", "PROGRAMME_DESIGN_SHEETS.md", "SERVICE_COMMITMENT_REGISTER.csv", "SERVICE_COMMITMENTS.md", "GOVERNANCE_CONTINUITY_REGISTER.csv", "GOVERNANCE_CONTINUITY.md", "COST_FORMULA_CONTROL_REGISTER.csv", "STAGE_TRACEABILITY_REGISTER.csv", "STAGE_1_8_REQUIREMENTS.md", "CROSS_STAGE_ASSURANCE_REPORT.md", "verify_outputs.py", "VERIFICATION_RESULTS.md",
          "STAGE_1_DIAGNOSTIC.md", "STAGE_2_RECONCILIATION.md",
-         "MIB_2.0_EXECUTIVE_PROPOSAL.md", "TECHNICAL_ANNEXES.md"]
+         "MIB_2.0_EXECUTIVE_PROPOSAL.md", "TECHNICAL_ANNEXES.md",
+         "MIB_2.0_CABINET_SUBMISSION.docx", "MIB_2.0_CABINET_SUBMISSION.pdf",
+         "RENDERED_SUBMISSION_MANIFEST.csv", "build_submission_documents.py",
+         "build_rendered_manifest.py"]
 absent = [f for f in CANON if not os.path.exists(os.path.join(HERE, f))
           or os.path.getsize(os.path.join(HERE, f)) == 0]
 check(not absent, f"[extra] all {len(CANON)} canonical files exist and are non-empty",
@@ -1279,6 +1299,195 @@ check(responsibility_escalation_ok,
       "[18f] every programme responsibility row uses the delegated delivery-officer and automatic-escalation chain",
       "[18f] ONE OR MORE PROGRAMMES STILL DEPENDS ON TASK-FORCE-ONLY ESCALATION")
 
+# ---- CHECK 19: Stage 9 cross-stage assurance and traceability ------------
+trace_rows = data.get("STAGE_TRACEABILITY_REGISTER.csv", [])
+expected_stage_ids = {f"SR-{number:02d}" for number in range(1, 9)}
+trace_stage_ids = {row["stage_id"] for row in trace_rows}
+requirements_by_stage = Counter(row["stage_id"] for row in trace_rows)
+check(len(trace_rows) == 32 and trace_stage_ids == expected_stage_ids
+      and all(requirements_by_stage[stage_id] == 4 for stage_id in expected_stage_ids),
+      "[19] Stage 1-8 traceability contains four controlled requirements per stage",
+      f"[19] TRACEABILITY COVERAGE DEFECT: rows={len(trace_rows)} stages={sorted(trace_stage_ids)} counts={dict(requirements_by_stage)}")
+
+expected_git = {
+    "SR-01": ("2", "cf2801d4e22fc8179ed693bb20179b13105e2654", "9a87816ff3eda217d05b9f1cd66eac6e8042ee82"),
+    "SR-02": ("3", "30bf112f47f9fe3aaae7421b1160657a1c8db06c", "25e58767f31a9fbfaa8139f3bd372cb2eae07822"),
+    "SR-03": ("4", "9e473681c914895bc61e78dd2c7e8676c9108e66", "01947887080c896a91e0d0f0844b94f465e3528c"),
+    "SR-04": ("5", "535779802a01e75ef67836a8b0a8630cabb000e0", "bffd003ac63251b3545e3375742343305910a79b"),
+    "SR-05": ("6", "fa6e56a09a9e40c9cb8a10a208819183278457c4", "dcf8d75c33b95cb01cf7cf1e08c0da3f1f8429c9"),
+    "SR-06": ("7", "74bd4a1f6591834d8aed8eb9c3922ce2c9ff8288", "eccfa9ecb391f0f1d13275ea89adf7194c861d30"),
+    "SR-07": ("8", "1eea7d2814a3a6c136bbf4bc658fdd7e58c3a188", "b8179b7cb8597427f4c4b9e4b16851ad29248581"),
+    "SR-08": ("9", "df2e7e1378117a2f208288ab2282aa1dcd5fe7b7", "07450be6d38e5364f7dc49eb92af175178378e0b"),
+}
+git_defects = []
+for row in trace_rows:
+    expected = expected_git.get(row["stage_id"])
+    actual = (row["pr_number"], row["head_commit"], row["merge_commit"])
+    if expected != actual:
+        git_defects.append(f"{row['requirement_id']}: {actual} != {expected}")
+check(not git_defects,
+      "[19a] every Stage 1-8 requirement maps to the preserved PR, head commit and merge commit",
+      f"[19a] STAGE-TO-GIT PROVENANCE DRIFT: {git_defects[:12]}")
+
+fidelity_defects = [row["requirement_id"] for row in trace_rows
+                    if row["prompt_fidelity"] != "reconstructed_from_preserved_evidence_not_verbatim"
+                    or "PR #" not in row["prompt_provenance"]]
+requirements_doc = open(os.path.join(HERE, "STAGE_1_8_REQUIREMENTS.md"), encoding="utf-8").read()
+check(not fidelity_defects and "did not retain the original chat prompts" in requirements_doc
+      and "No row may be represented as a verbatim prompt" in requirements_doc,
+      "[19b] reconstructed prompt requirements are explicitly non-verbatim and provenance-limited",
+      f"[19b] PROMPT-FIDELITY MISREPRESENTATION: {fidelity_defects[:12]}")
+
+evidence_defects = []
+for row in trace_rows:
+    for filename in [item.strip() for item in row["evidence_files"].split(";") if item.strip()]:
+        if not os.path.exists(os.path.join(HERE, filename)):
+            evidence_defects.append(f"{row['requirement_id']}:{filename}")
+check(not evidence_defects,
+      "[19c] every traceability evidence file exists in the controlled package",
+      f"[19c] TRACEABILITY REFERENCES MISSING FILES: {evidence_defects[:20]}")
+
+verifier_source = open(__file__, encoding="utf-8").read()
+test_ref_defects = []
+for row in trace_rows:
+    for test_ref in [item.strip() for item in row["verifier_checks"].split(";") if item.strip()]:
+        if test_ref not in verifier_source:
+            test_ref_defects.append(f"{row['requirement_id']}:{test_ref}")
+check(not test_ref_defects,
+      "[19d] every traceability test reference resolves to the live verifier",
+      f"[19d] TRACEABILITY REFERENCES UNKNOWN TESTS: {test_ref_defects[:20]}")
+
+status_text = open(os.path.join(HERE, "STATUS.md"), encoding="utf-8").read()
+status_stage_numbers = re.findall(r"^## Submission-readiness Stage ([1-8])\b", status_text, flags=re.MULTILINE)
+check(status_stage_numbers == [str(number) for number in range(1, 9)],
+      "[19e] STATUS.md contains each submission-readiness Stage 1-8 exactly once and in order",
+      f"[19e] STATUS STAGE TAXONOMY DEFECT: {status_stage_numbers}")
+
+master_text = open(os.path.join(os.path.dirname(HERE), "MASTER_PROMPT.md"), encoding="utf-8").read()
+completion = master_text.split("## 17. Final completion condition", 1)[1].split("## 18. Response discipline", 1)[0]
+completion_numbers = [int(value) for value in re.findall(r"^(\d+)\.", completion, flags=re.MULTILINE)]
+check(completion_numbers == list(range(1, 16))
+      and completion.index("All seven service commitments") < completion.index("All eight governance continuity controls"),
+      "[19f] master completion criteria are uniquely numbered 1-15 and preserve Stage 7 before Stage 8",
+      f"[19f] MASTER COMPLETION STRUCTURE DEFECT: numbers={completion_numbers}")
+
+critic_text = open(os.path.join(HERE, "CRITIC_FINDINGS.md"), encoding="utf-8").read()
+qa_text = open(os.path.join(HERE, "FINAL_QA_REPORT.md"), encoding="utf-8").read()
+audit_text = open(os.path.join(HERE, "AUDIT_LOG.md"), encoding="utf-8").read()
+uninspected_count = sum(row["verification_status"] == "cited-source-not-yet-inspected"
+                        for row in data.get("CLAIMS_AND_FIGURES_REGISTER.csv", []))
+history_defects = []
+if "84-check Stage 2" in audit_text:
+    history_defects.append("AUDIT_LOG retains incorrect 84-check Stage 2 reference")
+if uninspected_count != 10 or "Ten claims remain `cited-source-not-yet-inspected`" not in critic_text:
+    history_defects.append(f"uninspected claim count is not reconciled to 10 (actual {uninspected_count})")
+for stale in ("75 resolved, 1 open", "Nine residual limitations", "MOD-04) remains open"):
+    if stale in status_text + qa_text + critic_text:
+        history_defects.append(f"stale assurance statement: {stale}")
+check(not history_defects and "All 76 critic findings are resolved" in critic_text,
+      "[19g] stale check counts, claim counts, residual-limit counts and MOD-04 disposition are repaired",
+      f"[19g] ASSURANCE-HISTORY DRIFT: {history_defects}")
+
+formula_controls = data.get("COST_FORMULA_CONTROL_REGISTER.csv", [])
+formula_control_defects = []
+controlled_partial = {row["programme_id"] for row in formula_controls}
+if controlled_partial != set(partial) or controlled_partial != {"PRG-01", "PRG-14"}:
+    formula_control_defects.append(f"controlled partial set {sorted(controlled_partial)} != live partial set {sorted(partial)}")
+for row in formula_controls:
+    assumption = asm.get(row["assumption_id"])
+    model_row = central.get(row["programme_id"])
+    if assumption is None or model_row is None:
+        formula_control_defects.append(f"{row['formula_control_id']}: missing assumption or model row")
+        continue
+    phase_1 = D(assumption["years_1_2_central_rm_m"])
+    six_year = phase_1 + D(assumption["years_3_4_central_rm_m"]) + D(assumption["years_5_6_central_rm_m"])
+    if D(row["central_phase_1_direct_rm_m"]) != phase_1 or D(row["central_six_year_direct_rm_m"]) != six_year:
+        formula_control_defects.append(f"{row['formula_control_id']}: controlled amounts do not match assumptions")
+    if abs(D(row["central_six_year_direct_rm_m"]) - D(model_row["six_year_total"])) > TOL:
+        formula_control_defects.append(f"{row['formula_control_id']}: controlled total does not match model")
+    if row["ceiling_treatment"] != "excluded_from_validated_ceiling_until_formula_complete":
+        formula_control_defects.append(f"{row['formula_control_id']}: partial formula is not excluded")
+    if row["status"] != "open" or row["evidence_reference"].strip() or row["acceptance_date"].strip():
+        formula_control_defects.append(f"{row['formula_control_id']}: unsupported closure or evidence")
+check(not formula_control_defects,
+      "[19h] every partial formula is amount-reconciled and excluded from a validated ceiling until completion",
+      f"[19h] PARTIAL-FORMULA CEILING CONTROL DEFECTS: {formula_control_defects}")
+
+assurance_text = open(os.path.join(HERE, "CROSS_STAGE_ASSURANCE_REPORT.md"), encoding="utf-8").read()
+assurance_markers = ["Internally verified", "Externally pending", "Legally pending",
+                     "Treasury pending", "Agency pending", "Cabinet pending",
+                     "not an external audit opinion", "branch protection must be configured"]
+check(all(marker in assurance_text for marker in assurance_markers),
+      "[19i] cross-stage report separates internal assurance from every external approval class",
+      "[19i] CROSS-STAGE ASSURANCE CLASSIFICATION IS INCOMPLETE")
+
+workflow_path = os.path.join(os.path.dirname(HERE), ".github", "workflows", "assurance.yml")
+workflow_text = open(workflow_path, encoding="utf-8").read() if os.path.exists(workflow_path) else ""
+workflow_markers = ["pull_request:", "python outputs/verify_outputs.py",
+                    "python outputs/build_costing.py", "python outputs/sync_document_integrity.py",
+                    "git diff --exit-code -- outputs", "npm run lint", "npm run build"]
+check(all(marker in workflow_text for marker in workflow_markers),
+      "[19j] GitHub Actions runs policy verification, deterministic regeneration, lint and production build",
+      "[19j] GITHUB ACTIONS ASSURANCE WORKFLOW IS MISSING REQUIRED GATES")
+
+render_manifest = data.get("RENDERED_SUBMISSION_MANIFEST.csv", [])
+render_defects = []
+if len(render_manifest) != 1:
+    render_defects.append(f"expected one manifest row, found {len(render_manifest)}")
+else:
+    row = render_manifest[0]
+    source_names = row["canonical_sources"].split(";")
+    source_bundle = hashlib.sha256()
+    for source_name in source_names:
+        source_path = os.path.join(HERE, source_name)
+        if not os.path.exists(source_path):
+            render_defects.append(f"missing canonical source {source_name}")
+            continue
+        source_bundle.update(source_name.encode("utf-8"))
+        source_bundle.update(b"\0")
+        with open(source_path, "rb") as source_stream:
+            source_bundle.update(source_stream.read())
+        source_bundle.update(b"\0")
+    if source_bundle.hexdigest() != row["canonical_source_bundle_sha256"]:
+        render_defects.append("canonical source-bundle hash mismatch")
+    for label, filename_key, digest_key in (("DOCX", "docx_file", "docx_sha256"),
+                                             ("PDF", "pdf_file", "pdf_sha256")):
+        artifact_path = os.path.join(HERE, row[filename_key])
+        if not os.path.exists(artifact_path):
+            render_defects.append(f"missing {label} artifact")
+            continue
+        digest = hashlib.sha256()
+        with open(artifact_path, "rb") as artifact_stream:
+            for chunk in iter(lambda: artifact_stream.read(1024 * 1024), b""):
+                digest.update(chunk)
+        if digest.hexdigest() != row[digest_key]:
+            render_defects.append(f"{label} hash mismatch")
+    docx_path = os.path.join(HERE, row["docx_file"])
+    if os.path.exists(docx_path):
+        try:
+            with zipfile.ZipFile(docx_path) as package:
+                if "word/document.xml" not in package.namelist():
+                    render_defects.append("DOCX package lacks word/document.xml")
+        except zipfile.BadZipFile:
+            render_defects.append("DOCX is not a valid ZIP package")
+    pdf_path = os.path.join(HERE, row["pdf_file"])
+    if os.path.exists(pdf_path):
+        with open(pdf_path, "rb") as pdf_stream:
+            if pdf_stream.read(5) != b"%PDF-":
+                render_defects.append("PDF signature is invalid")
+    try:
+        if int(row["pdf_page_count"]) != 37:
+            render_defects.append(f"expected 37 PDF pages, found {row['pdf_page_count']}")
+    except ValueError:
+        render_defects.append("PDF page count is not numeric")
+    if row["render_status"] != "rendered_from_docx":
+        render_defects.append("render status is not rendered_from_docx")
+    if not row["visual_qa_status"].startswith("passed_"):
+        render_defects.append("visual QA is not marked passed")
+check(not render_defects,
+      "[19k] Cabinet DOCX/PDF signatures, hashes, source bundle, page count and visual QA manifest reconcile",
+      f"[19k] RENDERED CABINET PACK CONTROL DEFECTS: {render_defects}")
+
 # ---- CHECK 12c: every typed cross-reference resolves everywhere ----------
 known_refs = {
     "CLM": {r["claim_id"] for r in data.get("CLAIMS_AND_FIGURES_REGISTER.csv", [])},
@@ -1291,6 +1500,7 @@ known_refs = {
     "FIS": fiscal_ids,
     "SC": service_ids,
     "GC": continuity_ids,
+    "CFC": {row["formula_control_id"] for row in formula_controls},
 }
 unresolved_refs = []
 for path in _glob.glob(os.path.join(HERE, "*.csv")) + _glob.glob(os.path.join(HERE, "*.md")):

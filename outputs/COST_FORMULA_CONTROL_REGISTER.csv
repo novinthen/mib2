@@ -1,0 +1,3 @@
+formula_control_id,programme_id,assumption_id,formula_status,central_phase_1_direct_rm_m,central_six_year_direct_rm_m,ceiling_treatment,required_evidence,status,evidence_reference,acceptance_date
+CFC-01,PRG-01,ASM-C01,partial,14.600,26.100,excluded_from_validated_ceiling_until_formula_complete,"Complete desk, officer, loaded-salary, mobile-team, case-system, taper, inflation and cash-flow formula reconciled to agency and MOF evidence",open,,
+CFC-02,PRG-14,ASM-C14,partial,0.000,8.000,excluded_from_validated_ceiling_until_formula_complete,"Complete outreach, monitoring, publication, programme-participation and existing-capacity formula reconciled to JPA, INTAN and MOF evidence",open,,
