@@ -118,7 +118,7 @@ export default function WhyPage() {
             />
             <NotCard
               title="Not universal coverage"
-              description="Household progression is capped at approximately 10% of the estimated low-income population. Enrolment is voluntary and consent-based."
+              description="Household progression has a proposed Phase 3 concurrent service capacity of approximately 10% of the estimated low-income population. Cumulative reach is not claimed. Enrolment is voluntary and consent-based."
             />
             <NotCard
               title="Not guaranteed outcomes"
@@ -150,6 +150,12 @@ export default function WhyPage() {
               implementation submission and 8 before the affected programme launches. Each issue identifies the competent
               authority, written evidence required, affected decision, and consequence if unresolved. PRG-04 has six
               separate state, religious-administration, public-purpose, referral, expenditure, and data clearances.
+            </p>
+            <p>
+              Sixteen programme design sheets now specify the service, exclusions, accountable owner, authority route,
+              delivery channel, geography, provisional volume and cost, KPI, complaint route, data controls, dependencies,
+              and stop, redesign, and expansion tests. All 16 remain internal drafts; none is represented as accepted by
+              its accounting officer or ready to launch.
             </p>
           </div>
         </section>

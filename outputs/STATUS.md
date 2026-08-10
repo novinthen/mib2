@@ -175,6 +175,22 @@ Verifier checks `[15]`–`[15f]` enforce completeness, staging, programme covera
 
 ---
 
+## Submission-readiness Stage 6 — Programme delivery feasibility — **PASS (design complete; agency confirmation open)**
+
+**Timestamp:** 2026-08-10
+
+`PROGRAMME_DESIGN_REGISTER.csv` now controls **16 programme design sheets**, one for every retained substantive programme. The generated `PROGRAMME_DESIGN_SHEETS.md` joins each design to its programme logic, accounting officer, mandate route, supporting agencies, KPI, central Phase 1 and six-year cost, legal issues and fiscal controls. Every sheet also contains exclusions, delivery channel, geographic coverage, annual or phase volume, complaint and review mechanism, dataset and retention rule, dependencies and stop, redesign and expansion criteria.
+
+All 16 sheets remain `draft_pending_agency_confirmation`; **0 of 16 has written accounting-officer acceptance**. The sheets are therefore internally complete instructions for agency feasibility review, not signed delivery commitments. Acceptance requires an evidence reference and date, and implementation still depends on the mapped legal, fiscal, validation, capacity, state and partner gates.
+
+Stage 6 also corrected three latent service-volume defects: PRG-05 is 120,000 students over six years under its current formula, not 60,000; PRG-09 is a concurrent-capacity model rather than cumulative reach; and PRG-10 supports 5,000 enterprises, not the stale 6,000 narrative. PRG-07's 20,000-applicant-per-phase duration now matches its formula.
+
+Verifier checks `[16]`–`[16f]` enforce design completeness, full programme joins, evidence-backed acceptance, exact generated sheets, required two-part structure and volume reconciliation. Current regression: **118 checks passed, 0 hard failures**.
+
+**Gate: PASS for internal programme-design completeness. Official authority, capacity and accounting-officer confirmation remain external and open.**
+
+---
+
 ## Headline result
 
 | | Central | Conservative | Expanded |
@@ -183,4 +199,4 @@ Verifier checks `[15]`–`[15f]` enforce completeness, staging, programme covera
 | Incremental new funding | **RM847.677m** | RM662.215m | RM1,070.229m |
 
 Confidence mix (central): **Confirmed 0.0%** · Benchmarked 31.9% · Provisional 68.1%.
-**30 validation items, 18 legal issues and 10 fiscal controls remain open. Six validation items are strict gates: VAL-01, VAL-09, VAL-11, VAL-19, VAL-23 and VAL-30. Four are decision-dependent critical: VAL-03, VAL-24, VAL-27 and VAL-28. An unresolved item blocks only its mapped decision, programme or fiscal component.**
+**30 validation items, 18 legal issues and 10 fiscal controls remain open. All 16 programme design sheets await agency acceptance. Six validation items are strict gates: VAL-01, VAL-09, VAL-11, VAL-19, VAL-23 and VAL-30. Four are decision-dependent critical: VAL-03, VAL-24, VAL-27 and VAL-28. An unresolved item blocks only its mapped decision, programme or fiscal component.**

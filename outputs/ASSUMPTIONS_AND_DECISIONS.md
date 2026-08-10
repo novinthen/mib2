@@ -62,7 +62,7 @@ Each decision records what was chosen, what else was defensible, and why the cho
 **Why:** Source 2 contradicts itself — its own roadmap chapter uses three phases — and three two-year phases match the locked brief. See CNF-020.
 
 ### DEC-10 — Programme volumes are capped below both source drafts
-**Chosen:** Cap household case management at approximately 60,000 households (approximately 26% of the 2014-basis low-income Indian household count, or about 10% of all Indian households); preschool at the eligible cohort; housing at approximately 6,000 households.
+**Chosen:** Cap concurrent household case-management capacity at approximately 60,000 households in Phase 3 (approximately 26% of the 2014-basis low-income Indian household count, or about 10% of all Indian households at peak capacity); preschool at the eligible cohort; housing at approximately 6,000 households. Cumulative navigator reach is not stated before case duration and turnover are observed.
 **Rejected:** Universal coverage language ("each participating family", 90% enrolment, 10,000 housing placements).
 **Why:** Every capped figure is staffed and costed. Uncapped language is not deliverable and would create the same credibility gap the plan exists to close.
 
@@ -473,7 +473,7 @@ does not scale.
 | PRG-03 SJKT | schools audited | 528 | **528** | 528 |
 | PRG-03 SJKT | schools remediated | 119 | **158** | 206 |
 | PRG-04 Community facilities | facilities audited | 900 | **1,200** | 1,560 |
-| PRG-05 Pathway guidance | students profiled (6 yr) | 45,000 | **60,000** | 78,000 |
+| PRG-05 Pathway guidance | students profiled (6 yr) | 90,000 | **120,000** | 156,000 |
 | PRG-06 TVET/STEM | cumulative enrolees | 22,500 | **30,000** | 39,000 |
 | PRG-07 Tertiary navigation | applicants supported (6 yr) | 45,000 | **60,000** | 78,000 |
 | PRG-08 Professional entry | graduates mentored | 3,750 | **5,000** | 6,500 |

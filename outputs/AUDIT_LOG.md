@@ -4,6 +4,22 @@ Chronological record of what was checked, what failed, what changed, and the res
 
 ---
 
+## Stage 6 submission-readiness programme delivery feasibility (2026-08-10)
+
+| # | Check | Result |
+|---|---|---|
+| P.1 | Complete programme set | 16 unique retained programme IDs in `PROGRAMME_DESIGN_REGISTER.csv`; one generated two-part sheet per programme |
+| P.2 | Required design coverage | Problem and baseline; population and eligibility; service and exclusions; lead and accounting officer; supporting agencies; authority; route and geography; volume; unit and total cost; KPI; complaints; data and retention; dependencies; stop, redesign and expansion criteria |
+| P.3 | Canonical joins | Every sheet resolves exactly one programme, responsibility, KPI, central cost and costing-assumption record, plus all mapped legal and fiscal controls |
+| P.4 | Status integrity | All 16 remain internal drafts; 0 accepted; no accepted, conditional, rejected or superseded status can be recorded without written evidence and an acceptance date |
+| P.5 | Volume reconciliation | PRG-05 corrected to 120,000 six-year reach under its formula; PRG-07 duration corrected to 20,000 applicants per phase; PRG-09 corrected from cumulative reach to concurrent capacity; PRG-10 corrected from 6,000 to 5,000 enterprises |
+| P.6 | Generated output | `PROGRAMME_DESIGN_SHEETS.md` generated from seven canonical registers and compared byte-for-byte by the verifier |
+| P.7 | Regression verification | `verify_outputs.py`: **PASS — 118 checks, 0 hard failures, 1 standing disclosure warning**; deterministic double regeneration: **PASS**; targeted website lint: **PASS**; production build: **PASS — 29 pages generated** |
+
+**Programme-design result: PASS for internal completeness. Delivery feasibility is not officially confirmed; every accounting-officer acceptance, capacity decision and external dependency remains open.**
+
+---
+
 ## Stage 5 submission-readiness fiscal validation control (2026-08-10)
 
 | # | Check | Result |

@@ -1,5 +1,5 @@
 overlap_group,unit,programmes,summed_reach,overlap_factor,unique_estimate,note
 enterprise,enterprise,PRG-10,5000,0,5000,No overlap factor applied: units are not interchangeable with other groups.
 household,household,PRG-09;PRG-11;PRG-12,116000,0.45,63800,"Overlap factor from ASM-030 (provisional, VAL-25). Reach is NEVER summed across overlap groups because the units differ."
-individual,child,PRG-02;PRG-05;PRG-06;PRG-07;PRG-08;PRG-13,217400,0,217400,No overlap factor applied: units are not interchangeable with other groups.
+individual,child,PRG-02;PRG-05;PRG-06;PRG-07;PRG-08;PRG-13,277400,0,277400,No overlap factor applied: units are not interchangeable with other groups.
 institutional,school,PRG-03;PRG-04,1728,0,1728,No overlap factor applied: units are not interchangeable with other groups.

@@ -114,7 +114,7 @@ Phase 3: 15,000 × 8,500 = RM127.5m + (3,000 × 4,000) = **RM139.5m**. Cumulativ
 **B.5 Navigator cadre (ASM-C09).** Caseload 150 households/navigator; loaded cost RM72,000/yr.
 Phase 1: 120 × 72,000 × 2 = RM17.28m + RM12m system = **RM29.28m** ≈ 29.300.
 Phase 2: 280 × 72,000 × 2 = RM40.32m + RM4m = **RM44.32m** ≈ 44.300.
-Phase 3: 400 × 72,000 × 2 = RM57.6m + RM2m = **RM59.6m**. Cumulative ≈60,000 households.
+Phase 3: 400 × 72,000 × 2 = RM57.6m + RM2m = **RM59.6m**. Concurrent service capacity ≈60,000 households; cumulative reach depends on case duration and turnover and is not specified.
 
 **B.6 SJKT (ASM-C03).** Audit 528 × RM25,000 = RM13.2m. Digital facilities 528 × RM85,000 = RM44.9m. Remediation: 30% of 528 = 158.4 schools (30% of 528) × RM450,000 = RM71.280m, phased 30/40/30. Coordinator training 528 × 2 × RM3,500 = RM3.7m.
 *The 55% existing-funding assumption is provisional and gating (VAL-11).*

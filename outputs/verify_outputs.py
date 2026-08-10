@@ -116,6 +116,12 @@ REQUIRED = {
                                        "affected_decisions", "related_validation_ids",
                                        "validation_stage", "consequence_if_unresolved",
                                        "status", "evidence_reference", "acceptance_date"],
+    "PROGRAMME_DESIGN_REGISTER.csv": ["programme_id", "design_status", "exclusions",
+                                       "delivery_channel", "geographic_coverage", "annual_volume",
+                                       "volume_status", "complaints_and_appeals", "data_collected",
+                                       "retention_and_access_rule", "key_dependencies", "stop_criteria",
+                                       "redesign_criteria", "expansion_criteria", "signoff_owner",
+                                       "signoff_status", "evidence_reference", "acceptance_date"],
 }
 
 data = {}
@@ -167,6 +173,7 @@ ID_COL = {"SOURCE_REGISTER.csv": "source_id",
           "VALIDATION_REGISTER.csv": "validation_id",
           "LEGAL_ISSUES_REGISTER.csv": "legal_issue_id",
           "FISCAL_VALIDATION_REGISTER.csv": "fiscal_control_id"}
+ID_COL["PROGRAMME_DESIGN_REGISTER.csv"] = "programme_id"
 for fname, col in ID_COL.items():
     rows = data.get(fname, [])
     if not rows:
@@ -409,7 +416,7 @@ for fname, cols in REQUIRED.items():
             # These two fields are intentionally blank while a legal issue is
             # open/requested. Check [14] requires both once a competent
             # authority records a disposition.
-            if fname in {"LEGAL_ISSUES_REGISTER.csv", "FISCAL_VALIDATION_REGISTER.csv"} and c in {"evidence_reference", "acceptance_date"}:
+            if fname in {"LEGAL_ISSUES_REGISTER.csv", "FISCAL_VALIDATION_REGISTER.csv", "PROGRAMME_DESIGN_REGISTER.csv"} and c in {"evidence_reference", "acceptance_date"}:
                 continue
             if not str(r.get(c, "")).strip():
                 blanks.append(f"{fname}:{rid}.{c}")
@@ -533,7 +540,7 @@ CANON = ["BENEFICIARY_RECONCILIATION.csv", "STATUS.md", "ASSUMPTIONS_AND_DECISIO
          "PROGRAMME_REGISTER.csv", "NARRATIVE_REGISTER.csv",
          "CONFLICT_AND_DUPLICATION_REGISTER.csv", "RESPONSIBILITY_MATRIX.csv",
          "KPI_REGISTER.csv", "RISK_AND_SAFEGUARD_REGISTER.csv", "COSTING_MODEL.csv",
-         "COSTING_ASSUMPTIONS.csv", "DECISION_REGISTER.csv", "VALIDATION_REGISTER.csv", "LEGAL_ISSUES_REGISTER.csv", "FISCAL_VALIDATION_REGISTER.csv", "verify_outputs.py", "VERIFICATION_RESULTS.md",
+         "COSTING_ASSUMPTIONS.csv", "DECISION_REGISTER.csv", "VALIDATION_REGISTER.csv", "LEGAL_ISSUES_REGISTER.csv", "FISCAL_VALIDATION_REGISTER.csv", "PROGRAMME_DESIGN_REGISTER.csv", "PROGRAMME_DESIGN_SHEETS.md", "verify_outputs.py", "VERIFICATION_RESULTS.md",
          "STAGE_1_DIAGNOSTIC.md", "STAGE_2_RECONCILIATION.md",
          "MIB_2.0_EXECUTIVE_PROPOSAL.md", "TECHNICAL_ANNEXES.md"]
 absent = [f for f in CANON if not os.path.exists(os.path.join(HERE, f))
@@ -544,7 +551,7 @@ check(not absent, f"[extra] all {len(CANON)} canonical files exist and are non-e
 # ---- CHECK 12: generated document sections match canonical registers -----
 # Financial tables in the proposal and annex must never be maintained by
 # hand.  Compare the committed text with a fresh render from the CSV model.
-from sync_document_integrity import expected_sections, START, END
+from sync_document_integrity import expected_sections, render_programme_design_sheets, START, END
 
 
 def generated_block(document, name):
@@ -1000,6 +1007,120 @@ check("no ministry or Treasury has confirmed a Phase 1 funding split" in annex_t
 check(all(row["status"] == "open" for row in fiscal_rows),
       "[15f] all fiscal controls remain open; no Treasury-reviewed ceiling is represented as complete",
       "[15f] A FISCAL CONTROL HAS CHANGED FROM OPEN WITHOUT EXTERNAL EVIDENCE REVIEW")
+
+# ---- CHECK 16: Stage 6 programme delivery-feasibility sheets ------------
+design_rows = data.get("PROGRAMME_DESIGN_REGISTER.csv", [])
+design_ids = {row["programme_id"] for row in design_rows}
+allowed_design_status = {
+    "draft_pending_agency_confirmation", "agency_accepted",
+    "agency_accepted_with_conditions", "rejected", "superseded",
+}
+allowed_signoff_status = {"pending", "accepted", "accepted_with_conditions", "rejected", "superseded"}
+design_required_fields = (
+    "design_status", "exclusions", "delivery_channel", "geographic_coverage",
+    "annual_volume", "volume_status", "complaints_and_appeals", "data_collected",
+    "retention_and_access_rule", "key_dependencies", "stop_criteria",
+    "redesign_criteria", "expansion_criteria", "signoff_owner", "signoff_status",
+)
+design_defects = []
+for row in design_rows:
+    pid = row["programme_id"]
+    for field in design_required_fields:
+        if not row[field].strip():
+            design_defects.append(f"{pid}: blank {field}")
+    if row["design_status"] not in allowed_design_status:
+        design_defects.append(f"{pid}: invalid design status {row['design_status']!r}")
+    if row["signoff_status"] not in allowed_signoff_status:
+        design_defects.append(f"{pid}: invalid sign-off status {row['signoff_status']!r}")
+    dependency_refs = set(re.findall(r"\b(?:VAL|LGL|FIS)-\d{2}\b", row["key_dependencies"]))
+    known_control_refs = set(validation_ids) | legal_ids | fiscal_ids
+    unknown_dependencies = dependency_refs - known_control_refs
+    if not dependency_refs or unknown_dependencies:
+        design_defects.append(f"{pid}: missing or unknown dependency refs {sorted(unknown_dependencies)}")
+    evidence = row["evidence_reference"].strip()
+    accepted = row["acceptance_date"].strip()
+    disposition = {"accepted", "accepted_with_conditions", "rejected", "superseded"}
+    if row["signoff_status"] in disposition and (not evidence or not accepted):
+        design_defects.append(f"{pid}: disposition lacks written evidence or acceptance date")
+    if row["signoff_status"] == "pending" and (evidence or accepted):
+        design_defects.append(f"{pid}: pending sheet improperly carries acceptance evidence/date")
+
+check(not design_defects and len(design_rows) == 16,
+      "[16] all 16 programme designs contain delivery, coverage, volume, remedy, data, dependency and stop/redesign/expansion controls",
+      f"[16] PROGRAMME DESIGN DEFECTS: {design_defects[:24]}; rows={len(design_rows)}")
+
+responsibility_ids = {row["programme_id"] for row in data.get("RESPONSIBILITY_MATRIX.csv", [])}
+kpi_programme_ids = {row["programme_id"] for row in data.get("KPI_REGISTER.csv", [])}
+central_programme_ids = {
+    row["programme_id"] for row in cm
+    if row["scenario"] == "central" and not row["programme_id"].startswith("PRG-XX")
+}
+assumption_programme_ids = {
+    row["programme_id"] for row in data.get("COSTING_ASSUMPTIONS.csv", [])
+    if row["programme_id"] in retained
+}
+joined_coverage = (
+    design_ids == retained == responsibility_ids == kpi_programme_ids
+    == central_programme_ids == assumption_programme_ids
+)
+check(joined_coverage,
+      "[16a] every retained programme resolves one design, responsibility, KPI, central cost and costing-assumption record",
+      "[16a] PROGRAMME DESIGN JOIN COVERAGE DOES NOT MATCH THE 16 RETAINED PROGRAMMES")
+
+check(all(
+          not (row["signoff_status"] in {"accepted", "accepted_with_conditions", "rejected", "superseded"}
+               and (not row["evidence_reference"].strip() or not row["acceptance_date"].strip()))
+          and not (row["signoff_status"] == "pending"
+                   and (row["evidence_reference"].strip() or row["acceptance_date"].strip()))
+          for row in design_rows),
+      "[16b] no agency acceptance is implied without written evidence and an acceptance date",
+      "[16b] ONE OR MORE PROGRAMME SHEETS IMPROPERLY IMPLY AGENCY ACCEPTANCE")
+
+design_sheets_path = os.path.join(HERE, "PROGRAMME_DESIGN_SHEETS.md")
+design_sheets_text = open(design_sheets_path, encoding="utf-8").read() if os.path.exists(design_sheets_path) else ""
+check(design_sheets_text == render_programme_design_sheets(),
+      "[16c] the complete programme-design-sheet document matches the canonical registers exactly",
+      "[16c] PROGRAMME DESIGN SHEETS ARE STALE OR MANUALLY EDITED")
+
+required_sheet_labels = {
+    "Problem and baseline", "Target population and eligibility", "Service delivered", "Exclusions",
+    "Lead and accounting officer", "Supporting agencies", "Authority route", "Delivery channel and coverage",
+    "Volume", "Cost", "KPI and verification", "Complaints and appeals", "Data collected",
+    "Retention and access", "Key dependencies", "Stop criteria", "Redesign criteria", "Expansion criteria",
+}
+sheet_structure_ok = all(
+    design_sheets_text.count(f"## {pid} —") == 1 for pid in retained
+) and all(f"| {label} |" in design_sheets_text for label in required_sheet_labels)
+check(sheet_structure_ok,
+      "[16d] each of the 16 sheets contains the complete two-part implementation design structure",
+      "[16d] ONE OR MORE PROGRAMME SHEETS OR REQUIRED DESIGN FIELDS ARE MISSING")
+
+asm_by_programme = {
+    row["programme_id"]: row for row in data.get("COSTING_ASSUMPTIONS.csv", [])
+    if row["programme_id"] in retained
+}
+programme_by_id = {row["programme_id"]: row for row in programme_rows}
+kpi_by_programme = {row["programme_id"]: row for row in kpi_rows}
+design_by_id = {row["programme_id"]: row for row in design_rows}
+volume_ok = (
+    asm_by_programme["PRG-05"]["reach_count"] == "120000"
+    and "20,000 students supported per year" in design_by_id["PRG-05"]["annual_volume"]
+    and "20,000 applicants per phase" in asm_by_programme["PRG-07"]["frequency_or_duration"]
+    and "concurrent capacity for 60,000 households" in programme_by_id["PRG-09"]["output"]
+    and "Concurrent capacity for approximately 60,000 households" in kpi_by_programme["PRG-09"]["year_6_target"]
+    and "cumulatively" not in programme_by_id["PRG-09"]["output"].lower()
+    and asm_by_programme["PRG-10"]["reach_count"] == "5000"
+    and "5,000 enterprises" in programme_by_id["PRG-10"]["output"]
+    and "5,000 enterprises" in kpi_by_programme["PRG-10"]["year_6_target"]
+)
+check(volume_ok,
+      "[16e] PRG-05, PRG-07, PRG-09 and PRG-10 service volumes reconcile to their formula, reach unit and phase meaning",
+      "[16e] PROGRAMME SERVICE VOLUME DRIFTS FROM THE COST OR REACH MODEL")
+
+check(all(row["design_status"] == "draft_pending_agency_confirmation"
+          and row["signoff_status"] == "pending" for row in design_rows),
+      "[16f] all 16 sheets remain internal drafts pending accounting-officer confirmation",
+      "[16f] A PROGRAMME DESIGN HAS CHANGED STATUS WITHOUT EXTERNAL AGENCY REVIEW")
 
 # ---- CHECK 12c: every typed cross-reference resolves everywhere ----------
 known_refs = {
