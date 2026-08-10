@@ -42,7 +42,7 @@ export default function WhyPage() {
 
         {/* What's Different */}
         <section className="bg-gradient-to-br from-primary-50 to-info-50 rounded-3xl p-8 md:p-12">
-          <h2 className="text-3xl font-bold text-neutral-900 mb-8">What's Different This Time</h2>
+          <h2 className="text-3xl font-bold text-neutral-900 mb-8">What&apos;s Different This Time</h2>
           <div className="space-y-6">
             <DifferenceCard
               title="Evidence-Led, Not Assertion-Based"
@@ -137,8 +137,13 @@ export default function WhyPage() {
             </p>
             <p>
               Phase 1 requires a later express decision identifying its approved components, ceiling, owners and launch
-              conditions. Six strict gates remain, including AGC clearance (VAL-01), PNB participation (VAL-19), and
-              secretariat establishment (VAL-23), each applying to the affected programme or decision.
+              conditions. The 30 open validation items are now separated into 12 pre-submission gates, 8
+              programme-launch gates, 2 phase-expansion gates, 5 operational baselines, and 3 deferrable matters.
+            </p>
+            <p>
+              Six strict gates remain. Four further items are decision-dependent critical. Each item has one owner,
+              required evidence, a deadline, escalation route, financial consequence, and mapped decision. An unresolved
+              item blocks only the affected decision or programme—not unrelated work.
             </p>
           </div>
         </section>

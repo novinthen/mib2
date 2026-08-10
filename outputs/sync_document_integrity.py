@@ -19,6 +19,7 @@ from decimal import Decimal
 HERE = os.path.dirname(os.path.abspath(__file__))
 PROPOSAL = os.path.join(HERE, "MIB_2.0_EXECUTIVE_PROPOSAL.md")
 ANNEXES = os.path.join(HERE, "TECHNICAL_ANNEXES.md")
+ASSUMPTIONS = os.path.join(HERE, "ASSUMPTIONS_AND_DECISIONS.md")
 START = "<!-- GENERATED:{name}:START -->"
 END = "<!-- GENERATED:{name}:END -->"
 
@@ -71,6 +72,102 @@ def scenario_summary(rows: list[dict[str, str]]) -> dict[str, dict[str, Decimal]
 
 def decision_data() -> list[dict[str, str]]:
     return load_csv("DECISION_REGISTER.csv")
+
+
+def validation_data() -> list[dict[str, str]]:
+    return load_csv("VALIDATION_REGISTER.csv")
+
+
+def render_validation_summary() -> str:
+    rows = validation_data()
+    labels = {
+        "pre_submission_gate": "Pre-submission gate",
+        "programme_launch_gate": "Programme-launch gate",
+        "phase_expansion_gate": "Phase-expansion gate",
+        "operational_baseline": "Operational baseline",
+        "deferrable_design_matter": "Deferrable design matter",
+    }
+    counts = {key: sum(row["classification"] == key for row in rows) for key in labels}
+    strict = [row["validation_id"] for row in rows if row["criticality"] == "strict_gate"]
+    conditional = [
+        row["validation_id"] for row in rows
+        if row["criticality"] == "decision_dependent_critical"
+    ]
+    lines = [
+        START.format(name="VALIDATION_SUMMARY"),
+        "## 2.4 Validation control architecture",
+        "",
+        "The thirty validation items are not one undifferentiated condition. Each is assigned to "
+        "the earliest decision it can legitimately block:",
+        "",
+        "| Classification | Items | Control effect |",
+        "|---|---:|---|",
+        f"| **{labels['pre_submission_gate']}** | {counts['pre_submission_gate']} | Must resolve before the affected implementation or funding decision is submitted |",
+        f"| **{labels['programme_launch_gate']}** | {counts['programme_launch_gate']} | Blocks only the named programme or jurisdiction |",
+        f"| **{labels['phase_expansion_gate']}** | {counts['phase_expansion_gate']} | Blocks scale-up or later-phase appropriation, not controlled Phase 1 work |",
+        f"| **{labels['operational_baseline']}** | {counts['operational_baseline']} | May be established during operations but must precede target calibration |",
+        f"| **{labels['deferrable_design_matter']}** | {counts['deferrable_design_matter']} | Does not block submission or launch unless the disputed material is used |",
+        "",
+        f"The six strict gates remain **{', '.join(strict)}**. Four further items — "
+        f"**{', '.join(conditional)}** — are decision-dependent critical: they become "
+        "submission blockers only if the later request relies on the affected funding, measurement, "
+        "governance or reallocation proposition.",
+        "",
+        "Every item has one accountable owner, supporting agencies, required evidence, a control "
+        "deadline, escalation route, financial consequence, affected decision and controlled status. "
+        "The deadlines run from Cabinet notification or the stated programme/phase event; they are "
+        "management controls, not statutory time limits. Status is restricted to `open`, `requested`, "
+        "`received`, `accepted` or `disputed`.",
+        "",
+        "**No-cascade rule.** An unresolved item blocks only the decision IDs listed against it in "
+        "`VALIDATION_REGISTER.csv`. It does not suspend unrelated validation work or programmes.",
+        END.format(name="VALIDATION_SUMMARY"),
+    ]
+    return "\n".join(lines)
+
+
+def render_validation_register() -> str:
+    rows = validation_data()
+    labels = {
+        "pre_submission_gate": "Pre-submission gates",
+        "programme_launch_gate": "Programme-launch gates",
+        "phase_expansion_gate": "Phase-expansion gates",
+        "operational_baseline": "Operational baselines",
+        "deferrable_design_matter": "Deferrable design matters",
+    }
+    lines = [
+        START.format(name="VALIDATION_REGISTER"),
+        "**Control rule.** Classification determines when an unresolved item can block action. "
+        "Criticality is separate: `strict_gate` preserves the six existing hard gates, while "
+        "`decision_dependent_critical` identifies VAL-03, VAL-24, VAL-27 and VAL-28 as blockers "
+        "only when the proposed decision relies on them.",
+        "",
+    ]
+    for category in labels:
+        selected = [row for row in rows if row["classification"] == category]
+        lines += [f"### {labels[category]} ({len(selected)})", ""]
+        for row in selected:
+            criticality = row["criticality"].replace("_", " ")
+            lines += [
+                f"#### {row['validation_id']} — {row['item']}",
+                "",
+                f"- **Criticality / status:** {criticality}; `{row['status']}`",
+                f"- **Accountable owner:** {row['accountable_owner']}",
+                f"- **Supporting agencies:** {row['supporting_agencies']}",
+                f"- **Required evidence:** {row['required_evidence']}",
+                f"- **Control deadline:** {row['deadline']}",
+                f"- **Escalation:** {row['escalation_route']}",
+                f"- **Financial consequence if unresolved:** {row['financial_consequence']}",
+                f"- **Decision affected:** {row['decision_affected_if_unresolved']}",
+                "",
+            ]
+    lines += [
+        "**Status control.** Only the accountable owner may propose `accepted`; the interim "
+        "secretariat records the evidence reference and acceptance date. `Received` does not mean "
+        "accepted. Conflicting or incomplete evidence is `disputed` and follows the stated escalation route.",
+        END.format(name="VALIDATION_REGISTER"),
+    ]
+    return "\n".join(lines)
 
 
 def render_decision_architecture() -> str:
@@ -290,6 +387,8 @@ def replace_generated(text: str, name: str, rendered: str) -> str:
 def expected_sections() -> dict[str, str]:
     return {
         "DECISION_ARCHITECTURE": render_decision_architecture(),
+        "VALIDATION_SUMMARY": render_validation_summary(),
+        "VALIDATION_REGISTER": render_validation_register(),
         "PHASE_TABLE": render_phase_table(),
         "PROPOSAL_FINANCE": render_proposal_finance(),
         "FINAL_DECISION_RESOLUTION": render_final_decision_resolution(),
@@ -302,6 +401,7 @@ def main() -> None:
         proposal = fh.read()
     proposal_eol = "\r\n" if "\r\n" in proposal else "\n"
     proposal = replace_generated(proposal, "DECISION_ARCHITECTURE", render_decision_architecture().replace("\n", proposal_eol))
+    proposal = replace_generated(proposal, "VALIDATION_SUMMARY", render_validation_summary().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "PHASE_TABLE", render_phase_table().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "PROPOSAL_FINANCE", render_proposal_finance().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "FINAL_DECISION_RESOLUTION", render_final_decision_resolution().replace("\n", proposal_eol))
@@ -316,7 +416,16 @@ def main() -> None:
     )
     with open(ANNEXES, "w", encoding="utf-8", newline="") as fh:
         fh.write(annexes)
-    print("Synchronised generated integrity sections in proposal and technical annexes")
+
+    with open(ASSUMPTIONS, encoding="utf-8", newline="") as fh:
+        assumptions = fh.read()
+    assumptions_eol = "\r\n" if "\r\n" in assumptions else "\n"
+    assumptions = replace_generated(
+        assumptions, "VALIDATION_REGISTER", render_validation_register().replace("\n", assumptions_eol)
+    )
+    with open(ASSUMPTIONS, "w", encoding="utf-8", newline="") as fh:
+        fh.write(assumptions)
+    print("Synchronised generated integrity sections in proposal, assumptions and technical annexes")
 
 
 if __name__ == "__main__":

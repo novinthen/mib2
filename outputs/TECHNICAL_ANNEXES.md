@@ -147,7 +147,7 @@ Full detail in `RISK_AND_SAFEGUARD_REGISTER.csv` (21 rows). 14 carry critical in
 **The primary Malaysian Indian Blueprint 2017 (172 pp) was obtained and text-extracted** to `outputs/extracted/MIB_2017_blueprint.txt`, and is the basis on which five claims were rejected as unsupported. The hosted copy is not on a gov.my domain, which is recorded as a limitation of SRC-001.
 
 ## Annex G — Assumptions, decisions and validation items
-`ASSUMPTIONS_AND_DECISIONS.md`: material decisions with alternatives considered, provisional planning assumptions with sensitivity, **30 validation items** (six strict gates: VAL-01, VAL-09, VAL-11, VAL-19, VAL-23 and VAL-30), and deferrable matters.
+`ASSUMPTIONS_AND_DECISIONS.md` records material decisions, alternatives and provisional planning assumptions. `VALIDATION_REGISTER.csv` is the canonical control register for all **30 validation items**: **12 pre-submission gates, 8 programme-launch gates, 2 phase-expansion gates, 5 operational baselines and 3 deferrable validation matters**. The six strict gates remain VAL-01, VAL-09, VAL-11, VAL-19, VAL-23 and VAL-30; VAL-03, VAL-24, VAL-27 and VAL-28 are decision-dependent critical. Every item has one accountable owner, supporting agencies, evidence, deadline, escalation route, financial consequence, affected decision and controlled status.
 
 ## Annex H — Machine verification
 `verify_outputs.py` and `VERIFICATION_RESULTS.md`. Rebuild and re-verify in two commands:

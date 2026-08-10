@@ -103,48 +103,359 @@ These are labelled provisional in the registers and each carries a validation it
 
 ## Part C — Matters requiring official or political validation before formal Cabinet submission
 
-**None of these can be resolved by analysis. Each requires a decision, a dataset or a clearance that only the named body can give.**
+**None of these can be resolved by analysis. Each requires a decision, dataset, clearance or documented operational evidence from the accountable owner.**
 
-| ID | Item | Who must resolve it | Consequence if unresolved |
-|---|---|---|---|
-| VAL-01 | Constitutional and legal clearance of needs-based, community-targeted delivery under Articles 8 and 153; confirmation that no proposed instrument requires an Article 153 quota | Attorney-General's Chambers | **Gating.** No instrument may issue without it |
-| VAL-02 | Re-estimation of the Indian low-income household count and income distribution on a 2022/2024 basis | DOSM | The 227,600 figure is 2014 vintage and cannot anchor a 2026 plan |
-| VAL-03 | Confirmation of the total existing Indian-community allocation across all agencies in Budget 2026 | Ministry of Finance | The RM220m figure in source 1 could not be substantiated; the Phase 1 request cannot be finalised without this |
-| VAL-04 | Whether the DOSM ethnic share is of total population or of citizens | DOSM | Affects every derived population figure |
-| VAL-05 | Official disaggregated matriculation intake and offer series, and whether a 3.72% Indian sub-quota exists as an instrument | Ministry of Education | Two irreconcilable public figures (1,116 and 1,537) circulate; neither is official |
-| VAL-06 | MyDaftar 2011 outcome figures | National Registration Department | Currently an unverified precedent |
-| VAL-07 | Status and outcome of the 2021 MITRA-related enforcement action | MACC / courts | Retained only as reported; no assertion of guilt is made |
-| VAL-08 | Machinery-of-government history of MITRA and its current accounting-officer arrangements | Chief Secretary to the Government | Determines what the Task Force may and may not direct |
-| VAL-09 | Cohort extract: Indian children aged 4–5 by household income | DOSM / Ministry of Education | Drives PRG-02 scale (≈RM255m central) |
-| VAL-10 | Verification of the reported RM300m 2025 entrepreneur financing package | MITRA / TEKUN / Bank Rakyat | Excluded from the baseline until confirmed |
-| VAL-11 | SJKT share of the national dilapidated-schools programme | Ministry of Education | **Gating for costing.** Drives the 55% existing-funding assumption in PRG-03 |
-| VAL-12 | Verified opening documentation caseload and current median cycle time | Ministry of Home Affairs (JPN) | The whole of PRG-01's target structure depends on it |
-| VAL-13 | State-by-state consent for community facility participation | State governments | **Gating for PRG-04.** Without consent the programme cannot proceed in that state |
-| VAL-14 | Indian SPM cohort size and current post-school destinations | Ministry of Education | Scales PRG-05 and PRG-06 |
-| VAL-15 | TVET seat availability and employer apprenticeship appetite by sector | Ministry of Human Resources / HRD Corp | Determines whether 30,000 cumulative enrolees is deliverable |
-| VAL-16 | Professional mentor supply | Professional associations | PRG-08 depends on voluntary supply |
-| VAL-17 | Count of low-income Indian households with two or more concurrent barriers | DOSM / Department of Social Welfare | Determines whether a 60,000-household cap is the right coverage |
-| VAL-18 | SME Corp capacity to deliver the advisory volume | SME Corp | PRG-10 uses SME Corp as the vehicle |
-| VAL-19 | **PNB's willingness to participate in a matched-savings instrument, and MOF design approval** | PNB (commercial decision) and Ministry of Finance | **Gating for PRG-11 (≈RM200m central).** PNB cannot be directed by Cabinet decision |
-| VAL-20 | State housing agency capacity and legacy-site land status | State housing agencies / state land offices | PRG-12 is the most state-dependent programme |
-| VAL-21 | Civil service application volumes by ethnicity and the attrition point in the funnel | JPA / SPA | Determines whether the 4.2–4.8% range is achievable |
-| VAL-22 | Current grade-band distribution of Indian officers | JPA | Not published; PRG-14's first deliverable |
-| VAL-23 | Establishment approval for the delivery secretariat (35 posts) | JPA / Ministry of Finance | Gating for PRG-15 |
-| VAL-24 | DOSM collaboration on disaggregated statistics and the baseline survey design | DOSM | Gating for the whole measurement framework |
-| VAL-25 | Observed beneficiary overlap once the household record operates | Delivery secretariat | Replaces the assumed 0.45 overlap factor |
-| VAL-26 | Treasury view on price basis and whether nominal escalation should be applied | Ministry of Finance | Understates the Years 3–6 cash requirement by roughly 10–13% |
-| VAL-27 | **Political decision: whether the Prime Minister will chair quarterly for six years** | Prime Minister | The single largest delivery risk (RSK-01); the plan's central mechanism depends on it |
-| VAL-29 | Public-sector salary LOADING FACTOR: the multiple converting SSPA basic salary into a fully loaded employment cost (used for PRG-01, PRG-09 and PRG-15) is an assumption; only the underlying SSPA scale is sourced | Public Service Department / Ministry of Finance | Affects approximately RM194m of staffed-service cost |
-| VAL-30 | **Attorney-General's clearance specifically against Article 12(1)** (no discrimination on grounds of race in the provision of financial aid for the education of pupils) and **Article 136** (impartial treatment of federal employees of the same grade) | Attorney-General's Chambers | **Gating.** Approximately RM552m of the portfolio is educational financial aid (PRG-02, PRG-06, PRG-07), which engages Article 12(1) directly. PRG-13 and PRG-14 engage Article 136 |
-| VAL-28 | Whether MITRA's existing budget may be reallocated to programme lines | Ministry of Finance / MITRA | RM297.959m of the central total is assumed reallocated, spread across ELEVEN lead entities — MITRA cannot reallocate another ministry’s vote, so this must be put to MOF and to each affected ministry, not to MITRA alone |
+<!-- GENERATED:VALIDATION_REGISTER:START -->
+**Control rule.** Classification determines when an unresolved item can block action. Criticality is separate: `strict_gate` preserves the six existing hard gates, while `decision_dependent_critical` identifies VAL-03, VAL-24, VAL-27 and VAL-28 as blockers only when the proposed decision relies on them.
 
-**Six of these are gating in the strict sense — VAL-01, VAL-09, VAL-11, VAL-19, VAL-23 and VAL-30 — meaning the associated element cannot lawfully or practically commence until resolved.** They are flagged at the corresponding decision point in the proposal.
+### Pre-submission gates (12)
+
+#### VAL-01 — Constitutional and legal clearance of needs-based, community-targeted delivery under Articles 8 and 153; confirmation that no proposed instrument requires an Article 153 quota
+
+- **Criticality / status:** strict gate; `open`
+- **Accountable owner:** Attorney-General's Chambers
+- **Supporting agencies:** Prime Minister's Department; Ministry of Finance; relevant lead ministries
+- **Required evidence:** Written legal issues matrix and AGC clearance identifying permissible eligibility, outreach and instrument design
+- **Control deadline:** Day 45 after Cabinet notification
+- **Escalation:** Chief Secretary to the Government for inter-agency resolution; sponsoring minister returns any unresolved constitutional issue to Cabinet
+- **Financial consequence if unresolved:** No affected instrument may issue; affected programme costs must be removed from the implementation request
+- **Decision affected:** AN-04;CE-01;CE-03;CE-04;NA-07
+
+#### VAL-02 — Re-estimation of the Indian low-income household count and income distribution on a 2022/2024 basis
+
+- **Criticality / status:** standard; `open`
+- **Accountable owner:** DOSM
+- **Supporting agencies:** Ministry of Economy; Ministry of Finance; MITRA
+- **Required evidence:** Official tabulation with population, household, income, geography and reference-period definitions plus reproducible methodology
+- **Control deadline:** Day 45 after Cabinet notification
+- **Escalation:** Chief Statistician to senior-officials coordination mechanism; unresolved denominator reported in the formal submission
+- **Financial consequence if unresolved:** Programme scale and affordability cannot be validated; affected volumes remain planning assumptions
+- **Decision affected:** AN-04;CE-02;CE-03;CE-04;NA-06
+
+#### VAL-03 — Confirmation of the total existing Indian-community allocation across all agencies in Budget 2026
+
+- **Criticality / status:** decision dependent critical; `open`
+- **Accountable owner:** Ministry of Finance
+- **Supporting agencies:** Affected ministries; MITRA; Accountant General's Department
+- **Required evidence:** Vote- and programme-level schedule of approved allocations, commitments, legal availability and non-duplication certified by Treasury
+- **Control deadline:** Day 30 after Cabinet notification; mandatory before any funding request
+- **Escalation:** Secretary General of Treasury to Chief Secretary; sponsoring minister excludes unconfirmed funding from the submission
+- **Financial consequence if unresolved:** Phase 1 incremental requirement cannot be finalised and no amount may be represented as available existing funding
+- **Decision affected:** AN-04;CE-02;CE-04;NA-01;NA-02;NA-03
+
+#### VAL-04 — Whether the DOSM ethnic share is of total population or of citizens
+
+- **Criticality / status:** standard; `open`
+- **Accountable owner:** DOSM
+- **Supporting agencies:** Ministry of Economy
+- **Required evidence:** Official denominator definition and data table for the cited ethnic share
+- **Control deadline:** Day 30 after Cabinet notification
+- **Escalation:** Chief Statistician to senior-officials coordination mechanism
+- **Financial consequence if unresolved:** All population-derived volumes remain provisional and must be sensitivity-tested
+- **Decision affected:** AN-04;CE-03;NA-06
+
+#### VAL-08 — Machinery-of-government history of MITRA and its current accounting-officer arrangements
+
+- **Criticality / status:** standard; `open`
+- **Accountable owner:** Chief Secretary to the Government
+- **Supporting agencies:** Ministry of National Unity; MITRA; Treasury; Attorney-General's Chambers
+- **Required evidence:** Current administrative instrument, accounting-officer designation and written mandate map
+- **Control deadline:** Day 30 after Cabinet notification
+- **Escalation:** Chief Secretary resolves machinery-of-government ambiguity or directs a narrower governance design
+- **Financial consequence if unresolved:** Unverified authority or budget-control assumptions must be removed from the governance model
+- **Decision affected:** AN-03;AN-04;CE-01;NA-07
+
+#### VAL-09 — Cohort extract for Indian children aged 4–5 by household income
+
+- **Criticality / status:** strict gate; `open`
+- **Accountable owner:** DOSM
+- **Supporting agencies:** Ministry of Education; Ministry of Economy
+- **Required evidence:** Official cohort extract with age, household-income, citizenship, geography and enrolment definitions plus methodology
+- **Control deadline:** Day 45 after Cabinet notification
+- **Escalation:** Chief Statistician and Secretary General of Ministry of Education to Chief Secretary; PRG-02 excluded if unresolved
+- **Financial consequence if unresolved:** PRG-02 scale and its approximately RM255.360 million central planning cost cannot be validated
+- **Decision affected:** CE-02;CE-03;CE-04;NA-06
+
+#### VAL-11 — SJKT share of the national dilapidated-schools programme
+
+- **Criticality / status:** strict gate; `open`
+- **Accountable owner:** Ministry of Education
+- **Supporting agencies:** Ministry of Finance; Ministry of Economy; state education departments
+- **Required evidence:** School-level approved works and allocation schedule identifying existing funding available to eligible SJKT works
+- **Control deadline:** Day 45 after Cabinet notification
+- **Escalation:** Secretary General of Ministry of Education and Treasury to Chief Secretary; reprice PRG-03 if unresolved
+- **Financial consequence if unresolved:** The modelled 55% existing-funding share cannot be recognised; PRG-03 incremental funding may rise materially
+- **Decision affected:** CE-02;CE-03;CE-04;NA-01;NA-02
+
+#### VAL-24 — DOSM collaboration on disaggregated statistics and the baseline survey design
+
+- **Criticality / status:** decision dependent critical; `open`
+- **Accountable owner:** DOSM
+- **Supporting agencies:** Ministry of Economy; delivery secretariat; data-owning ministries; independent technical advisers
+- **Required evidence:** Written data-collaboration protocol, approved survey concept, statistical standards, disclosure controls and publication schedule
+- **Control deadline:** Day 60 after Cabinet notification; mandatory if the measurement framework is submitted for approval
+- **Escalation:** Chief Statistician to Chief Secretary; narrow the submission to datasets and indicators that agencies accept
+- **Financial consequence if unresolved:** The measurement framework and twelve to-be-established KPI baselines cannot be represented as deliverable
+- **Decision affected:** AN-04;CE-01;CE-03;CE-04;NA-06
+
+#### VAL-27 — Political decision on whether the Prime Minister will chair quarterly for six years
+
+- **Criticality / status:** decision dependent critical; `open`
+- **Accountable owner:** Prime Minister
+- **Supporting agencies:** Chief Secretary to the Government; sponsoring minister; Prime Minister's Department
+- **Required evidence:** Recorded decision on chair, cadence, delegation, succession and an alternative governance model if continuous PM chairmanship is not adopted
+- **Control deadline:** Day 60 after Cabinet notification; mandatory before proposing the permanent governance model
+- **Escalation:** Chief Secretary submits alternative chairing and escalation model to the Prime Minister and Cabinet
+- **Financial consequence if unresolved:** No direct appropriation effect; governance capacity and delivery-risk assumptions must be redesigned and costed if required
+- **Decision affected:** AN-04;CE-01;CE-04
+
+#### VAL-28 — Whether existing MITRA and ministry budgets may be reallocated to proposed programme lines
+
+- **Criticality / status:** decision dependent critical; `open`
+- **Accountable owner:** Ministry of Finance
+- **Supporting agencies:** MITRA; eleven affected lead entities; responsible accounting officers
+- **Required evidence:** Written vote-by-vote confirmation of legal availability, current commitments, reallocation authority and opportunity cost
+- **Control deadline:** Day 45 after Cabinet notification; mandatory before any reallocation request
+- **Escalation:** Secretary General of Treasury to Chief Secretary; unconfirmed amounts reclassified as new funding or removed
+- **Financial consequence if unresolved:** RM297.959 million of modelled reallocation cannot be recognised and the incremental requirement may rise by the same amount
+- **Decision affected:** AN-04;CE-02;CE-04;NA-01;NA-02;NA-03
+
+#### VAL-29 — Public-sector salary loading factor converting SSPA basic salary into fully loaded employment cost
+
+- **Criticality / status:** standard; `open`
+- **Accountable owner:** Public Service Department
+- **Supporting agencies:** Ministry of Finance; Prime Minister's Department; affected employing ministries
+- **Required evidence:** Approved costing circular or certified loading factor covering emoluments, statutory contributions, benefits and overheads
+- **Control deadline:** Day 45 after Cabinet notification
+- **Escalation:** Director-General of Public Service and Secretary General of Treasury to Chief Secretary
+- **Financial consequence if unresolved:** Approximately RM194 million of staffed-service cost must be recalculated; the Phase 1 ceiling cannot be finalised
+- **Decision affected:** AN-04;CE-02;CE-04;NA-01
+
+#### VAL-30 — Attorney-General's clearance specifically against Article 12(1) on educational financial aid and Article 136 on impartial treatment of federal employees
+
+- **Criticality / status:** strict gate; `open`
+- **Accountable owner:** Attorney-General's Chambers
+- **Supporting agencies:** Ministry of Education; Public Service Department; Public Service Commission; Ministry of Finance
+- **Required evidence:** Written legal issues matrix and clearance for PRG-02, PRG-06, PRG-07, PRG-13 and PRG-14 including permissible eligibility and outreach design
+- **Control deadline:** Day 45 after Cabinet notification
+- **Escalation:** Attorney General to sponsoring minister and Cabinet; remove or redesign affected programmes if unresolved
+- **Financial consequence if unresolved:** Approximately RM552 million of education-related portfolio scope and the affected public-service interventions cannot proceed in their current form
+- **Decision affected:** AN-04;CE-03;CE-04;NA-07
+
+### Programme-launch gates (8)
+
+#### VAL-05 — Official disaggregated matriculation intake and offer series, and whether a 3.72% Indian sub-quota exists as an instrument
+
+- **Criticality / status:** standard; `open`
+- **Accountable owner:** Ministry of Education
+- **Supporting agencies:** Ministry of Higher Education; Public Service Department
+- **Required evidence:** Official offer, acceptance and enrolment series by pathway plus any applicable policy instrument and data definitions
+- **Control deadline:** Before PRG-07 design-sheet approval
+- **Escalation:** Secretary General of Ministry of Education to senior-officials coordination mechanism
+- **Financial consequence if unresolved:** PRG-07 may provide navigation only; no seat claim or target may be funded or published as verified
+- **Decision affected:** CE-03;CE-04;NA-06
+
+#### VAL-13 — State-by-state consent for community facility participation
+
+- **Criticality / status:** standard; `open`
+- **Accountable owner:** Relevant state government for each participating state
+- **Supporting agencies:** Local authorities; land offices; trustees; applicable religious authorities; Prime Minister's Department
+- **Required evidence:** Written state and institutional consent plus jurisdiction, eligibility and referral map for each participating state
+- **Control deadline:** Before PRG-04 launch in the relevant state
+- **Escalation:** State Secretary to federal senior-officials coordination mechanism; exclude non-consenting jurisdictions
+- **Financial consequence if unresolved:** No PRG-04 commitment or expenditure may be made in a state without the applicable consent
+- **Decision affected:** CE-03;CE-04;NA-05
+
+#### VAL-15 — TVET seat availability and employer apprenticeship appetite by sector
+
+- **Criticality / status:** standard; `open`
+- **Accountable owner:** Ministry of Human Resources
+- **Supporting agencies:** HRD Corp; Department of Skills Development; TVET providers; employer associations
+- **Required evidence:** Provider capacity schedule, employer commitments or survey evidence, placement pipeline and sector-level demand test
+- **Control deadline:** Before PRG-06 design-sheet approval
+- **Escalation:** Secretary General of Ministry of Human Resources to senior-officials coordination mechanism; reduce scope to verified capacity
+- **Financial consequence if unresolved:** The proposed 30000 cumulative enrolment volume must be reduced or phased to verified capacity
+- **Decision affected:** CE-03;CE-04;NA-06
+
+#### VAL-16 — Professional mentor supply
+
+- **Criticality / status:** standard; `open`
+- **Accountable owner:** Ministry of Higher Education
+- **Supporting agencies:** Professional associations; universities; regulated professional bodies
+- **Required evidence:** Named partner commitments, mentor eligibility rules, safeguarding protocol and tested mentor-to-participant ratio
+- **Control deadline:** Before PRG-08 launch
+- **Escalation:** Secretary General of Ministry of Higher Education to senior-officials coordination mechanism; redesign as a smaller pilot if supply is insufficient
+- **Financial consequence if unresolved:** PRG-08 reach and operating cost must be reduced to available qualified mentor capacity
+- **Decision affected:** CE-03;CE-04
+
+#### VAL-18 — SME Corp capacity to deliver the advisory volume
+
+- **Criticality / status:** standard; `open`
+- **Accountable owner:** SME Corp Malaysia
+- **Supporting agencies:** Ministry of Entrepreneur Development and Cooperatives; Treasury; accredited delivery partners
+- **Required evidence:** Staffing and provider-capacity plan, unit-cost validation, service standard and signed delivery commitment
+- **Control deadline:** Before PRG-10 design-sheet approval
+- **Escalation:** SME Corp Chief Executive Officer to responsible ministry and senior-officials coordination mechanism
+- **Financial consequence if unresolved:** PRG-10 volume and cost must be reduced, phased or delivered through an approved alternative vehicle
+- **Decision affected:** CE-03;CE-04
+
+#### VAL-19 — PNB's willingness to participate in a matched-savings instrument, and Ministry of Finance design approval
+
+- **Criticality / status:** strict gate; `open`
+- **Accountable owner:** Ministry of Finance
+- **Supporting agencies:** Permodalan Nasional Berhad; Securities Commission Malaysia if applicable; approved alternative providers
+- **Required evidence:** Written independent commercial decision, product design, regulatory pathway, fiscal treatment and approved alternative if PNB declines
+- **Control deadline:** Before PRG-11 is included in any launch decision
+- **Escalation:** Minister of Finance reports unresolved product choice to Cabinet; Cabinet may not direct PNB's commercial decision
+- **Financial consequence if unresolved:** PRG-11 and its approximately RM200 million central planning cost must be excluded or redesigned
+- **Decision affected:** CE-02;CE-03;CE-04;NA-04
+
+#### VAL-20 — State housing agency capacity and legacy-site land status
+
+- **Criticality / status:** standard; `open`
+- **Accountable owner:** Relevant state housing agency and state land authority
+- **Supporting agencies:** Ministry of Housing and Local Government; local authorities; legal-aid partners
+- **Required evidence:** Site inventory, title and jurisdiction review, agency-capacity confirmation and case-referral protocol by state
+- **Control deadline:** Before PRG-12 launch in the relevant state
+- **Escalation:** State Secretary to federal senior-officials coordination mechanism; exclude unresolved sites or jurisdictions
+- **Financial consequence if unresolved:** No case-resolution commitment or expenditure may be made for sites without verified jurisdiction and delivery capacity
+- **Decision affected:** CE-03;CE-04;NA-05
+
+#### VAL-23 — Establishment approval for the proposed delivery secretariat of 35 posts
+
+- **Criticality / status:** strict gate; `open`
+- **Accountable owner:** Public Service Department
+- **Supporting agencies:** Ministry of Finance; Prime Minister's Department; Chief Secretary to the Government
+- **Required evidence:** Approved organisation design, functions, grades, headcount, emolument ceiling and establishment instrument
+- **Control deadline:** Before PRG-15 or any permanent secretariat is launched
+- **Escalation:** Director-General of Public Service and Secretary General of Treasury to Chief Secretary; retain interim arrangement or redesign
+- **Financial consequence if unresolved:** No permanent 35-post establishment or associated recurring cost may be approved; interim coordination remains within existing resources
+- **Decision affected:** AN-03;CE-01;CE-03;CE-04;NA-07
+
+### Phase-expansion gates (2)
+
+#### VAL-25 — Observed beneficiary overlap once the household record operates
+
+- **Criticality / status:** standard; `open`
+- **Accountable owner:** Delivery secretariat
+- **Supporting agencies:** DOSM; Department of Social Welfare; programme lead ministries; data-protection advisers
+- **Required evidence:** De-duplicated Phase 1 participation analysis with consent controls, overlap methodology and independent quality review
+- **Control deadline:** Before End-Year 2 administrative readiness review and any Phase 2 scale decision
+- **Escalation:** Head of delivery secretariat to senior-officials coordination mechanism and authorised phase-review body
+- **Financial consequence if unresolved:** Unique-beneficiary claims and Phase 2 scale must be recalculated; no expansion may rely on the assumed 0.45 overlap factor
+- **Decision affected:** CE-01;CE-03;NA-03;NA-06
+
+#### VAL-26 — Treasury view on price basis and whether nominal escalation should be applied
+
+- **Criticality / status:** standard; `open`
+- **Accountable owner:** Ministry of Finance
+- **Supporting agencies:** Ministry of Economy; affected ministries
+- **Required evidence:** Treasury-approved price basis, inflation convention and revised forward cost projection by phase
+- **Control deadline:** Before any Years 3–6 appropriation or Phase 2 expansion decision
+- **Escalation:** Secretary General of Treasury to authorised phase-review body and Cabinet through the relevant budget process
+- **Financial consequence if unresolved:** Years 3–6 cash requirements must be re-priced; no later-phase ceiling may rely on un-escalated 2026 prices without express Treasury acceptance
+- **Decision affected:** CE-02;NA-01;NA-03
+
+### Operational baselines (5)
+
+#### VAL-12 — Verified opening documentation caseload and current median cycle time
+
+- **Criticality / status:** standard; `open`
+- **Accountable owner:** National Registration Department
+- **Supporting agencies:** Ministry of Home Affairs; legal-aid and community referral partners
+- **Required evidence:** De-duplicated opening caseload, case taxonomy, age profile and median processing-time extract with definitions
+- **Control deadline:** Within 60 days of PRG-01 operational authorisation and before target calibration
+- **Escalation:** Director-General of National Registration to Secretary General of Ministry of Home Affairs; targets suspended until accepted
+- **Financial consequence if unresolved:** PRG-01 may launch only with capacity-based service controls; outcome targets and unit-cost assumptions must be recalibrated
+- **Decision affected:** CE-03;NA-06
+
+#### VAL-14 — Indian SPM cohort size and current post-school destinations
+
+- **Criticality / status:** standard; `open`
+- **Accountable owner:** Ministry of Education
+- **Supporting agencies:** DOSM; Ministry of Higher Education; Ministry of Human Resources
+- **Required evidence:** Official cohort and destination dataset with denominator, attrition, geography and reference-year definitions
+- **Control deadline:** Before PRG-05 and PRG-06 target calibration; no later than end of first operational year
+- **Escalation:** Secretary General of Ministry of Education to senior-officials coordination mechanism
+- **Financial consequence if unresolved:** PRG-05 and PRG-06 targets and unit volumes remain provisional; expansion cannot be justified by the current estimate
+- **Decision affected:** CE-03;NA-06
+
+#### VAL-17 — Count of low-income Indian households with two or more concurrent barriers
+
+- **Criticality / status:** standard; `open`
+- **Accountable owner:** DOSM
+- **Supporting agencies:** Department of Social Welfare; delivery secretariat; Ministry of Economy
+- **Required evidence:** Consent-compatible household baseline or statistically valid estimate with barrier taxonomy and overlap methodology
+- **Control deadline:** Before PRG-09 target calibration; no later than end of first operational year
+- **Escalation:** Chief Statistician and Director-General of Social Welfare to senior-officials coordination mechanism
+- **Financial consequence if unresolved:** The 60000-household cap remains provisional and expansion or graduation claims cannot be validated
+- **Decision affected:** CE-03;NA-06
+
+#### VAL-21 — Civil service application volumes by ethnicity and the attrition point in the funnel
+
+- **Criticality / status:** standard; `open`
+- **Accountable owner:** Public Service Commission
+- **Supporting agencies:** Public Service Department; participating service commissions; DOSM
+- **Required evidence:** Application, eligibility, assessment, offer and acceptance series with consistent denominator and privacy controls
+- **Control deadline:** Before PRG-13 target calibration; no later than end of first operational year
+- **Escalation:** Chair of Public Service Commission and Director-General of Public Service to senior-officials coordination mechanism
+- **Financial consequence if unresolved:** No representation outcome target may be approved; PRG-13 remains an outreach and process-transparency intervention
+- **Decision affected:** CE-03;NA-06
+
+#### VAL-22 — Current grade-band distribution of Indian officers
+
+- **Criticality / status:** standard; `open`
+- **Accountable owner:** Public Service Department
+- **Supporting agencies:** Public Service Commission; participating ministries
+- **Required evidence:** HRMIS extract by grade band with denominator, exclusions, privacy controls and publication methodology
+- **Control deadline:** Before PRG-14 target calibration; no later than end of first operational year
+- **Escalation:** Director-General of Public Service to Chief Secretary
+- **Financial consequence if unresolved:** PRG-14 advancement targets remain to-be-established and no claim of grade disparity may be adopted
+- **Decision affected:** CE-03;NA-06
+
+### Deferrable design matters (3)
+
+#### VAL-06 — MyDaftar 2011 outcome figures
+
+- **Criticality / status:** standard; `open`
+- **Accountable owner:** National Registration Department
+- **Supporting agencies:** Ministry of Home Affairs
+- **Required evidence:** Official programme outturn or written confirmation that the historical figure cannot be verified
+- **Control deadline:** Not required for implementation submission; before any use as evidence
+- **Escalation:** Director-General of National Registration to Secretary General of Ministry of Home Affairs
+- **Financial consequence if unresolved:** No programme cost effect; the precedent must remain qualified or be removed
+- **Decision affected:** AN-04
+
+#### VAL-07 — Status and outcome of the 2021 MITRA-related enforcement action
+
+- **Criticality / status:** standard; `open`
+- **Accountable owner:** Malaysian Anti-Corruption Commission
+- **Supporting agencies:** Attorney-General's Chambers; relevant courts; MITRA
+- **Required evidence:** Official public disposition record with legally safe attribution and status
+- **Control deadline:** Not required for implementation submission; before any public use
+- **Escalation:** MACC Chief Commissioner or AGC to sponsoring ministry legal adviser
+- **Financial consequence if unresolved:** No programme cost effect; the claim must remain excluded or strictly qualified
+- **Decision affected:** AN-04
+
+#### VAL-10 — Verification of the reported RM300 million 2025 entrepreneur financing package
+
+- **Criticality / status:** standard; `open`
+- **Accountable owner:** MITRA
+- **Supporting agencies:** TEKUN Nasional; Bank Rakyat; Ministry of Entrepreneur Development and Cooperatives
+- **Required evidence:** Official approval, product, disbursement and beneficiary records or written non-confirmation
+- **Control deadline:** Not required for implementation submission; before use as a baseline
+- **Escalation:** MITRA Chief Executive Officer to Ministry of National Unity and Treasury
+- **Financial consequence if unresolved:** No direct portfolio cost effect; the amount remains excluded from baseline and duplication analysis
+- **Decision affected:** AN-04;CE-02
+
+**Status control.** Only the accountable owner may propose `accepted`; the interim secretariat records the evidence reference and acceptance date. `Received` does not mean accepted. Conflicting or incomplete evidence is `disputed` and follows the stated escalation route.
+<!-- GENERATED:VALIDATION_REGISTER:END -->
 
 ---
 
-## Part D — Deferrable matters
+## Part D — Ancillary deferrable matters outside the validation register
 
-Recorded and not pursued: the precise legal instrument for the Task Force (Cabinet decision versus circular); the branding and public name of the initiative; the dashboard's technical platform; whether the mid-term evaluator is appointed competitively or by direction; the treatment of Indian Malaysians in Sabah and Sarawak, whose circumstances differ materially and who are not separately analysed here — recorded as a known analytical gap rather than resolved.
+These are not additional validation IDs and do not affect the controlled count of thirty. Recorded and not pursued: the precise legal instrument for the Task Force (Cabinet decision versus circular); the branding and public name of the initiative; the dashboard's technical platform; whether the mid-term evaluator is appointed competitively or by direction; the treatment of Indian Malaysians in Sabah and Sarawak, whose circumstances differ materially and who are not separately analysed here — recorded as a known analytical gap rather than resolved.
 
 
 ---

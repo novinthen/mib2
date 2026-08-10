@@ -13,7 +13,7 @@ python outputs/verify_outputs.py             # required and expanded checks; exi
 
 **Timestamp:** 2026-08-10 (latest integrity run)
 **Final exit status of `verify_outputs.py`:** **0 (PASS)**
-**Result:** **85 checks passed, 0 hard failures, 1 standing disclosure warning.**
+**Result:** **91 checks passed, 0 hard failures, 1 standing disclosure warning.**
 
 The standing warning is deliberate: PRG-01 and PRG-14 have no complete published costing formula, so their amounts remain explicitly identified as authored judgements rather than derivations.
 
@@ -30,6 +30,7 @@ The standing warning is deliberate: PRG-01 and PRG-14 have no complete published
 | 5 | **PASS** | 0 | 76 checks, 0 hard failures - final state |
 | 6 | **PASS** | 0 | Stage 1 integrity repair: 80 checks, 0 hard failures; generated-section, narrative-count, typed-reference and narrative-financial checks added |
 | 7 | **PASS** | 0 | Stage 2 decision repair: 85 checks, 0 hard failures; canonical decision register, generated decision sections, decision-scope check `[12a]`, and canonical financial-claim check `[12e]` added |
+| 8 | **PASS** | 0 | Stage 3 validation control: 91 checks, 0 hard failures; canonical validation register, five gate classes, controlled status vocabulary, decision linkage and checks `[13]`–`[13b]` added |
 
 ### Checks added in response to the independent critique
 
@@ -50,7 +51,7 @@ The standing warning is deliberate: PRG-01 and PRG-14 have no complete published
 
 ## Archived full output of Run 6
 
-The transcript below records the 80-check Stage 1 run. Run 7 supersedes it; the current 85-check result is recorded above and in `AUDIT_LOG.md`. The added checks cover `DECISION_REGISTER.csv` schema, row width, unique IDs, canonical-file presence, generated decision sections, decision-scope integrity and the model-derived contents of CLM-054.
+The transcript below records the 80-check Stage 1 run. Run 8 supersedes it; the current 91-check result is recorded above and in `AUDIT_LOG.md`. Later checks cover the decision and validation register schemas, row widths, unique IDs, canonical-file presence, generated decision and validation sections, decision-scope integrity, validation-control completeness and the model-derived contents of CLM-054.
 
 ```text
 ==============================================================================
