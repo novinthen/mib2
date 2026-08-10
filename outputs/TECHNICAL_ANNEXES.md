@@ -142,7 +142,7 @@ Full detail in `KPI_REGISTER.csv` (16 rows, one per retained substantive program
 Full detail in `RISK_AND_SAFEGUARD_REGISTER.csv` (21 rows). 14 carry critical inherent ratings. **6 retain a High residual rating after safeguards: RSK-01, RSK-04, RSK-05, RSK-09, RSK-19 and RSK-20.** These are not fully mitigable by design and are matters for Cabinet's judgement.
 
 ## Annex F — Evidence and citation register
-`SOURCE_REGISTER.csv` (28 sources) and `CLAIMS_AND_FIGURES_REGISTER.csv` (62 claims). Each source records title, institution, date, location, URL, access date, geographic and population scope, definition, tier in the hierarchy, limitations, and whether it supports the claim directly or only by inference.
+`SOURCE_REGISTER.csv` (31 sources) and `CLAIMS_AND_FIGURES_REGISTER.csv` (62 claims). Each source records title, institution, date, location, URL, access date, geographic and population scope, definition, tier in the hierarchy, limitations, and whether it supports the claim directly or only by inference.
 
 **The primary Malaysian Indian Blueprint 2017 (172 pp) was obtained and text-extracted** to `outputs/extracted/MIB_2017_blueprint.txt`, and is the basis on which five claims were rejected as unsupported. The hosted copy is not on a gov.my domain, which is recorded as a limitation of SRC-001.
 
@@ -167,3 +167,43 @@ Approximately 2,676 words (18.3%) of source 2 (Tabs 7–8: political messaging, 
 `LEGAL_ISSUES_REGISTER.csv` is the canonical matrix of **18 open legal issues**. It separates 10 pre-submission clearances from 8 programme-launch clearances and maps each question to legal authorities, competent clearance owners, affected programmes and Stage 2 decisions, related validation controls, required written evidence and the consequence if unresolved. The detailed rendered record is in `ASSUMPTIONS_AND_DECISIONS.md`, Part G.
 
 This drafting exercise has obtained **no legal clearance**. In particular, AGC and MOF must confirm the commencement, subsidiary and transitional instruments for the Government Procurement Act 2026 [Act 882] before any procurement route is selected. PRG-04 has six separate pathway-specific issues; a generic whole-package statement that the proposal was "legally reviewed" does not satisfy any of them.
+
+---
+
+<!-- GENERATED:PHASE_1_FISCAL_SCHEDULE:START -->
+## Annex L — Phase 1 fiscal validation schedule
+
+The schedule below is generated from the central rows of `COSTING_MODEL.csv`. It states gross Years 1–2 cost only. The model's existing/reallocated/new columns cover six years and are not apportioned here because no ministry or Treasury has confirmed a Phase 1 funding split.
+
+| Cost line | Programme / portfolio line | Lead ministry | Planning category | Phase 1 gross cost | Confidence |
+|---|---|---|---|---:|---|
+| CL-002 | PRG-01 — National Documentation Resolution Programme | Ministry of Home Affairs (JPN) | operating expenditure | RM14.600m | Benchmarked |
+| CL-005 | PRG-02 — Early Childhood Access Programme | Ministry of Education | transfer grant | RM53.760m | Provisional |
+| CL-008 | PRG-03 — SJKT Safety and Learning Environment Programme | Ministry of Education | development expenditure | RM60.720m | Provisional |
+| CL-011 | PRG-04 — Multi-Faith Community Institution Safety and Compliance Programme | Ministry of National Unity | development expenditure | RM16.400m | Provisional |
+| CL-014 | PRG-05 — School-to-Pathway Guidance and Placement Support | Ministry of Education | operating expenditure | RM9.800m | Provisional |
+| CL-017 | PRG-06 — TVET and STEM Progression Pipeline | Ministry of Human Resources | operating expenditure | RM46.500m | Benchmarked |
+| CL-020 | PRG-07 — Tertiary Access Navigation and Transparency | Ministry of Education | operating expenditure | RM6.000m | Provisional |
+| CL-023 | PRG-08 — Professional Entry and Mentoring | Ministry of Higher Education | operating expenditure | RM0.000m | Provisional |
+| CL-026 | PRG-09 — Household Progression Programme | Prime Minister's Department | operating expenditure | RM29.280m | Benchmarked |
+| CL-029 | PRG-10 — Microenterprise Growth and Vendor Capability Programme | Ministry of Entrepreneur and Cooperatives Development | operating expenditure | RM0.000m | Provisional |
+| CL-032 | PRG-11 — Household Savings and Asset Accumulation Scheme | Ministry of Finance | transfer grant | RM30.000m | Provisional |
+| CL-035 | PRG-12 — Housing Access and Estate Legacy Resolution | Ministry of Housing and Local Government | development expenditure | RM14.000m | Provisional |
+| CL-038 | PRG-13 — Public Service Application Pipeline Programme | Public Service Department (JPA) | operating expenditure | RM7.000m | Provisional |
+| CL-041 | PRG-14 — Public Service Professional Advancement | Public Service Department (JPA) | operating expenditure | RM0.000m | Provisional |
+| CL-044 | PRG-15 — Task Force and Delivery Secretariat | Prime Minister's Department | administration | RM11.700m | Benchmarked |
+| CL-047 | PRG-16 — Data, Evaluation and Public Reporting | Prime Minister's Department | monitoring evaluation | RM18.000m | Provisional |
+| CL-050 | PRG-XX-ADMIN — Portfolio administration overhead | All lead ministries | administration | RM12.710m | Provisional |
+| CL-053 | PRG-XX-CONT — Portfolio contingency | Ministry of Finance | contingency | RM24.785m | Provisional |
+| **Total** | **Central planning case** |  |  | **RM355.255m** | **Unvalidated** |
+
+### L.1 Scenario boundary
+
+| Scenario | Phase 1 gross planning cost | Status |
+|---|---:|---|
+| Conservative | RM283.359m | Cost sensitivity only; output package not yet specified |
+| Central | RM355.255m | Gross design case; not a ceiling or request |
+| Expanded | RM441.532m | Cost sensitivity only; output package not yet specified |
+
+Before submission for implementation, MOF must replace this gross schedule with an accepted annual schedule of components and outputs showing confirmed existing funding, approved reallocation and incremental funding by vote, programme/activity, object, accounting officer and transaction route. The validated total may be lower or higher than the current central case; it is not mechanically selected from these three sensitivities.
+<!-- GENERATED:PHASE_1_FISCAL_SCHEDULE:END -->

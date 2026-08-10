@@ -20,6 +20,7 @@ All data derives from CSV registers in `../outputs/`:
 - `DECISION_REGISTER.csv`
 - `VALIDATION_REGISTER.csv`
 - `LEGAL_ISSUES_REGISTER.csv`
+- `FISCAL_VALIDATION_REGISTER.csv`
 
 These files are the **single source of truth**. The website displays them; it does not store data separately.
 

@@ -109,6 +109,13 @@ REQUIRED = {
                                   "affected_decisions", "related_validation_ids",
                                   "consequence_if_unresolved", "clearance_stage", "status",
                                   "evidence_reference", "acceptance_date"],
+    "FISCAL_VALIDATION_REGISTER.csv": ["fiscal_control_id", "domain",
+                                       "validation_question", "provisional_model_position",
+                                       "required_evidence", "validation_owner",
+                                       "supporting_bodies", "affected_programmes",
+                                       "affected_decisions", "related_validation_ids",
+                                       "validation_stage", "consequence_if_unresolved",
+                                       "status", "evidence_reference", "acceptance_date"],
 }
 
 data = {}
@@ -158,7 +165,8 @@ ID_COL = {"SOURCE_REGISTER.csv": "source_id",
           "BENEFICIARY_RECONCILIATION.csv": "overlap_group",
           "DECISION_REGISTER.csv": "decision_id",
           "VALIDATION_REGISTER.csv": "validation_id",
-          "LEGAL_ISSUES_REGISTER.csv": "legal_issue_id"}
+          "LEGAL_ISSUES_REGISTER.csv": "legal_issue_id",
+          "FISCAL_VALIDATION_REGISTER.csv": "fiscal_control_id"}
 for fname, col in ID_COL.items():
     rows = data.get(fname, [])
     if not rows:
@@ -401,7 +409,7 @@ for fname, cols in REQUIRED.items():
             # These two fields are intentionally blank while a legal issue is
             # open/requested. Check [14] requires both once a competent
             # authority records a disposition.
-            if fname == "LEGAL_ISSUES_REGISTER.csv" and c in {"evidence_reference", "acceptance_date"}:
+            if fname in {"LEGAL_ISSUES_REGISTER.csv", "FISCAL_VALIDATION_REGISTER.csv"} and c in {"evidence_reference", "acceptance_date"}:
                 continue
             if not str(r.get(c, "")).strip():
                 blanks.append(f"{fname}:{rid}.{c}")
@@ -525,7 +533,7 @@ CANON = ["BENEFICIARY_RECONCILIATION.csv", "STATUS.md", "ASSUMPTIONS_AND_DECISIO
          "PROGRAMME_REGISTER.csv", "NARRATIVE_REGISTER.csv",
          "CONFLICT_AND_DUPLICATION_REGISTER.csv", "RESPONSIBILITY_MATRIX.csv",
          "KPI_REGISTER.csv", "RISK_AND_SAFEGUARD_REGISTER.csv", "COSTING_MODEL.csv",
-         "COSTING_ASSUMPTIONS.csv", "DECISION_REGISTER.csv", "VALIDATION_REGISTER.csv", "LEGAL_ISSUES_REGISTER.csv", "verify_outputs.py", "VERIFICATION_RESULTS.md",
+         "COSTING_ASSUMPTIONS.csv", "DECISION_REGISTER.csv", "VALIDATION_REGISTER.csv", "LEGAL_ISSUES_REGISTER.csv", "FISCAL_VALIDATION_REGISTER.csv", "verify_outputs.py", "VERIFICATION_RESULTS.md",
          "STAGE_1_DIAGNOSTIC.md", "STAGE_2_RECONCILIATION.md",
          "MIB_2.0_EXECUTIVE_PROPOSAL.md", "TECHNICAL_ANNEXES.md"]
 absent = [f for f in CANON if not os.path.exists(os.path.join(HERE, f))
@@ -554,9 +562,9 @@ assumptions_text = open(adpath, encoding="utf-8").read() if os.path.exists(adpat
 expected = expected_sections()
 stale = []
 for section_name, rendered in expected.items():
-    if section_name == "TECHNICAL_ANNEX_A":
+    if section_name in {"TECHNICAL_ANNEX_A", "PHASE_1_FISCAL_SCHEDULE"}:
         document = annex_text
-    elif section_name in {"VALIDATION_REGISTER", "LEGAL_ISSUES_REGISTER"}:
+    elif section_name in {"VALIDATION_REGISTER", "LEGAL_ISSUES_REGISTER", "FISCAL_VALIDATION_REGISTER"}:
         document = assumptions_text
     else:
         document = proposal_text
@@ -859,6 +867,140 @@ check(prg04_pathway_ids <= legal_ids,
       "[14c] PRG-04 has six separate pathway clearances for public purpose, consent, Islamic administration, legacy referrals, excluded expenditure and religion-data handling",
       f"[14c] PRG-04 LEGAL PATHWAY COVERAGE MISSING: {sorted(prg04_pathway_ids - legal_ids)}")
 
+# ---- CHECK 15: Stage 5 Phase 1 fiscal validation architecture -----------
+fiscal_rows = data.get("FISCAL_VALIDATION_REGISTER.csv", [])
+fiscal_ids = {row["fiscal_control_id"] for row in fiscal_rows}
+expected_fiscal_ids = {f"FIS-{number:02d}" for number in range(1, 11)}
+allowed_fiscal_stages = {"phase_1_ceiling_gate", "programme_cost_gate", "later_phase_gate"}
+allowed_fiscal_status = {
+    "open", "requested", "received", "validated", "validated_with_conditions",
+    "rejected", "superseded",
+}
+fiscal_defects = []
+required_fiscal_fields = (
+    "domain", "validation_question", "provisional_model_position", "required_evidence",
+    "validation_owner", "supporting_bodies", "affected_programmes", "affected_decisions",
+    "related_validation_ids", "validation_stage", "consequence_if_unresolved", "status",
+)
+for row in fiscal_rows:
+    fid = row["fiscal_control_id"]
+    for field in required_fiscal_fields:
+        if not row[field].strip():
+            fiscal_defects.append(f"{fid}: blank {field}")
+    if row["validation_stage"] not in allowed_fiscal_stages:
+        fiscal_defects.append(f"{fid}: invalid validation stage {row['validation_stage']!r}")
+    if row["status"] not in allowed_fiscal_status:
+        fiscal_defects.append(f"{fid}: invalid status {row['status']!r}")
+    programme_refs = {item.strip() for item in row["affected_programmes"].split(";") if item.strip()}
+    unknown_programmes = programme_refs - retained
+    if not programme_refs or unknown_programmes:
+        fiscal_defects.append(f"{fid}: affected programmes missing or not retained {sorted(unknown_programmes)}")
+    affected_decisions = {item.strip() for item in row["affected_decisions"].split(";") if item.strip()}
+    unknown_decisions = affected_decisions - decision_ids
+    if not affected_decisions or unknown_decisions:
+        fiscal_defects.append(f"{fid}: affected decisions missing or unknown {sorted(unknown_decisions)}")
+    related_validation = {item.strip() for item in row["related_validation_ids"].split(";") if item.strip()}
+    unknown_validation = related_validation - set(validation_ids)
+    if not related_validation or unknown_validation:
+        fiscal_defects.append(f"{fid}: validation controls missing or unknown {sorted(unknown_validation)}")
+    evidence = row["evidence_reference"].strip()
+    accepted = row["acceptance_date"].strip()
+    disposition_status = {"validated", "validated_with_conditions", "rejected", "superseded"}
+    if row["status"] in disposition_status and (not evidence or not accepted):
+        fiscal_defects.append(f"{fid}: disposition status lacks Treasury evidence or acceptance date")
+    if row["status"] in {"open", "requested"} and (evidence or accepted):
+        fiscal_defects.append(f"{fid}: {row['status']} item improperly carries disposition evidence/date")
+
+if fiscal_ids != expected_fiscal_ids:
+    fiscal_defects.append(f"fiscal IDs are {sorted(fiscal_ids)}, expected FIS-01 to FIS-10")
+fiscal_stage_counts = Counter(row["validation_stage"] for row in fiscal_rows)
+expected_fiscal_stages = Counter({
+    "phase_1_ceiling_gate": 5,
+    "programme_cost_gate": 4,
+    "later_phase_gate": 1,
+})
+if fiscal_stage_counts != expected_fiscal_stages:
+    fiscal_defects.append(f"fiscal-stage distribution drift: {dict(fiscal_stage_counts)}")
+fiscal_covered_programmes = {
+    item.strip()
+    for row in fiscal_rows
+    for item in row["affected_programmes"].split(";")
+    if item.strip()
+}
+if fiscal_covered_programmes != retained:
+    fiscal_defects.append(
+        f"fiscal coverage does not equal all retained programmes: missing {sorted(retained - fiscal_covered_programmes)}"
+    )
+
+required_fiscal_domains = {
+    "existing_allocations", "reallocation_authority", "incremental_phase_1_ceiling",
+    "staff_establishment_and_emoluments", "unit_cost_validation", "inflation_and_cashflow",
+    "economic_and_vote_classification", "procurement_and_disbursement_route",
+    "contingent_and_matched_exposure", "scenario_outputs_and_affordability",
+}
+actual_fiscal_domains = {row["domain"] for row in fiscal_rows}
+if actual_fiscal_domains != required_fiscal_domains:
+    fiscal_defects.append(
+        f"fiscal domains drift: missing {sorted(required_fiscal_domains - actual_fiscal_domains)}"
+    )
+
+central_phase_1 = sum(
+    D(row["years_1_2"]) for row in cm if row["scenario"] == "central"
+)
+conservative_phase_1 = sum(
+    D(row["years_1_2"]) for row in cm if row["scenario"] == "conservative"
+)
+expanded_phase_1 = sum(
+    D(row["years_1_2"]) for row in cm if row["scenario"] == "expanded"
+)
+for amount, label in (
+    (central_phase_1, "Central"),
+    (conservative_phase_1, "Conservative"),
+    (expanded_phase_1, "Expanded"),
+):
+    formatted = f"RM{amount:,.3f}m"
+    if formatted not in annex_text:
+        fiscal_defects.append(f"Phase 1 schedule lacks model-derived {label} amount {formatted}")
+
+for required_phrase in (
+    "gross planning cost, not a requested, net or Treasury-validated ceiling",
+    "No modelled existing or reallocated amount is recognised as available funding",
+):
+    if required_phrase not in proposal_text:
+        fiscal_defects.append(f"proposal lacks fiscal boundary: {required_phrase}")
+if "no ministry or Treasury has confirmed a Phase 1 funding split" not in annex_text:
+    fiscal_defects.append("technical annex improperly implies a Phase 1 funding split")
+if "A validated Phase 1 ceiling exists only when FIS-01, FIS-02, FIS-03 and FIS-07 are validated" not in ad_text:
+    fiscal_defects.append("fiscal register lacks the composite ceiling rule")
+
+check(not fiscal_defects,
+      "[15] all 10 Treasury controls have questions, evidence, owners, programme/decision/validation mappings, unresolved consequences and controlled status",
+      f"[15] FISCAL VALIDATION DEFECTS: {fiscal_defects[:24]}")
+check(fiscal_stage_counts == expected_fiscal_stages,
+      "[15a] fiscal controls are distributed as 5 Phase 1 ceiling, 4 programme-cost and 1 later-phase gate",
+      f"[15a] FISCAL VALIDATION-STAGE DRIFT: {dict(fiscal_stage_counts)}")
+check(all(
+          not (row["status"] in {"validated", "validated_with_conditions", "rejected", "superseded"}
+               and (not row["evidence_reference"].strip() or not row["acceptance_date"].strip()))
+          and not (row["status"] in {"open", "requested"}
+                   and (row["evidence_reference"].strip() or row["acceptance_date"].strip()))
+          for row in fiscal_rows),
+      "[15b] no Treasury validation is implied without written evidence and an acceptance date",
+      "[15b] ONE OR MORE FISCAL CONTROLS IMPROPERLY IMPLY TREASURY VALIDATION")
+check(actual_fiscal_domains == required_fiscal_domains and fiscal_covered_programmes == retained,
+      "[15c] the ten required fiscal domains cover all 16 retained programmes",
+      "[15c] FISCAL DOMAIN OR PROGRAMME COVERAGE IS INCOMPLETE")
+check(all(f"RM{value:,.3f}m" in annex_text for value in (
+          conservative_phase_1, central_phase_1, expanded_phase_1)),
+      "[15d] conservative, central and expanded Phase 1 gross costs are generated directly from the canonical model",
+      "[15d] PHASE 1 SCENARIO FIGURES DO NOT MATCH THE CANONICAL MODEL")
+check("no ministry or Treasury has confirmed a Phase 1 funding split" in annex_text,
+      "[15e] the Phase 1 schedule does not fabricate existing, reallocated or incremental funding splits",
+      "[15e] PHASE 1 FUNDING-SPLIT LIMITATION IS MISSING")
+check(all(row["status"] == "open" for row in fiscal_rows),
+      "[15f] all fiscal controls remain open; no Treasury-reviewed ceiling is represented as complete",
+      "[15f] A FISCAL CONTROL HAS CHANGED FROM OPEN WITHOUT EXTERNAL EVIDENCE REVIEW")
+
 # ---- CHECK 12c: every typed cross-reference resolves everywhere ----------
 known_refs = {
     "CLM": {r["claim_id"] for r in data.get("CLAIMS_AND_FIGURES_REGISTER.csv", [])},
@@ -868,6 +1010,7 @@ known_refs = {
     "RSP": {r["responsibility_id"] for r in responsibility_rows},
     "VAL": set(validation_ids),
     "LGL": legal_ids,
+    "FIS": fiscal_ids,
 }
 unresolved_refs = []
 for path in _glob.glob(os.path.join(HERE, "*.csv")) + _glob.glob(os.path.join(HERE, "*.md")):
