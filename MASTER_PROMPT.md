@@ -710,6 +710,17 @@ must not be mechanically treated as a Phase 1 funding split. No Phase 1 ceiling 
 validated without a Ministry of Finance evidence reference and acceptance date. Years 3–6 remain
 indicative and subject to evaluation, refreshed costing and separate appropriations.
 
+The proposal must also maintain `outputs/PROGRAMME_DESIGN_REGISTER.csv` and generate
+`outputs/PROGRAMME_DESIGN_SHEETS.md`, with one controlled two-part implementation sheet for every
+retained substantive programme. Each sheet must join the canonical problem and baseline, target
+population, eligibility, service, exclusions, lead and accounting officer, supporting agencies,
+authority route, delivery channel, geography, annual or phase volume, unit-cost basis, Phase 1 and
+six-year cost, KPI and verification source, complaints and review route, data collected, retention
+and access rule, dependencies, and stop, redesign and expansion criteria. A sheet must not be
+recorded as accepted, conditionally accepted, rejected or superseded without the responsible
+accounting officer's written evidence reference and an acceptance date. Internal design completeness
+must never be described as agency-confirmed authority, capacity or partner commitment.
+
 The matrix must separately cover Articles 8, 12(1), 136 and 153; citizenship and documentation
 discretion; implementing-body mandates; public finance; the current procurement regime including
 the Government Procurement Act 2026 [Act 882] and its commencement/transitional instruments;
@@ -741,7 +752,9 @@ Completion requires all of the following:
 8. Every remaining official-validation item is listed explicitly.
 9. Every legal issue remains explicitly unresolved unless the competent authority's written
    disposition, evidence reference and acceptance date are recorded.
-10. The final response reports concrete audit evidence rather than unsupported assurances.
+10. Every retained programme has a complete generated design sheet, and no sheet is represented as
+    agency-accepted without written evidence and an acceptance date.
+11. The final response reports concrete audit evidence rather than unsupported assurances.
 
 The final response must state:
 

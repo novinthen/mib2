@@ -20,6 +20,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PROPOSAL = os.path.join(HERE, "MIB_2.0_EXECUTIVE_PROPOSAL.md")
 ANNEXES = os.path.join(HERE, "TECHNICAL_ANNEXES.md")
 ASSUMPTIONS = os.path.join(HERE, "ASSUMPTIONS_AND_DECISIONS.md")
+PROGRAMME_DESIGN_SHEETS = os.path.join(HERE, "PROGRAMME_DESIGN_SHEETS.md")
 START = "<!-- GENERATED:{name}:START -->"
 END = "<!-- GENERATED:{name}:END -->"
 
@@ -84,6 +85,125 @@ def legal_data() -> list[dict[str, str]]:
 
 def fiscal_data() -> list[dict[str, str]]:
     return load_csv("FISCAL_VALIDATION_REGISTER.csv")
+
+
+def programme_design_data() -> list[dict[str, str]]:
+    return load_csv("PROGRAMME_DESIGN_REGISTER.csv")
+
+
+def refs_for_programme(rows: list[dict[str, str]], programme_id: str, id_field: str) -> list[str]:
+    return [
+        row[id_field]
+        for row in rows
+        if programme_id in {item.strip() for item in row["affected_programmes"].split(";") if item.strip()}
+    ]
+
+
+def render_programme_design_summary() -> str:
+    rows = programme_design_data()
+    statuses = {
+        status: sum(row["design_status"] == status for row in rows)
+        for status in sorted({row["design_status"] for row in rows})
+    }
+    signoffs = sum(row["signoff_status"] == "accepted" for row in rows)
+    return "\n".join([
+        START.format(name="PROGRAMME_DESIGN_SUMMARY"),
+        "## 2.7 Programme delivery-feasibility architecture",
+        "",
+        f"`PROGRAMME_DESIGN_REGISTER.csv` controls **{len(rows)} programme design sheets**, one for each retained substantive programme. "
+        "Each sheet joins the canonical programme, responsibility, KPI, costing, legal and fiscal records with controlled delivery fields: "
+        "exclusions, channel, geography, annual volume, complaints and appeals, data handling, dependencies and stop, redesign and expansion criteria.",
+        "",
+        "| Feasibility test | Required evidence before implementation approval |",
+        "|---|---|",
+        "| Authority and accountability | Competent lead body, accounting officer, lawful mandate and applicable legal clearances |",
+        "| Capacity and route | Confirmed delivery channel, geographic footprint, staff/provider/partner capacity and transaction route |",
+        "| Volume and cost | Agency-accepted annual volume, evidence-backed unit cost, total cost and Treasury treatment |",
+        "| Performance and remedy | Baseline, KPI, verification source, complaint/review route and named escalation |",
+        "| Data and safeguards | Minimum dataset, approved access and retention schedule, dependencies and controlled stop/redesign/expansion tests |",
+        "",
+        "Current status: " + ", ".join(
+            f"**{count} {status.replace('_', ' ')}**" for status, count in statuses.items()
+        ) + f"; **{signoffs} of {len(rows)} accepted by the responsible accounting officer**. "
+        "These are internally complete design drafts, not signed agency commitments. A sheet may be recorded as accepted only with written evidence and an acceptance date.",
+        "",
+        "**Implementation boundary.** A programme may enter the formal implementation request only when its sheet is accepted, its mapped launch gates are cleared, "
+        "its delivery capacity and partner commitments are evidenced, and its included Phase 1 component has a Treasury-approved route. Unresolved programme-specific matters do not block unrelated sheets.",
+        END.format(name="PROGRAMME_DESIGN_SUMMARY"),
+    ])
+
+
+def render_programme_design_sheets() -> str:
+    designs = {row["programme_id"]: row for row in programme_design_data()}
+    programmes = {
+        row["programme_id"]: row for row in load_csv("PROGRAMME_REGISTER.csv")
+        if row["retain_decision"].upper().startswith("RETAIN")
+    }
+    responsibilities = {row["programme_id"]: row for row in load_csv("RESPONSIBILITY_MATRIX.csv")}
+    kpis = {row["programme_id"]: row for row in load_csv("KPI_REGISTER.csv")}
+    costs = {
+        row["programme_id"]: row for row in load_csv("COSTING_MODEL.csv")
+        if row["scenario"] == "central" and not row["programme_id"].startswith("PRG-XX")
+    }
+    assumptions = {row["programme_id"]: row for row in load_csv("COSTING_ASSUMPTIONS.csv")}
+    legal = legal_data()
+    fiscal = fiscal_data()
+    lines = [
+        "# MIB 2.0 Programme Design Sheets",
+        "",
+        "**Control status:** Internal implementation-design drafts for agency validation. No sheet is signed, no programme is authorised to launch, and no fiscal or partner commitment is implied.",
+        "",
+        "Each sheet is generated from canonical registers. `PROGRAMME_DESIGN_REGISTER.csv` supplies delivery-control fields; programme, responsibility, KPI, cost, legal and fiscal facts are joined from their controlling registers. Monetary values are 2026-price central planning assumptions unless stated otherwise.",
+        "",
+    ]
+    for programme_id in sorted(programmes):
+        design = designs[programme_id]
+        programme = programmes[programme_id]
+        responsibility = responsibilities[programme_id]
+        kpi = kpis[programme_id]
+        cost = costs[programme_id]
+        assumption = assumptions[programme_id]
+        legal_refs = "; ".join(refs_for_programme(legal, programme_id, "legal_issue_id"))
+        fiscal_refs = "; ".join(refs_for_programme(fiscal, programme_id, "fiscal_control_id"))
+        lines += [
+            f"## {programme_id} — {programme['programme_name']}",
+            "",
+            f"**Design status:** `{design['design_status']}` · **Agency sign-off:** `{design['signoff_status']}` · **Phase:** {responsibility['phase']}",
+            "",
+            "### Sheet 1 — Service, authority and resources",
+            "",
+            "| Design field | Controlled position |",
+            "|---|---|",
+            f"| Problem and baseline | {programme['problem_addressed']} **Baseline:** {kpi['baseline_value']} ({kpi['baseline_year']}; `{kpi['baseline_status']}`). |",
+            f"| Target population and eligibility | **Population:** {programme['target_group']} **Eligibility:** {programme['eligibility']} |",
+            f"| Service delivered | {programme['delivery_mechanism']} |",
+            f"| Exclusions | {design['exclusions']} |",
+            f"| Lead and accounting officer | **Lead:** {responsibility['lead_ministry_or_agency']} **Accounting officer:** {responsibility['accounting_officer']} |",
+            f"| Supporting agencies | {responsibility['supporting_agencies']} |",
+            f"| Authority route | {responsibility['mandate_basis']} Status: `{responsibility['mandate_verification_status']}`. Legal issues: {legal_refs}. |",
+            f"| Delivery channel and coverage | **Channel:** {design['delivery_channel']} **Coverage:** {design['geographic_coverage']} |",
+            f"| Volume | {design['annual_volume']} Status: `{design['volume_status']}`. |",
+            f"| Cost | **Phase 1:** RM{money(d(cost['years_1_2']))}m. **Six years:** RM{money(d(cost['six_year_total']))}m. **Confidence:** `{cost['confidence']}`. Method: {cost['cost_method']} Unit-cost basis: {assumption['basis_and_benchmark']} |",
+            f"| Fiscal route | {fiscal_refs}. No amount is confirmed until the applicable controls are accepted by Treasury. |",
+            "",
+            "### Sheet 2 — Performance, remedy and safeguards",
+            "",
+            "| Design field | Controlled position |",
+            "|---|---|",
+            f"| KPI and verification | **{kpi['kpi_id']} — {kpi['kpi_name']}:** {kpi['definition']} **Frequency:** {kpi['measurement_frequency']}. **Owner/source:** {kpi['data_owner']}; {kpi['verification_source']}. |",
+            f"| Complaints and appeals | {design['complaints_and_appeals']} |",
+            f"| Data collected | {design['data_collected']} |",
+            f"| Retention and access | {design['retention_and_access_rule']} |",
+            f"| Key dependencies | {design['key_dependencies']} |",
+            f"| Stop criteria | {design['stop_criteria']} |",
+            f"| Redesign criteria | {design['redesign_criteria']} |",
+            f"| Expansion criteria | {design['expansion_criteria']} |",
+            f"| Required acceptance | {design['signoff_owner']} must accept the sheet in writing. Evidence: {design['evidence_reference'] or 'not received'}. Acceptance date: {design['acceptance_date'] or 'not recorded'}. |",
+            "",
+            "<div style=\"page-break-after: always;\"></div>",
+            "",
+        ]
+    return "\n".join(lines).rstrip() + "\n"
 
 
 def render_fiscal_summary() -> str:
@@ -617,6 +737,7 @@ def expected_sections() -> dict[str, str]:
         "LEGAL_CLEARANCE_SUMMARY": render_legal_summary(),
         "LEGAL_ISSUES_REGISTER": render_legal_register(),
         "FISCAL_VALIDATION_SUMMARY": render_fiscal_summary(),
+        "PROGRAMME_DESIGN_SUMMARY": render_programme_design_summary(),
         "FISCAL_VALIDATION_REGISTER": render_fiscal_register(),
         "PHASE_TABLE": render_phase_table(),
         "PROPOSAL_FINANCE": render_proposal_finance(),
@@ -634,6 +755,7 @@ def main() -> None:
     proposal = replace_generated(proposal, "VALIDATION_SUMMARY", render_validation_summary().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "LEGAL_CLEARANCE_SUMMARY", render_legal_summary().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "FISCAL_VALIDATION_SUMMARY", render_fiscal_summary().replace("\n", proposal_eol))
+    proposal = replace_generated(proposal, "PROGRAMME_DESIGN_SUMMARY", render_programme_design_summary().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "PHASE_TABLE", render_phase_table().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "PROPOSAL_FINANCE", render_proposal_finance().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "FINAL_DECISION_RESOLUTION", render_final_decision_resolution().replace("\n", proposal_eol))
@@ -666,7 +788,9 @@ def main() -> None:
     )
     with open(ASSUMPTIONS, "w", encoding="utf-8", newline="") as fh:
         fh.write(assumptions)
-    print("Synchronised generated integrity sections in proposal, assumptions and technical annexes")
+    with open(PROGRAMME_DESIGN_SHEETS, "w", encoding="utf-8", newline="") as fh:
+        fh.write(render_programme_design_sheets())
+    print("Synchronised generated integrity sections and programme design sheets")
 
 
 if __name__ == "__main__":

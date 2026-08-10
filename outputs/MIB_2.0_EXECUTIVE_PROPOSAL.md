@@ -132,6 +132,24 @@ Current status: **10 open**. No modelled existing or reallocated amount is recog
 **Submission boundary.** The later Cabinet paper must seek one Treasury-reviewed Phase 1 ceiling for an identified component package. It must show gross cost, confirmed existing allocations, approved reallocations and true incremental funding separately. Years 3–6 remain non-binding planning scenarios subject to evaluation, refreshed costing and separate appropriations.
 <!-- GENERATED:FISCAL_VALIDATION_SUMMARY:END -->
 
+<!-- GENERATED:PROGRAMME_DESIGN_SUMMARY:START -->
+## 2.7 Programme delivery-feasibility architecture
+
+`PROGRAMME_DESIGN_REGISTER.csv` controls **16 programme design sheets**, one for each retained substantive programme. Each sheet joins the canonical programme, responsibility, KPI, costing, legal and fiscal records with controlled delivery fields: exclusions, channel, geography, annual volume, complaints and appeals, data handling, dependencies and stop, redesign and expansion criteria.
+
+| Feasibility test | Required evidence before implementation approval |
+|---|---|
+| Authority and accountability | Competent lead body, accounting officer, lawful mandate and applicable legal clearances |
+| Capacity and route | Confirmed delivery channel, geographic footprint, staff/provider/partner capacity and transaction route |
+| Volume and cost | Agency-accepted annual volume, evidence-backed unit cost, total cost and Treasury treatment |
+| Performance and remedy | Baseline, KPI, verification source, complaint/review route and named escalation |
+| Data and safeguards | Minimum dataset, approved access and retention schedule, dependencies and controlled stop/redesign/expansion tests |
+
+Current status: **16 draft pending agency confirmation**; **0 of 16 accepted by the responsible accounting officer**. These are internally complete design drafts, not signed agency commitments. A sheet may be recorded as accepted only with written evidence and an acceptance date.
+
+**Implementation boundary.** A programme may enter the formal implementation request only when its sheet is accepted, its mapped launch gates are cleared, its delivery capacity and partner commitments are evidenced, and its included Phase 1 component has a Treasury-approved route. Unresolved programme-specific matters do not block unrelated sheets.
+<!-- GENERATED:PROGRAMME_DESIGN_SUMMARY:END -->
+
 ---
 
 # 3. The reality, stated accurately
@@ -268,12 +286,12 @@ Structured mentoring, professional-association placement partnerships and entry-
 ### Pillar 3 — Livelihoods, enterprise and assets
 
 **PRG-09 Household Progression Programme** — *Prime Minister's Department (delivery secretariat)* — Phases 1–3
-A designated Progression Navigator per enrolled household at a caseload of 150, a single consent-based household progression record, coordinated referral to existing programmes, and periodic review. Approximately **120 navigators and 18,000 households in Phase 1, rising to approximately 400 navigators and 60,000 households cumulatively** — approximately 26% of the 2014-basis low-income Indian household count, or about 10% of all Indian households.
+A designated Progression Navigator per enrolled household at a caseload of 150, a single consent-based household progression record, coordinated referral to existing programmes, and periodic review. Approximately **120 navigators and concurrent capacity for 18,000 households in Phase 1, rising to approximately 400 navigators and concurrent capacity for 60,000 households in Phase 3** — approximately 26% of the 2014-basis low-income Indian household count, or about 10% of all Indian households at the Phase 3 peak. Cumulative reach is not stated before case duration and turnover are observed.
 Coverage is **capped and is not universal.** The second source document's "each participating family" is given a defined meaning: households enrolled in this programme, not all Indian households (CLM-043). Navigators coordinate access; they do not approve benefits.
 **Outcome:** enrolled households show measurable movement in two or more of income stability, employment, savings and housing security. **Six-year central cost: RM133.2 million.**
 
 **PRG-10 Microenterprise Growth and Vendor Capability Programme** — *Ministry of Entrepreneur and Cooperatives Development* — Phases 2–3
-Structured advisory on financial management, compliance, digitalisation, quality certification and procurement readiness; consortium formation; bid preparation. Approximately 6,000 enterprises.
+Structured advisory on financial management, compliance, digitalisation, quality certification and procurement readiness; consortium formation; bid preparation. Approximately 5,000 enterprises in the central planning case.
 **No new financing facility is created.** Financing continues on existing TEKUN, SPUMI, AIM and BRIEF-i rails. **The ethnic procurement set-aside and 2% participation quota in the source material are rejected** on Article 8 equality grounds and would in any case require Treasury instruction changes and AGC clearance (CLM-039). Procurement participation is **measured and published, not mandated.**
 **Outcome:** revenue and employment growth among participating enterprises. **Six-year central cost: RM36.0 million.**
 
