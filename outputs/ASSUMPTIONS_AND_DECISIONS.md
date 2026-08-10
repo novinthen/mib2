@@ -151,8 +151,8 @@ Recorded and not pursued: the precise legal instrument for the Task Force (Cabin
 
 ## Part E — Output volumes by scenario (added after independent critique)
 
-The earlier package stated volumes only at central-scenario levels, so a Cabinet asked to
-approve the conservative envelope was not told what it buys. Volumes scale with the variable
+The earlier package stated volumes only at central-scenario levels, so a decision-maker testing
+the conservative scenario was not shown what it would buy. Volumes scale with the variable
 component of each programme; fixed scope (the SJKT audit covers all 528 schools regardless)
 does not scale.
 
@@ -172,9 +172,9 @@ does not scale.
 | PRG-12 Housing | households assisted | 4,500 | **6,000** | 7,800 |
 | PRG-13 Public service pipeline | candidates prepared (6 yr) | 18,000 | **24,000** | 31,200 |
 
-KPI targets in `KPI_REGISTER.csv` are stated at central-scenario volumes. If Cabinet approves
-the conservative envelope, every volume-linked KPI target reduces by 25% and must be restated
-before the formal submission.
+KPI targets in `KPI_REGISTER.csv` are stated at central-scenario volumes. If the later formal
+implementation submission adopts the conservative scenario, every volume-linked KPI target must
+be reduced consistently and restated before approval.
 
 ---
 

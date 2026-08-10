@@ -57,7 +57,7 @@ The current package is expected to include, among other items:
 - conflicts and duplications;
 - risks and safeguards;
 - assumptions and validation items;
-- six Cabinet decisions;
+- a three-tier Cabinet decision architecture separating five operative approvals, four conditional endorsements and seven express deferrals;
 - a six-year, three-phase delivery model.
 
 Known headline figures must be derived from the source data, never hard-coded into multiple components. At the time this instruction was prepared, the reported figures included:

@@ -6,7 +6,7 @@
 
 ---
 
-**Status of this document.** This is an executive proposal seeking *preliminary approval in principle*. It is not a Cabinet Memorandum, not an appropriation request, and not a final implementation blueprint. Preliminary endorsement would authorise validation, detailed design and the preparation of a formal Cabinet submission. It would not constitute an appropriation, statutory authority, procurement approval, or final approval of any individual programme.
+**Status of this document.** This is an executive proposal seeking a bounded preliminary decision: approval of policy direction and a 90-calendar-day validation process; conditional endorsement of the architecture as a design basis; and express deferral of all implementation and fiscal commitments. It is not a Cabinet Memorandum, an appropriation request or a final implementation blueprint. Only the items marked **Approve now** in Part 2 would become operative.
 
 **Price basis.** All figures are 2026 nominal ringgit, price base year 2026, with no inflation escalation applied. This understates the nominal cash requirement in Years 3–6 by approximately 10–13% at 2.5% annual inflation, and is disclosed as a limitation (VAL-26).
 
@@ -25,7 +25,7 @@ MIB 2.0 proposes:
 - **Four pillars** addressing the four structural exclusions, delivered through **sixteen retained substantive programmes**, each with a named accountable ministry, an accounting officer, a phase, an outcome, a key performance indicator and a cost treatment. The programme register also records five non-retained source proposals for auditability; they are not part of the implementation portfolio.
 - **Three two-year phases**, gated on evidence rather than on the calendar.
 - A **Prime Minister-chaired Task Force** with a delivery secretariat in the Prime Minister's Department, meeting quarterly against a published dashboard — a coordinating and accountability body, not a new authority over ministries.
-- A **six-year central cost of RM1,484.273 million**, of which the **incremental new funding requirement is RM847.677 million**, the remaining RM636.596 million being existing allocations and proposed reallocation (CLM-054).
+- An **indicative six-year central planning scenario of RM1,484.273 million**, with a **modelled incremental new funding requirement of RM847.677 million** and RM636.596 million provisionally classified as existing allocations or proposed reallocation (CLM-054). None of these amounts is submitted as an approved or verified envelope.
 
 **What is different about this proposal is what it declines to promise.** The MIB's 7% civil service target is not carried forward, because reaching it would require roughly 43,000 net additional Indian officers within six years and is not achievable (CLM-051). No ethnic procurement set-aside is proposed. No citizenship clearance percentage is guaranteed. Twelve of the sixteen indicators have a baseline status of `to-be-established`, and establishing those baselines — not hitting invented targets — is the principal deliverable of Phase 1. A plan that promises less and delivers it is the only remaining way to close a credibility gap that a decade of larger promises has widened.
 
@@ -33,18 +33,48 @@ MIB 2.0 proposes:
 
 # 2. Decisions requested
 
-Cabinet is invited to approve **in principle**, subject to validation and appropriation:
+<!-- GENERATED:DECISION_ARCHITECTURE:START -->
+## 2.1 Approve now
+
+These decisions create authority to validate and prepare. They do not launch the six-year programme or approve new expenditure.
 
 | # | Decision | What it authorises | What it does **not** authorise |
 |---|---|---|---|
-| **D1** | Adopt MIB 2.0 in principle as a six-year national blueprint for Malaysian Indian socioeconomic advancement within Malaysia's needs-based national development framework | Detailed design and validation of the architecture set out in Part 5 | Any expenditure, any statutory instrument, or the adoption of any individual programme |
-| **D2** | Establish a Prime Minister-chaired Task Force on Malaysian Indian Progression, with a delivery secretariat in the Prime Minister's Department | Preparation of terms of reference, establishment of 35 secretariat posts subject to JPA and MOF approval, and the first quarterly meeting | Transfer of any ministry's functions, budget or accounting-officer responsibility to the Task Force |
-| **D3** | Endorse the governance, accountability and delivery framework in Part 6 — quarterly review, published dashboards within 14 days, annual Auditor-General audit tabled in Parliament, and independent mid-term and final evaluation | The reporting and audit obligations described | Any change to existing lines of ministerial accountability |
-| **D4** | Endorse the six-year architecture — four pillars, three two-year phases, and the programme direction in Part 5 | Ministries to develop detailed programme designs for validation | Commencement of any programme before its validation items are cleared |
-| **D5** | Approve in principle the funding framework in Part 7 — a central six-year envelope of RM1,484.273 million with an incremental new requirement of RM847.677 million — subject to validation and to the normal appropriation process | Ministry of Finance to scope the Phase 1 envelope in the next supply cycle | Any appropriation. Phase 2 and Phase 3 envelopes are explicitly **not** sought at this time |
-| **D6** | Authorise the Task Force and responsible ministries to complete the thirty validation items in `ASSUMPTIONS_AND_DECISIONS.md` Part C and to prepare the formal Cabinet submission | The validation programme, including AGC clearance, DOSM re-estimation and MOF confirmation of existing allocations | Anything contingent on the outcome of those validations |
+| **AN-01** | Approve the policy direction and strategic objectives of MIB 2.0 as the basis for further government design and validation | A common policy direction focused on removing structural barriers through needs-based delivery | Adoption of the six-year implementation portfolio; any ethnic entitlement; any expenditure or statutory change |
+| **AN-02** | Authorise a 90-calendar-day cross-agency validation exercise beginning on the date of Cabinet notification | Collection and reconciliation of the thirty validation items; agency data requests; legal, fiscal and delivery testing | Programme launch; beneficiary enrolment; grants; procurement; contracts; permanent establishment; or commitment beyond the validation period |
+| **AN-03** | Establish an interim coordination arrangement and require participating ministries and agencies to nominate accountable focal points | A Prime Minister-sponsored oversight group, a senior-officials coordination mechanism and an interim secretariat operating within existing approved functions and resources | Creation of the proposed 35 permanent secretariat posts; transfer of statutory powers, budgets or accounting-officer responsibilities; direction of independent or state authorities |
+| **AN-04** | Authorise preparation of a formal implementation submission after validation | Programme design sheets, a legal issues matrix, a Treasury-validated Phase 1 fiscal memorandum and an implementation decision paper | Automatic return to Cabinet with the current scope or figures; unresolved items must be removed, re-scoped or presented as explicit conditions |
+| **AN-05** | Require validation and design work to use existing approved resources unless a separate capped request is justified | Use of existing lawful administrative capacity for the validation exercise; preparation of a separately itemised request if a demonstrable resource gap remains | Any new design or validation appropriation under this proposal; use of the indicative six-year envelope; retrospective or open-ended expenditure |
 
-**Four validation items are gating in the strict sense** and are drawn to Cabinet's attention now: AGC clearance of needs-based community-targeted delivery (VAL-01); the Ministry of Education's confirmation of the SJKT share of the national dilapidated-schools programme (VAL-11); Permodalan Nasional Berhad's willingness to participate in a matched-savings instrument, which is a commercial decision Cabinet cannot direct (VAL-19); and establishment approval for the delivery secretariat (VAL-23).
+## 2.2 Endorse conditionally
+
+These propositions may guide detailed design, but have no operative effect unless their stated dependencies are cleared and a later decision expressly activates them.
+
+| # | Decision | What it authorises | What it does **not** authorise |
+|---|---|---|---|
+| **CE-01** | Conditionally endorse the six-year architecture as the basis for validation and detailed design | Testing of the four-pillar, three-phase structure and its sequencing | Adoption of the architecture as a binding implementation plan or authority to proceed by calendar alone |
+| **CE-02** | Conditionally endorse the central fiscal scenario as an indicative planning case only | Treasury testing of programme costs, funding classifications, inflation treatment and affordability against conservative and expanded sensitivity cases | Approval of a final RM1,484.273 million envelope; confirmation of RM636.596 million as existing or reallocated funding; or any appropriation |
+| **CE-03** | Conditionally endorse the sixteen retained substantive programme directions for detailed design | Preparation of programme design sheets and agency feasibility decisions | Approval, launch or funding of any individual programme; acceptance of provisional volumes or targets |
+| **CE-04** | Conditionally endorse Phase 1 as a candidate implementation package for a later decision | Detailed scoping of a Phase 1 package and identification of the clearances applying to each component | Commencement of Phase 1; approval of its current RM355.3 million central scenario; or bypass of AGC, MOF, JPA, agency, state or partner decisions |
+
+## 2.3 Do not approve now
+
+These exclusions are part of the decision itself. Silence or general endorsement must not be interpreted as approval of any item below.
+
+| # | Excluded decision | Required before reconsideration |
+|---|---|---|
+| **NA-01** | Do not approve the final six-year fiscal envelope | Treasury validation and later Cabinet decision |
+| **NA-02** | Do not approve or recognise unverified ministry reallocations as available funding | Ministry and Treasury confirmation |
+| **NA-03** | Do not approve any Phase 1 appropriation or any Years 3–6 appropriation | Normal appropriation and Malaysia Plan processes |
+| **NA-04** | Do not approve or direct PNB participation in PRG-11 | PNB commercial agreement and MOF design approval |
+| **NA-05** | Do not approve commitments dependent on states, local authorities, trustees or religious authorities | Written consent and applicable legal or administrative approval |
+| **NA-06** | Do not approve programme outcome targets whose baselines are not verified | Verified baseline and agency acceptance |
+| **NA-07** | Do not approve permanent-establishment, statutory, procurement or contractual consequences | Applicable establishment, legal, fiscal and procurement approvals |
+
+**Decision rule.** Only AN-01 to AN-05 would take effect on this preliminary decision. CE-01 to CE-04 are design parameters, not operative approvals. NA-01 to NA-07 are express exclusions. If the recorded Cabinet decision does not preserve that distinction, the sponsoring ministry must correct the record before undertaking any action.
+<!-- GENERATED:DECISION_ARCHITECTURE:END -->
+
+The validation exercise must resolve the thirty items in `ASSUMPTIONS_AND_DECISIONS.md` Part C. Six are strict gates: AGC clearance of needs-based community-targeted delivery (VAL-01); DOSM validation of the low-income child cohort (VAL-09); Ministry of Education confirmation of the SJKT funding share (VAL-11); PNB's independent willingness to participate (VAL-19); JPA and MOF establishment approval (VAL-23); and AGC clearance under Articles 12(1) and 136 (VAL-30). A strict gate applies only to the affected decision or programme; one unresolved partner-specific gate does not automatically block unrelated validation work.
 
 ---
 
@@ -235,7 +265,7 @@ Access to existing INTAN and JPA development programmes, with participation and 
 | | **Phase 1 (Years 1–2)** | **Phase 2 (Years 3–4)** | **Phase 3 (Years 5–6)** |
 |---|---|---|---|
 | **Purpose** | Establish what does not exist | Build the pathways | Consolidate and graduate |
-| **Central cost** | RM355.3m | RM520.8m | RM608.2m |
+| **Indicative central planning cost** | RM355.3m | RM520.8m | RM608.2m |
 | **Defining deliverables** | Verified caseload baseline; 528 SJKT audits; baseline survey; DPIA; dashboard live; secretariat operational; 12 of 16 KPIs baselined | TVET pipeline at scale; enterprise advisory; housing legacy review tabled; first disaggregated intake series published for three consecutive years | Savings scheme at scale; graduation measurement; final independent evaluation |
 | **Gate** | **End-Year 2 administrative readiness review:** Cabinet or its authorised committee decides whether Phase 2 may proceed, be corrected or be re-scoped | **End-Year 3 independent mid-term evaluation:** determines whether Phase 3 may proceed and whether ongoing Phase 2 delivery must be corrected or re-scoped | **Year 6 final evaluation:** informs successor arrangements; creates no automatic continuation |
 <!-- GENERATED:PHASE_TABLE:END -->
@@ -248,7 +278,7 @@ Sequencing is justified administratively: measures requiring only administrative
 
 ## 6.1 The Task Force
 
-A **Task Force on Malaysian Indian Progression**, established by Cabinet decision, chaired personally by the Prime Minister, meeting **quarterly without exception**, with a delivery secretariat of approximately 35 posts in the Prime Minister's Department.
+The proposed steady-state model is a **Task Force on Malaysian Indian Progression**, chaired by the Prime Minister and meeting quarterly, with a delivery secretariat of approximately 35 posts in the Prime Minister's Department. **That permanent model is not approved by this preliminary decision.** During the 90-day validation period, coordination operates through nominated agency focal points and an interim secretariat using existing approved functions and resources. Creation of the 35 posts remains subject to VAL-23 and a later express decision.
 
 **What it is:** a coordinating, accountability and escalation body. It sets service standards, reviews performance, arbitrates inter-ministry blockages, and publishes.
 
@@ -278,10 +308,10 @@ Adopted from the second source document and given operational definition:
 
 ---
 
-# 7. Funding framework
+# 7. Indicative fiscal model
 
 <!-- GENERATED:PROPOSAL_FINANCE:START -->
-## 7.1 The envelope
+## 7.1 Indicative planning scenarios — not approval envelopes
 
 | Scenario | Six-year total | Phase 1 | Phase 2 | Phase 3 | New funding |
 |---|---:|---:|---:|---:|---:|
@@ -291,7 +321,7 @@ Adopted from the second source document and given operational definition:
 
 Scenarios are **sensitivity cases on identical programme definitions**, not alternative blueprints. Conservative applies 0.75× and expanded 1.30× to the variable component of each programme; fixed components (systems, audits, secretariat, evaluations) do not scale. The conservative case approximates the position if participation across the portfolio runs 25% below plan.
 
-**Gross portfolio cost is RM1,484.273 million. The incremental new fiscal requirement is RM847.677 million** — approximately RM141 million per year averaged over six years, against MITRA's verified 2026 allocation of RM150 million (CLM-019). The remaining RM636.596 million comprises RM338.637 million of existing allocations and RM297.959 million of proposed reallocations. Both classifications remain subject to Treasury and ministry validation.
+**The indicative central scenario has a gross portfolio cost of RM1,484.273 million and a modelled incremental new fiscal requirement of RM847.677 million** — approximately RM141 million per year averaged over six years, against MITRA's verified 2026 allocation of RM150 million (CLM-019). The remaining RM636.596 million is modelled as RM338.637 million of existing allocations and RM297.959 million of proposed reallocations. These are unverified planning classifications, not recognised funding sources, and remain subject to Treasury and ministry validation.
 
 ## 7.2 Confidence
 
@@ -301,7 +331,7 @@ Scenarios are **sensitivity cases on identical programme definitions**, not alte
 | **Benchmarked** — based on comparable official programmes or credible unit-cost evidence | RM473.400m | **31.9%** |
 | **Provisional** — transparent but unverified assumptions | RM1,010.873m | **68.1%** |
 
-**No cost line in this portfolio is Confirmed.** That is stated plainly because it determines what Cabinet is being asked to approve: a framework in principle, not a fully costed implementation programme. No programme in this proposal is described as fully costed while material assumptions remain provisional.
+**No cost line in this portfolio is Confirmed.** The central scenario is therefore presented for conditional endorsement as a planning case only, not as a fiscal framework or envelope for approval. No programme in this proposal is described as fully costed while material assumptions remain provisional.
 <!-- GENERATED:PROPOSAL_FINANCE:END -->
 
 ## 7.3 Cost structure
@@ -361,7 +391,7 @@ Every retained substantive programme runs on an existing delivery agency; only t
 Because the levers sit in at least six ministries, the states, and a constitutionally independent service commission. No ministerial-level body can convene that table. This is also the plan's largest risk (RSK-01), and Cabinet should treat the chairmanship commitment as the substantive question, not a formality.
 
 **4. What is new funding versus existing or redirected?**
-Of RM1,484.273 million gross, RM847.677 million is new; RM636.596 million is existing allocation and proposed reallocation. The new requirement averages approximately RM141 million per year. The true existing envelope is **not yet verified** — the RM220 million figure in circulation could not be substantiated (CLM-018, VAL-03).
+In the indicative central model, RM847.677 million of RM1,484.273 million is classified as new and RM636.596 million as existing allocation or proposed reallocation. Those are modelling classifications, not verified funding sources. The modelled new requirement averages approximately RM141 million per year. The true existing envelope is **not yet verified** — the RM220 million figure in circulation could not be substantiated (CLM-018, VAL-03).
 
 **5. Are ministries capable of delivery within six years?**
 Not at the volumes the source material proposed. Volumes have been cut to what is staffed and costed: household case management capped at approximately 26% of the 2014-basis low-income Indian household count, housing at 6,000 households, preschool at the actual child cohort. Delivery capacity — not money — is the binding constraint (RSK-09).
@@ -373,10 +403,10 @@ Published eligibility criteria; payment to institutions and verified accounts; p
 Sixteen indicators with defined verification sources. Twelve have a baseline status of `to-be-established`, so for those the first measurable outcome is principally a published baseline or an operational measurement system. Cabinet is entitled to regard that as a modest return for Phase 1, and it is the accurate position.
 
 **8. What if data or performance are weaker than assumed?**
-Phase gating. The independent mid-term evaluation at end-Year 3 publishes a pass/correct/re-scope verdict on every indicator before Phase 3 funds flow. The conservative scenario (RM1,158.487m) is the fallback operating envelope. Individual programmes — notably PRG-11 at RM200m — can be discontinued at a defined decision point without stranding the rest.
+Phase gating. The independent mid-term evaluation at end-Year 3 publishes a pass/correct/re-scope verdict on every indicator before Phase 3 funds flow. The conservative scenario (RM1,158.487m) is a sensitivity case for Treasury testing, not a pre-approved fallback envelope. Individual programmes — notably PRG-11 at RM200m — can be removed or re-scoped before any later implementation decision without stranding the rest.
 
 **9. What requires endorsement now, and what remains subject to validation?**
-Endorsement now: direction, architecture, governance and the fiscal framework in principle. Subject to validation: thirty items in `ASSUMPTIONS_AND_DECISIONS.md` Part C, six of them strict gates — VAL-01, VAL-09, VAL-11, VAL-19, VAL-23 and VAL-30. No appropriation is sought. Phase 2 and Phase 3 envelopes are expressly not sought.
+Approval now is limited to policy direction, a 90-day validation exercise, interim coordination within existing resources, preparation of a formal implementation submission, and the rule that any additional validation budget must return separately as an itemised Treasury-cleared ceiling. The architecture, programme directions, central fiscal scenario and candidate Phase 1 package are endorsed only as design parameters. The final six-year envelope, all appropriations, unverified reallocations, PNB participation, state-dependent commitments and targets without verified baselines are expressly not approved.
 
 **10. How will progress be independently measured and publicly reported?**
 Quarterly published dashboards; annual public report; annual Auditor-General audit tabled in Parliament; independent mid-term and final evaluations published in full. Publication is committed in advance so that selective disclosure is not available later.
@@ -385,7 +415,9 @@ Quarterly published dashboards; annual public report; annual Auditor-General aud
 
 # 11. Roadmap
 
-**Phase 1, Year 1** — Cabinet decision and terms of reference; secretariat established; first quarterly meeting; DOSM baseline survey commissioned; documentation caseload baseline published (month 9); all 528 SJKT audits commenced; DPIA completed and published before any household record operates; dashboard live.
+This is an **indicative implementation roadmap**, not an operative consequence of the preliminary decision. It begins only after a later Cabinet decision approves the relevant Phase 1 components, ceiling, legal basis and launch conditions.
+
+**Phase 1, Year 1** — Permanent secretariat established if approved under VAL-23; first quarterly meeting; DOSM baseline survey commissioned; documentation caseload baseline published (month 9); all 528 SJKT audits commenced; DPIA completed and published before any household record operates; dashboard live.
 **Phase 1, Year 2** — SJKT remediation schedule published and safety-critical works commenced; preschool enrolment audit complete and subsidy operating; TVET first cohort; navigator cadre at 120; first grade-disaggregated civil service series published; first disaggregated matriculation series published; 12 of 16 indicators baselined.
 **Phase 2, Year 3** — Independent mid-term evaluation; housing legacy review tabled; enterprise advisory operating; savings instrument decision point.
 **Phase 2, Year 4** — Pathways at scale; all 16 indicators baselined with published outturns.
@@ -393,16 +425,38 @@ Quarterly published dashboards; annual public report; annual Auditor-General aud
 
 ---
 
-# 12. Approvals requested
+# 12. Decision resolution requested
 
-Cabinet is respectfully invited to approve **in principle**:
+<!-- GENERATED:FINAL_DECISION_RESOLUTION:START -->
+Cabinet is respectfully invited to:
 
-1. **Adoption in principle of MIB 2.0** as a six-year national blueprint for Malaysian Indian socioeconomic advancement within Malaysia's needs-based national development framework.
-2. **Establishment of a Prime Minister-chaired Task Force on Malaysian Indian Progression**, with a delivery secretariat in the Prime Minister's Department.
-3. **Endorsement of the governance, accountability and delivery framework** in Part 6.
-4. **Endorsement of the six-year architecture** — four pillars, three two-year phases, and the programme direction in Part 5.
-5. **Approval in principle of the fiscal framework** in Part 7 — a central six-year envelope of RM1,484.273 million with an incremental new requirement of RM847.677 million — subject to validation and to the normal appropriation process.
-6. **Authorisation for the Task Force and responsible ministries** to complete the validation programme and prepare the formal Cabinet submission.
+### Approve now
+
+1. **AN-01:** Approve the policy direction and strategic objectives of MIB 2.0 as the basis for further government design and validation
+2. **AN-02:** Authorise a 90-calendar-day cross-agency validation exercise beginning on the date of Cabinet notification
+3. **AN-03:** Establish an interim coordination arrangement and require participating ministries and agencies to nominate accountable focal points
+4. **AN-04:** Authorise preparation of a formal implementation submission after validation
+5. **AN-05:** Require validation and design work to use existing approved resources unless a separate capped request is justified
+
+### Endorse conditionally
+
+1. **CE-01:** Conditionally endorse the six-year architecture as the basis for validation and detailed design
+2. **CE-02:** Conditionally endorse the central fiscal scenario as an indicative planning case only
+3. **CE-03:** Conditionally endorse the sixteen retained substantive programme directions for detailed design
+4. **CE-04:** Conditionally endorse Phase 1 as a candidate implementation package for a later decision
+
+### Record as not approved at this stage
+
+1. **NA-01:** Do not approve the final six-year fiscal envelope
+2. **NA-02:** Do not approve or recognise unverified ministry reallocations as available funding
+3. **NA-03:** Do not approve any Phase 1 appropriation or any Years 3–6 appropriation
+4. **NA-04:** Do not approve or direct PNB participation in PRG-11
+5. **NA-05:** Do not approve commitments dependent on states, local authorities, trustees or religious authorities
+6. **NA-06:** Do not approve programme outcome targets whose baselines are not verified
+7. **NA-07:** Do not approve permanent-establishment, statutory, procurement or contractual consequences
+
+For avoidance of doubt, this resolution creates no appropriation, procurement authority, statutory power, permanent establishment, programme launch, third-party commitment or beneficiary entitlement. Any later implementation authority must identify the approved programme components, ceiling, funding source, accounting officer, legal basis, launch conditions and review gate.
+<!-- GENERATED:FINAL_DECISION_RESOLUTION:END -->
 
 ---
 

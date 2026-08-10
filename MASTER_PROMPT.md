@@ -24,19 +24,19 @@ Do not merely concatenate, summarise, or stylistically blend the two drafts. Bui
 Treat the following as settled unless the source documents make a point technically impossible or legally indefensible:
 
 - **Primary audience:** Prime Minister of Malaysia and Cabinet.
-- **Document type:** Executive proposal seeking preliminary approval, not yet a formal Cabinet Memorandum or final implementation blueprint.
+- **Document type:** Executive proposal seeking a bounded preliminary decision, not yet a formal Cabinet Memorandum or final implementation blueprint.
 - **Policy horizon:** Six years, divided into three two-year phases.
-- **Policy proposition:** Adoption in principle of MIB 2.0 as a national blueprint for Malaysian Indian socioeconomic advancement within Malaysia's inclusive national-development framework.
-- **Governance proposition:** Establish a Prime Minister-chaired implementation task force supported by a delivery secretariat and defined ministry accountability.
-- **Programme proposition:** Endorse a coherent six-year implementation architecture and authorise detailed validation for formal Cabinet submission.
-- **Financial proposition:** Approve the funding framework in principle, subject to formal appropriation and programme validation.
+- **Policy proposition:** Approve the policy direction and strategic objectives as the basis for a time-bound cross-agency validation exercise.
+- **Governance proposition:** Establish interim coordination within existing approved functions and resources; treat the permanent task force and delivery secretariat as a conditionally endorsed design subject to later establishment approval.
+- **Programme proposition:** Conditionally endorse the six-year architecture and programme directions for validation and detailed design, without launching any programme.
+- **Financial proposition:** Present the central fiscal scenario only as an indicative planning case for Treasury testing; expressly withhold approval of the final envelope, reallocations and all appropriations.
 - **Costing requirement:** Show costs by programme, policy pillar, two-year phase, and responsible ministry or agency; distinguish existing allocations, feasible reallocations, and genuinely new funding.
 - **Narrative standard:** Balance narrative and evidence functionally. Every major human claim must connect to credible evidence, and every major quantitative section must explain its human and national significance. Do not interpret balance as an exact 50:50 word allocation.
 - **Conflict rule:** Neither source document has automatic authority. Recalculate material figures from authoritative evidence and disclose assumptions.
 - **Tone:** Formal, humane, non-partisan, Cabinet-ready, administratively precise, and nationally inclusive.
 - **Length target:** Approximately 25–35 substantive pages for the executive proposal, excluding technical annexes. Substance takes priority over an artificial page count.
 
-The proposal should seek preliminary agreement on direction, architecture, governance, and fiscal framework. It must not imply that preliminary endorsement itself constitutes an appropriation, statutory authority, procurement approval, or final Cabinet approval of every programme detail.
+The proposal must divide the decision into three classes: **Approve now**, **Endorse conditionally**, and **Do not approve now**. Only policy direction, a time-bound validation exercise, interim coordination, preparation of a formal implementation submission, and use of existing resources for design/validation may be operative. It must not imply that conditional endorsement constitutes implementation authority, appropriation, statutory authority, procurement approval, establishment approval, third-party consent or approval of any programme target.
 
 ---
 
@@ -565,7 +565,7 @@ The proposal must:
 - assign accountable ministries and agencies;
 - state targets, timelines, KPIs, funding, and uncertainties consistently;
 - establish a PM-chaired task force, delivery secretariat, ministry accountability, quarterly review, transparent reporting, and independent evaluation, while avoiding invented legal powers;
-- distinguish preliminary endorsement from appropriation and later formal approval;
+- distinguish operative approval, conditional endorsement and express deferral from appropriation and later formal approval;
 - explain how MIB 2.0 complements rather than duplicates national policies and existing programmes;
 - anticipate and answer likely Cabinet objections;
 - contain precise, numbered decisions requested; and
@@ -583,7 +583,7 @@ Explicitly test and answer, where relevant:
 6. How will beneficiary selection, leakage, and overlap be controlled?
 7. What measurable outcomes justify the expenditure?
 8. What happens if data or programme performance is weaker than assumed?
-9. What requires Cabinet endorsement now, and what remains subject to validation or appropriation?
+9. What is approved now, what is endorsed only as a design parameter, and what is expressly not approved?
 10. How will progress be independently measured and publicly reported?
 
 ### Drafting rules
@@ -687,14 +687,11 @@ The completed package must contain:
 14. technical annexes; and
 15. final QA report and machine-verification results.
 
-The proposal must seek preliminary approval for:
+The proposal must use the canonical `outputs/DECISION_REGISTER.csv` and seek a three-tier decision:
 
-1. adoption in principle of MIB 2.0 as a six-year national blueprint for Malaysian Indian socioeconomic advancement;
-2. establishment of a Prime Minister-chaired implementation task force;
-3. endorsement of the proposed governance, accountability, and delivery framework;
-4. endorsement of the six-year architecture, phases, pillars, and programme direction;
-5. approval in principle of the fiscal framework, subject to validation and appropriation; and
-6. authorisation for the task force and responsible ministries to complete validation and prepare the formal Cabinet submission.
+1. **Approve now:** policy direction and strategic objectives; a 90-calendar-day validation exercise; interim coordination and agency focal points within existing resources; preparation of the formal implementation submission; and the rule that any additional design/validation budget must return separately as an itemised Treasury-cleared ceiling.
+2. **Endorse conditionally:** the six-year architecture; the central fiscal scenario as an indicative planning case; the sixteen programme directions; and Phase 1 as a candidate package for a later decision.
+3. **Do not approve now:** the final six-year envelope; unverified reallocations; any Phase 1 or Years 3–6 appropriation; PNB participation; state-, trustee- or religious-authority-dependent commitments; targets without verified baselines; and permanent establishment, statutory, procurement or contractual consequences.
 
 ---
 

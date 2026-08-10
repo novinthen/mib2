@@ -13,7 +13,7 @@ python outputs/verify_outputs.py             # required and expanded checks; exi
 
 **Timestamp:** 2026-08-10 (latest integrity run)
 **Final exit status of `verify_outputs.py`:** **0 (PASS)**
-**Result:** **80 checks passed, 0 hard failures, 1 standing disclosure warning.**
+**Result:** **85 checks passed, 0 hard failures, 1 standing disclosure warning.**
 
 The standing warning is deliberate: PRG-01 and PRG-14 have no complete published costing formula, so their amounts remain explicitly identified as authored judgements rather than derivations.
 
@@ -29,6 +29,7 @@ The standing warning is deliberate: PRG-01 and PRG-14 have no complete published
 | 4 | **FAIL - 2 hard failures** | After the independent critic returned: [2b] dangling VAL-29 reference; [7] blank cost_source_id on 15 model rows | VAL-29 defined in the validation table. The [7] failure was a **false positive in the check, not a defect in the data**: a blank cost_source_id legitimately means "no external unit-cost source exists", which check [3b] then forces to Provisional. The blank scan now exempts that one column, and the exemption is documented in the code |
 | 5 | **PASS** | 0 | 76 checks, 0 hard failures - final state |
 | 6 | **PASS** | 0 | Stage 1 integrity repair: 80 checks, 0 hard failures; generated-section, narrative-count, typed-reference and narrative-financial checks added |
+| 7 | **PASS** | 0 | Stage 2 decision repair: 85 checks, 0 hard failures; canonical decision register, generated decision sections, decision-scope check `[12a]`, and canonical financial-claim check `[12e]` added |
 
 ### Checks added in response to the independent critique
 
@@ -47,7 +48,9 @@ The standing warning is deliberate: PRG-01 and PRG-14 have no complete published
 
 ---
 
-## Full output of the final run
+## Archived full output of Run 6
+
+The transcript below records the 80-check Stage 1 run. Run 7 supersedes it; the current 85-check result is recorded above and in `AUDIT_LOG.md`. The added checks cover `DECISION_REGISTER.csv` schema, row width, unique IDs, canonical-file presence, generated decision sections, decision-scope integrity and the model-derived contents of CLM-054.
 
 ```text
 ==============================================================================
