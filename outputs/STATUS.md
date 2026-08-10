@@ -145,6 +145,20 @@ The proposal and detailed assumptions register are generated from the canonical 
 
 ---
 
+## Submission-readiness Stage 4 — Legal and jurisdictional clearance matrix — **PASS (design complete; official clearances open)**
+
+**Timestamp:** 2026-08-10
+
+`LEGAL_ISSUES_REGISTER.csv` now controls **18 legal issues**: **10 pre-submission clearances** and **8 programme-launch clearances**. All 16 retained programmes are covered. The matrix identifies the legal authority and primary-source IDs, precise question, provisional design boundary, required written clearance, competent owner, consulted bodies, affected programmes and Stage 2 decisions, related validation controls, unresolved consequence, clearance stage and status.
+
+All 18 issues remain `open`; this drafting exercise has obtained no AGC or other competent-authority clearance. A disposition cannot be recorded without both a written evidence reference and acceptance date. The six PRG-04 pathways are separated, and the newly listed Government Procurement Act 2026 [Act 882] is treated as requiring confirmation of commencement, subsidiary and transitional instruments rather than presumed application.
+
+Verifier checks `[14]`–`[14c]` enforce schema completeness, source/programme/decision/validation linkage, all-programme coverage, authority coverage, status discipline and the six PRG-04 pathways. Final regression: **98 checks passed, 0 hard failures**; deterministic regeneration, production build (29 pages) and targeted website lint passed.
+
+**Gate: PASS for submission-design readiness. Official legal clearance remains an external precondition and is not represented as complete.**
+
+---
+
 ## Headline result
 
 | | Central | Conservative | Expanded |
@@ -153,4 +167,4 @@ The proposal and detailed assumptions register are generated from the canonical 
 | Incremental new funding | **RM847.677m** | RM662.215m | RM1,070.229m |
 
 Confidence mix (central): **Confirmed 0.0%** · Benchmarked 31.9% · Provisional 68.1%.
-**30 validation items remain open. Six are strict gates: VAL-01, VAL-09, VAL-11, VAL-19, VAL-23 and VAL-30. Four are decision-dependent critical: VAL-03, VAL-24, VAL-27 and VAL-28. An unresolved item blocks only its mapped decision or programme.**
+**30 validation items and 18 legal issues remain open. Six validation items are strict gates: VAL-01, VAL-09, VAL-11, VAL-19, VAL-23 and VAL-30. Four are decision-dependent critical: VAL-03, VAL-24, VAL-27 and VAL-28. An unresolved validation or legal item blocks only its mapped decision or programme.**

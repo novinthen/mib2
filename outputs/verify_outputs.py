@@ -102,6 +102,13 @@ REQUIRED = {
                                 "accountable_owner", "supporting_agencies", "required_evidence",
                                 "deadline", "escalation_route", "financial_consequence",
                                 "decision_affected_if_unresolved", "status"],
+    "LEGAL_ISSUES_REGISTER.csv": ["legal_issue_id", "domain", "legal_authority",
+                                  "authority_source_ids", "legal_question",
+                                  "provisional_design_position", "required_written_clearance",
+                                  "clearance_owner", "consulted_bodies", "affected_programmes",
+                                  "affected_decisions", "related_validation_ids",
+                                  "consequence_if_unresolved", "clearance_stage", "status",
+                                  "evidence_reference", "acceptance_date"],
 }
 
 data = {}
@@ -150,7 +157,8 @@ ID_COL = {"SOURCE_REGISTER.csv": "source_id",
           "COSTING_ASSUMPTIONS.csv": "assumption_id",
           "BENEFICIARY_RECONCILIATION.csv": "overlap_group",
           "DECISION_REGISTER.csv": "decision_id",
-          "VALIDATION_REGISTER.csv": "validation_id"}
+          "VALIDATION_REGISTER.csv": "validation_id",
+          "LEGAL_ISSUES_REGISTER.csv": "legal_issue_id"}
 for fname, col in ID_COL.items():
     rows = data.get(fname, [])
     if not rows:
@@ -390,6 +398,11 @@ for fname, cols in REQUIRED.items():
             # source exists", which check [3b] then forces to confidence=Provisional.
             if c == "cost_source_id":
                 continue
+            # These two fields are intentionally blank while a legal issue is
+            # open/requested. Check [14] requires both once a competent
+            # authority records a disposition.
+            if fname == "LEGAL_ISSUES_REGISTER.csv" and c in {"evidence_reference", "acceptance_date"}:
+                continue
             if not str(r.get(c, "")).strip():
                 blanks.append(f"{fname}:{rid}.{c}")
 check(not blanks, "[7] no unexplained blanks in required fields of any canonical register",
@@ -512,7 +525,7 @@ CANON = ["BENEFICIARY_RECONCILIATION.csv", "STATUS.md", "ASSUMPTIONS_AND_DECISIO
          "PROGRAMME_REGISTER.csv", "NARRATIVE_REGISTER.csv",
          "CONFLICT_AND_DUPLICATION_REGISTER.csv", "RESPONSIBILITY_MATRIX.csv",
          "KPI_REGISTER.csv", "RISK_AND_SAFEGUARD_REGISTER.csv", "COSTING_MODEL.csv",
-         "COSTING_ASSUMPTIONS.csv", "DECISION_REGISTER.csv", "VALIDATION_REGISTER.csv", "verify_outputs.py", "VERIFICATION_RESULTS.md",
+         "COSTING_ASSUMPTIONS.csv", "DECISION_REGISTER.csv", "VALIDATION_REGISTER.csv", "LEGAL_ISSUES_REGISTER.csv", "verify_outputs.py", "VERIFICATION_RESULTS.md",
          "STAGE_1_DIAGNOSTIC.md", "STAGE_2_RECONCILIATION.md",
          "MIB_2.0_EXECUTIVE_PROPOSAL.md", "TECHNICAL_ANNEXES.md"]
 absent = [f for f in CANON if not os.path.exists(os.path.join(HERE, f))
@@ -543,7 +556,7 @@ stale = []
 for section_name, rendered in expected.items():
     if section_name == "TECHNICAL_ANNEX_A":
         document = annex_text
-    elif section_name == "VALIDATION_REGISTER":
+    elif section_name in {"VALIDATION_REGISTER", "LEGAL_ISSUES_REGISTER"}:
         document = assumptions_text
     else:
         document = proposal_text
@@ -742,6 +755,110 @@ check(sum(class_counts.values()) == 30 and len(class_counts) == 5,
       f"[13b] all 30 validation items are distributed across all five gate classifications ({dict(class_counts)})",
       f"[13b] VALIDATION CLASSIFICATION DRIFT: {dict(class_counts)}")
 
+# ---- CHECK 14: Stage 4 legal and jurisdictional clearance matrix --------
+legal_rows = data.get("LEGAL_ISSUES_REGISTER.csv", [])
+legal_ids = {row["legal_issue_id"] for row in legal_rows}
+allowed_legal_stages = {"pre_submission_clearance", "programme_launch_clearance"}
+allowed_legal_status = {
+    "open", "requested", "received", "cleared", "cleared_with_conditions",
+    "not_cleared", "superseded",
+}
+legal_defects = []
+required_legal_fields = (
+    "domain", "legal_authority", "authority_source_ids", "legal_question",
+    "provisional_design_position", "required_written_clearance", "clearance_owner",
+    "consulted_bodies", "affected_programmes", "affected_decisions",
+    "related_validation_ids", "consequence_if_unresolved", "clearance_stage", "status",
+)
+for row in legal_rows:
+    lid = row["legal_issue_id"]
+    for field in required_legal_fields:
+        if not row[field].strip():
+            legal_defects.append(f"{lid}: blank {field}")
+    if row["clearance_stage"] not in allowed_legal_stages:
+        legal_defects.append(f"{lid}: invalid clearance stage {row['clearance_stage']!r}")
+    if row["status"] not in allowed_legal_status:
+        legal_defects.append(f"{lid}: invalid status {row['status']!r}")
+    source_refs = {item.strip() for item in row["authority_source_ids"].split(";") if item.strip()}
+    unknown_sources = source_refs - src_ids
+    if not source_refs or unknown_sources:
+        legal_defects.append(f"{lid}: authority sources missing or unknown {sorted(unknown_sources)}")
+    programme_refs = {item.strip() for item in row["affected_programmes"].split(";") if item.strip()}
+    unknown_programmes = programme_refs - retained
+    if not programme_refs or unknown_programmes:
+        legal_defects.append(f"{lid}: affected programmes missing or not retained {sorted(unknown_programmes)}")
+    affected_decisions = {item.strip() for item in row["affected_decisions"].split(";") if item.strip()}
+    unknown_decisions = affected_decisions - decision_ids
+    if not affected_decisions or unknown_decisions:
+        legal_defects.append(f"{lid}: affected decisions missing or unknown {sorted(unknown_decisions)}")
+    related_validation = {item.strip() for item in row["related_validation_ids"].split(";") if item.strip()}
+    unknown_validation = related_validation - set(validation_ids)
+    if not related_validation or unknown_validation:
+        legal_defects.append(f"{lid}: validation controls missing or unknown {sorted(unknown_validation)}")
+    evidence = row["evidence_reference"].strip()
+    accepted = row["acceptance_date"].strip()
+    disposition_status = {"cleared", "cleared_with_conditions", "not_cleared", "superseded"}
+    if row["status"] in disposition_status and (not evidence or not accepted):
+        legal_defects.append(f"{lid}: disposition status lacks evidence reference or acceptance date")
+    if row["status"] in {"open", "requested"} and (evidence or accepted):
+        legal_defects.append(f"{lid}: {row['status']} item improperly carries disposition evidence/date")
+
+expected_legal_ids = {f"LGL-{number:02d}" for number in range(1, 19)}
+if legal_ids != expected_legal_ids:
+    legal_defects.append(f"legal IDs are {sorted(legal_ids)}, expected LGL-01 to LGL-18")
+legal_stage_counts = Counter(row["clearance_stage"] for row in legal_rows)
+if legal_stage_counts != Counter({"pre_submission_clearance": 10, "programme_launch_clearance": 8}):
+    legal_defects.append(f"clearance-stage distribution drift: {dict(legal_stage_counts)}")
+covered_programmes = {
+    item.strip()
+    for row in legal_rows
+    for item in row["affected_programmes"].split(";")
+    if item.strip()
+}
+if covered_programmes != retained:
+    legal_defects.append(f"legal coverage does not equal all retained programmes: missing {sorted(retained - covered_programmes)}")
+
+authority_text = " ".join(row["legal_authority"] for row in legal_rows)
+for required_authority in (
+    "Article 8", "Article 12(1)", "136", "153", "Act 709",
+    "Ninth Schedule", "Act 882", "Act 61", "Act 78", "Act 299",
+):
+    if required_authority not in authority_text:
+        legal_defects.append(f"matrix lacks required controlling authority {required_authority}")
+
+prg04_pathway_ids = {"LGL-13", "LGL-14", "LGL-15", "LGL-16", "LGL-17", "LGL-18"}
+if not prg04_pathway_ids <= legal_ids:
+    legal_defects.append(f"PRG-04 pathway issues missing {sorted(prg04_pathway_ids - legal_ids)}")
+for row in legal_rows:
+    if row["legal_issue_id"] in prg04_pathway_ids:
+        if row["affected_programmes"] != "PRG-04" or "VAL-13" not in row["related_validation_ids"]:
+            legal_defects.append(f"{row['legal_issue_id']}: PRG-04 pathway mapping drift")
+
+if "No issue is recorded as cleared" not in proposal_text:
+    legal_defects.append("proposal lacks express no-clearance statement")
+if "Government Procurement Act 2026" not in proposal_text or "transitional instruments" not in proposal_text:
+    legal_defects.append("proposal lacks current Act 882 commencement/transitional control")
+if "This drafting exercise has obtained **no legal clearance**" not in annex_text:
+    legal_defects.append("technical annex lacks express no-clearance statement")
+
+check(not legal_defects,
+      "[14] all 18 legal issues have authorities, questions, provisional boundaries, competent owners, written-clearance requirements, programme/decision/validation mappings and unresolved consequences",
+      f"[14] LEGAL ISSUES MATRIX DEFECTS: {legal_defects[:24]}")
+check(legal_stage_counts == Counter({"pre_submission_clearance": 10, "programme_launch_clearance": 8}),
+      "[14a] legal issues are controlled as 10 pre-submission and 8 programme-launch clearances",
+      f"[14a] LEGAL CLEARANCE-STAGE DRIFT: {dict(legal_stage_counts)}")
+check(all(
+          not (row["status"] in {"cleared", "cleared_with_conditions", "not_cleared", "superseded"}
+               and (not row["evidence_reference"].strip() or not row["acceptance_date"].strip()))
+          and not (row["status"] in {"open", "requested"}
+                   and (row["evidence_reference"].strip() or row["acceptance_date"].strip()))
+          for row in legal_rows),
+      "[14b] no legal clearance is implied without written evidence and an acceptance date",
+      "[14b] ONE OR MORE LEGAL ISSUES IMPROPERLY IMPLY CLEARANCE")
+check(prg04_pathway_ids <= legal_ids,
+      "[14c] PRG-04 has six separate pathway clearances for public purpose, consent, Islamic administration, legacy referrals, excluded expenditure and religion-data handling",
+      f"[14c] PRG-04 LEGAL PATHWAY COVERAGE MISSING: {sorted(prg04_pathway_ids - legal_ids)}")
+
 # ---- CHECK 12c: every typed cross-reference resolves everywhere ----------
 known_refs = {
     "CLM": {r["claim_id"] for r in data.get("CLAIMS_AND_FIGURES_REGISTER.csv", [])},
@@ -750,6 +867,7 @@ known_refs = {
     "RSK": {r["risk_id"] for r in risk_rows},
     "RSP": {r["responsibility_id"] for r in responsibility_rows},
     "VAL": set(validation_ids),
+    "LGL": legal_ids,
 }
 unresolved_refs = []
 for path in _glob.glob(os.path.join(HERE, "*.csv")) + _glob.glob(os.path.join(HERE, "*.md")):

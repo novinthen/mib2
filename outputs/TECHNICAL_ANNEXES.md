@@ -142,7 +142,7 @@ Full detail in `KPI_REGISTER.csv` (16 rows, one per retained substantive program
 Full detail in `RISK_AND_SAFEGUARD_REGISTER.csv` (21 rows). 14 carry critical inherent ratings. **6 retain a High residual rating after safeguards: RSK-01, RSK-04, RSK-05, RSK-09, RSK-19 and RSK-20.** These are not fully mitigable by design and are matters for Cabinet's judgement.
 
 ## Annex F — Evidence and citation register
-`SOURCE_REGISTER.csv` (18 sources) and `CLAIMS_AND_FIGURES_REGISTER.csv` (62 claims). Each source records title, institution, date, location, URL, access date, geographic and population scope, definition, tier in the hierarchy, limitations, and whether it supports the claim directly or only by inference.
+`SOURCE_REGISTER.csv` (28 sources) and `CLAIMS_AND_FIGURES_REGISTER.csv` (62 claims). Each source records title, institution, date, location, URL, access date, geographic and population scope, definition, tier in the hierarchy, limitations, and whether it supports the claim directly or only by inference.
 
 **The primary Malaysian Indian Blueprint 2017 (172 pp) was obtained and text-extracted** to `outputs/extracted/MIB_2017_blueprint.txt`, and is the basis on which five claims were rejected as unsupported. The hosted copy is not on a gov.my domain, which is recorded as a limitation of SRC-001.
 
@@ -161,3 +161,9 @@ python outputs/build_costing.py && python outputs/verify_outputs.py
 
 ## Annex J — Content excluded from this submission
 Approximately 2,676 words (18.3%) of source 2 (Tabs 7–8: political messaging, signature statements, drafted speech text, voter-persuasion logic) and the electoral-cycle argument of source 1 are **excluded in full** (CNF-019, CNF-030). A public communications plan is a separate matter to be prepared under normal government protocols and forms no part of this submission.
+
+## Annex K — Legal and jurisdictional clearance matrix
+
+`LEGAL_ISSUES_REGISTER.csv` is the canonical matrix of **18 open legal issues**. It separates 10 pre-submission clearances from 8 programme-launch clearances and maps each question to legal authorities, competent clearance owners, affected programmes and Stage 2 decisions, related validation controls, required written evidence and the consequence if unresolved. The detailed rendered record is in `ASSUMPTIONS_AND_DECISIONS.md`, Part G.
+
+This drafting exercise has obtained **no legal clearance**. In particular, AGC and MOF must confirm the commencement, subsidiary and transitional instruments for the Government Procurement Act 2026 [Act 882] before any procurement route is selected. PRG-04 has six separate pathway-specific issues; a generic whole-package statement that the proposal was "legally reviewed" does not satisfy any of them.

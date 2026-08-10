@@ -17,6 +17,9 @@ All data derives from CSV registers in `../outputs/`:
 - `BENEFICIARY_RECONCILIATION.csv`
 - `CONFLICT_AND_DUPLICATION_REGISTER.csv`
 - `NARRATIVE_REGISTER.csv`
+- `DECISION_REGISTER.csv`
+- `VALIDATION_REGISTER.csv`
+- `LEGAL_ISSUES_REGISTER.csv`
 
 These files are the **single source of truth**. The website displays them; it does not store data separately.
 
