@@ -24,7 +24,7 @@ MIB 2.0 proposes:
 
 - **Four pillars** addressing the four structural exclusions, delivered through **sixteen retained substantive programmes**, each with a named accountable ministry, an accounting officer, a phase, an outcome, a key performance indicator and a cost treatment. The programme register also records five non-retained source proposals for auditability; they are not part of the implementation portfolio.
 - **Three two-year phases**, gated on evidence rather than on the calendar.
-- A **Prime Minister-chaired Task Force** with a delivery secretariat in the Prime Minister's Department, meeting quarterly against a published dashboard — a coordinating and accountability body, not a new authority over ministries.
+- **Prime Ministerial sponsorship and strategic review** backed by a designated responsible minister, a Chief Secretary-chaired or authorised-equivalent senior-officials committee, named ministry delivery officers and a bounded secretariat — a continuity and accountability system, not a new authority over ministries.
 - An **indicative six-year central planning scenario of RM1,484.273 million**, with a **modelled incremental new funding requirement of RM847.677 million** and RM636.596 million provisionally classified as existing allocations or proposed reallocation (CLM-054). None of these amounts is submitted as an approved or verified envelope.
 
 **What is different about this proposal is what it declines to promise.** The MIB's 7% civil service target is not carried forward, because reaching it would require roughly 43,000 net additional Indian officers within six years and is not achievable (CLM-051). No ethnic procurement set-aside is proposed. No citizenship clearance percentage is guaranteed. Twelve of the sixteen indicators have a baseline status of `to-be-established`, and establishing those baselines — not hitting invented targets — is the principal deliverable of Phase 1. A plan that promises less and delivers it is the only remaining way to close a credibility gap that a decade of larger promises has widened.
@@ -42,7 +42,7 @@ These decisions create authority to validate and prepare. They do not launch the
 |---|---|---|---|
 | **AN-01** | Approve the policy direction and strategic objectives of MIB 2.0 as the basis for further government design and validation | A common policy direction focused on removing structural barriers through needs-based delivery | Adoption of the six-year implementation portfolio; any ethnic entitlement; any expenditure or statutory change |
 | **AN-02** | Authorise a 90-calendar-day cross-agency validation exercise beginning on the date of Cabinet notification | Collection and reconciliation of the thirty validation items; agency data requests; legal, fiscal and delivery testing | Programme launch; beneficiary enrolment; grants; procurement; contracts; permanent establishment; or commitment beyond the validation period |
-| **AN-03** | Establish an interim coordination arrangement and require participating ministries and agencies to nominate accountable focal points | A Prime Minister-sponsored oversight group, a senior-officials coordination mechanism and an interim secretariat operating within existing approved functions and resources | Creation of the proposed 35 permanent secretariat posts; transfer of statutory powers, budgets or accounting-officer responsibilities; direction of independent or state authorities |
+| **AN-03** | Establish an interim coordination arrangement and require participating ministries and agencies to nominate accountable delivery officers and alternates | Prime Ministerial sponsorship and strategic review; a designated responsible minister between reviews; a Chief Secretary-chaired or Cabinet-authorised equivalent senior-officials mechanism; an interim secretariat operating within existing approved functions and resources; meeting-independent reporting and automatic milestone escalation | Creation of the proposed 35 permanent secretariat posts; transfer of statutory powers, votes, budgets, procurement authority or accounting-officer responsibilities; direction of independent or state authorities; dependence of routine delivery on personal Prime Ministerial chairmanship |
 | **AN-04** | Authorise preparation of a formal implementation submission after validation | Programme design sheets, a legal issues matrix, a Treasury-validated Phase 1 fiscal memorandum and an implementation decision paper | Automatic return to Cabinet with the current scope or figures; unresolved items must be removed, re-scoped or presented as explicit conditions |
 | **AN-05** | Require validation and design work to use existing approved resources unless a separate capped request is justified | Use of existing lawful administrative capacity for the validation exercise; preparation of a separately itemised request if a demonstrable resource gap remains | Any new design or validation appropriation under this proposal; use of the indicative six-year envelope; retrospective or open-ended expenditure |
 
@@ -171,6 +171,29 @@ Current status: **16 draft pending agency confirmation**; **0 of 16 accepted by 
 
 **Outcome boundary.** These are commitments about service administration and remedy. They do not guarantee citizenship or documentation status, admission, certification, employment, procurement awards, financing, investment returns, housing or any other result controlled by statute, an independent body or a third party.
 <!-- GENERATED:SERVICE_COMMITMENT_SUMMARY:END -->
+
+<!-- GENERATED:GOVERNANCE_CONTINUITY_SUMMARY:START -->
+## 2.9 Governance continuity below the Prime Minister
+
+`GOVERNANCE_CONTINUITY_REGISTER.csv` controls **8 continuity mechanisms** designed to keep delivery operating when a Prime Ministerial review is delayed or political office-holders change.
+
+| Control | Continuity rule |
+|---|---|
+| GC-01 — Prime Ministerial sponsorship and strategic review | The Prime Minister sponsors the policy direction and reviews strategic performance, but routine coordination, reporting and corrective action continue under the delegated chain whether or not the Prime Minister personally chairs a scheduled review |
+| GC-02 — Designated minister between reviews | Cabinet designates one responsible minister to chair political-level delivery reviews between Prime Ministerial reviews, resolve matters within portfolio authority and sponsor escalations that require Cabinet decision |
+| GC-03 — Senior-officials delivery committee | A senior-officials committee chaired by the Chief Secretary to the Government or an expressly authorised equivalent reviews the portfolio, resolves cross-ministry administrative blockages and prepares matters requiring ministerial or Cabinet decision |
+| GC-04 — Ministry delivery officers and planning commitments | Every participating ministry nominates a senior delivery officer and alternate, assigns each accepted milestone to its ministry planning and performance process, and maintains a current recovery action for any off-track commitment |
+| GC-05 — Secretariat reporting authority with statutory boundary | The secretariat may issue reporting templates, maintain the portfolio record, require authorised progress returns, test completeness and refer non-compliance through the approved escalation chain; it may not exercise programme or statutory functions |
+| GC-06 — Automatic milestone escalation | A missed or forecast-missed milestone automatically enters the exception register and advances through the ministry delivery officer, accounting officer, senior-officials committee, designated minister and Cabinet according to pre-approved thresholds without waiting for a quarterly political meeting |
+| GC-07 — Meeting-independent public reporting | The authorised quarterly dashboard and exception statement are produced on the reporting calendar even when a ministerial, Task Force or Prime Ministerial meeting is postponed; postponement is disclosed and does not reset the data cut-off or publication obligation |
+| GC-08 — Political and administrative succession | The governance instruments attach duties to offices rather than individuals and require an acting arrangement, document transfer, decision log and timed re-nomination when the Prime Minister, designated minister, Chief Secretary, accounting officer or delivery officer changes |
+
+**Operating model.** The Prime Minister sponsors the policy direction and conducts strategic review. A designated minister is responsible between reviews; a Chief Secretary-chaired or Cabinet-authorised equivalent senior-officials committee manages cross-ministry delivery; named ministry delivery officers own milestones; and the secretariat maintains the reporting and escalation clock.
+
+**Authority boundary.** Delegation does not transfer statutory powers, votes, procurement authority, accounting-officer responsibility or the functions of independent, state or third-party bodies. The secretariat may require reports only to the extent authorised by Cabinet and the approved terms of reference.
+
+**Adoption status:** **0 of 8 adopted**. All controls remain draft pending a recorded Cabinet decision, approved terms of reference and the written nominations or instruments specified in the register.
+<!-- GENERATED:GOVERNANCE_CONTINUITY_SUMMARY:END -->
 
 ---
 
@@ -372,15 +395,15 @@ Sequencing is justified administratively: measures requiring only administrative
 
 # 6. Governance and delivery
 
-## 6.1 The Task Force
+## 6.1 Sponsorship, delegation and continuity
 
-The proposed steady-state model is a **Task Force on Malaysian Indian Progression**, chaired by the Prime Minister and meeting quarterly, with a delivery secretariat of approximately 35 posts in the Prime Minister's Department. **That permanent model is not approved by this preliminary decision.** During the 90-day validation period, coordination operates through nominated agency focal points and an interim secretariat using existing approved functions and resources. Creation of the 35 posts remains subject to VAL-23 and a later express decision.
+The proposed steady-state model is a **Task Force on Malaysian Indian Progression sponsored and strategically reviewed by the Prime Minister**, supported by a designated responsible minister, a senior-officials committee chaired by the Chief Secretary to the Government or an expressly authorised equivalent, and a delivery secretariat of approximately 35 posts in the Prime Minister's Department. **That permanent model is not approved by this preliminary decision.** During the 90-day validation period, named ministry delivery officers and alternates, an interim secretariat and the senior-officials mechanism operate within existing approved functions and resources. Creation of the 35 posts remains subject to VAL-23 and a later express decision.
 
-**What it is:** a coordinating, accountability and escalation body. It sets service standards, reviews performance, arbitrates inter-ministry blockages, and publishes.
+**What it is:** a layered coordinating, accountability and escalation system. The Prime Minister supplies political sponsorship and strategic review. The designated minister is responsible between reviews. Senior officials resolve administrative blockages. Ministry delivery officers own milestones. The secretariat maintains the authorised record, reporting calendar and exception register.
 
 **What it is not:** the source material describes the body as the "legal successor" to the MIB agenda with apex authority over MITRA and PTMI. **That description is not adopted** (CLM-042). A Cabinet decision cannot effect a statutory transfer of functions. MITRA remains an executing agency with its own accounting officer. **Every programme retains its accountable ministry and its accounting officer**, and the Task Force holds no programme funds.
 
-This preserves the second source document's principle — *education remains responsible for education; housing for housing* — while supplying the convening authority that the first correctly identifies as the missing element. The justification for Prime Ministerial chairmanship is specific: the levers sit in at least six ministries plus the states and a constitutionally independent service commission, and no ministerial-level body can convene that table.
+This preserves the second source document's principle — *education remains responsible for education; housing for housing* — while supplying the convening authority that the first correctly identifies as missing. The levers sit in at least six ministries plus the states and a constitutionally independent service commission, so Prime Ministerial sponsorship remains important. But the Prime Minister is not the programme's daily operating system: reporting, escalation and authorised officials' reviews continue when a strategic meeting is postponed or an office-holder changes.
 
 ## 6.2 The five delivery principles
 
@@ -392,11 +415,14 @@ Adopted from the second source document and given operational definition:
 | **One family profile** | A single **consent-based** household record, legally separated from the documentation caseload system | PRG-09 |
 | **One progression navigator** | A named case officer at a caseload of 150 households | PRG-09 |
 | **One progression pathway** | Referral chains defined so that clearing one barrier triggers the next step | All |
-| **One public dashboard** | Published within 14 days of each quarterly meeting | PRG-16 |
+| **One public dashboard** | Published on a fixed quarterly reporting calendar independently of political-meeting timing | PRG-16 |
 
 ## 6.3 Accountability
 
-- **Quarterly** Task Force review; dashboard published within 14 days **whether or not the meeting is held**, so non-convening is itself visible.
+- **Monthly** senior-officials exception review and **quarterly** strategic review; the dashboard follows a fixed reporting calendar whether or not a political meeting is held.
+- Every ministry nominates a delivery officer and alternate, and incorporates accepted milestones into its own planning and performance process.
+- A missed or forecast-missed milestone automatically enters the exception register and escalates through the accounting officer, senior-officials committee, designated minister and Cabinet according to approved thresholds.
+- Governance duties attach to offices, not individuals; acting arrangements, handover records and re-nomination requirements activate on a change of minister, government or senior official.
 - **Annually**, a public report and an Auditor-General audit tabled in Parliament.
 - **At end-Year 3**, an independent mid-term evaluation that gates Phase 3.
 - **In Year 6**, an independent final evaluation.
@@ -466,7 +492,7 @@ Twenty-one risks are registered with safeguards and residual ratings (`RISK_AND_
 
 | Risk | Residual after safeguard |
 |---|---|
-| **RSK-01** Quarterly PM chairmanship is not sustained — the exact failure mode that defeated the MIB Implementation Unit | **High.** Mitigated by fixing cadence in the terms of reference and by publishing the dashboard whether or not the meeting is held, but not eliminated. This is the plan's central dependency and Cabinet should weigh it as such |
+| **RSK-01** The delegated continuity chain is not adopted or maintained, allowing delivery to stall during postponed reviews or political transition | **Moderate after safeguard.** GC-01 to GC-08 separate strategic sponsorship from routine operation through a designated minister, senior officials, ministry delivery officers, automatic escalation, meeting-independent reporting and succession controls; formal adoption remains a pre-submission gate |
 | **RSK-02** Article 8 challenge to ethnically-defined benefits | Medium — set-asides removed; eligibility needs-based; AGC clearance gating |
 | **RSK-03** Federal encroachment on state jurisdiction | Medium — state consent required facility by facility |
 | **RSK-04** New funding not appropriated, leaving later phases stranded | High — phase gating; conservative scenario as fallback |
@@ -483,8 +509,8 @@ Because the barriers are structural and specific, not general. Eligibility here 
 **2. How does this avoid duplicating existing institutions and programmes?**
 Every retained substantive programme runs on an existing delivery agency; only the secretariat and navigator cadre are new establishment. Each carries an explicit duplication assessment in `PROGRAMME_REGISTER.csv`. Five source proposals were not carried forward because they were duplicative, unlawful, unsupported or outside scope. MITRA continues as an executing agency and is not superseded.
 
-**3. Why should the Prime Minister chair?**
-Because the levers sit in at least six ministries, the states, and a constitutionally independent service commission. No ministerial-level body can convene that table. This is also the plan's largest risk (RSK-01), and Cabinet should treat the chairmanship commitment as the substantive question, not a formality.
+**3. Why should the Prime Minister remain involved without becoming the operating dependency?**
+Because the levers sit in at least six ministries, the states, and a constitutionally independent service commission, Prime Ministerial sponsorship supplies strategic authority. Continuity does not require the Prime Minister to chair every operational review: a designated minister, a Chief Secretary-chaired or authorised-equivalent committee, named ministry delivery officers and a bounded secretariat keep milestones, escalation and reporting moving. Cabinet should decide and record that complete delegation chain under VAL-27 and GC-01 to GC-08.
 
 **4. What is new funding versus existing or redirected?**
 In the indicative central model, RM847.677 million of RM1,484.273 million is classified as new and RM636.596 million as existing allocation or proposed reallocation. Those are modelling classifications, not verified funding sources. The modelled new requirement averages approximately RM141 million per year. The true existing envelope is **not yet verified** — the RM220 million figure in circulation could not be substantiated (CLM-018, VAL-03).
@@ -530,7 +556,7 @@ Cabinet is respectfully invited to:
 
 1. **AN-01:** Approve the policy direction and strategic objectives of MIB 2.0 as the basis for further government design and validation
 2. **AN-02:** Authorise a 90-calendar-day cross-agency validation exercise beginning on the date of Cabinet notification
-3. **AN-03:** Establish an interim coordination arrangement and require participating ministries and agencies to nominate accountable focal points
+3. **AN-03:** Establish an interim coordination arrangement and require participating ministries and agencies to nominate accountable delivery officers and alternates
 4. **AN-04:** Authorise preparation of a formal implementation submission after validation
 5. **AN-05:** Require validation and design work to use existing approved resources unless a separate capped request is justified
 

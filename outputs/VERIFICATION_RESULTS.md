@@ -13,7 +13,7 @@ python outputs/verify_outputs.py             # required and expanded checks; exi
 
 **Timestamp:** 2026-08-10 (latest integrity run)
 **Final exit status of `verify_outputs.py`:** **0 (PASS)**
-**Result:** **130 checks passed, 0 hard failures, 1 standing disclosure warning.**
+**Result:** **140 checks passed, 0 hard failures, 1 standing disclosure warning.**
 
 The standing warning is deliberate: PRG-01 and PRG-14 have no complete published costing formula, so their amounts remain explicitly identified as authored judgements rather than derivations.
 
@@ -36,6 +36,10 @@ The standing warning is deliberate: PRG-01 and PRG-14 have no complete published
 | 11 | **PASS** | 0 | Stage 6 delivery-feasibility control: 118 checks, 0 hard failures; 16 canonical programme designs, generated two-part sheets, evidence-backed sign-off discipline, cross-register joins, volume reconciliation and checks `[16]`–`[16f]` added |
 | 12 | **FAIL — 2 hard failures** | `[17]` SC-02 capacity evidence omitted an explicit workflow/capacity prerequisite; `[17e]` aggregate exclusion wording did not name citizenship | Canonical SC-02 evidence amended to require workflow and channel capacity; SC-01 exclusion amended to name citizenship and documentation status explicitly. Checks were not weakened |
 | 13 | **PASS** | 0 | Stage 7 service-commitment control: 130 checks, 0 hard failures; seven canonical commitments, programme applicability, capacity-gated timelines, prohibited-outcome boundary, generated standard and checks `[17]`–`[17g]` added; final review corrected RM0.002m conservative-funding narrative drift and added check `[12f]` |
+| 14 | **FAIL — 3 hard failures** | Unexplained blank adoption fields in the new continuity register; stale High-residual-risk count; punctuation-sensitive GC-05 authority-boundary test | Added the new draft register to the existing evidence/date exemption, reconciled the annex to five High residual risks and changed the test to punctuation-independent tokenisation |
+| 15 | **FAIL — 1 hard failure** | GC-05 boundary test still treated `votes` as different from `vote` | Canonical boundary wording changed to `vote authority`; the substantive control was not weakened |
+| 16 | **FAIL — 1 hard failure** | RSP-16 remained outside the common GC-06 automatic-escalation chain | RSP-16 corrected at source; all 16 responsibility rows then passed the same escalation test |
+| 17 | **PASS** | 0 | Stage 8 governance continuity: 140 checks, 0 hard failures; eight canonical controls, full portfolio coverage, adoption discipline, deterministic generation, removal of personal-chair dependency and all-programme escalation checks `[18]`–`[18f]`; deterministic double regeneration, targeted lint and 29-page production build passed |
 
 ### Checks added in response to the independent critique
 
@@ -56,7 +60,7 @@ The standing warning is deliberate: PRG-01 and PRG-14 have no complete published
 
 ## Archived full output of Run 6
 
-The transcript below records the 80-check Stage 1 run. Run 13 supersedes it; the current 130-check result is recorded above and in `AUDIT_LOG.md`. Later checks cover decision, validation, legal, fiscal, programme-design and service-commitment schemas; row widths and unique IDs; canonical-file presence; generated decision, validation, legal, Phase 1 fiscal, programme-design and service-standard sections; decision-scope, clearance, sign-off and adoption integrity; validation-control completeness; funding-split non-fabrication; service-volume reconciliation; unvalidated service deadlines; prohibited outcome guarantees; non-generated funding headlines; and the model-derived contents of CLM-054.
+The transcript below records the 80-check Stage 1 run. Run 17 supersedes it; the current 140-check result is recorded above and in `AUDIT_LOG.md`. Later checks cover decision, validation, legal, fiscal, programme-design, service-commitment and governance-continuity schemas; row widths and unique IDs; canonical-file presence; generated decision, validation, legal, Phase 1 fiscal, programme-design, service-standard and continuity sections; decision-scope, clearance, sign-off and adoption integrity; validation-control completeness; funding-split non-fabrication; service-volume reconciliation; unvalidated service deadlines; prohibited outcome guarantees; meeting-independent reporting; automatic escalation; non-generated funding headlines; and the model-derived contents of CLM-054.
 
 ```text
 ==============================================================================

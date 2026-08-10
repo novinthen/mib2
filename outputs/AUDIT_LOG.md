@@ -4,6 +4,23 @@ Chronological record of what was checked, what failed, what changed, and the res
 
 ---
 
+## Stage 8 governance continuity below the Prime Minister (2026-08-10)
+
+| # | Check | Result |
+|---|---|---|
+| G.1 | Complete canonical standard | Eight unique controls in `GOVERNANCE_CONTINUITY_REGISTER.csv`: Prime Ministerial sponsorship/review; designated minister; senior-officials committee; ministry delivery officers; bounded secretariat; automatic escalation; meeting-independent reporting; succession |
+| G.2 | Single-point-failure removal | KPI-15 measures delegated operating continuity, exceptions and reporting; it no longer requires the Prime Minister personally to convene every quarterly meeting |
+| G.3 | Portfolio integration | All 16 responsibility rows use named delivery officers and GC-06 escalation; PRG-15, RSP-15, KPI-15, VAL-27, RSK-01 and RSK-19 are reconciled |
+| G.4 | Authority boundary | Secretariat reporting power expressly excludes statutory functions, accounting-officer responsibility, vote and procurement authority, grants, personnel, state powers and independent bodies |
+| G.5 | Political continuity | Duties attach to offices; acting, handover, document-transfer and re-nomination rules activate on changes of government, minister or senior official; a successor Cabinet retains authority over policy continuation |
+| G.6 | Status integrity | All eight controls remain `draft_pending_cabinet_confirmation`; none carries adoption evidence or an acceptance date |
+| G.7 | Correction cycle | First regression found blank-evidence handling, a stale High-risk count and a punctuation-sensitive boundary test; second found one programme outside GC-06 escalation; all were corrected at source and regression-tested |
+| G.8 | Regression verification | `verify_outputs.py`: **PASS — 140 checks, 0 hard failures, 1 standing disclosure warning**; deterministic double regeneration: **PASS**; targeted website lint: **PASS**; production build: **PASS — 29 pages generated** |
+
+**Governance-continuity result: PASS for internal design. Cabinet adoption, institutional instruments and named office-holders remain external and open.**
+
+---
+
 ## Stage 7 concrete service commitments (2026-08-10)
 
 | # | Check | Result |

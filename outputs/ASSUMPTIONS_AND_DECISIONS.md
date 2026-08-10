@@ -198,16 +198,16 @@ These are labelled provisional in the registers and each carries a validation it
 - **Financial consequence if unresolved:** The measurement framework and twelve to-be-established KPI baselines cannot be represented as deliverable
 - **Decision affected:** AN-04;CE-01;CE-03;CE-04;NA-06
 
-#### VAL-27 — Political decision on whether the Prime Minister will chair quarterly for six years
+#### VAL-27 — Political decision on Prime Ministerial sponsorship and the delegated continuity model
 
 - **Criticality / status:** decision dependent critical; `open`
 - **Accountable owner:** Prime Minister
 - **Supporting agencies:** Chief Secretary to the Government; sponsoring minister; Prime Minister's Department
-- **Required evidence:** Recorded decision on chair, cadence, delegation, succession and an alternative governance model if continuous PM chairmanship is not adopted
+- **Required evidence:** Recorded decision on strategic-review cadence, designated minister, senior-officials chair, delivery-officer nominations, secretariat reporting authority, automatic escalation, meeting-independent publication and succession; routine delivery must not depend on personal Prime Ministerial chairmanship
 - **Control deadline:** Day 60 after Cabinet notification; mandatory before proposing the permanent governance model
-- **Escalation:** Chief Secretary submits alternative chairing and escalation model to the Prime Minister and Cabinet
-- **Financial consequence if unresolved:** No direct appropriation effect; governance capacity and delivery-risk assumptions must be redesigned and costed if required
-- **Decision affected:** AN-04;CE-01;CE-04
+- **Escalation:** Chief Secretary submits the complete GC-01 to GC-08 governance package and any unresolved authority question to the Prime Minister and Cabinet
+- **Financial consequence if unresolved:** No direct appropriation effect; governance capacity and delivery-risk assumptions must be redesigned and costed if the delegated continuity chain is not adopted
+- **Decision affected:** AN-03;AN-04;CE-01;CE-04
 
 #### VAL-28 — Whether existing MITRA and ministry budgets may be reallocated to proposed programme lines
 

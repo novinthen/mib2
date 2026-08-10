@@ -266,6 +266,9 @@ Create `outputs/` if it does not exist. Maintain these canonical files:
 - `outputs/VALIDATION_REGISTER.csv`
 - `outputs/LEGAL_ISSUES_REGISTER.csv`
 - `outputs/FISCAL_VALIDATION_REGISTER.csv`
+- `outputs/PROGRAMME_DESIGN_REGISTER.csv`
+- `outputs/SERVICE_COMMITMENT_REGISTER.csv`
+- `outputs/GOVERNANCE_CONTINUITY_REGISTER.csv`
 
 ### Costing and machine checks
 
@@ -281,6 +284,9 @@ Create `outputs/` if it does not exist. Maintain these canonical files:
 - `outputs/STAGE_2_RECONCILIATION.md`
 - `outputs/MIB_2.0_EXECUTIVE_PROPOSAL.md`
 - `outputs/TECHNICAL_ANNEXES.md`
+- `outputs/PROGRAMME_DESIGN_SHEETS.md`
+- `outputs/SERVICE_COMMITMENTS.md`
+- `outputs/GOVERNANCE_CONTINUITY.md`
 
 The Markdown proposal is the canonical text. If document-generation tools are available, also produce a Cabinet-ready `.docx` and a visually verified PDF without changing the canonical content. Failure to generate optional rendered formats is not a blocker unless explicitly required later.
 
@@ -735,6 +741,20 @@ commitments must never be represented as guarantees of citizenship, admission, c
 employment, procurement awards, finance, investment returns, housing or other statutory or
 third-party outcomes.
 
+The proposal must also maintain `outputs/GOVERNANCE_CONTINUITY_REGISTER.csv` and generate
+`outputs/GOVERNANCE_CONTINUITY.md`. The register must control exactly eight continuity mechanisms:
+Prime Ministerial sponsorship and strategic review; a designated responsible minister between
+reviews; a Chief Secretary-chaired or Cabinet-authorised equivalent senior-officials committee;
+named ministry delivery officers and alternates with accepted commitments embedded in ministry
+planning; bounded secretariat authority to require authorised reporting without taking over
+statutory functions; automatic escalation of missed milestones; public reporting that continues
+when a political meeting is postponed; and succession arrangements for a change of minister,
+government or senior official. The Prime Minister is the sponsor and strategic reviewer, not the
+programme's daily operating system. No continuity control may transfer statutory powers, vote or
+procurement authority, accounting-officer responsibility, state powers or independent-body
+functions. All controls remain draft until supported by the required Cabinet or agency instrument,
+evidence reference and acceptance date.
+
 The matrix must separately cover Articles 8, 12(1), 136 and 153; citizenship and documentation
 discretion; implementing-body mandates; public finance; the current procurement regime including
 the Government Procurement Act 2026 [Act 882] and its commencement/transitional instruments;
@@ -744,7 +764,7 @@ estate-legacy referral, excluded worship/doctrinal expenditure, and religion-dat
 
 The proposal must use the canonical `outputs/DECISION_REGISTER.csv` and seek a three-tier decision:
 
-1. **Approve now:** policy direction and strategic objectives; a 90-calendar-day validation exercise; interim coordination and agency focal points within existing resources; preparation of the formal implementation submission; and the rule that any additional design/validation budget must return separately as an itemised Treasury-cleared ceiling.
+1. **Approve now:** policy direction and strategic objectives; a 90-calendar-day validation exercise; interim coordination and accountable ministry delivery officers and alternates within existing resources; preparation of the formal implementation submission; and the rule that any additional design/validation budget must return separately as an itemised Treasury-cleared ceiling.
 2. **Endorse conditionally:** the six-year architecture; the central fiscal scenario as an indicative planning case; the sixteen programme directions; and Phase 1 as a candidate package for a later decision.
 3. **Do not approve now:** the final six-year envelope; unverified reallocations; any Phase 1 or Years 3–6 appropriation; PNB participation; state-, trustee- or religious-authority-dependent commitments; targets without verified baselines; and permanent establishment, statutory, procurement or contractual consequences.
 
@@ -768,6 +788,9 @@ Completion requires all of the following:
    disposition, evidence reference and acceptance date are recorded.
 10. Every retained programme has a complete generated design sheet, and no sheet is represented as
     agency-accepted without written evidence and an acceptance date.
+11. All eight governance continuity controls are present, cover all retained programmes, preserve
+    statutory and accounting boundaries, and remain unadopted unless supported by the required
+    written instrument, evidence reference and acceptance date.
 11. All seven service commitments have complete programme mappings, remain pending agency adoption
     unless supported by written evidence and an acceptance date, and contain no unvalidated numeric
     service deadline or prohibited outcome guarantee.

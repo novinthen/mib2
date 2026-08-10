@@ -530,15 +530,15 @@ Each sheet is generated from canonical registers. `PROGRAMME_DESIGN_REGISTER.csv
 
 | Design field | Controlled position |
 |---|---|
-| Problem and baseline | No body owns cross-ministry outcomes for this agenda, publishes the numbers, or answers for them **Baseline:** No such body exists (2026; `to-be-established`). |
+| Problem and baseline | No body owns cross-ministry outcomes for this agenda, publishes the numbers, or answers for them **Baseline:** No such continuity system exists (2026; `to-be-established`). |
 | Target population and eligibility | **Population:** Whole-of-government delivery **Eligibility:** n/a |
-| Service delivered | A Prime Minister-chaired Task Force meeting quarterly, supported by a delivery secretariat in the Prime Minister's Department, with each programme retaining its accountable ministry and accounting officer |
-| Exclusions | No takeover of ministry, statutory-body, service-commission, state, MITRA or accounting-officer powers; no permanent establishment or PM-chairing commitment is assumed |
+| Service delivered | Prime Ministerial sponsorship and strategic review; a designated responsible minister; a Chief Secretary-chaired or authorised-equivalent senior-officials committee; named ministry delivery officers; and a bounded secretariat that maintains reporting and automatic escalation without assuming statutory functions |
+| Exclusions | No takeover of ministry, statutory-body, service-commission, state, MITRA or accounting-officer powers; no permanent establishment or personal PM-chairing commitment is assumed; routine delivery may not be paused solely because a political meeting is postponed |
 | Lead and accounting officer | **Lead:** Prime Minister's Department **Accounting officer:** Chief Secretary to the Government |
 | Supporting agencies | All lead ministries; MITRA; Ministry of Finance; Implementation Coordination Unit |
-| Authority route | Cabinet may establish a coordinating committee chaired by the Prime Minister and locate its secretariat in the Prime Minister's Department Status: `mandate-requires-establishment`. Legal issues: LGL-01; LGL-05; LGL-06; LGL-07; LGL-08. |
-| Delivery channel and coverage | **Channel:** Cabinet-authorised coordinating body supported by a JPM secretariat; named ministry delivery officers report through a senior-officials mechanism while statutory functions remain with existing bodies **Coverage:** Whole-of-government coordination; no direct beneficiary delivery footprint |
-| Volume | Central design assumption: 35 secretariat posts and four Task Force meetings per year; neither is authorised or fiscally confirmed Status: `provisional_cabinet_and_establishment_required`. |
+| Authority route | Cabinet may establish a coordinating committee, designate a responsible minister and authorise a Chief Secretary-chaired or equivalent senior-officials mechanism and bounded secretariat within the Prime Minister's Department Status: `mandate-requires-establishment`. Legal issues: LGL-01; LGL-05; LGL-06; LGL-07; LGL-08. |
+| Delivery channel and coverage | **Channel:** Cabinet-authorised governance chain under GC-01 to GC-08: Prime Ministerial sponsorship and strategic review; designated responsible minister; Chief Secretary-chaired or authorised-equivalent senior-officials committee; named ministry delivery officers and alternates; bounded JPM secretariat; automatic escalation; meeting-independent reporting; office-based succession **Coverage:** Whole-of-government coordination; no direct beneficiary delivery footprint |
+| Volume | Central design assumption: 35 secretariat posts; monthly senior-officials review and quarterly strategic review and reporting cycles; neither the posts nor the permanent bodies are authorised or fiscally confirmed Status: `provisional_cabinet_and_establishment_required`. |
 | Cost | **Phase 1:** RM11.700m. **Six years:** RM35.100m. **Confidence:** `Benchmarked`. Method: Establishment model: secretariat headcount x loaded cost + operating costs Unit-cost basis: 35 x 110k = RM3.85m per year + RM2m operating = RM5.85m per year = RM11.7m per two-year phase. Benchmarked to comparable delivery units in the Prime Minister's Department. |
 | Fiscal route | FIS-01; FIS-02; FIS-03; FIS-04; FIS-05; FIS-06; FIS-07; FIS-08; FIS-09; FIS-10. No amount is confirmed until the applicable controls are accepted by Treasury. |
 
@@ -546,15 +546,15 @@ Each sheet is generated from canonical registers. `PROGRAMME_DESIGN_REGISTER.csv
 
 | Design field | Controlled position |
 |---|---|
-| KPI and verification | **KPI-15 — Delivery discipline:** Proportion of quarterly Task Force meetings held as scheduled and chaired as constituted; and dashboards published within 14 days of each meeting **Frequency:** Quarterly. **Owner/source:** Prime Minister's Department; Task Force minutes; published dashboards. |
-| Complaints and appeals | Internal escalation register for missed agency milestones and an external channel for reporting or dashboard complaints; substantive service complaints routed to the accountable programme owner |
+| KPI and verification | **KPI-15 — Delivery continuity and discipline:** Proportion of scheduled ministry and senior-officials reviews completed; proportion of due reporting returns received; proportion of missed milestones entered automatically into the exception register with a named recovery owner and disposition; and quarterly dashboards published on the fixed calendar independently of political-meeting timing **Frequency:** Quarterly. **Owner/source:** Prime Minister's Department; Ministry planning records; nomination letters; senior-officials minutes; exception register; published dashboards; transition handover records. |
+| Complaints and appeals | Automatic exception register and tiered escalation for missed milestones; external channel for dashboard or reporting complaints; substantive service complaints remain with the accountable programme owner |
 | Minimum service commitments | SC-06; SC-07 |
-| Data collected | Meeting, decision, action, milestone, risk and programme-performance records; no unnecessary beneficiary case data |
-| Retention and access | Secretariat holds aggregate or authorised programme extracts only; access, archival, disclosure and retention follow approved Cabinet, records and data-governance instruments |
-| Key dependencies | VAL-08; VAL-23; VAL-27; Cabinet terms of reference; LGL-05 to LGL-08; FIS-04; FIS-08; FIS-09 |
-| Stop criteria | Do not establish or incur expenditure without Cabinet, establishment, legal and fiscal authority; stop any attempted exercise of a retained statutory power |
-| Redesign criteria | Redesign chairing, staffing, reporting or escalation if Cabinet chooses a different host or if the 35-post model is not justified |
-| Expansion criteria | Expand secretariat capacity only after workload evidence, reporting compliance, independent review and later establishment and funding approval |
+| Data collected | Meeting, decision, delegation, nomination, action, milestone, exception, handover, risk and programme-performance records; no unnecessary beneficiary case data |
+| Retention and access | Secretariat holds aggregate or authorised programme extracts only; access, archival, disclosure and retention follow approved Cabinet, records and data-governance instruments; dashboard cut-off and publication do not depend on meeting occurrence |
+| Key dependencies | VAL-08; VAL-23; VAL-27; GC-01 to GC-08; Cabinet terms of reference; LGL-05 to LGL-08; FIS-04; FIS-08; FIS-09 |
+| Stop criteria | Do not establish or incur expenditure without Cabinet, establishment, legal and fiscal authority; stop any attempted exercise of a retained statutory power; activate succession and escalation controls if an office or review fails |
+| Redesign criteria | Redesign hosting, staffing, delegation, reporting or escalation if Cabinet chooses a different model or if evidence shows that continuity controls, the 35-post model or reporting burden are not justified |
+| Expansion criteria | Expand secretariat capacity only after workload evidence, reporting compliance, a continuity test, independent review and later establishment and funding approval |
 | Required acceptance | Chief Secretary to the Government must accept the sheet in writing. Evidence: not received. Acceptance date: not recorded. |
 
 <div style="page-break-after: always;"></div>

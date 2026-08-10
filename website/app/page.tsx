@@ -161,7 +161,7 @@ export default function HomePage() {
             />
             <PrincipleCard
               title="Transparent"
-              description="Quarterly PM oversight, published dashboards, and independent evaluation."
+              description="Delegated delivery ownership, meeting-independent dashboards, and independent evaluation."
               icon="🔍"
             />
           </div>
