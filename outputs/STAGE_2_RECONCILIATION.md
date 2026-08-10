@@ -75,7 +75,7 @@ The standard formula — *eligible population × participation rate × unit cost
 
 | Scenario | Phase 1 | Phase 2 | Phase 3 | Six-year total | New funding |
 |---|---:|---:|---:|---:|---:|
-| Conservative | 283.4 | 406.0 | 469.2 | **1,158.487** | 662.215 |
+| Conservative | 283.4 | 406.0 | 469.2 | **1,158.487** | 662.217 |
 | **Central** | **355.3** | **520.8** | **608.2** | **1,484.273** | **847.677** |
 | Expanded | 441.5 | 658.7 | 775.0 | **1,875.220** | 1,070.229 |
 

@@ -4,6 +4,22 @@ Chronological record of what was checked, what failed, what changed, and the res
 
 ---
 
+## Stage 7 concrete service commitments (2026-08-10)
+
+| # | Check | Result |
+|---|---|---|
+| S.1 | Complete canonical standard | Seven unique commitments in `SERVICE_COMMITMENT_REGISTER.csv`: named ownership; acknowledgement/status; written reasons/referrals; no-wrong-door referral; published eligibility/queue rules; quarterly reporting; escalation/complaint route |
+| S.2 | Programme applicability | Each commitment maps only to applicable workflows; aggregate coverage includes all 16 retained programmes, with PRG-15 and PRG-16 carrying portfolio escalation, data quality and reporting |
+| S.3 | Timeline discipline | Observable implementation events are specified; no numeric case-processing, referral, queue or complaint-resolution deadline is stated before responsible-agency capacity confirmation |
+| S.4 | Outcome boundary | Citizenship, admission, employment, procurement, housing and other statutory or third-party results are expressly excluded from the service guarantee |
+| S.5 | Adoption integrity | All seven remain `draft_pending_agency_confirmation`; no commitment can be marked adopted without written evidence and an acceptance date |
+| S.6 | Generated outputs | `SERVICE_COMMITMENTS.md`, the proposal summary and programme-sheet mappings are generated from the canonical register and checked byte-for-byte |
+| S.7 | Regression verification | `verify_outputs.py`: **PASS — 130 checks, 0 hard failures, 1 standing disclosure warning**; first Stage 7 run failed two new hard checks and was corrected at the canonical source; final review corrected RM0.002m conservative-funding narrative drift and added check `[12f]` |
+
+**Service-commitment result: PASS for internal design completeness. Precise elapsed-time standards and agency adoption remain external and open.**
+
+---
+
 ## Stage 6 submission-readiness programme delivery feasibility (2026-08-10)
 
 | # | Check | Result |

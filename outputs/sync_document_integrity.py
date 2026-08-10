@@ -21,6 +21,7 @@ PROPOSAL = os.path.join(HERE, "MIB_2.0_EXECUTIVE_PROPOSAL.md")
 ANNEXES = os.path.join(HERE, "TECHNICAL_ANNEXES.md")
 ASSUMPTIONS = os.path.join(HERE, "ASSUMPTIONS_AND_DECISIONS.md")
 PROGRAMME_DESIGN_SHEETS = os.path.join(HERE, "PROGRAMME_DESIGN_SHEETS.md")
+SERVICE_COMMITMENTS = os.path.join(HERE, "SERVICE_COMMITMENTS.md")
 START = "<!-- GENERATED:{name}:START -->"
 END = "<!-- GENERATED:{name}:END -->"
 
@@ -91,12 +92,84 @@ def programme_design_data() -> list[dict[str, str]]:
     return load_csv("PROGRAMME_DESIGN_REGISTER.csv")
 
 
+def service_commitment_data() -> list[dict[str, str]]:
+    return load_csv("SERVICE_COMMITMENT_REGISTER.csv")
+
+
 def refs_for_programme(rows: list[dict[str, str]], programme_id: str, id_field: str) -> list[str]:
     return [
         row[id_field]
         for row in rows
         if programme_id in {item.strip() for item in row["affected_programmes"].split(";") if item.strip()}
     ]
+
+
+def service_refs_for_programme(programme_id: str) -> list[str]:
+    return refs_for_programme(service_commitment_data(), programme_id, "commitment_id")
+
+
+def render_service_commitment_summary() -> str:
+    rows = service_commitment_data()
+    beneficiary_programmes = {
+        item.strip()
+        for row in rows
+        for item in row["affected_programmes"].split(";")
+        if item.strip() not in {"PRG-15", "PRG-16"}
+    }
+    accepted = sum(row["adoption_status"] == "agency_accepted" for row in rows)
+    return "\n".join([
+        START.format(name="SERVICE_COMMITMENT_SUMMARY"),
+        "## 2.8 Household-visible minimum service commitments",
+        "",
+        f"`SERVICE_COMMITMENT_REGISTER.csv` controls **{len(rows)} candidate minimum service commitments** across "
+        f"**{len(beneficiary_programmes)} beneficiary- or institution-facing programmes**, with portfolio reporting and escalation through PRG-15 and PRG-16.",
+        "",
+        "| Commitment | Controlled promise |",
+        "|---|---|",
+        *[f"| {row['commitment_id']} — {row['commitment_name']} | {row['controlled_commitment']} |" for row in rows],
+        "",
+        "**Timeline boundary.** The commitments use observable process events—case acceptance, valid lodgement, decision or referral, intake opening, quarter-end and unresolved-case escalation. No numeric acknowledgement, processing, referral, waiting-list or complaint-resolution deadline is stated. Those elapsed-time standards require responsible-agency workflow, caseload and capacity evidence.",
+        "",
+        f"**Adoption status:** **{accepted} of {len(rows)} agency accepted**. All seven remain internal design standards pending written accounting-officer confirmation. A commitment cannot be represented as adopted without an evidence reference and acceptance date.",
+        "",
+        "**Outcome boundary.** These are commitments about service administration and remedy. They do not guarantee citizenship or documentation status, admission, certification, employment, procurement awards, financing, investment returns, housing or any other result controlled by statute, an independent body or a third party.",
+        END.format(name="SERVICE_COMMITMENT_SUMMARY"),
+    ])
+
+
+def render_service_commitments() -> str:
+    rows = service_commitment_data()
+    lines = [
+        "# MIB 2.0 Service Commitment Standard",
+        "",
+        "**Control status:** Internal design standard for agency validation. No commitment is represented as adopted, and no numeric case-processing deadline is implied.",
+        "",
+        "These commitments define the minimum household-visible administrative experience that the programme architecture is designed to deliver. Each row is generated from `SERVICE_COMMITMENT_REGISTER.csv`.",
+        "",
+    ]
+    for row in rows:
+        lines += [
+            f"## {row['commitment_id']} — {row['commitment_name']}",
+            "",
+            f"**Adoption status:** `{row['adoption_status']}` · **Timeline status:** `{row['service_timeline_status']}`",
+            "",
+            "| Control field | Controlled position |",
+            "|---|---|",
+            f"| Service commitment | {row['controlled_commitment']} |",
+            f"| Applicability | {row['applicability_rule']} |",
+            f"| Programmes | {row['affected_programmes']} |",
+            f"| Implementation point | {row['implementation_point']} |",
+            f"| Timeline boundary | {row['service_timeline']} |",
+            f"| Capacity evidence required | {row['capacity_evidence_required']} |",
+            f"| Standard owner | {row['standard_owner']} |",
+            f"| Performance measure | {row['performance_measure']} |",
+            f"| Reporting frequency | {row['reporting_frequency']} |",
+            f"| Escalation and remedy | {row['escalation_and_remedy']} |",
+            f"| Excluded outcomes | {row['excluded_outcomes']} |",
+            f"| Required acceptance | Written evidence: {row['evidence_reference'] or 'not received'}. Acceptance date: {row['acceptance_date'] or 'not recorded'}. |",
+            "",
+        ]
+    return "\n".join(lines).rstrip() + "\n"
 
 
 def render_programme_design_summary() -> str:
@@ -192,6 +265,7 @@ def render_programme_design_sheets() -> str:
             "|---|---|",
             f"| KPI and verification | **{kpi['kpi_id']} — {kpi['kpi_name']}:** {kpi['definition']} **Frequency:** {kpi['measurement_frequency']}. **Owner/source:** {kpi['data_owner']}; {kpi['verification_source']}. |",
             f"| Complaints and appeals | {design['complaints_and_appeals']} |",
+            f"| Minimum service commitments | {'; '.join(service_refs_for_programme(programme_id)) or 'None — portfolio governance function only'} |",
             f"| Data collected | {design['data_collected']} |",
             f"| Retention and access | {design['retention_and_access_rule']} |",
             f"| Key dependencies | {design['key_dependencies']} |",
@@ -738,6 +812,7 @@ def expected_sections() -> dict[str, str]:
         "LEGAL_ISSUES_REGISTER": render_legal_register(),
         "FISCAL_VALIDATION_SUMMARY": render_fiscal_summary(),
         "PROGRAMME_DESIGN_SUMMARY": render_programme_design_summary(),
+        "SERVICE_COMMITMENT_SUMMARY": render_service_commitment_summary(),
         "FISCAL_VALIDATION_REGISTER": render_fiscal_register(),
         "PHASE_TABLE": render_phase_table(),
         "PROPOSAL_FINANCE": render_proposal_finance(),
@@ -756,6 +831,7 @@ def main() -> None:
     proposal = replace_generated(proposal, "LEGAL_CLEARANCE_SUMMARY", render_legal_summary().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "FISCAL_VALIDATION_SUMMARY", render_fiscal_summary().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "PROGRAMME_DESIGN_SUMMARY", render_programme_design_summary().replace("\n", proposal_eol))
+    proposal = replace_generated(proposal, "SERVICE_COMMITMENT_SUMMARY", render_service_commitment_summary().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "PHASE_TABLE", render_phase_table().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "PROPOSAL_FINANCE", render_proposal_finance().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "FINAL_DECISION_RESOLUTION", render_final_decision_resolution().replace("\n", proposal_eol))
@@ -790,7 +866,9 @@ def main() -> None:
         fh.write(assumptions)
     with open(PROGRAMME_DESIGN_SHEETS, "w", encoding="utf-8", newline="") as fh:
         fh.write(render_programme_design_sheets())
-    print("Synchronised generated integrity sections and programme design sheets")
+    with open(SERVICE_COMMITMENTS, "w", encoding="utf-8", newline="") as fh:
+        fh.write(render_service_commitments())
+    print("Synchronised generated integrity sections, programme design sheets and service commitments")
 
 
 if __name__ == "__main__":

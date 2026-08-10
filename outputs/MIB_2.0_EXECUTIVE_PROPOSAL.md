@@ -150,6 +150,28 @@ Current status: **16 draft pending agency confirmation**; **0 of 16 accepted by 
 **Implementation boundary.** A programme may enter the formal implementation request only when its sheet is accepted, its mapped launch gates are cleared, its delivery capacity and partner commitments are evidenced, and its included Phase 1 component has a Treasury-approved route. Unresolved programme-specific matters do not block unrelated sheets.
 <!-- GENERATED:PROGRAMME_DESIGN_SUMMARY:END -->
 
+<!-- GENERATED:SERVICE_COMMITMENT_SUMMARY:START -->
+## 2.8 Household-visible minimum service commitments
+
+`SERVICE_COMMITMENT_REGISTER.csv` controls **7 candidate minimum service commitments** across **14 beneficiary- or institution-facing programmes**, with portfolio reporting and escalation through PRG-15 and PRG-16.
+
+| Commitment | Controlled promise |
+|---|---|
+| SC-01 — Named case ownership | Every accepted individual, household or enterprise case receives a named case owner or named responsible service unit, with a recorded handover when responsibility changes. |
+| SC-02 — Acknowledgement and status visibility | Every validly lodged application or service request receives an acknowledgement, a traceable reference and access to its current procedural status through an approved channel. |
+| SC-03 — Written reasons or referral record | Every decision, non-acceptance, closure or onward referral provides a written reason or reason category, identifies the responsible decision route and states the available review, correction or complaint channel, subject to lawful disclosure limits. |
+| SC-04 — No-wrong-door referral | A person who approaches a participating programme with an in-scope need is either assisted by that programme or transferred through a documented referral to the competent participating body, with consent where personal data is shared. |
+| SC-05 — Published eligibility and queue rules | Before intake or selection opens, each participating programme publishes its eligibility, required evidence, prioritisation method, capacity limit, waiting-list or queue rule, material exclusions and review or correction route in accessible form. |
+| SC-06 — Quarterly service-performance reporting | Service-performance results are reported quarterly using aggregate, auditable measures that show demand, access, acknowledgement, ownership, status, referrals, reasons, queues, complaints and unresolved exceptions where applicable. |
+| SC-07 — Defined escalation and complaint route | Every participating service publishes a usable route for correction, complaint and escalation; unresolved matters have a named next-level owner, and complainants can track closure or onward referral. |
+
+**Timeline boundary.** The commitments use observable process events—case acceptance, valid lodgement, decision or referral, intake opening, quarter-end and unresolved-case escalation. No numeric acknowledgement, processing, referral, waiting-list or complaint-resolution deadline is stated. Those elapsed-time standards require responsible-agency workflow, caseload and capacity evidence.
+
+**Adoption status:** **0 of 7 agency accepted**. All seven remain internal design standards pending written accounting-officer confirmation. A commitment cannot be represented as adopted without an evidence reference and acceptance date.
+
+**Outcome boundary.** These are commitments about service administration and remedy. They do not guarantee citizenship or documentation status, admission, certification, employment, procurement awards, financing, investment returns, housing or any other result controlled by statute, an independent body or a third party.
+<!-- GENERATED:SERVICE_COMMITMENT_SUMMARY:END -->
+
 ---
 
 # 3. The reality, stated accurately

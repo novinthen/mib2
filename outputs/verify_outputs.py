@@ -122,6 +122,14 @@ REQUIRED = {
                                        "retention_and_access_rule", "key_dependencies", "stop_criteria",
                                        "redesign_criteria", "expansion_criteria", "signoff_owner",
                                        "signoff_status", "evidence_reference", "acceptance_date"],
+    "SERVICE_COMMITMENT_REGISTER.csv": ["commitment_id", "commitment_name",
+                                         "controlled_commitment", "applicability_rule",
+                                         "affected_programmes", "implementation_point",
+                                         "service_timeline_status", "service_timeline",
+                                         "capacity_evidence_required", "standard_owner",
+                                         "performance_measure", "reporting_frequency",
+                                         "escalation_and_remedy", "excluded_outcomes",
+                                         "adoption_status", "evidence_reference", "acceptance_date"],
 }
 
 data = {}
@@ -174,6 +182,7 @@ ID_COL = {"SOURCE_REGISTER.csv": "source_id",
           "LEGAL_ISSUES_REGISTER.csv": "legal_issue_id",
           "FISCAL_VALIDATION_REGISTER.csv": "fiscal_control_id"}
 ID_COL["PROGRAMME_DESIGN_REGISTER.csv"] = "programme_id"
+ID_COL["SERVICE_COMMITMENT_REGISTER.csv"] = "commitment_id"
 for fname, col in ID_COL.items():
     rows = data.get(fname, [])
     if not rows:
@@ -416,7 +425,7 @@ for fname, cols in REQUIRED.items():
             # These two fields are intentionally blank while a legal issue is
             # open/requested. Check [14] requires both once a competent
             # authority records a disposition.
-            if fname in {"LEGAL_ISSUES_REGISTER.csv", "FISCAL_VALIDATION_REGISTER.csv", "PROGRAMME_DESIGN_REGISTER.csv"} and c in {"evidence_reference", "acceptance_date"}:
+            if fname in {"LEGAL_ISSUES_REGISTER.csv", "FISCAL_VALIDATION_REGISTER.csv", "PROGRAMME_DESIGN_REGISTER.csv", "SERVICE_COMMITMENT_REGISTER.csv"} and c in {"evidence_reference", "acceptance_date"}:
                 continue
             if not str(r.get(c, "")).strip():
                 blanks.append(f"{fname}:{rid}.{c}")
@@ -540,7 +549,7 @@ CANON = ["BENEFICIARY_RECONCILIATION.csv", "STATUS.md", "ASSUMPTIONS_AND_DECISIO
          "PROGRAMME_REGISTER.csv", "NARRATIVE_REGISTER.csv",
          "CONFLICT_AND_DUPLICATION_REGISTER.csv", "RESPONSIBILITY_MATRIX.csv",
          "KPI_REGISTER.csv", "RISK_AND_SAFEGUARD_REGISTER.csv", "COSTING_MODEL.csv",
-         "COSTING_ASSUMPTIONS.csv", "DECISION_REGISTER.csv", "VALIDATION_REGISTER.csv", "LEGAL_ISSUES_REGISTER.csv", "FISCAL_VALIDATION_REGISTER.csv", "PROGRAMME_DESIGN_REGISTER.csv", "PROGRAMME_DESIGN_SHEETS.md", "verify_outputs.py", "VERIFICATION_RESULTS.md",
+         "COSTING_ASSUMPTIONS.csv", "DECISION_REGISTER.csv", "VALIDATION_REGISTER.csv", "LEGAL_ISSUES_REGISTER.csv", "FISCAL_VALIDATION_REGISTER.csv", "PROGRAMME_DESIGN_REGISTER.csv", "PROGRAMME_DESIGN_SHEETS.md", "SERVICE_COMMITMENT_REGISTER.csv", "SERVICE_COMMITMENTS.md", "verify_outputs.py", "VERIFICATION_RESULTS.md",
          "STAGE_1_DIAGNOSTIC.md", "STAGE_2_RECONCILIATION.md",
          "MIB_2.0_EXECUTIVE_PROPOSAL.md", "TECHNICAL_ANNEXES.md"]
 absent = [f for f in CANON if not os.path.exists(os.path.join(HERE, f))
@@ -551,7 +560,7 @@ check(not absent, f"[extra] all {len(CANON)} canonical files exist and are non-e
 # ---- CHECK 12: generated document sections match canonical registers -----
 # Financial tables in the proposal and annex must never be maintained by
 # hand.  Compare the committed text with a fresh render from the CSV model.
-from sync_document_integrity import expected_sections, render_programme_design_sheets, START, END
+from sync_document_integrity import expected_sections, render_programme_design_sheets, render_service_commitments, START, END
 
 
 def generated_block(document, name):
@@ -1122,6 +1131,75 @@ check(all(row["design_status"] == "draft_pending_agency_confirmation"
       "[16f] all 16 sheets remain internal drafts pending accounting-officer confirmation",
       "[16f] A PROGRAMME DESIGN HAS CHANGED STATUS WITHOUT EXTERNAL AGENCY REVIEW")
 
+# ---- CHECK 17: Stage 7 household-visible service commitments ------------
+service_rows = data.get("SERVICE_COMMITMENT_REGISTER.csv", [])
+service_ids = {row["commitment_id"] for row in service_rows}
+expected_service_ids = {f"SC-{number:02d}" for number in range(1, 8)}
+required_service_names = {
+    "Named case ownership", "Acknowledgement and status visibility",
+    "Written reasons or referral record", "No-wrong-door referral",
+    "Published eligibility and queue rules", "Quarterly service-performance reporting",
+    "Defined escalation and complaint route",
+}
+service_defects = []
+service_coverage = set()
+for row in service_rows:
+    sid = row["commitment_id"]
+    affected = {item.strip() for item in row["affected_programmes"].split(";") if item.strip()}
+    service_coverage |= affected
+    if not affected or not affected <= retained:
+        service_defects.append(f"{sid}: missing or unknown affected programmes {sorted(affected - retained)}")
+    if row["adoption_status"] != "draft_pending_agency_confirmation":
+        service_defects.append(f"{sid}: invalid or unsupported adoption status {row['adoption_status']!r}")
+    if row["service_timeline_status"] != "pending_agency_capacity_confirmation":
+        service_defects.append(f"{sid}: timeline status does not preserve agency-capacity gate")
+    if row["reporting_frequency"] != "quarterly":
+        service_defects.append(f"{sid}: reporting frequency is not quarterly")
+    if re.search(r"\b\d+\s*(?:business\s+|calendar\s+)?(?:hour|day|week|month)s?\b", row["service_timeline"], re.I):
+        service_defects.append(f"{sid}: invented numeric service deadline in timeline")
+    if not re.search(r"capacity|workflow|caseload|demand|complaint|reporting", row["capacity_evidence_required"], re.I):
+        service_defects.append(f"{sid}: capacity evidence is not operationally specified")
+    if row["evidence_reference"].strip() or row["acceptance_date"].strip():
+        service_defects.append(f"{sid}: draft commitment improperly carries adoption evidence/date")
+
+check(not service_defects and len(service_rows) == 7 and service_ids == expected_service_ids,
+      "[17] seven canonical service commitments have controlled scope, ownership, capacity evidence, reporting and remedy fields",
+      f"[17] SERVICE COMMITMENT DEFECTS: {service_defects[:24]}; rows={len(service_rows)}; ids={sorted(service_ids)}")
+check({row["commitment_name"] for row in service_rows} == required_service_names,
+      "[17a] the seven commitments cover ownership, acknowledgement/status, reasons, no-wrong-door referral, published rules, quarterly reporting and escalation",
+      "[17a] REQUIRED SERVICE-COMMITMENT COVERAGE IS INCOMPLETE")
+check(service_coverage == retained,
+      "[17b] the service standard covers all 16 retained programmes, including portfolio reporting and escalation functions",
+      f"[17b] SERVICE-COMMITMENT PROGRAMME COVERAGE DRIFT: missing={sorted(retained - service_coverage)}")
+check(all(row["adoption_status"] == "draft_pending_agency_confirmation"
+          and not row["evidence_reference"].strip()
+          and not row["acceptance_date"].strip() for row in service_rows),
+      "[17c] no service commitment is represented as agency-adopted without written evidence and an acceptance date",
+      "[17c] A SERVICE COMMITMENT IMPROPERLY IMPLIES AGENCY ADOPTION")
+check(all(not re.search(r"\b\d+\s*(?:business\s+|calendar\s+)?(?:hour|day|week|month)s?\b",
+                        row["service_timeline"], re.I) for row in service_rows),
+      "[17d] no numeric case-processing, referral, queue or complaint deadline is invented before capacity confirmation",
+      "[17d] ONE OR MORE SERVICE COMMITMENTS CONTAIN AN UNVALIDATED NUMERIC DEADLINE")
+excluded_text = " ".join(row["excluded_outcomes"] for row in service_rows).lower()
+required_excluded_outcomes = {
+    "citizenship", "admission", "employment", "procurement", "housing",
+}
+check(all(term in excluded_text for term in required_excluded_outcomes),
+      "[17e] the service standard expressly excludes statutory and third-party outcome guarantees",
+      "[17e] SERVICE STANDARD DOES NOT EXCLUDE ALL HIGH-RISK OUTCOME GUARANTEES")
+service_doc_path = os.path.join(HERE, "SERVICE_COMMITMENTS.md")
+service_doc_text = open(service_doc_path, encoding="utf-8").read() if os.path.exists(service_doc_path) else ""
+check(service_doc_text == render_service_commitments(),
+      "[17f] the detailed service-commitment standard matches the canonical register exactly",
+      "[17f] SERVICE COMMITMENT DOCUMENT IS STALE OR MANUALLY EDITED")
+sheet_service_mapping_ok = all(
+    f"| Minimum service commitments | {'; '.join(sorted(row['commitment_id'] for row in service_rows if pid in {item.strip() for item in row['affected_programmes'].split(';') if item.strip()}))}" in design_sheets_text
+    for pid in retained
+)
+check(sheet_service_mapping_ok,
+      "[17g] every programme design sheet contains its exact applicable service-commitment mapping",
+      "[17g] ONE OR MORE PROGRAMME SHEETS HAS A STALE SERVICE-COMMITMENT MAPPING")
+
 # ---- CHECK 12c: every typed cross-reference resolves everywhere ----------
 known_refs = {
     "CLM": {r["claim_id"] for r in data.get("CLAIMS_AND_FIGURES_REGISTER.csv", [])},
@@ -1132,6 +1210,7 @@ known_refs = {
     "VAL": set(validation_ids),
     "LGL": legal_ids,
     "FIS": fiscal_ids,
+    "SC": service_ids,
 }
 unresolved_refs = []
 for path in _glob.glob(os.path.join(HERE, "*.csv")) + _glob.glob(os.path.join(HERE, "*.md")):
@@ -1208,6 +1287,20 @@ else:
 check(not claim_054_defects,
       "[12e] CLM-054 matches all three scenario totals and central new funding, and preserves non-approved status",
       f"[12e] CANONICAL FINANCIAL CLAIM DRIFT: {claim_054_defects}")
+
+# ---- CHECK 12f: non-generated headline tables match the live model ------
+conservative_new = sum(
+    D(row["new_funding"]) for row in cm if row["scenario"] == "conservative"
+)
+headline_paths = ("STATUS.md", "STAGE_2_RECONCILIATION.md")
+headline_drift = []
+for filename in headline_paths:
+    content = open(os.path.join(HERE, filename), encoding="utf-8").read()
+    if f"{conservative_new:,.3f}" not in content:
+        headline_drift.append(f"{filename}: missing conservative new funding {conservative_new:,.3f}")
+check(not headline_drift,
+      "[12f] non-generated status and reconciliation headlines match the canonical conservative new-funding total",
+      f"[12f] NARRATIVE CONSERVATIVE-FUNDING DRIFT: {headline_drift}")
 
 # ---- report --------------------------------------------------------------
 print(f"\nPASSED ({len(PASSED)}):")

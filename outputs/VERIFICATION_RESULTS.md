@@ -13,7 +13,7 @@ python outputs/verify_outputs.py             # required and expanded checks; exi
 
 **Timestamp:** 2026-08-10 (latest integrity run)
 **Final exit status of `verify_outputs.py`:** **0 (PASS)**
-**Result:** **118 checks passed, 0 hard failures, 1 standing disclosure warning.**
+**Result:** **130 checks passed, 0 hard failures, 1 standing disclosure warning.**
 
 The standing warning is deliberate: PRG-01 and PRG-14 have no complete published costing formula, so their amounts remain explicitly identified as authored judgements rather than derivations.
 
@@ -34,6 +34,8 @@ The standing warning is deliberate: PRG-01 and PRG-14 have no complete published
 | 9 | **PASS** | 0 | Stage 4 legal control: 98 checks, 0 hard failures; canonical legal issues matrix, current-law procurement control, evidence-backed disposition rule and checks `[14]`–`[14c]` added |
 | 10 | **PASS** | 0 | Stage 5 fiscal control: 108 checks, 0 hard failures; canonical Treasury-validation register, generated Phase 1 schedule, funding-split non-fabrication rule and checks `[15]`–`[15f]` added |
 | 11 | **PASS** | 0 | Stage 6 delivery-feasibility control: 118 checks, 0 hard failures; 16 canonical programme designs, generated two-part sheets, evidence-backed sign-off discipline, cross-register joins, volume reconciliation and checks `[16]`–`[16f]` added |
+| 12 | **FAIL — 2 hard failures** | `[17]` SC-02 capacity evidence omitted an explicit workflow/capacity prerequisite; `[17e]` aggregate exclusion wording did not name citizenship | Canonical SC-02 evidence amended to require workflow and channel capacity; SC-01 exclusion amended to name citizenship and documentation status explicitly. Checks were not weakened |
+| 13 | **PASS** | 0 | Stage 7 service-commitment control: 130 checks, 0 hard failures; seven canonical commitments, programme applicability, capacity-gated timelines, prohibited-outcome boundary, generated standard and checks `[17]`–`[17g]` added; final review corrected RM0.002m conservative-funding narrative drift and added check `[12f]` |
 
 ### Checks added in response to the independent critique
 
@@ -54,7 +56,7 @@ The standing warning is deliberate: PRG-01 and PRG-14 have no complete published
 
 ## Archived full output of Run 6
 
-The transcript below records the 80-check Stage 1 run. Run 11 supersedes it; the current 118-check result is recorded above and in `AUDIT_LOG.md`. Later checks cover decision, validation, legal, fiscal and programme-design schemas; row widths and unique IDs; canonical-file presence; generated decision, validation, legal, Phase 1 fiscal and programme-design sections; decision-scope, clearance and sign-off integrity; validation-control completeness; funding-split non-fabrication; service-volume reconciliation; and the model-derived contents of CLM-054.
+The transcript below records the 80-check Stage 1 run. Run 13 supersedes it; the current 130-check result is recorded above and in `AUDIT_LOG.md`. Later checks cover decision, validation, legal, fiscal, programme-design and service-commitment schemas; row widths and unique IDs; canonical-file presence; generated decision, validation, legal, Phase 1 fiscal, programme-design and service-standard sections; decision-scope, clearance, sign-off and adoption integrity; validation-control completeness; funding-split non-fabrication; service-volume reconciliation; unvalidated service deadlines; prohibited outcome guarantees; non-generated funding headlines; and the model-derived contents of CLM-054.
 
 ```text
 ==============================================================================
