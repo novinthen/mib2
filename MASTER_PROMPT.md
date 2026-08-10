@@ -262,11 +262,14 @@ Create `outputs/` if it does not exist. Maintain these canonical files:
 - `outputs/RESPONSIBILITY_MATRIX.csv`
 - `outputs/KPI_REGISTER.csv`
 - `outputs/RISK_AND_SAFEGUARD_REGISTER.csv`
+- `outputs/DECISION_REGISTER.csv`
+- `outputs/VALIDATION_REGISTER.csv`
 
 ### Costing and machine checks
 
 - `outputs/COSTING_MODEL.csv`
 - `outputs/COSTING_ASSUMPTIONS.csv`
+- `outputs/sync_document_integrity.py`
 - `outputs/verify_outputs.py`
 - `outputs/VERIFICATION_RESULTS.md`
 

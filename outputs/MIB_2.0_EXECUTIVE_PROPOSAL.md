@@ -74,7 +74,25 @@ These exclusions are part of the decision itself. Silence or general endorsement
 **Decision rule.** Only AN-01 to AN-05 would take effect on this preliminary decision. CE-01 to CE-04 are design parameters, not operative approvals. NA-01 to NA-07 are express exclusions. If the recorded Cabinet decision does not preserve that distinction, the sponsoring ministry must correct the record before undertaking any action.
 <!-- GENERATED:DECISION_ARCHITECTURE:END -->
 
-The validation exercise must resolve the thirty items in `ASSUMPTIONS_AND_DECISIONS.md` Part C. Six are strict gates: AGC clearance of needs-based community-targeted delivery (VAL-01); DOSM validation of the low-income child cohort (VAL-09); Ministry of Education confirmation of the SJKT funding share (VAL-11); PNB's independent willingness to participate (VAL-19); JPA and MOF establishment approval (VAL-23); and AGC clearance under Articles 12(1) and 136 (VAL-30). A strict gate applies only to the affected decision or programme; one unresolved partner-specific gate does not automatically block unrelated validation work.
+<!-- GENERATED:VALIDATION_SUMMARY:START -->
+## 2.4 Validation control architecture
+
+The thirty validation items are not one undifferentiated condition. Each is assigned to the earliest decision it can legitimately block:
+
+| Classification | Items | Control effect |
+|---|---:|---|
+| **Pre-submission gate** | 12 | Must resolve before the affected implementation or funding decision is submitted |
+| **Programme-launch gate** | 8 | Blocks only the named programme or jurisdiction |
+| **Phase-expansion gate** | 2 | Blocks scale-up or later-phase appropriation, not controlled Phase 1 work |
+| **Operational baseline** | 5 | May be established during operations but must precede target calibration |
+| **Deferrable design matter** | 3 | Does not block submission or launch unless the disputed material is used |
+
+The six strict gates remain **VAL-01, VAL-09, VAL-11, VAL-19, VAL-23, VAL-30**. Four further items — **VAL-03, VAL-24, VAL-27, VAL-28** — are decision-dependent critical: they become submission blockers only if the later request relies on the affected funding, measurement, governance or reallocation proposition.
+
+Every item has one accountable owner, supporting agencies, required evidence, a control deadline, escalation route, financial consequence, affected decision and controlled status. The deadlines run from Cabinet notification or the stated programme/phase event; they are management controls, not statutory time limits. Status is restricted to `open`, `requested`, `received`, `accepted` or `disputed`.
+
+**No-cascade rule.** An unresolved item blocks only the decision IDs listed against it in `VALIDATION_REGISTER.csv`. It does not suspend unrelated validation work or programmes.
+<!-- GENERATED:VALIDATION_SUMMARY:END -->
 
 ---
 

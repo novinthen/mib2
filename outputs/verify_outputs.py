@@ -98,6 +98,10 @@ REQUIRED = {
     "DECISION_REGISTER.csv": ["decision_id", "category", "decision_text",
                               "what_it_authorises", "what_it_does_not_authorise",
                               "dependency", "responsible_owner", "completion_evidence"],
+    "VALIDATION_REGISTER.csv": ["validation_id", "item", "classification", "criticality",
+                                "accountable_owner", "supporting_agencies", "required_evidence",
+                                "deadline", "escalation_route", "financial_consequence",
+                                "decision_affected_if_unresolved", "status"],
 }
 
 data = {}
@@ -145,7 +149,8 @@ ID_COL = {"SOURCE_REGISTER.csv": "source_id",
           "COSTING_MODEL.csv": "cost_line_id",
           "COSTING_ASSUMPTIONS.csv": "assumption_id",
           "BENEFICIARY_RECONCILIATION.csv": "overlap_group",
-          "DECISION_REGISTER.csv": "decision_id"}
+          "DECISION_REGISTER.csv": "decision_id",
+          "VALIDATION_REGISTER.csv": "validation_id"}
 for fname, col in ID_COL.items():
     rows = data.get(fname, [])
     if not rows:
@@ -309,11 +314,10 @@ check(len(units) == len(br),
 # ---- CHECK 2b: ASM-xxx and VAL-xx references resolve (critic M-12) -------
 import glob as _glob
 asm_defined = set(asm_ids)
-val_defined = set()
+val_defined = {r["validation_id"] for r in data.get("VALIDATION_REGISTER.csv", [])}
 adpath = os.path.join(HERE, "ASSUMPTIONS_AND_DECISIONS.md")
 if os.path.exists(adpath):
     ad = open(adpath, encoding="utf-8").read()
-    val_defined = set(re.findall(r"\|\s*(VAL-\d{2})\s*\|", ad))
     asm_defined |= set(re.findall(r"\|\s*(ASM-\d{3})\s*\|", ad))
 dangling = set()
 for f in _glob.glob(os.path.join(HERE, "*.csv")) + _glob.glob(os.path.join(HERE, "*.md")):
@@ -508,7 +512,7 @@ CANON = ["BENEFICIARY_RECONCILIATION.csv", "STATUS.md", "ASSUMPTIONS_AND_DECISIO
          "PROGRAMME_REGISTER.csv", "NARRATIVE_REGISTER.csv",
          "CONFLICT_AND_DUPLICATION_REGISTER.csv", "RESPONSIBILITY_MATRIX.csv",
          "KPI_REGISTER.csv", "RISK_AND_SAFEGUARD_REGISTER.csv", "COSTING_MODEL.csv",
-         "COSTING_ASSUMPTIONS.csv", "DECISION_REGISTER.csv", "verify_outputs.py", "VERIFICATION_RESULTS.md",
+         "COSTING_ASSUMPTIONS.csv", "DECISION_REGISTER.csv", "VALIDATION_REGISTER.csv", "verify_outputs.py", "VERIFICATION_RESULTS.md",
          "STAGE_1_DIAGNOSTIC.md", "STAGE_2_RECONCILIATION.md",
          "MIB_2.0_EXECUTIVE_PROPOSAL.md", "TECHNICAL_ANNEXES.md"]
 absent = [f for f in CANON if not os.path.exists(os.path.join(HERE, f))
@@ -533,10 +537,16 @@ def generated_block(document, name):
 proposal_text = open(prop, encoding="utf-8").read() if os.path.exists(prop) else ""
 annex_path = os.path.join(HERE, "TECHNICAL_ANNEXES.md")
 annex_text = open(annex_path, encoding="utf-8").read() if os.path.exists(annex_path) else ""
+assumptions_text = open(adpath, encoding="utf-8").read() if os.path.exists(adpath) else ""
 expected = expected_sections()
 stale = []
 for section_name, rendered in expected.items():
-    document = annex_text if section_name == "TECHNICAL_ANNEX_A" else proposal_text
+    if section_name == "TECHNICAL_ANNEX_A":
+        document = annex_text
+    elif section_name == "VALIDATION_REGISTER":
+        document = assumptions_text
+    else:
+        document = proposal_text
     if generated_block(document, section_name) != rendered:
         stale.append(section_name)
 check(not stale,
@@ -645,7 +655,7 @@ required_proposal_phrases = [
     f"Twenty-one risks are registered" if len(risk_rows) == 21 else f"{len(risk_rows)} risks are registered",
     f"Fourteen carry a **critical inherent rating**" if critical_count == 14 else f"{critical_count} carry a **critical inherent rating**",
     f"Twelve of the sixteen have a baseline status" if baseline_pending_count == 12 and len(kpi_rows) == 16 else f"{baseline_pending_count} of the {len(kpi_rows)} have a baseline status",
-    "thirty items in `ASSUMPTIONS_AND_DECISIONS.md` Part C",
+    "The thirty validation items are not one undifferentiated condition",
 ]
 for phrase in required_proposal_phrases:
     if phrase not in proposal_text:
@@ -664,9 +674,9 @@ for phrase in required_annex_phrases:
         count_drift.append(f"annex missing canonical count statement: {phrase}")
 
 ad_text = open(adpath, encoding="utf-8").read() if os.path.exists(adpath) else ""
-validation_ids = re.findall(r"^\|\s*(VAL-\d{2})\s*\|", ad_text, flags=re.MULTILINE)
-strict_match = re.search(r"\*\*Six of these are gating in the strict sense — ([^*]+)\*\*", ad_text)
-strict_ids = set(re.findall(r"VAL-\d{2}", strict_match.group(1))) if strict_match else set()
+validation_rows = data.get("VALIDATION_REGISTER.csv", [])
+validation_ids = [row["validation_id"] for row in validation_rows]
+strict_ids = {row["validation_id"] for row in validation_rows if row["criticality"] == "strict_gate"}
 expected_strict_ids = {"VAL-01", "VAL-09", "VAL-11", "VAL-19", "VAL-23", "VAL-30"}
 if len(validation_ids) != 30 or len(set(validation_ids)) != 30:
     count_drift.append(f"validation register has {len(validation_ids)} rows / {len(set(validation_ids))} unique IDs, expected 30")
@@ -675,6 +685,62 @@ if strict_ids != expected_strict_ids:
 check(not count_drift,
       "[12b] programme, KPI, risk, mandate, source, claim and validation counts in narrative match their canonical registers",
       f"[12b] NARRATIVE COUNT DRIFT: {count_drift[:12]}")
+
+# ---- CHECK 13: Stage 3 validation control architecture -------------------
+allowed_classes = {
+    "pre_submission_gate", "programme_launch_gate", "phase_expansion_gate",
+    "operational_baseline", "deferrable_design_matter",
+}
+allowed_criticality = {"strict_gate", "decision_dependent_critical", "standard"}
+allowed_status = {"open", "requested", "received", "accepted", "disputed"}
+expected_conditional_ids = {"VAL-03", "VAL-24", "VAL-27", "VAL-28"}
+decision_ids = {row["decision_id"] for row in decision_rows}
+validation_defects = []
+required_detail_fields = (
+    "item", "accountable_owner", "supporting_agencies", "required_evidence", "deadline",
+    "escalation_route", "financial_consequence", "decision_affected_if_unresolved", "status",
+)
+for row in validation_rows:
+    vid = row["validation_id"]
+    if row["classification"] not in allowed_classes:
+        validation_defects.append(f"{vid}: invalid classification {row['classification']!r}")
+    if row["criticality"] not in allowed_criticality:
+        validation_defects.append(f"{vid}: invalid criticality {row['criticality']!r}")
+    if row["status"] not in allowed_status:
+        validation_defects.append(f"{vid}: invalid status {row['status']!r}")
+    for field in required_detail_fields:
+        if not row[field].strip():
+            validation_defects.append(f"{vid}: blank {field}")
+    affected = {item.strip() for item in row["decision_affected_if_unresolved"].split(";") if item.strip()}
+    unknown = affected - decision_ids
+    if not affected or unknown:
+        validation_defects.append(f"{vid}: affected decisions unresolved or unknown {sorted(unknown)}")
+
+conditional_ids = {
+    row["validation_id"] for row in validation_rows
+    if row["criticality"] == "decision_dependent_critical"
+}
+if conditional_ids != expected_conditional_ids:
+    validation_defects.append(
+        f"decision-dependent critical IDs are {sorted(conditional_ids)}, expected {sorted(expected_conditional_ids)}"
+    )
+class_counts = Counter(row["classification"] for row in validation_rows)
+if set(class_counts) != allowed_classes or any(not class_counts[key] for key in allowed_classes):
+    validation_defects.append(f"classification coverage incomplete: {dict(class_counts)}")
+if "No-cascade rule" not in proposal_text:
+    validation_defects.append("proposal lacks the no-cascade rule")
+if "Received` does not mean accepted" not in ad_text:
+    validation_defects.append("validation register lacks received-versus-accepted status control")
+
+check(not validation_defects,
+      "[13] all 30 validation items have one classification, criticality, owner, evidence, deadline, escalation, financial consequence, affected decisions and controlled status",
+      f"[13] VALIDATION CONTROL DEFECTS: {validation_defects[:20]}")
+check(strict_ids == expected_strict_ids and conditional_ids == expected_conditional_ids,
+      "[13a] six strict gates and four decision-dependent critical items match the approved Stage 3 control set",
+      f"[13a] VALIDATION CRITICALITY DRIFT: strict={sorted(strict_ids)} conditional={sorted(conditional_ids)}")
+check(sum(class_counts.values()) == 30 and len(class_counts) == 5,
+      f"[13b] all 30 validation items are distributed across all five gate classifications ({dict(class_counts)})",
+      f"[13b] VALIDATION CLASSIFICATION DRIFT: {dict(class_counts)}")
 
 # ---- CHECK 12c: every typed cross-reference resolves everywhere ----------
 known_refs = {

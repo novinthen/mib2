@@ -4,6 +4,22 @@ Chronological record of what was checked, what failed, what changed, and the res
 
 ---
 
+## Stage 3 submission-readiness validation control (2026-08-10)
+
+| # | Check | Result |
+|---|---|---|
+| V.1 | Complete canonical register | 30 unique validation IDs in `VALIDATION_REGISTER.csv`; every row has classification, criticality, one accountable owner, supporting agencies, evidence, deadline, escalation, financial consequence, affected decisions and status |
+| V.2 | Classification | 12 pre-submission; 8 programme-launch; 2 phase-expansion; 5 operational baseline; 3 deferrable validation matters |
+| V.3 | Criticality | Six strict gates preserved: VAL-01, VAL-09, VAL-11, VAL-19, VAL-23, VAL-30; four decision-dependent critical items: VAL-03, VAL-24, VAL-27, VAL-28 |
+| V.4 | Decision linkage | Every item maps only to valid AN/CE/NA decision IDs; no-cascade rule limits the effect of an unresolved item to the mapped decision or programme |
+| V.5 | Status control | Allowed statuses limited to open, requested, received, accepted or disputed; received evidence is not treated as accepted |
+| V.6 | Deterministic drafting | Proposal validation summary and detailed assumptions register generated from the canonical CSV; verifier fails on manual drift |
+| V.7 | Regression verification | `verify_outputs.py`: **PASS — 91 checks, 0 hard failures, 1 standing disclosure warning**; deterministic double regeneration: **PASS**; Next.js production build: **PASS — 29 pages generated** |
+
+**Validation-control result: PASS.** The 90-day exercise now has an operational disposition structure rather than an undifferentiated issues list.
+
+---
+
 ## Stage 2 submission-readiness decision repair (2026-08-10)
 
 | # | Check | Result |

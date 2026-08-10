@@ -115,7 +115,7 @@
 
 **Timestamp:** 2026-08-05
 **Deliverable:** `FINAL_QA_REPORT.md`.
-**Machine verification:** exit 0 — **85 checks passed, 0 hard failures**, 1 standing disclosure warning.
+**Machine verification:** exit 0 — **91 checks passed, 0 hard failures**, 1 standing disclosure warning.
 **Findings:** **76 across two adversarial passes** (17 critical, 30 major, 20 moderate, 9 minor) → **75 resolved, 1 open** (MOD-04, moderate). The independent critic returned and its findings drove a second correction cycle; three criticals it raised were closed structurally, each with a new machine check.
 **Rubric average across all 10 applicable dimensions: 4.44**, every dimension ≥ 4.0.
 **Material caveat:** 0% of the portfolio is Confirmed and 68.1% is Provisional. That classification is now evidence-based and machine-enforced (check `[3b]`), having been corrected downward from a previously claimed 74.8% Benchmarked.
@@ -133,6 +133,18 @@ The Cabinet ask is now divided into **5 approve-now decisions**, **4 conditional
 
 ---
 
+## Submission-readiness Stage 3 — Reclassify and control validation items — **PASS**
+
+**Timestamp:** 2026-08-10
+
+All 30 validation items now reside in `VALIDATION_REGISTER.csv` and are classified by the earliest decision they may block: **12 pre-submission gates, 8 programme-launch gates, 2 phase-expansion gates, 5 operational baselines and 3 deferrable validation matters**. The six strict gates are preserved. VAL-03, VAL-24, VAL-27 and VAL-28 are marked decision-dependent critical. Every row carries one accountable owner, supporting agencies, required evidence, a control deadline, escalation route, financial consequence, affected Stage 2 decision IDs and one of five controlled statuses.
+
+The proposal and detailed assumptions register are generated from the canonical CSV. The no-cascade rule prevents one unresolved partner- or jurisdiction-specific item from blocking unrelated work. Verifier checks `[13]`–`[13b]` enforce schema completeness, classification coverage, criticality, decision references and status vocabulary.
+
+**Gate: PASS.**
+
+---
+
 ## Headline result
 
 | | Central | Conservative | Expanded |
@@ -141,4 +153,4 @@ The Cabinet ask is now divided into **5 approve-now decisions**, **4 conditional
 | Incremental new funding | **RM847.677m** | RM662.215m | RM1,070.229m |
 
 Confidence mix (central): **Confirmed 0.0%** · Benchmarked 31.9% · Provisional 68.1%.
-**30 validation items outstanding, 6 of them gating: VAL-01 (AGC clearance), VAL-09 (DOSM child cohort), VAL-11 (MOE SJKT funding share), VAL-19 (PNB participation), VAL-23 (secretariat establishment), VAL-30 (Article 12(1)/136 clearance).**
+**30 validation items remain open. Six are strict gates: VAL-01, VAL-09, VAL-11, VAL-19, VAL-23 and VAL-30. Four are decision-dependent critical: VAL-03, VAL-24, VAL-27 and VAL-28. An unresolved item blocks only its mapped decision or programme.**
