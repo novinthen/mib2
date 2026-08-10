@@ -95,6 +95,9 @@ REQUIRED = {
                                 "years_1_2_central_rm_m", "years_3_4_central_rm_m",
                                 "years_5_6_central_rm_m", "existing_share",
                                 "reallocated_share", "new_share"],
+    "DECISION_REGISTER.csv": ["decision_id", "category", "decision_text",
+                              "what_it_authorises", "what_it_does_not_authorise",
+                              "dependency", "responsible_owner", "completion_evidence"],
 }
 
 data = {}
@@ -141,7 +144,8 @@ ID_COL = {"SOURCE_REGISTER.csv": "source_id",
           "RISK_AND_SAFEGUARD_REGISTER.csv": "risk_id",
           "COSTING_MODEL.csv": "cost_line_id",
           "COSTING_ASSUMPTIONS.csv": "assumption_id",
-          "BENEFICIARY_RECONCILIATION.csv": "overlap_group"}
+          "BENEFICIARY_RECONCILIATION.csv": "overlap_group",
+          "DECISION_REGISTER.csv": "decision_id"}
 for fname, col in ID_COL.items():
     rows = data.get(fname, [])
     if not rows:
@@ -504,7 +508,7 @@ CANON = ["BENEFICIARY_RECONCILIATION.csv", "STATUS.md", "ASSUMPTIONS_AND_DECISIO
          "PROGRAMME_REGISTER.csv", "NARRATIVE_REGISTER.csv",
          "CONFLICT_AND_DUPLICATION_REGISTER.csv", "RESPONSIBILITY_MATRIX.csv",
          "KPI_REGISTER.csv", "RISK_AND_SAFEGUARD_REGISTER.csv", "COSTING_MODEL.csv",
-         "COSTING_ASSUMPTIONS.csv", "verify_outputs.py", "VERIFICATION_RESULTS.md",
+         "COSTING_ASSUMPTIONS.csv", "DECISION_REGISTER.csv", "verify_outputs.py", "VERIFICATION_RESULTS.md",
          "STAGE_1_DIAGNOSTIC.md", "STAGE_2_RECONCILIATION.md",
          "MIB_2.0_EXECUTIVE_PROPOSAL.md", "TECHNICAL_ANNEXES.md"]
 absent = [f for f in CANON if not os.path.exists(os.path.join(HERE, f))
@@ -538,6 +542,89 @@ for section_name, rendered in expected.items():
 check(not stale,
       f"[12] all {len(expected)} generated proposal/annex sections exactly match the canonical CSV registers",
       f"[12] STALE OR MANUALLY EDITED GENERATED SECTIONS: {stale}; run sync_document_integrity.py")
+
+# ---- CHECK 12a: decision scope is explicit and fiscally non-operative ----
+decision_rows = data.get("DECISION_REGISTER.csv", [])
+decision_categories = Counter(row["category"] for row in decision_rows)
+expected_decision_categories = {
+    "approve_now": 5,
+    "conditional_endorsement": 4,
+    "not_for_approval_now": 7,
+}
+decision_defects = []
+if decision_categories != expected_decision_categories:
+    decision_defects.append(
+        f"category counts {dict(decision_categories)} != {expected_decision_categories}"
+    )
+expected_prefix = {
+    "approve_now": "AN-",
+    "conditional_endorsement": "CE-",
+    "not_for_approval_now": "NA-",
+}
+for row in decision_rows:
+    prefix = expected_prefix.get(row["category"])
+    if prefix is None or not row["decision_id"].startswith(prefix):
+        decision_defects.append(
+            f"{row['decision_id']}: ID/category mismatch for {row['category']}"
+        )
+
+approve_effect = " ".join(
+    row["decision_text"] + " " + row["what_it_authorises"]
+    for row in decision_rows if row["category"] == "approve_now"
+).lower()
+for forbidden in ("approve the final six-year fiscal envelope", "any new design or validation appropriation",
+                  "creation of the proposed 35 permanent secretariat posts"):
+    if forbidden in approve_effect:
+        decision_defects.append(f"approve-now scope contains forbidden operative effect: {forbidden}")
+
+exclusions = " ".join(
+    row["decision_text"] + " " + row["what_it_does_not_authorise"]
+    for row in decision_rows if row["category"] == "not_for_approval_now"
+).lower()
+exclusions_normalized = re.sub(r"[^a-z0-9]+", " ", exclusions).strip()
+required_exclusions = (
+    "final six-year fiscal envelope",
+    "ministry reallocations",
+    "years 3–6 appropriation",
+    "pnb participation",
+    "states local authorities trustees or religious authorities",
+    "targets whose baselines are not verified",
+)
+for subject in required_exclusions:
+    subject_normalized = re.sub(r"[^a-z0-9]+", " ", subject).strip()
+    if subject_normalized not in exclusions_normalized:
+        decision_defects.append(f"missing explicit no-approval subject: {subject}")
+
+central_total = grand.get("central", Decimal(0))
+central_reallocated = sum(
+    D(row["existing_funding"]) + D(row["reallocated_funding"])
+    for row in cm if row["scenario"] == "central"
+)
+phase_1_total = sum(D(row["years_1_2"]) for row in cm if row["scenario"] == "central")
+decision_text_all = "\n".join(" | ".join(row.values()) for row in decision_rows)
+for amount, label in (
+    (central_total, "central total"),
+    (central_reallocated, "existing/reallocated total"),
+):
+    if f"RM{amount:,.3f} million" not in decision_text_all:
+        decision_defects.append(f"{label} RM{amount:,.3f}m is not model-derived in decision register")
+if f"RM{phase_1_total:,.1f} million" not in decision_text_all:
+    decision_defects.append(
+        f"Phase 1 amount RM{phase_1_total:,.1f}m is not model-derived in decision register"
+    )
+
+obsolete_decision_language = (
+    "approve in principle the funding framework",
+    "approval in principle of the fiscal framework",
+    "d1–d6",
+)
+for phrase in obsolete_decision_language:
+    if phrase in proposal_text.lower():
+        decision_defects.append(f"proposal retains obsolete decision language: {phrase}")
+
+check(not decision_defects,
+      "[12a] decision register separates 5 operative approvals, 4 conditional endorsements and 7 express deferrals; no fiscal or implementation authority is implied",
+      f"[12a] DECISION-SCOPE DEFECTS: {decision_defects[:15]}")
 
 # ---- CHECK 12b: narrative counts match the canonical registers -----------
 programme_rows = data.get("PROGRAMME_REGISTER.csv", [])
@@ -634,9 +721,9 @@ for index, match in enumerate(programme_headers):
         )
 
 summary_patterns = [
-    (r"six-year central cost of RM([\d,.]+) million", grand.get("central"), "executive central total"),
-    (r"incremental new funding requirement is RM([\d,.]+) million", sum(D(r["new_funding"]) for r in central_rows), "incremental new funding"),
-    (r"remaining RM([\d,.]+) million being existing allocations and proposed reallocation", sum(D(r["existing_funding"]) + D(r["reallocated_funding"]) for r in central_rows), "non-new funding"),
+    (r"six-year central (?:cost|planning scenario) of RM([\d,.]+) million", grand.get("central"), "executive central total"),
+    (r"(?:incremental new funding requirement is|modelled incremental new funding requirement of) RM([\d,.]+) million", sum(D(r["new_funding"]) for r in central_rows), "incremental new funding"),
+    (r"RM([\d,.]+) million (?:being|provisionally classified as) existing allocations (?:and|or) proposed reallocation", sum(D(r["existing_funding"]) + D(r["reallocated_funding"]) for r in central_rows), "non-new funding"),
 ]
 for pattern, expected_amount, label in summary_patterns:
     found = re.search(pattern, proposal_text, flags=re.IGNORECASE)
@@ -649,6 +736,30 @@ for pattern, expected_amount, label in summary_patterns:
 check(not narrative_cost_drift and checked_programme_costs >= 8,
       f"[12d] {checked_programme_costs} authored programme-cost statements and all executive funding headlines match COSTING_MODEL.csv",
       f"[12d] NARRATIVE FINANCIAL DRIFT: {narrative_cost_drift}; only {checked_programme_costs} programme costs inspected")
+
+# ---- CHECK 12e: the canonical headline claim matches the live model ------
+claim_054 = next((row for row in data.get("CLAIMS_AND_FIGURES_REGISTER.csv", [])
+                  if row["claim_id"] == "CLM-054"), None)
+claim_054_defects = []
+if claim_054 is None:
+    claim_054_defects.append("CLM-054 is missing")
+else:
+    claim_text = claim_054["verbatim_or_close_claim"]
+    expected_claim_amounts = {
+        "central": grand.get("central", Decimal(0)),
+        "conservative": grand.get("conservative", Decimal(0)),
+        "expanded": grand.get("expanded", Decimal(0)),
+        "central new funding": sum(D(row["new_funding"]) for row in central_rows),
+    }
+    for label, amount in expected_claim_amounts.items():
+        if f"RM{amount:,.3f} million" not in claim_text:
+            claim_054_defects.append(f"{label} RM{amount:,.3f}m missing from CLM-054")
+    treatment = claim_054["adopted_treatment"].lower()
+    if "indicative" not in treatment or "not" not in treatment or "approved envelope" not in treatment:
+        claim_054_defects.append("CLM-054 treatment does not preserve indicative/non-approved status")
+check(not claim_054_defects,
+      "[12e] CLM-054 matches all three scenario totals and central new funding, and preserves non-approved status",
+      f"[12e] CANONICAL FINANCIAL CLAIM DRIFT: {claim_054_defects}")
 
 # ---- report --------------------------------------------------------------
 print(f"\nPASSED ({len(PASSED)}):")

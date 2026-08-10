@@ -105,7 +105,7 @@
 
 **Timestamp:** 2026-08-05
 **Deliverables:** `MIB_2.0_EXECUTIVE_PROPOSAL.md`, `TECHNICAL_ANNEXES.md`.
-**Evidence:** 36 distinct claim IDs cited and all resolving; 9 rejected/unsupported claims verified as appearing only in corrective context; body and annex figures identical by construction; 10 Cabinet objections answered; preliminary endorsement distinguished from appropriation in three places; all electoral and messaging content excluded.
+**Evidence:** 36 distinct claim IDs cited and all resolving; 9 rejected/unsupported claims verified as appearing only in corrective context; body and annex figures identical by construction; 10 Cabinet objections answered; operative approval, conditional endorsement and express deferral separated through a canonical decision register; all electoral and messaging content excluded.
 **Rubric:** Narrative–evidence alignment 4.4 · Cabinet readiness 4.4 · Internal consistency 4.6 · Policy logic 4.4 · Completeness 4.6 — **average 4.48**.
 **Gate: PASS.**
 
@@ -115,10 +115,20 @@
 
 **Timestamp:** 2026-08-05
 **Deliverable:** `FINAL_QA_REPORT.md`.
-**Machine verification:** exit 0 — **80 checks passed, 0 hard failures**, 1 standing disclosure warning.
+**Machine verification:** exit 0 — **85 checks passed, 0 hard failures**, 1 standing disclosure warning.
 **Findings:** **76 across two adversarial passes** (17 critical, 30 major, 20 moderate, 9 minor) → **75 resolved, 1 open** (MOD-04, moderate). The independent critic returned and its findings drove a second correction cycle; three criticals it raised were closed structurally, each with a new machine check.
-**Rubric average across all 10 applicable dimensions: 4.42**, every dimension ≥ 4.0.
+**Rubric average across all 10 applicable dimensions: 4.44**, every dimension ≥ 4.0.
 **Material caveat:** 0% of the portfolio is Confirmed and 68.1% is Provisional. That classification is now evidence-based and machine-enforced (check `[3b]`), having been corrected downward from a previously claimed 74.8% Benchmarked.
+**Gate: PASS.**
+
+---
+
+## Submission-readiness Stage 2 — Tighten the decision sought — **PASS**
+
+**Timestamp:** 2026-08-10
+
+The Cabinet ask is now divided into **5 approve-now decisions**, **4 conditional endorsements** and **7 express deferrals**. The six-year architecture and programme directions may guide validation, but the RM1,484.273m central scenario is not an approved envelope; no appropriation, reallocation, programme launch, permanent establishment, PNB participation, state-dependent commitment or unverified target is authorised. Parts 2 and 12 are generated from `DECISION_REGISTER.csv`, and verifier check `[12a]` fails on decision-category, fiscal-figure or excluded-subject drift.
+
 **Gate: PASS.**
 
 ---

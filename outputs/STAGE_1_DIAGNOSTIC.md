@@ -106,8 +106,8 @@ Source 1 has numbers without a narrative that survives scrutiny; source 2 has a 
 | # | Section | Purpose | Principal content | Evidence base |
 |---|---|---|---|---|
 | 1 | Cover and submission note | Identify the decision sought | Status as a preliminary-approval proposal, not a Cabinet Memorandum | — |
-| 2 | Executive proposition | State the ask in one page | The proposition, the six decisions, the fiscal envelope | CLM-054 |
-| 3 | Decisions requested | Precise, numbered, staged | Six decisions with what each does and does not authorise | Registers |
+| 2 | Executive proposition | State the ask in one page | The proposition and the boundary between operative approval, conditional endorsement and express deferral | CLM-054; decision register |
+| 3 | Decisions requested | Precise, numbered, staged | Five approve-now decisions, four conditional endorsements and seven express exclusions, each with its legal and fiscal effect bounded | `DECISION_REGISTER.csv` |
 | 4 | The reality | Accurate, non-homogenising picture | DOSM data, distributional detail, sub-group heterogeneity | CLM-004 to CLM-007 |
 | 5 | Diagnosis | Why prior effort has not produced structural change | Coordination failure, measurement absence, four structural exclusions | CLM-048; MIB 2017 |
 | 6 | Strategic principles | Constraints the plan accepts | Needs-based, complementary, evidence-gated, measured | DEC-08 |
@@ -120,7 +120,7 @@ Source 1 has numbers without a narrative that survives scrutiny; source 2 has a 
 | 13 | Risks and safeguards | Honest failure modes | 18 risks were recorded at this diagnostic stage; the current canonical register contains 21 | Risk register |
 | 14 | Roadmap | What happens when | Phase-by-phase deliverables and decision gates | — |
 | 15 | Cabinet objections | Pre-empt the ten hardest questions | Direct answers with evidence | §14 of master prompt |
-| 16 | Approvals requested | The formal ask | Six numbered approvals, each bounded | — |
+| 16 | Decision resolution requested | The formal ask | Three-tier resolution generated from the canonical decision register | `DECISION_REGISTER.csv` |
 
 ---
 

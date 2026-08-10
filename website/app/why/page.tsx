@@ -132,12 +132,13 @@ export default function WhyPage() {
           <h2 className="text-3xl font-bold mb-6">Next Steps</h2>
           <div className="space-y-4 text-lg leading-relaxed text-white/90">
             <p>
-              This proposal requests preliminary Cabinet consideration. Approval in principle does not appropriate
-              funds — appropriation follows the standard supply process and Malaysia Plan integration.
+              This proposal asks Cabinet to approve policy direction and a 90-day validation exercise. The programme
+              architecture is conditionally endorsed only as a design basis; no implementation or fiscal envelope is approved.
             </p>
             <p>
-              Six gating validation items must close before Phase 1 commences, including AGC clearance (VAL-01),
-              PNB participation (VAL-19), and secretariat establishment (VAL-23).
+              Phase 1 requires a later express decision identifying its approved components, ceiling, owners and launch
+              conditions. Six strict gates remain, including AGC clearance (VAL-01), PNB participation (VAL-19), and
+              secretariat establishment (VAL-23), each applying to the affected programme or decision.
             </p>
           </div>
         </section>

@@ -4,6 +4,21 @@ Chronological record of what was checked, what failed, what changed, and the res
 
 ---
 
+## Stage 2 submission-readiness decision repair (2026-08-10)
+
+| # | Check | Result |
+|---|---|---|
+| D.1 | Decision classification | 5 approve-now decisions, 4 conditional endorsements and 7 express deferrals recorded in `DECISION_REGISTER.csv` |
+| D.2 | Fiscal non-commitment | RM1,484.273m central scenario retained only as an indicative planning case; final envelope, reallocations and all appropriations expressly not approved |
+| D.3 | Implementation non-commitment | No programme launch, Phase 1 commencement, beneficiary entitlement, procurement, contract, permanent establishment or third-party commitment authorised |
+| D.4 | Validation authority | 90-calendar-day cross-agency exercise authorised; interim coordination uses existing approved functions and resources; any additional validation budget must return separately with an itemised ceiling and MOF concurrence |
+| D.5 | Deterministic drafting | Part 2 and Part 12 generated from the decision register; verifier fails on category drift, missing exclusions, model-number drift or obsolete fiscal-approval language |
+| D.6 | Regression verification | `verify_outputs.py`: **PASS — 85 checks, 0 hard failures, 1 standing disclosure warning**; Next.js production build: **PASS** |
+
+**Decision-repair result: PASS.** Conditional endorsement now provides design direction without creating legal, fiscal or implementation authority.
+
+---
+
 ## Stage 1 document-integrity repair (2026-08-10)
 
 | # | Check | Result |
@@ -12,7 +27,7 @@ Chronological record of what was checked, what failed, what changed, and the res
 | I.2 | Narrative counts | 16 retained substantive programmes distinguished from 5 non-retained source proposals; 21 risks, 30 validation items and 6 strict gates reconciled |
 | I.3 | Phase gates | End-Year 2 administrative readiness review gates Phase 2; end-Year 3 independent mid-term evaluation gates Phase 3; Year 5 appropriation remains separate |
 | I.4 | Reference integrity | All CLM/KPI/PRG/RSK/RSP/VAL references across canonical CSV and Markdown files resolve |
-| I.5 | Regression verification | `verify_outputs.py`: **PASS — 80 checks, 0 hard failures, 1 standing disclosure warning** |
+| I.5 | Regression verification | `verify_outputs.py`: **PASS — 80 checks, 0 hard failures, 1 standing disclosure warning** (superseded by the 84-check Stage 2 run above) |
 
 **Integrity-repair result: PASS.** The warning is an explicit disclosure that PRG-01 and PRG-14 use authored judgement because no complete published costing formula exists.
 
@@ -125,7 +140,7 @@ A fresh critic subagent was commissioned with the source extracts, the primary M
 | 3.1 | No number in the proposal without a claim ID or register mapping | Enforced by machine check [10] |
 | 3.2 | No rejected/unsupported claim used as live evidence | Machine check [10] scans a ±600-character window around every rejected claim ID for corrective language and fails if absent |
 | 3.3 | Ten Cabinet objections explicitly answered | Part 10 of the proposal |
-| 3.4 | Preliminary endorsement distinguished from appropriation | Stated in the status note, in the D1–D6 table's "does not authorise" column, and in Part 12 |
+| 3.4 | Operative approval distinguished from conditional endorsement, express deferral and appropriation | Stated in the status note and generated from `DECISION_REGISTER.csv` in Parts 2 and 12 |
 | 3.5 | Body–annex agreement | Annex A totals equal the proposal's Part 7 figures; both derive from the same generated CSV |
 | 3.6 | Electoral and messaging content excluded | Verified absent; recorded at Annex J |
 | 3.7 | Heterogeneity requirement | Part 3.2 distinguishes by documentation status, life stage, household composition, geography and gender, and records the Sabah/Sarawak analytical gap rather than concealing it |

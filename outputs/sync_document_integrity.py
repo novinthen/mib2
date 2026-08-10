@@ -1,9 +1,9 @@
 """Synchronise generated proposal/annex sections with canonical registers.
 
 The CSV registers are the only authored source for portfolio financial figures.
-This script renders every duplicated financial table in the executive proposal
-and technical annexes.  It also exposes the renderers to verify_outputs.py so
-CI can fail if a document is stale.
+This script renders every duplicated financial table and decision section in
+the executive proposal and technical annexes. It also exposes the renderers to
+verify_outputs.py so CI can fail if a document is stale.
 
 Usage: python outputs/sync_document_integrity.py
 """
@@ -69,6 +69,86 @@ def scenario_summary(rows: list[dict[str, str]]) -> dict[str, dict[str, Decimal]
     return result
 
 
+def decision_data() -> list[dict[str, str]]:
+    return load_csv("DECISION_REGISTER.csv")
+
+
+def render_decision_architecture() -> str:
+    rows = decision_data()
+    labels = {
+        "approve_now": "Approve now",
+        "conditional_endorsement": "Endorse conditionally",
+        "not_for_approval_now": "Do not approve now",
+    }
+    introductions = {
+        "approve_now": (
+            "These decisions create authority to validate and prepare. They do not launch the "
+            "six-year programme or approve new expenditure."
+        ),
+        "conditional_endorsement": (
+            "These propositions may guide detailed design, but have no operative effect unless "
+            "their stated dependencies are cleared and a later decision expressly activates them."
+        ),
+        "not_for_approval_now": (
+            "These exclusions are part of the decision itself. Silence or general endorsement must "
+            "not be interpreted as approval of any item below."
+        ),
+    }
+    lines = [START.format(name="DECISION_ARCHITECTURE")]
+    for category in ("approve_now", "conditional_endorsement", "not_for_approval_now"):
+        selected = [row for row in rows if row["category"] == category]
+        lines += [f"## 2.{1 + list(labels).index(category)} {labels[category]}", "", introductions[category], ""]
+        if category == "not_for_approval_now":
+            lines += ["| # | Excluded decision | Required before reconsideration |", "|---|---|---|"]
+            for row in selected:
+                lines.append(f"| **{row['decision_id']}** | {row['decision_text']} | {row['dependency']} |")
+        else:
+            lines += ["| # | Decision | What it authorises | What it does **not** authorise |", "|---|---|---|---|"]
+            for row in selected:
+                lines.append(
+                    f"| **{row['decision_id']}** | {row['decision_text']} | "
+                    f"{row['what_it_authorises']} | {row['what_it_does_not_authorise']} |"
+                )
+        lines.append("")
+    lines += [
+        "**Decision rule.** Only AN-01 to AN-05 would take effect on this preliminary decision. "
+        "CE-01 to CE-04 are design parameters, not operative approvals. NA-01 to NA-07 are "
+        "express exclusions. If the recorded Cabinet decision does not preserve that distinction, "
+        "the sponsoring ministry must correct the record before undertaking any action.",
+        END.format(name="DECISION_ARCHITECTURE"),
+    ]
+    return "\n".join(lines)
+
+
+def render_final_decision_resolution() -> str:
+    rows = decision_data()
+    approve = [row for row in rows if row["category"] == "approve_now"]
+    conditional = [row for row in rows if row["category"] == "conditional_endorsement"]
+    excluded = [row for row in rows if row["category"] == "not_for_approval_now"]
+    lines = [
+        START.format(name="FINAL_DECISION_RESOLUTION"),
+        "Cabinet is respectfully invited to:",
+        "",
+        "### Approve now",
+        "",
+    ]
+    lines += [f"{i}. **{row['decision_id']}:** {row['decision_text']}" for i, row in enumerate(approve, 1)]
+    lines += ["", "### Endorse conditionally", ""]
+    lines += [f"{i}. **{row['decision_id']}:** {row['decision_text']}" for i, row in enumerate(conditional, 1)]
+    lines += ["", "### Record as not approved at this stage", ""]
+    lines += [f"{i}. **{row['decision_id']}:** {row['decision_text']}" for i, row in enumerate(excluded, 1)]
+    lines += [
+        "",
+        "For avoidance of doubt, this resolution creates no appropriation, procurement authority, "
+        "statutory power, permanent establishment, programme launch, third-party commitment or "
+        "beneficiary entitlement. Any later implementation authority must identify the approved "
+        "programme components, ceiling, funding source, accounting officer, legal basis, launch "
+        "conditions and review gate.",
+        END.format(name="FINAL_DECISION_RESOLUTION"),
+    ]
+    return "\n".join(lines)
+
+
 def render_phase_table() -> str:
     rows, _ = cost_data()
     central = scenario_summary(rows)["central"]
@@ -77,7 +157,7 @@ def render_phase_table() -> str:
         "| | **Phase 1 (Years 1–2)** | **Phase 2 (Years 3–4)** | **Phase 3 (Years 5–6)** |",
         "|---|---|---|---|",
         "| **Purpose** | Establish what does not exist | Build the pathways | Consolidate and graduate |",
-        f"| **Central cost** | RM{money(central['phase_1'], 1)}m | RM{money(central['phase_2'], 1)}m | RM{money(central['phase_3'], 1)}m |",
+        f"| **Indicative central planning cost** | RM{money(central['phase_1'], 1)}m | RM{money(central['phase_2'], 1)}m | RM{money(central['phase_3'], 1)}m |",
         "| **Defining deliverables** | Verified caseload baseline; 528 SJKT audits; baseline survey; DPIA; dashboard live; secretariat operational; 12 of 16 KPIs baselined | TVET pipeline at scale; enterprise advisory; housing legacy review tabled; first disaggregated intake series published for three consecutive years | Savings scheme at scale; graduation measurement; final independent evaluation |",
         "| **Gate** | **End-Year 2 administrative readiness review:** Cabinet or its authorised committee decides whether Phase 2 may proceed, be corrected or be re-scoped | **End-Year 3 independent mid-term evaluation:** determines whether Phase 3 may proceed and whether ongoing Phase 2 delivery must be corrected or re-scoped | **Year 6 final evaluation:** informs successor arrangements; creates no automatic continuation |",
         END.format(name="PHASE_TABLE"),
@@ -91,7 +171,7 @@ def render_proposal_finance() -> str:
     total = scenarios["central"]["total"]
     non_new = scenarios["central"]["existing"] + scenarios["central"]["reallocated"]
 
-    lines = [START.format(name="PROPOSAL_FINANCE"), "## 7.1 The envelope", "",
+    lines = [START.format(name="PROPOSAL_FINANCE"), "## 7.1 Indicative planning scenarios — not approval envelopes", "",
              "| Scenario | Six-year total | Phase 1 | Phase 2 | Phase 3 | New funding |",
              "|---|---:|---:|---:|---:|---:|"]
     for scenario, label in (("conservative", "Conservative"),
@@ -107,7 +187,7 @@ def render_proposal_finance() -> str:
         "",
         "Scenarios are **sensitivity cases on identical programme definitions**, not alternative blueprints. Conservative applies 0.75× and expanded 1.30× to the variable component of each programme; fixed components (systems, audits, secretariat, evaluations) do not scale. The conservative case approximates the position if participation across the portfolio runs 25% below plan.",
         "",
-        f"**Gross portfolio cost is RM{money(total)} million. The incremental new fiscal requirement is RM{money(scenarios['central']['new'])} million** — approximately RM{scenarios['central']['new'] / Decimal(6):.0f} million per year averaged over six years, against MITRA's verified 2026 allocation of RM150 million (CLM-019). The remaining RM{money(non_new)} million comprises RM{money(scenarios['central']['existing'])} million of existing allocations and RM{money(scenarios['central']['reallocated'])} million of proposed reallocations. Both classifications remain subject to Treasury and ministry validation.",
+        f"**The indicative central scenario has a gross portfolio cost of RM{money(total)} million and a modelled incremental new fiscal requirement of RM{money(scenarios['central']['new'])} million** — approximately RM{scenarios['central']['new'] / Decimal(6):.0f} million per year averaged over six years, against MITRA's verified 2026 allocation of RM150 million (CLM-019). The remaining RM{money(non_new)} million is modelled as RM{money(scenarios['central']['existing'])} million of existing allocations and RM{money(scenarios['central']['reallocated'])} million of proposed reallocations. These are unverified planning classifications, not recognised funding sources, and remain subject to Treasury and ministry validation.",
         "",
         "## 7.2 Confidence",
         "",
@@ -124,7 +204,7 @@ def render_proposal_finance() -> str:
         lines.append(f"| **{classification}** — {descriptions[classification]} | RM{money(amount)}m | **{percent(amount, total)}** |")
     lines += [
         "",
-        "**No cost line in this portfolio is Confirmed.** That is stated plainly because it determines what Cabinet is being asked to approve: a framework in principle, not a fully costed implementation programme. No programme in this proposal is described as fully costed while material assumptions remain provisional.",
+        "**No cost line in this portfolio is Confirmed.** The central scenario is therefore presented for conditional endorsement as a planning case only, not as a fiscal framework or envelope for approval. No programme in this proposal is described as fully costed while material assumptions remain provisional.",
         END.format(name="PROPOSAL_FINANCE"),
     ]
     return "\n".join(lines)
@@ -209,8 +289,10 @@ def replace_generated(text: str, name: str, rendered: str) -> str:
 
 def expected_sections() -> dict[str, str]:
     return {
+        "DECISION_ARCHITECTURE": render_decision_architecture(),
         "PHASE_TABLE": render_phase_table(),
         "PROPOSAL_FINANCE": render_proposal_finance(),
+        "FINAL_DECISION_RESOLUTION": render_final_decision_resolution(),
         "TECHNICAL_ANNEX_A": render_technical_annex_a(),
     }
 
@@ -219,8 +301,10 @@ def main() -> None:
     with open(PROPOSAL, encoding="utf-8", newline="") as fh:
         proposal = fh.read()
     proposal_eol = "\r\n" if "\r\n" in proposal else "\n"
+    proposal = replace_generated(proposal, "DECISION_ARCHITECTURE", render_decision_architecture().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "PHASE_TABLE", render_phase_table().replace("\n", proposal_eol))
     proposal = replace_generated(proposal, "PROPOSAL_FINANCE", render_proposal_finance().replace("\n", proposal_eol))
+    proposal = replace_generated(proposal, "FINAL_DECISION_RESOLUTION", render_final_decision_resolution().replace("\n", proposal_eol))
     with open(PROPOSAL, "w", encoding="utf-8", newline="") as fh:
         fh.write(proposal)
 
